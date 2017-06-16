@@ -9,6 +9,14 @@
         "source": "**",
         "destination": "/200.html"
       }
-    ]
+    ],
+    // disable HTTP caching for all assets
+    "headers": [ {
+      "source" : "**",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "no-cache"
+      } ]
+    } ]
   }
 }
