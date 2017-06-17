@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
 import Home from 'components/Home';
-import About from 'components/About';
+import About from 'components/About/About';
 import logo from './logo.svg';
 import './App.css';
 
