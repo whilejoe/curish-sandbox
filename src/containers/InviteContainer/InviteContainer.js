@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Invite from 'components/Invite/Invite';
+import Invite from 'routes/Invite/Invite';
 import {getInvite} from 'actions/getInvite';
 import {addToInvite} from 'actions/addToInvite';
 import {watchGuestAddedEvent, removeGuestAddedEvent} from 'actions/guestAddedEvent';
