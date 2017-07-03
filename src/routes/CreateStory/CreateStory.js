@@ -1,13 +1,21 @@
 import React, {Component} from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import './StoriesDraft.css';
+import './CreateStory.css';
 
-class StoriesDraft extends Component {
+class CreateStory extends Component {
 
   state = {
     editorState: EditorState.createEmpty() // for empty content
   };
+
+  handleSubmit = () => {
+    const contentState = this.state.editorState.getCurrentContent();
+    const rawContentState = convertToRaw(contentState);
+    const jsonContentState = JSON.stringify(rawContentState);
+    this.props.onAddToStory(jsonContentState);
+    console.log('onSubmit jsonContentState', jsonContentState);
+  }
 
   onChange = editorState => {
     this.setState({editorState});
@@ -64,33 +72,36 @@ class StoriesDraft extends Component {
     }
 
     return (
-      <div className="RichEditor-root">
-        <BlockStyleControls
-          editorState={editorState}
-          onToggle={this.toggleBlockType}
-        />
-        <InlineStyleControls
-          editorState={editorState}
-          onToggle={this.toggleInlineStyle}
-        />
-        <div className={className} onClick={this.focus}>
-          <Editor
-            blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
+      <section>
+        <h1>Create A Story</h1>
+        <div className="RichEditor-root">
+          <BlockStyleControls
             editorState={editorState}
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
-            onTab={this.onTab}
-            placeholder="Tell a story..."
-            ref="editor"
-            textAlignment="center"
-            spellCheck
-            autoCapitalize
-            autoComplete
-            autoCorrect
+            onToggle={this.toggleBlockType}
           />
+          <InlineStyleControls
+            editorState={editorState}
+            onToggle={this.toggleInlineStyle}
+          />
+          <div className={className} onClick={this.focus}>
+            <Editor
+              blockStyleFn={getBlockStyle}
+              customStyleMap={styleMap}
+              editorState={editorState}
+              handleKeyCommand={this.handleKeyCommand}
+              onChange={this.onChange}
+              onTab={this.onTab}
+              placeholder="Tell a story..."
+              ref="editor"
+              spellCheck
+              autoCapitalize
+              autoComplete
+              autoCorrect
+            />
+          </div>
         </div>
-      </div>
+        <button onClick={this.handleSubmit}>submit for review</button>
+      </section>
     );
   }
 }
@@ -188,4 +199,4 @@ const InlineStyleControls = props => {
   );
 };
 
-export default StoriesDraft;
+export default CreateStory;

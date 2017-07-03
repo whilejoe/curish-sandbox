@@ -19,7 +19,7 @@ class Invite extends Component {
     const {host, agenda, guests} = this.props.invite;
     const {name} = this.state;
     return (
-      <div className="container">
+      <div>
         <h1>Meeting invite</h1>
         <p>Host: {host}</p>
         <p>Agenda: {agenda}</p>

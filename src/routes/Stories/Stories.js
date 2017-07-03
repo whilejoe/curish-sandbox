@@ -1,34 +1,25 @@
 import React, {Component} from 'react';
-import 'medium-draft/lib/index.css';
-import {Editor, createEditorState} from 'medium-draft';
+import Story from './Story/Story';
+import './Stories.css';
 
 class Stories extends Component {
 
-  state = {
-    editorState: createEditorState(), // for empty content
-  };
-
-  onChange = editorState => {
-    this.setState({editorState});
-  };
-
-  componentDidMount() {
-    this.refs.editor.focus();
+  componentWillMount() {
+    this.props.getStories();
   }
 
   render() {
-    const {editorState} = this.state;
-    const currentContent = editorState.getSelection();
-    console.log('currentContent', currentContent);
-    return (
-      <div className="container">
+    const {stories} = this.props;
+    return !stories ? null : (
+      <div>
         <h1>Stories</h1>
-        <Editor
-          ref="editor"
-          textAlignment="center"
-          spellCheck
-          editorState={editorState}
-          onChange={this.onChange} />
+        {Object.keys(stories).map(story => 
+          <article key={story} className="story">
+            <h2>{stories[story].title}</h2>
+            <h3>{stories[story].author}</h3>
+            <Story rawData={stories[story].rawData} />
+          </article>
+        )}
       </div>
     );
   }
