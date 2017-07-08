@@ -16,6 +16,20 @@ const actionTypes = {
   AddToStoryRequested: 'ADD_TO_STORY_REQUESTED',
   AddToStoryRejected: 'ADD_TO_STORY_REJECTED',
   AddToStoryFulfilled: 'ADD_TO_STORY_FULFILLED',
+
+  CreateUserRequested: 'CREATE_USER_REQUESTED',
+  CreateUserRejected: 'CREATE_USER_REJECTED',
+  CreateUserFulfilled: 'CREATE_USER_FULFILLED',
+
+  LoginUserRequested: 'LOGIN_USER_REQUESTED',
+  LoginUserRejected: 'LOGIN_USER_REJECTED',
+  LoginUserFulfilled: 'LOGIN_USER_FULFILLED',
+
+  LogoutUserRequested: 'LOGOUT_USER_REQUESTED',
+  LogoutUserRejected: 'LOGOUT_USER_REJECTED',
+  LogoutUserFulfilled: 'LOGOUT_USER_FULFILLED',
+
+  ListenToAuth: 'LISTEN_TO_AUTH',
 };
 
 export default actionTypes;

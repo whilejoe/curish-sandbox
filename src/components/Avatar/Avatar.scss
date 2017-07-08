@@ -1,0 +1,22 @@
+// .avatar {
+//   margin-bottom: 1rem;
+// }
+
+.avatar__image {
+  display: inline-block;
+  max-width: 2.5rem;
+  // margin-right: .5rem;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.avatar__image--small {
+  max-width: 2rem;
+}
+
+.avatar__name {
+  display: inline-block;
+  margin-left: .5rem;
+  vertical-align: middle;
+  font-size: 1.25rem;
+}

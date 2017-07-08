@@ -2,9 +2,9 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div className="container">
-      <h1>Home Page</h1>
-      <p>Home page copy.</p>
+    <div style={{textAlign: 'center', marginTop: '26vh'}}>
+      <h1>Curious?</h1>
+      <input type="text" placeholder="search story titles/tags"/>
     </div>
   );
 };

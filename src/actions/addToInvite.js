@@ -6,8 +6,8 @@ export function addToInvite(name) {
     dispatch(addToInviteRequestedAction());
     database.ref('/guests')
     .push({name})
-    .then(() => dispatch(addToInviteFulfilledAction({name})))
-    .catch(error => dispatch(addToInviteRejectedAction(error)));
+    .then(() => dispatch(addToInviteFulfilledAction()))
+    .catch(error => dispatch(addToInviteRejectedAction(error.message)));
   }
 }
 
@@ -17,15 +17,15 @@ function addToInviteRequestedAction() {
   };
 }
 
-function addToInviteRejectedAction() {
+function addToInviteRejectedAction(error) {
   return {
-    type: ActionTypes.AddToInviteRejected
+    type: ActionTypes.AddToInviteRejected,
+    error
   }
 }
 
-function addToInviteFulfilledAction(guest) {
+function addToInviteFulfilledAction() {
   return {
-    type: ActionTypes.AddToInviteFulfilled,
-    guest
+    type: ActionTypes.AddToInviteFulfilled
   };
 }
