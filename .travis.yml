@@ -1,5 +1,5 @@
 language: node_js
-install: nvm install v8.1.3
+install: nvm install "8.1.3"
 node_js:
    - “8.1.3”
 cache:
