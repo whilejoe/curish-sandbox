@@ -1,6 +1,9 @@
-import ActionTypes from 'constants/actionTypes';
 import firebase from 'firebase';
 import {pushRoute} from './pushRoute';
+
+export const LOGOUT_USER_REQUESTED = 'LOGOUT_USER_REQUESTED';
+export const LOGOUT_USER_REJECTED = 'LOGOUT_USER_REJECTED';
+export const LOGOUT_USER_FULFILLED = 'LOGOUT_USER_FULFILLED';
 
 export function logoutUser() {
   return dispatch => {
@@ -16,21 +19,21 @@ export function logoutUser() {
   }
 }
 
-function logoutUserRequestedAction() {
+export const logoutUserRequestedAction = () => {
   return {
-    type: ActionTypes.LogoutUserRequested
+    type: LOGOUT_USER_REQUESTED
   };
 }
 
-function logoutUserRejectedAction(error) {
+export const logoutUserRejectedAction = error => {
   return {
-    type: ActionTypes.LogoutUserRejected,
-    error
+    type: LOGOUT_USER_REJECTED,
+    payload: error
   }
 }
 
-function logoutUserFulfilledAction() {
+export const logoutUserFulfilledAction = () => {
   return {
-    type: ActionTypes.LogoutUserFulfilled
+    type: LOGOUT_USER_FULFILLED
   };
 }

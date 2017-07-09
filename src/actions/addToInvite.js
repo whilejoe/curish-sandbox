@@ -1,5 +1,8 @@
-import ActionTypes from 'constants/actionTypes';
 import database from './database';
+
+export const ADD_TO_INVITE_REQUESTED = 'ADD_TO_INVITE_REQUESTED';
+export const ADD_TO_INVITE_REJECTED = 'ADD_TO_INVITE_REJECTED';
+export const ADD_TO_INVITE_FULFILLED = 'ADD_TO_INVITE_FULFILLED';
 
 export function addToInvite(name) {
   return dispatch => {
@@ -11,21 +14,21 @@ export function addToInvite(name) {
   }
 }
 
-function addToInviteRequestedAction() {
+export const addToInviteRequestedAction = () => {
   return {
-    type: ActionTypes.AddToInviteRequested
+    type: ADD_TO_INVITE_REQUESTED
   };
 }
 
-function addToInviteRejectedAction(error) {
+export const addToInviteRejectedAction = error => {
   return {
-    type: ActionTypes.AddToInviteRejected,
-    error
+    type: ADD_TO_INVITE_REJECTED,
+    payload: error
   }
 }
 
-function addToInviteFulfilledAction() {
+export const addToInviteFulfilledAction () => {
   return {
-    type: ActionTypes.AddToInviteFulfilled
+    type: ADD_TO_INVITE_FULFILLED
   };
 }

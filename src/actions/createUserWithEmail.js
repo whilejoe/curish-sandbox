@@ -1,6 +1,9 @@
-import ActionTypes from 'constants/actionTypes';
 import firebase from 'firebase';
 import {pushRoute} from './pushRoute';
+
+export const CREATE_USER_WITH_EMAIL_REQUESTED = 'CREATE_USER_WITH_EMAIL_REQUESTED';
+export const CREATE_USER_WITH_EMAIL_REJECTED = 'CREATE_USER_WITH_EMAIL_REJECTED';
+export const CREATE_USER_WITH_EMAIL_FULFILLED = 'CREATE_USER_WITH_EMAIL_FULFILLED';
 
 export function createUserWithEmail(email, password) {
   return dispatch => {
@@ -16,22 +19,22 @@ export function createUserWithEmail(email, password) {
   }
 }
 
-function createUserWithEmailRequestedAction() {
+export const createUserWithEmailRequestedAction = () => {
   return {
-    type: ActionTypes.CreateUserWithEmailRequested
+    type: CREATE_USER_WITH_EMAIL_REQUESTED
   };
 }
 
-function createUserWithEmailRejectedAction(error) {
+export const createUserWithEmailRejectedAction = error => {
   return {
-    type: ActionTypes.CreateUserWithEmailRejected,
-    error
+    type: CREATE_USER_WITH_EMAIL_REJECTED,
+    payload: error
   }
 }
 
-function createUserWithEmailFulfilledAction(email) {
+export const createUserWithEmailFulfilledAction = email => {
   return {
-    type: ActionTypes.CreateUserWithEmailFulfilled,
-    email
+    type: CREATE_USER_WITH_EMAIL_FULFILLED,
+    payload: email
   };
 }

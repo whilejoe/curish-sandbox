@@ -16,8 +16,9 @@ const initialState = {
 export function authReducer(state = initialState, action) {
   switch(action.type) {
     case ActionTypes.ListenToAuth: {
-      if (action.user) {
-        const {displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData} = action.user;
+      const user = action.payload;
+      if (user) {
+        const {displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData} = user;
         return {
           ...state,
           displayName,
@@ -43,14 +44,14 @@ export function authReducer(state = initialState, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.CreateUserWithEmailFulfilled: {
       return {
         ...state,
         inProgress: false,
-        success: `User With Email "${action.email}" Successfully Created`
+        success: `User With Email "${action.payload}" Successfully Created`
       };
     }
     case ActionTypes.LoginUserRequested: {
@@ -65,7 +66,7 @@ export function authReducer(state = initialState, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.LoginUserFulfilled: {
@@ -87,7 +88,7 @@ export function authReducer(state = initialState, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.LogoutUserFulfilled: {

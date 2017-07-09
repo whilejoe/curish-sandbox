@@ -1,5 +1,8 @@
-import ActionTypes from 'constants/actionTypes';
 import database from './database';
+
+export const ADD_TO_STORY_REQUESTED = 'ADD_TO_STORY_REQUESTED';
+export const ADD_TO_STORY_REJECTED = 'ADD_TO_STORY_REJECTED';
+export const ADD_TO_STORY_FULFILLED = 'ADD_TO_STORY_FULFILLED';
 
 export function addToStory(story) {
   return dispatch => {
@@ -17,25 +20,26 @@ export function addToStory(story) {
       rawData: story.rawData
     })
     .then(() => dispatch(addToStoryFulfilledAction({...newStory, key: newStoryKey.key.toString()})))
-    .catch(error => dispatch(addToStoryRejectedAction(error)));
+    .catch(error => dispatch(addToStoryRejectedAction(error.message)));
   }
 }
 
-function addToStoryRequestedAction() {
+export const addToStoryRequestedAction = () => {
   return {
-    type: ActionTypes.AddToStoryRequested
+    type: ADD_TO_STORY_REQUESTED
   };
 }
 
-function addToStoryRejectedAction() {
+export const addToStoryRejectedAction = error => {
   return {
-    type: ActionTypes.AddToStoryRejected
+    type: ADD_TO_STORY_REJECTED,
+    payload: error
   }
 }
 
-function addToStoryFulfilledAction(story) {
+export const addToStoryFulfilledAction = story => {
   return {
-    type: ActionTypes.AddToStoryFulfilled,
-    story
+    type: ADD_TO_STORY_FULFILLED,
+    payload: story
   };
 }

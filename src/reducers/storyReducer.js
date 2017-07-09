@@ -14,16 +14,15 @@ export function storyReducer(state = {}, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.GetStoriesFulfilled: {
-      const {stories} = action;
       return {
         ...state,
         inProgress: false,
         success: 'Story Received.',
-        stories
+        stories: action.payload
       };
     }
     case ActionTypes.AddToStoryRequested: {
@@ -38,13 +37,11 @@ export function storyReducer(state = {}, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.AddToStoryFulfilled: {
-      console.log('story', action.story);
-      const {story} = action;
-      const {key, ...rest} = story;
+      const {key, ...rest} = action.payload;
       return {
         ...state,
         inProgress: false,

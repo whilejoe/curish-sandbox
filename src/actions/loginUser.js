@@ -1,6 +1,9 @@
-import ActionTypes from 'constants/actionTypes';
-import {pushRoute} from './pushRoute';
 import firebase from 'firebase';
+import {pushRoute} from './pushRoute';
+
+export const LOGIN_USER_REQUESTED = 'LOGIN_USER_REQUESTED';
+export const LOGIN_USER_REJECTED = 'LOGIN_USER_REJECTED';
+export const LOGIN_USER_FULFILLED = 'LOGIN_USER_FULFILLED';
 
 export function loginUserWithEmail(email, password) {
   return dispatch => {
@@ -46,21 +49,21 @@ export function loginUserWithGoogle() {
   }
 }
 
-function loginUserRequestedAction() {
+export const loginUserRequestedAction = () => {
   return {
-    type: ActionTypes.LoginUserRequested
+    type: LOGIN_USER_REQUESTED
   };
 }
 
-function loginUserRejectedAction(error) {
+export const loginUserRejectedAction = error => {
   return {
-    type: ActionTypes.LoginUserRejected,
-    error
+    type: LOGIN_USER_REJECTED,
+    payload: error
   }
 }
 
-function loginUserFulfilledAction() {
+export const loginUserFulfilledAction = () => {
   return {
-    type: ActionTypes.LoginUserFulfilled
+    type: LOGIN_USER_FULFILLED
   };
 }

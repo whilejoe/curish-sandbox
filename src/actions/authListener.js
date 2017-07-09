@@ -1,5 +1,6 @@
-import ActionTypes from 'constants/actionTypes';
 import firebase from 'firebase';
+
+export const LISTEN_TO_AUTH = 'LISTEN_TO_AUTH';
 
 export function addAuthListener(dispatch) {
   return firebase.auth().onAuthStateChanged(user => {
@@ -10,9 +11,9 @@ export function addAuthListener(dispatch) {
   });
 }
 
-function listenToAuthAction(user) {
+export const listenToAuthAction = user => {
   return {
-    type: ActionTypes.ListenToAuth,
-    user
+    type: LISTEN_TO_AUTH,
+    payload: user
   };
 }
