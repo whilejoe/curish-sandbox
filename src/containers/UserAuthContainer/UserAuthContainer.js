@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Authenticate from 'routes/Authenticate/Authenticate';
-import {createUser} from 'actions/createUser';
+import {createUserWithEmail} from 'actions/createUserWithEmail';
 import {loginUserWithEmail, loginUserWithFacebook, loginUserWithGoogle} from 'actions/loginUser';
 
 const mapStateToProps = state => ({
@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createUser: (email, password) => dispatch(createUser(email, password)),
+  createUserWithEmail: (email, password) => dispatch(createUserWithEmail(email, password)),
   loginUserWithEmail: (email, password) => dispatch(loginUserWithEmail(email, password)),
   loginUserWithFacebook: () => dispatch(loginUserWithFacebook()),
   loginUserWithGoogle: () => dispatch(loginUserWithGoogle())

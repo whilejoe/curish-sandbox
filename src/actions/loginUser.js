@@ -36,7 +36,6 @@ export function loginUserWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     dispatch(loginUserRequestedAction());
     return firebase.auth().signInWithPopup(provider)
-    // .then(result => dispatch(loginUserFulfilledAction(result.user)))
     .then(
       () => {
         dispatch(loginUserFulfilledAction());
@@ -60,9 +59,8 @@ function loginUserRejectedAction(error) {
   }
 }
 
-function loginUserFulfilledAction(user = null) {
+function loginUserFulfilledAction() {
   return {
-    type: ActionTypes.LoginUserFulfilled,
-    user
+    type: ActionTypes.LoginUserFulfilled
   };
 }

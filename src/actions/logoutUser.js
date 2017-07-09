@@ -6,7 +6,6 @@ export function logoutUser() {
   return dispatch => {
     dispatch(logoutUserRequestedAction());
     return firebase.auth().signOut()
-    // .then(() => dispatch(logoutUserFulfilledAction()))
     .then(
       () => {
         dispatch(logoutUserFulfilledAction());

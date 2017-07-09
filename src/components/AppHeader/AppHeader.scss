@@ -55,9 +55,17 @@
 }
 
 .header__avatar {
-  padding: 0.81rem .4rem;
+  padding: 0.7rem 0rem;
 }
 
-.header__avatar--active {
-  background-color: papayawhip;
-}
+// .header__avatar--active {
+  
+//   & .avatar__image {
+//     border-color: rgba(#f47a42, 0.6);
+//     transition: border-color 100ms linear;
+
+//     &:hover {
+//       border-color: rgba(#f47a42, 1.0);
+//     }
+//   }
+// }

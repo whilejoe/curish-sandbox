@@ -29,9 +29,9 @@ export function authReducer(state = initialState, action) {
           providerData
         };
       }
-      return {...initialState}
+      return {...initialState};
     }
-    case ActionTypes.CreateUserRequested: {
+    case ActionTypes.CreateUserWithEmailRequested: {
       return {
         ...state,
         inProgress: true,
@@ -39,20 +39,18 @@ export function authReducer(state = initialState, action) {
         success: ''
       };
     }
-    case ActionTypes.CreateUserRejected: {
+    case ActionTypes.CreateUserWithEmailRejected: {
       return {
         ...state,
         inProgress: false,
         error: action.error
       };
     }
-    case ActionTypes.CreateUserFulfilled: {
-      const {email, password} = action;
-      console.log('reducer create user password', password);
+    case ActionTypes.CreateUserWithEmailFulfilled: {
       return {
         ...state,
         inProgress: false,
-        success: `User With Email "${email}" Successfully Created`
+        success: `User With Email "${action.email}" Successfully Created`
       };
     }
     case ActionTypes.LoginUserRequested: {
@@ -71,7 +69,6 @@ export function authReducer(state = initialState, action) {
       };
     }
     case ActionTypes.LoginUserFulfilled: {
-      console.log('*****Action.User*****', action.user);
       return {
         ...state,
         inProgress: false,
@@ -96,6 +93,7 @@ export function authReducer(state = initialState, action) {
     case ActionTypes.LogoutUserFulfilled: {
       return {
         ...initialState,
+        inProgress: false,
         success: 'User Logged Out.',
       };
     }

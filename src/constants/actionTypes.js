@@ -17,9 +17,9 @@ const actionTypes = {
   AddToStoryRejected: 'ADD_TO_STORY_REJECTED',
   AddToStoryFulfilled: 'ADD_TO_STORY_FULFILLED',
 
-  CreateUserRequested: 'CREATE_USER_REQUESTED',
-  CreateUserRejected: 'CREATE_USER_REJECTED',
-  CreateUserFulfilled: 'CREATE_USER_FULFILLED',
+  CreateUserWithEmailRequested: 'CREATE_USER_WITH_EMAIL_REQUESTED',
+  CreateUserWithEmailRejected: 'CREATE_USER_WITH_EMAIL_REJECTED',
+  CreateUserWithEmailFulfilled: 'CREATE_USER_WITH_EMAIL_FULFILLED',
 
   LoginUserRequested: 'LOGIN_USER_REQUESTED',
   LoginUserRejected: 'LOGIN_USER_REJECTED',

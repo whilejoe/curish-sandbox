@@ -11,12 +11,7 @@ class Authenticate extends Component {
 
   handleCreateAccount = () => {
     const {email, password} = this.state;
-    this.props.createUser(email, password);
-    // const response = await this.props.createUser(email, password);
-    // if (!response.error) {
-    //   console.log('**********response.error********', response);
-    //   this.setState({userCreated: true})
-    // }
+    this.props.createUserWithEmail(email, password);
   }
 
   render() {
