@@ -2,6 +2,9 @@ language: node_js
 cache:
   directories:
     - node_modules
+install:
+  - nvm install v8.1.3
+after_install: node --version
 before_deploy: yarn build
 deploy:
   provider: firebase
