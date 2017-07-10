@@ -1,5 +1,8 @@
-import ActionTypes from 'constants/actionTypes';
 import database from './database';
+
+export const GET_INVITE_REQUESTED = 'GET_INVITE_REQUESTED';
+export const GET_INVITE_REJECTED = 'GET_INVITE_REJECTED';
+export const GET_INVITE_FULFILLED = 'GET_INVITE_FULFILLED';
 
 export function getInvite() {
   return dispatch => {
@@ -10,21 +13,21 @@ export function getInvite() {
   }
 }
 
-function getInviteRequestedAction() {
+export const getInviteRequestedAction = () => {
   return {
-    type: ActionTypes.GetInviteRequested
+    type: GET_INVITE_REQUESTED
   };
 }
 
-function getInviteRejectedAction() {
+export const getInviteRejectedAction = () => {
   return {
-    type: ActionTypes.GetInviteRejected
+    type: GET_INVITE_REJECTED
   }
 }
 
-function getInviteFulfilledAction(invite) {
+export const getInviteFulfilledAction = invite => {
   return {
-    type: ActionTypes.GetInviteFulfilled,
-    invite
+    type: GET_INVITE_FULFILLED,
+    payload: invite
   };
 }

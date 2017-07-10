@@ -23,11 +23,11 @@ export function inviteReducer(state = initialState, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.GetInviteFulfilled: {
-      const {host, agenda, guests} = action.invite;
+      const {host, agenda, guests} = action.payload;
       const guestList = guests ? Object.keys(guests).map(key => guests[key]) : [];
       return {
         ...state,
@@ -50,7 +50,7 @@ export function inviteReducer(state = initialState, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.AddToInviteFulfilled: {
@@ -65,7 +65,7 @@ export function inviteReducer(state = initialState, action) {
         ...state,
         guests: [
           ...state.guests,
-          action.guest
+          action.payload
         ]
       };
     }

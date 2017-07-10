@@ -1,6 +1,14 @@
 import ActionTypes from 'constants/actionTypes';
 
-export function storyReducer(state = {}, action) {
+const initialState = {
+  inProgress: false,
+  error: '',
+  success: '',
+  stories: null,
+  currentDraft: null
+}
+
+export function storyReducer(state = initialState, action) {
   switch(action.type) {
     case ActionTypes.GetStoriesRequested: {
       return {
@@ -14,16 +22,15 @@ export function storyReducer(state = {}, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.GetStoriesFulfilled: {
-      const {stories} = action;
       return {
         ...state,
         inProgress: false,
-        success: 'Story Received.',
-        stories
+        success: 'Story Received',
+        stories: action.payload
       };
     }
     case ActionTypes.AddToStoryRequested: {
@@ -38,18 +45,16 @@ export function storyReducer(state = {}, action) {
       return {
         ...state,
         inProgress: false,
-        error: action.error
+        error: action.payload
       };
     }
     case ActionTypes.AddToStoryFulfilled: {
-      console.log('story', action.story);
-      const {story} = action;
-      const {key, ...rest} = story;
+      const {key, ...rest} = action.payload;
       return {
         ...state,
         inProgress: false,
-        success: 'Added To Story.',
-        [key]: rest
+        success: 'Added To Story',
+        currentDraft: {[key]: rest}
       };
     }
     default:

@@ -1,0 +1,31 @@
+// .avatar {
+//   margin-bottom: 1rem;
+// }
+
+.avatar__image {
+  display: inline-block;
+  max-width: 2.5rem;
+  // margin-right: .5rem;
+  vertical-align: middle;
+  border: 2px solid transparent;
+  border-color: rgba(#0b40f3, 0.6);
+  border-radius: 50%;
+  transition: border-color 100ms linear;
+
+  &:hover,
+  &:focus,
+  &.active {
+    border-color: rgba(#0b40f3, 1.0);
+  }
+}
+
+.avatar__image--small {
+  max-width: 2rem;
+}
+
+.avatar__name {
+  display: inline-block;
+  margin-left: .5rem;
+  vertical-align: middle;
+  font-size: 1.25rem;
+}
