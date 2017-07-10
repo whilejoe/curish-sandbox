@@ -9,5 +9,6 @@ script:
 before_deploy: "echo 'BEFORE FIREBASE DEPLOY'"
 deploy:
   provider: firebase
+  skip_cleanup: true
   token:
     secure: $FIREBASE_TOKEN
