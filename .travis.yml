@@ -4,9 +4,9 @@ node_js:
 cache:
   directories:
     - node_modules
-before_deploy:
-  - yarn build
+script:
   - npm test
+  - npm run build
 deploy:
   provider: firebase
   token:
