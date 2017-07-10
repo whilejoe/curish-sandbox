@@ -29,7 +29,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "NODE_PATH=./src react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && NODE_PATH=./src react-scripts build && NODE_PATH=./src react-snapshot",
+    "build": "NODE_PATH=./src npm run build-css && NODE_PATH=./src react-scripts build && NODE_PATH=./src react-snapshot",
     "test": "NODE_PATH=./src react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",
