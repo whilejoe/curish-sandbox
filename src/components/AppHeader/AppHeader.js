@@ -5,12 +5,12 @@ import Avatar from 'components/Avatar/Avatar';
 
 const AppHeader = (props) => {
   const {user} = props;
-  const providerPhotoURL = user.providerData ? user.providerData[0].photoURL : '';
+  const {isAuthed, userName, photoURL} = user;
   return (
     <header className="header">
       <div className="container clearfix">
         <nav className="float-left">
-          <NavLink exact to="/" className="brand">Curish Lit</NavLink>
+          <NavLink exact to="/" className="brand">Curish</NavLink>
           <ul className="header__nav">
             <li className="nav-item">
               <NavLink to="/about" className="nav-action">101</NavLink>
@@ -23,15 +23,18 @@ const AppHeader = (props) => {
             </li>
           </ul>
         </nav>
-        {user.uid ?
+        {isAuthed ?
           <NavLink
             to="/profile"
             activeClassName="header__avatar--active"
             className="float-right header__avatar">
-            <Avatar
-              src={providerPhotoURL || user.photoURL}
-              alt="user-profile-header-link"
-              small />
+            {photoURL ?
+              <Avatar
+                src={photoURL}
+                alt="user-profile-header-link"
+                small /> : 
+              userName && <span className="header__avatar-name">@{userName}</span>
+            }
           </NavLink> :
           <div className="float-right nav-item">
             <NavLink to="/authenticate" className="nav-action">Login</NavLink>

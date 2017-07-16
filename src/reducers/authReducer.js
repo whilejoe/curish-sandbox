@@ -1,4 +1,14 @@
 import ActionTypes from 'constants/actionTypes';
+import {
+  CREATE_APP_USER_REQUESTED,
+  CREATE_APP_USER_REJECTED,
+  CREATE_APP_USER_FULFILLED
+} from 'actions/createAppUser';
+import {
+  SEND_VERIFICATION_EMAIL_REQUESTED,
+  SEND_VERIFICATION_EMAIL_REJECTED,
+  SEND_VERIFICATION_EMAIL_FULFILLED
+} from 'actions/sendVerificationEmail';
 
 const initialState = {
   inProgress: false,
@@ -8,6 +18,7 @@ const initialState = {
   email: null,
   emailVerified: null,
   photoURL: null,
+  isAuthed: false,
   isAnonymous: null,
   uid: null,
   providerData: null
@@ -18,19 +29,13 @@ export function authReducer(state = initialState, action) {
     case ActionTypes.ListenToAuth: {
       const user = action.payload;
       if (user) {
-        const {displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData} = user;
         return {
           ...state,
-          displayName,
-          email,
-          emailVerified,
-          photoURL,
-          isAnonymous,
-          uid,
-          providerData
+          ...user,
+          isAuthed: true
         };
       }
-      return {...initialState};
+      else return {...initialState}; // null is passed to clear state
     }
     case ActionTypes.CreateUserWithEmailRequested: {
       return {
@@ -97,6 +102,56 @@ export function authReducer(state = initialState, action) {
         inProgress: false,
         success: 'User Logged Out.',
       };
+    }
+    case CREATE_APP_USER_REQUESTED: {
+      return {
+        ...state,
+        inProgress: true,
+        error: '',
+        success: ''
+      }
+    }
+    case CREATE_APP_USER_REJECTED: {
+      return {
+        ...state,
+        inProgress: false,
+        error: action.payload,
+        success: ''
+      }
+    }
+    case CREATE_APP_USER_FULFILLED: {
+      const {userName} = action.payload;
+      return {
+        ...state,
+        ...action.payload,
+        inProgress: false,
+        error: '',
+        success: `App User @${userName} Successfully Created`
+      }
+    }
+     case SEND_VERIFICATION_EMAIL_REQUESTED: {
+      return {
+        ...state,
+        inProgress: true,
+        error: '',
+        success: ''
+      }
+    }
+    case SEND_VERIFICATION_EMAIL_REJECTED: {
+      return {
+        ...state,
+        inProgress: false,
+        error: action.payload,
+        success: ''
+      }
+    }
+    case SEND_VERIFICATION_EMAIL_FULFILLED: {
+      return {
+        ...state,
+        inProgress: false,
+        error: '',
+        success: 'Email has been verified'
+      }
     }
     default:
       return state;

@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import {addAuthListener} from 'actions/authListener';
 import Home from 'routes/Home';
 import About from 'routes/About/About';
-// import InviteContainer from 'containers/InviteContainer/InviteContainer';
 import CreateStoryContainer from 'containers/CreateStoryContainer/CreateStoryContainer';
 import StoriesContainer from 'containers/StoriesContainer/StoriesContainer';
 import UserAuthContainer from 'containers/UserAuthContainer/UserAuthContainer';
 import ProfileContainer from 'containers/ProfileContainer/ProfileContainer';
+import CreateProfileContainer from 'containers/CreateProfileContainer/CreateProfileContainer';
 import AppHeader from 'components/AppHeader/AppHeader';
 // import logo from './logo.svg';
 import './App.css';
@@ -30,6 +30,7 @@ class App extends Component {
             <Route path='/create-story' component={CreateStoryContainer} />
             <Route path='/stories' component={StoriesContainer} />
             <Route path='/authenticate' component={UserAuthContainer} />
+            <Route path='/create-profile' component={CreateProfileContainer} />
             <Route path='/profile' component={ProfileContainer} />
           </Switch>
         </div>

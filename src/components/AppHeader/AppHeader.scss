@@ -58,14 +58,16 @@
   padding: 0.7rem 0rem;
 }
 
-// .header__avatar--active {
+.header__avatar--active {
   
-//   & .avatar__image {
-//     border-color: rgba(#f47a42, 0.6);
-//     transition: border-color 100ms linear;
+  & .avatar__image {
+    opacity: 1;
+  }
+}
 
-//     &:hover {
-//       border-color: rgba(#f47a42, 1.0);
-//     }
-//   }
-// }
+.header__avatar-name {
+  display: block;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+  font-size: .9rem;
+}

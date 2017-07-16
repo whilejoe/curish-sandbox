@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
-import Profile from 'routes/Profile/Profile';
-import {logoutUser} from 'actions/logoutUser';
+import CreateProfile from 'routes/CreateProfile/CreateProfile';
 import {createAppUser} from 'actions/createAppUser';
 
 const mapStateToProps = state => ({
@@ -8,10 +7,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logoutUser: () => dispatch(logoutUser()),
   createAppUser: user => dispatch(createAppUser(user))
 });
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+const CreateProfileContainer = connect(mapStateToProps, mapDispatchToProps)(CreateProfile);
 
-export default ProfileContainer;
+export default CreateProfileContainer;

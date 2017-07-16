@@ -7,11 +7,11 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onAddToStory: story => dispatch(addToStory({
-    author: 'joe',
-    title: 'this story',
-    rawData: story
+const mapDispatchToProps = dispatch => ({
+  onAddToStory: (author, title, rawData) => dispatch(addToStory({
+    author,
+    title,
+    rawData
   }))
 });
 

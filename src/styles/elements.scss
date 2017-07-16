@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Source+Sans+Pro:400');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Source+Sans+Pro:400,600');
 
 $serif-font: 'Roboto Slab', serif !default;
 $heading-font: $serif-font !default;
@@ -44,6 +44,49 @@ a {
   }
 }
 
+$button-color: #333;
+
+button, .button {
+  display: inline-block;
+  background-color: white;
+  color: $button-color;
+  padding: .35rem .8rem;
+  border: 2px solid $button-color;
+  // border: none;
+  border-radius: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: .85rem;
+  font-family: $copy-font;
+  // transition: background-color 200ms ease-out, color 200ms ease-out;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $button-color;
+    color: white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input {
+  width: 100%;
+  max-width: 22rem;
+  padding: .3rem 0 .3rem .3rem;
+  border: 1px solid #EEE;
+  border-radius: 2px;
+  font-size: .85rem;
+
+  &:focus {
+    outline: none;
+    border-color: darken(#EEE, 15%);
+  }
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -65,7 +108,7 @@ h2, .h3 {
   font-size: 1.6111111rem;
   // line-height: 2;
   margin-top: 3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 h3, .h4 {
   font-size: 1rem;

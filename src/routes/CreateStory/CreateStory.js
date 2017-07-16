@@ -13,8 +13,8 @@ class CreateStory extends Component {
     const contentState = this.state.editorState.getCurrentContent();
     const rawContentState = convertToRaw(contentState);
     const jsonContentState = JSON.stringify(rawContentState);
-    this.props.onAddToStory(jsonContentState);
-    console.log('onSubmit jsonContentState', jsonContentState);
+    const {onAddToStory, user} = this.props;
+    onAddToStory(user.userName, 'this title', jsonContentState);
   }
 
   onChange = editorState => {
@@ -61,7 +61,6 @@ class CreateStory extends Component {
   render() {
     const {editorState} = this.state;
     const content = editorState.getCurrentContent().getBlockMap().first().getLength();
-    console.log('content', content);
 
     let className = 'RichEditor-editor';
     const contentState = editorState.getCurrentContent();
@@ -100,7 +99,7 @@ class CreateStory extends Component {
             />
           </div>
         </div>
-        <button onClick={this.handleSubmit}>submit for review</button>
+        <button onClick={content && this.handleSubmit}>submit for review</button>
       </section>
     );
   }

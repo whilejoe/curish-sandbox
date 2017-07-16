@@ -5,17 +5,25 @@
 .avatar__image {
   display: inline-block;
   max-width: 2.5rem;
-  // margin-right: .5rem;
+  margin-right: .5rem;
   vertical-align: middle;
   border: 2px solid transparent;
-  border-color: rgba(#0b40f3, 0.6);
+  // border-color: rgba(slateblue, 0.6);
+  // border-color: #333;
   border-radius: 50%;
-  transition: border-color 100ms linear;
+  opacity: 0.8;
+  // transition: border-color 100ms linear;
+  transition: opacity 200ms linear;
 
+  // &:hover,
+  // &:focus,
+  // &.active {
+  //   border-color: rgba(slateblue, 1.0);
+  // }
   &:hover,
   &:focus,
   &.active {
-    border-color: rgba(#0b40f3, 1.0);
+    opacity: 1.0;
   }
 }
 
@@ -25,7 +33,6 @@
 
 .avatar__name {
   display: inline-block;
-  margin-left: .5rem;
   vertical-align: middle;
   font-size: 1.25rem;
 }

@@ -4,20 +4,23 @@ import Avatar from 'components/Avatar/Avatar';
 class Profile extends Component {
 
   render() {
-    const {user} = this.props;
-    const providerName = user.providerData ? user.providerData[0].displayName : '';
-    const providerPhotoURL = user.providerData ? user.providerData[0].photoURL : '';
+    const {user, logoutUser} = this.props;
+    const {photoURL, displayName, userName, email} = user;
     return (
       <div>
         <h1>Profile</h1>
-        <Avatar
-          src={providerPhotoURL || user.photoURL}
-          alt="user-profile"
-          name={providerName || user.displayName} />
-        <p>Email: {user.email}</p>
+        {photoURL ?
+          <Avatar
+            src={photoURL}
+            alt="user-profile"
+            name={displayName} /> : 
+           <p>Name: {displayName}</p>
+        }
+        <p>Pseudonym: @{userName}</p>
+        <p>Email: {email}</p>
         <button
           type="button"
-          onClick={() => this.props.logoutUser()}>
+          onClick={logoutUser}>
           Logout
         </button>
       </div>

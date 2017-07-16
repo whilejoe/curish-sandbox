@@ -6,7 +6,7 @@ import {storyReducer} from './storyReducer';
 
 export default combineReducers({
   user: authReducer,
-  router: routerReducer,
   invite: inviteReducer,
-  stories: storyReducer
+  stories: storyReducer,
+  router: routerReducer
 })

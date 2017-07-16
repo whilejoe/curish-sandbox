@@ -16,7 +16,7 @@ class Stories extends Component {
         {Object.keys(stories).map(story => 
           <article key={story} className="story">
             <h2>{stories[story].title}</h2>
-            <h3>{stories[story].author}</h3>
+            <h3>@{stories[story].author}</h3>
             <Story rawData={stories[story].rawData} />
           </article>
         )}
