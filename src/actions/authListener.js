@@ -27,7 +27,7 @@ export function addAuthListener(dispatch) {
         } else {
           // user is registered so pass app user and append relevant up to date firebase user data
           dispatch(listenToAuthAction({...appUser, emailVerified, providerData}));
-          dispatch(pushRoute('/profile'));
+          // dispatch(pushRoute('/profile'));
         }
       });
     } else dispatch(listenToAuthAction(null)); // not authed so pass null to clear user state

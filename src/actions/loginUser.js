@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-// import {pushRoute} from './pushRoute';
+import {pushRoute} from './pushRoute';
 
 export const LOGIN_USER_REQUESTED = 'LOGIN_USER_REQUESTED';
 export const LOGIN_USER_REJECTED = 'LOGIN_USER_REJECTED';
@@ -11,7 +11,7 @@ export function loginUserWithEmail(email, password) {
     return firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
       dispatch(loginUserFulfilledAction());
-      // dispatch(pushRoute('/profile'));
+      dispatch(pushRoute('/profile')); // TODO: revisit and check if user is registered
     })
     .catch(error => dispatch(loginUserRejectedAction(error.message)));
   }
@@ -25,7 +25,7 @@ export function loginUserWithFacebook() {
     .then(
       () => {
         dispatch(loginUserFulfilledAction());
-        // dispatch(pushRoute('/profile'));
+        dispatch(pushRoute('/profile'));
       }
     )
     .catch(error => dispatch(loginUserRejectedAction(error.message)));
@@ -40,7 +40,7 @@ export function loginUserWithGoogle() {
     .then(
       () => {
         dispatch(loginUserFulfilledAction());
-        // dispatch(pushRoute('/profile'));
+        dispatch(pushRoute('/profile'));
       }
     )
     .catch(error => dispatch(loginUserRejectedAction(error.message)));

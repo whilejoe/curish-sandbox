@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Button from 'components/Button';
 
 class CreateProfile extends Component {
   state = {
@@ -72,9 +73,9 @@ class CreateProfile extends Component {
             value={email}
             onChange={e => this.setState({email: e.target.value})} />
         </div>
-        <button onClick={(displayName && userName && email) && this.submitRegistration}>
+        <Button onClick={(displayName && userName && email) && this.submitRegistration}>
           create profile
-        </button>
+        </Button>
       </div>
     );
   }

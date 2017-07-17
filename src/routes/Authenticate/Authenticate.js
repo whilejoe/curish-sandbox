@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Authenticate.css';
+import Button from 'components/Button';
 
 class Authenticate extends Component {
 
@@ -26,7 +27,8 @@ class Authenticate extends Component {
           <input
             type="email"
             value={email}
-            onChange={e => this.setState({ email: e.target.value })} />
+            onChange={e => this.setState({ email: e.target.value })} 
+            autoFocus />
         </p>
         <p>
           Password:
@@ -35,30 +37,28 @@ class Authenticate extends Component {
             value={password}
             onChange={e => this.setState({ password: e.target.value })} />
         </p>
-        <button
-          type="button"
+        <Button
           onClick={() => ((email && password) && this.props.loginUserWithEmail(email, password))}
           className="login-action">
           Login With Email
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
+          theme="secondary"
           onClick={() => this.props.loginUserWithFacebook()}
           className="login-action">
           Login With Facebook
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
+          theme="tertiary"
           onClick={() => this.props.loginUserWithGoogle()}
           className="login-action">
           Login With Google
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
           onClick={() => ((email && password) && this.handleCreateAccount())}
           className="login-action">
           Create Account
-        </button>
+        </Button>
       </div>
     );
   }

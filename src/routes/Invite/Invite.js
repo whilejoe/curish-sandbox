@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Button from 'components/Button';
 
 class Invite extends Component {
 
@@ -29,11 +30,9 @@ class Invite extends Component {
             value={name}
             onChange={e => this.setState({ name: e.target.value })} />
         </p>
-        <button
-          type="button"
-          onClick={() => (name && this.props.onAddToInvite(name))}>
+        <Button onClick={() => (name && this.props.onAddToInvite(name))}>
           I am coming!
-        </button>
+        </Button>
         <h2>Guests</h2>
         {guests.length ? (
           <ul>

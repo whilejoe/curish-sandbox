@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
+import Button from 'components/Button';
 import 'draft-js/dist/Draft.css';
 import './CreateStory.css';
 
@@ -99,7 +100,7 @@ class CreateStory extends Component {
             />
           </div>
         </div>
-        <button onClick={content && this.handleSubmit}>submit for review</button>
+        <Button onClick={content && this.handleSubmit}>submit for review</Button>
       </section>
     );
   }

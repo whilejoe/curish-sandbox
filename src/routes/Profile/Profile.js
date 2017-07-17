@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Avatar from 'components/Avatar/Avatar';
+import Button from 'components/Button';
 
 class Profile extends Component {
 
@@ -18,11 +19,10 @@ class Profile extends Component {
         }
         <p>Pseudonym: @{userName}</p>
         <p>Email: {email}</p>
-        <button
-          type="button"
+        <Button
           onClick={logoutUser}>
           Logout
-        </button>
+        </Button>
       </div>
     );
   }
