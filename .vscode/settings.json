@@ -1,0 +1,11 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "editor.tabSize": 2,
+  "editor.rulers": [100],
+  "editor.formatOnSave": true,
+  "javascript.validate.enable": false,
+  "prettier.eslintIntegration": true,
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "prettier.jsxBracketSameLine": true
+}

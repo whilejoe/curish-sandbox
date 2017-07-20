@@ -29,7 +29,7 @@ const actionTypes = {
   LogoutUserRejected: 'LOGOUT_USER_REJECTED',
   LogoutUserFulfilled: 'LOGOUT_USER_FULFILLED',
 
-  ListenToAuth: 'LISTEN_TO_AUTH',
+  ListenToAuth: 'LISTEN_TO_AUTH'
 };
 
 export default actionTypes;

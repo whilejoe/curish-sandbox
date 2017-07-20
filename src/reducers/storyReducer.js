@@ -6,10 +6,10 @@ const initialState = {
   success: '',
   stories: null,
   currentDraft: null
-}
+};
 
 export function storyReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.GetStoriesRequested: {
       return {
         ...state,
@@ -38,7 +38,7 @@ export function storyReducer(state = initialState, action) {
         ...state,
         inProgress: true,
         error: '',
-        success: '',
+        success: ''
       };
     }
     case ActionTypes.AddToStoryRejected: {
@@ -49,12 +49,12 @@ export function storyReducer(state = initialState, action) {
       };
     }
     case ActionTypes.AddToStoryFulfilled: {
-      const {key, ...rest} = action.payload;
+      const { key, ...rest } = action.payload;
       return {
         ...state,
         inProgress: false,
         success: 'Added To Story',
-        currentDraft: {[key]: rest}
+        currentDraft: { [key]: rest }
       };
     }
     default:

@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Button from 'components/Button';
 
 class Invite extends Component {
-
   state = {
     name: ''
   };
@@ -17,28 +16,32 @@ class Invite extends Component {
   }
 
   render() {
-    const {host, agenda, guests} = this.props.invite;
-    const {name} = this.state;
+    const { host, agenda, guests } = this.props.invite;
+    const { name } = this.state;
     return (
       <div>
         <h1>Meeting invite</h1>
-        <p>Host: {host}</p>
-        <p>Agenda: {agenda}</p>
-        <p>Name:
-          <input
-            type="text"
-            value={name}
-            onChange={e => this.setState({ name: e.target.value })} />
+        <p>
+          Host: {host}
         </p>
-        <Button onClick={() => (name && this.props.onAddToInvite(name))}>
-          I am coming!
-        </Button>
+        <p>
+          Agenda: {agenda}
+        </p>
+        <p>
+          Name:
+          <input type="text" value={name} onChange={e => this.setState({ name: e.target.value })} />
+        </p>
+        <Button onClick={() => name && this.props.onAddToInvite(name)}>I am coming!</Button>
         <h2>Guests</h2>
-        {guests.length ? (
-          <ul>
-            {guests.map((guest, index) => <li key={index}>{guest.name}</li>)}
-          </ul>
-        ) : null}
+        {guests.length
+          ? <ul>
+              {guests.map((guest, index) =>
+                <li key={index}>
+                  {guest.name}
+                </li>
+              )}
+            </ul>
+          : null}
       </div>
     );
   }

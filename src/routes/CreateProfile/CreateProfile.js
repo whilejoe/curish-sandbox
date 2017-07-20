@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Button from 'components/Button';
 
 class CreateProfile extends Component {
@@ -7,10 +7,10 @@ class CreateProfile extends Component {
     displayName: '',
     email: '',
     photoURL: ''
-  }
+  };
 
   componentWillMount() {
-    const {user} = this.props;
+    const { user } = this.props;
     const providerName = user.providerData ? user.providerData[0].displayName : '';
     const providerPhotoURL = user.providerData ? user.providerData[0].photoURL : '';
     this.setState({
@@ -22,32 +22,32 @@ class CreateProfile extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
-      const {user} = nextProps;
+      const { user } = nextProps;
       const providerName = user.providerData ? user.providerData[0].displayName : '';
       const providerPhotoURL = user.providerData ? user.providerData[0].photoURL : '';
       this.setState({
         displayName: providerName || user.displayName || '',
         email: user.email,
         photoURL: providerPhotoURL || user.photoURL || ''
-      })
+      });
     }
   }
 
   submitRegistration = () => {
-    const {userName, displayName, email, photoURL} = this.state;
+    const { userName, displayName, email, photoURL } = this.state;
     const user = {
       userName,
       displayName,
       email,
       photoURL
-    }
+    };
     this.props.createAppUser(user);
-  }
+  };
 
   render() {
-    const {userName, displayName, email} = this.state;
+    const { userName, displayName, email } = this.state;
     return (
-      <div style={{paddingBottom: '2rem'}}>
+      <div style={{ paddingBottom: '2rem' }}>
         <h1>Create Profile</h1>
         <h2>Update Or Fill In Info Below</h2>
         <div className="input-group">
@@ -56,7 +56,8 @@ class CreateProfile extends Component {
             type="text"
             value={displayName}
             placeholder="Marquis De Sade"
-            onChange={e => this.setState({displayName: e.target.value})} />
+            onChange={e => this.setState({ displayName: e.target.value })}
+          />
         </div>
         <div className="input-group">
           <label>User Name: @</label>
@@ -64,16 +65,18 @@ class CreateProfile extends Component {
             type="text"
             value={userName}
             placeholder="theoriginalsadist"
-            onChange={e => this.setState({userName: e.target.value})} />
+            onChange={e => this.setState({ userName: e.target.value })}
+          />
         </div>
         <div className="input-group">
           <label>Email: </label>
           <input
             type="email"
             value={email}
-            onChange={e => this.setState({email: e.target.value})} />
+            onChange={e => this.setState({ email: e.target.value })}
+          />
         </div>
-        <Button onClick={(displayName && userName && email) && this.submitRegistration}>
+        <Button onClick={displayName && userName && email && this.submitRegistration}>
           create profile
         </Button>
       </div>

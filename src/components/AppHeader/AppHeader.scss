@@ -1,6 +1,5 @@
 .header {
-  // background-color: #F7F7F7;
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #eee;
 }
 
 .header__nav {
@@ -39,7 +38,7 @@
   &:focus,
   &.active {
     text-decoration: none;
-    
+
     &:after {
       opacity: 1;
       transform: translateY(0px);
@@ -59,7 +58,6 @@
 }
 
 .header__avatar--active {
-  
   & .avatar__image {
     opacity: 1;
   }

@@ -1,8 +1,8 @@
 import store from '../store';
-import {push} from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 export function pushRoute(path) {
   return dispatch => {
-    store.dispatch(push(path))
-  }
+    store.dispatch(push(path));
+  };
 }

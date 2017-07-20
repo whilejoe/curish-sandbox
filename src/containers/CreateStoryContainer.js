@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import CreateStory from 'routes/CreateStory/CreateStory';
-import {addToStory} from 'actions/addToStory';
+import { addToStory } from 'actions/addToStory';
 
 const mapStateToProps = state => ({
   stories: state.stories,
@@ -8,11 +8,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddToStory: (author, title, rawData) => dispatch(addToStory({
-    author,
-    title,
-    rawData
-  }))
+  onAddToStory: (author, title, rawData) =>
+    dispatch(
+      addToStory({
+        author,
+        title,
+        rawData
+      })
+    )
 });
 
 const CreateStoryContainer = connect(mapStateToProps, mapDispatchToProps)(CreateStory);

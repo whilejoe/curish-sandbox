@@ -17,12 +17,12 @@ const Button = styled.button`
   line-height: 1;
   border-radius: 3px;
   border: 2px solid ${props => theme[props.theme] || theme['primary']};
-  
+
   &:hover,
   &:focus {
     background-color: ${props => theme[props.theme] || theme['primary']};
     color: white;
-	}
+  }
 `;
 
 export default Button;

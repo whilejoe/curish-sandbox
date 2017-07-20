@@ -24,6 +24,8 @@
     "flow-bin": "^0.48.0",
     "node-sass-chokidar": "0.0.2",
     "npm-run-all": "^4.0.2",
+    "prettier": "^1.5.3",
+    "prettier-eslint": "^6.4.2",
     "react-app-rewired": "^1.0.11",
     "react-snapshot": "^1.1.0"
   },

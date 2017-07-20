@@ -11,10 +11,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <h1>Curious?</h1>
-      <input
-        type="text"
-        placeholder="search story titles/tags"
-        autoFocus />
+      <input type="text" placeholder="search story titles/tags" autoFocus />
       <Button>Search</Button>
     </HomeContainer>
   );

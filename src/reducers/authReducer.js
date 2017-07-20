@@ -22,10 +22,10 @@ const initialState = {
   isAnonymous: null,
   uid: null,
   providerData: null
-}
+};
 
 export function authReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.ListenToAuth: {
       const user = action.payload;
       if (user) {
@@ -34,8 +34,7 @@ export function authReducer(state = initialState, action) {
           ...user,
           isAuthed: true
         };
-      }
-      else return {...initialState}; // null is passed to clear state
+      } else return { ...initialState }; // null is passed to clear state
     }
     case ActionTypes.CreateUserWithEmailRequested: {
       return {
@@ -100,7 +99,7 @@ export function authReducer(state = initialState, action) {
       return {
         ...initialState,
         inProgress: false,
-        success: 'User Logged Out.',
+        success: 'User Logged Out.'
       };
     }
     case CREATE_APP_USER_REQUESTED: {
@@ -109,7 +108,7 @@ export function authReducer(state = initialState, action) {
         inProgress: true,
         error: '',
         success: ''
-      }
+      };
     }
     case CREATE_APP_USER_REJECTED: {
       return {
@@ -117,25 +116,25 @@ export function authReducer(state = initialState, action) {
         inProgress: false,
         error: action.payload,
         success: ''
-      }
+      };
     }
     case CREATE_APP_USER_FULFILLED: {
-      const {userName} = action.payload;
+      const { userName } = action.payload;
       return {
         ...state,
         ...action.payload,
         inProgress: false,
         error: '',
         success: `App User @${userName} Successfully Created`
-      }
+      };
     }
-     case SEND_VERIFICATION_EMAIL_REQUESTED: {
+    case SEND_VERIFICATION_EMAIL_REQUESTED: {
       return {
         ...state,
         inProgress: true,
         error: '',
         success: ''
-      }
+      };
     }
     case SEND_VERIFICATION_EMAIL_REJECTED: {
       return {
@@ -143,7 +142,7 @@ export function authReducer(state = initialState, action) {
         inProgress: false,
         error: action.payload,
         success: ''
-      }
+      };
     }
     case SEND_VERIFICATION_EMAIL_FULFILLED: {
       return {
@@ -151,7 +150,7 @@ export function authReducer(state = initialState, action) {
         inProgress: false,
         error: '',
         success: 'Email has been verified'
-      }
+      };
     }
     default:
       return state;

@@ -10,11 +10,12 @@ export function sendVerificationEmail() {
     dispatch(sendVerificationEmailRequestedAction());
     const currentUser = firebase.auth().currentUser;
     if (!currentUser.emailVerified) {
-      return currentUser.sendEmailVerification()
-      .then(() => dispatch(sendVerificationEmailFulfilledAction()))
-      .catch(error => dispatch(sendVerificationEmailRejectedAction(error.message)));
+      return currentUser
+        .sendEmailVerification()
+        .then(() => dispatch(sendVerificationEmailFulfilledAction()))
+        .catch(error => dispatch(sendVerificationEmailRejectedAction(error.message)));
     } else console.log('EMAIL IS VERIFIED');
-  }
+  };
 }
 
 export const sendVerificationEmailRequestedAction = () => {
@@ -27,7 +28,7 @@ export const sendVerificationEmailRejectedAction = error => {
   return {
     type: SEND_VERIFICATION_EMAIL_REJECTED,
     payload: error
-  }
+  };
 };
 
 export const sendVerificationEmailFulfilledAction = () => {

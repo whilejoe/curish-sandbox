@@ -22,4 +22,4 @@ export const getGuestAddedAction = guest => {
     type: GUEST_ADDED,
     payload: guest
   };
-}
+};
