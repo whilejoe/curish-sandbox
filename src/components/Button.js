@@ -12,6 +12,7 @@ const Button = styled.button`
   background-color: transparent;
   color: ${props => theme[props.theme] || theme['primary']};
   font-size: .85rem;
+  font-size: ${props => (props.large ? '1rem' : '.85rem')};
   font-weight: 600;
   text-transform: uppercase;
   line-height: 1;

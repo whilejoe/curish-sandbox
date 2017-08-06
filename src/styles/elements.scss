@@ -62,8 +62,9 @@ button {
 }
 
 input {
-  width: 100%;
-  max-width: 22rem;
+  // width: 100%;
+  // max-width: 100%;
+  min-width: 25vw;
   padding: .3rem 0 .3rem .3rem;
   border: 1px solid #eee;
   border-radius: 2px;
@@ -72,6 +73,14 @@ input {
   &:focus {
     outline: none;
     border-color: darken(#eee, 15%);
+
+    &::placeholder {
+      color: darken(#ccc, 10%);
+    }
+  }
+
+  &::placeholder {
+    color: #ccc;
   }
 }
 
