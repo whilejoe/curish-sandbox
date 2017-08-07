@@ -32,18 +32,7 @@ const AppHeader = props => {
           </ul>
         </nav>
         {isAuthed
-          ? <NavLink
-              to="/profile"
-              activeClassName="header__avatar--active"
-              className="float-right header__avatar"
-            >
-              {photoURL
-                ? <Avatar src={photoURL} alt="user-profile-header-link" small />
-                : userName &&
-                  <span className="header__avatar-name">
-                    @{userName}
-                  </span>}
-            </NavLink>
+          ? <Avatar src={photoURL} alt="user-profile-header-link" name={userName} small />
           : <div className="float-right nav-item">
               <NavLink to="/authenticate" className="nav-action">
                 Login

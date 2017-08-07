@@ -9,13 +9,9 @@ class Profile extends Component {
     return (
       <div>
         <h1>Profile</h1>
-        {photoURL
-          ? <Avatar src={photoURL} alt="user-profile" name={displayName} />
-          : <p>
-              Name: {displayName}
-            </p>}
+        <Avatar src={photoURL} alt="user-profile" name={userName} />
         <p>
-          Pseudonym: @{userName}
+          Full Name: {displayName}
         </p>
         <p>
           Email: {email}
