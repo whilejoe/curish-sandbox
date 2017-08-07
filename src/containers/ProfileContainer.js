@@ -1,7 +1,7 @@
-import {connect} from 'react-redux';
-import Profile from 'routes/Profile/Profile';
-import {logoutUser} from 'actions/logoutUser';
-import {createAppUser} from 'actions/createAppUser';
+import { connect } from 'react-redux';
+import Profile from 'routes/Profile';
+import { logoutUser } from 'actions/logoutUser';
+import { createAppUser } from 'actions/createAppUser';
 
 const mapStateToProps = state => ({
   user: state.user

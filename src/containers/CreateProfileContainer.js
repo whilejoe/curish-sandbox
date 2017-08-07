@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateProfile from 'routes/CreateProfile/CreateProfile';
+import CreateProfile from 'routes/CreateProfile';
 import { createAppUser } from 'actions/createAppUser';
 
 const mapStateToProps = state => ({

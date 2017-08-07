@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addAuthListener } from 'actions/authListener';
 import Home from 'routes/Home';
-import About from 'routes/About/About';
+import About from 'routes/About';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import StoriesContainer from 'containers/StoriesContainer';
 import UserAuthContainer from 'containers/UserAuthContainer';

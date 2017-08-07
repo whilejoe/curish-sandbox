@@ -1,8 +1,8 @@
-import {connect} from 'react-redux';
-import Invite from 'routes/Invite/Invite';
-import {getInvite} from 'actions/getInvite';
-import {addToInvite} from 'actions/addToInvite';
-import {watchGuestAddedEvent, removeGuestAddedEvent} from 'actions/guestAddedEvent';
+import { connect } from 'react-redux';
+import Invite from 'routes/Invite';
+import { getInvite } from 'actions/getInvite';
+import { addToInvite } from 'actions/addToInvite';
+import { watchGuestAddedEvent, removeGuestAddedEvent } from 'actions/guestAddedEvent';
 
 const mapStateToProps = state => ({
   invite: state.invite

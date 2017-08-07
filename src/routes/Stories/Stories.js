@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
-import Story from './Story/Story';
-import './Stories.css';
+import styled from 'styled-components';
+import StoryContainer from 'components/StoryContainer';
+import Story from './Story';
+
+const StoryItem = styled.article`
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 1px;
+
+  &:not(:last-child) {
+    margin-bottom: 1.2rem;
+  }
+
+  & h1,
+  & h2 {
+    margin-top: 0;
+  }
+`;
 
 class Stories extends Component {
   componentWillMount() {
@@ -11,10 +27,10 @@ class Stories extends Component {
     const { stories } = this.props;
     return !stories
       ? null
-      : <div>
+      : <StoryContainer>
           <h1>Stories</h1>
           {Object.keys(stories).map(story =>
-            <article key={story} className="story">
+            <StoryItem key={story}>
               <h2>
                 {stories[story].title}
               </h2>
@@ -22,9 +38,9 @@ class Stories extends Component {
                 @{stories[story].author}
               </h3>
               <Story rawData={stories[story].rawData} />
-            </article>
+            </StoryItem>
           )}
-        </div>;
+        </StoryContainer>;
   }
 }
 

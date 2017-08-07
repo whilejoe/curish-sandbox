@@ -1,7 +1,7 @@
-import {connect} from 'react-redux';
-import Authenticate from 'routes/Authenticate/Authenticate';
-import {createUserWithEmail} from 'actions/createUserWithEmail';
-import {loginUserWithEmail, loginUserWithFacebook, loginUserWithGoogle} from 'actions/loginUser';
+import { connect } from 'react-redux';
+import Authenticate from 'routes/Authenticate';
+import { createUserWithEmail } from 'actions/createUserWithEmail';
+import { loginUserWithEmail, loginUserWithFacebook, loginUserWithGoogle } from 'actions/loginUser';
 
 const mapStateToProps = state => ({
   user: state.user
