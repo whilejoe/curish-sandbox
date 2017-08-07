@@ -46,6 +46,7 @@ const setSpace = val => {
   return null;
 };
 
+// offset
 const setOffset = val => {
   const parsedVal = parseInt(val, 10);
   console.log('parsedVal', parsedVal);
