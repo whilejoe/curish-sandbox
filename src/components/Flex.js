@@ -18,7 +18,8 @@ const methods = {
   gutters: hasGutters => setGutters(hasGutters),
   guttersVertical: hasGutters => setGuttersVertical(hasGutters),
   hide: shouldHide =>
-    shouldHide ? css`display: none;` : css`display: ${DEFAULT_DISPLAY} !important;`
+    shouldHide ? css`display: none;` : css`display: ${DEFAULT_DISPLAY} !important;`,
+  offset: val => setOffset(val)
 };
 
 // number/'number' tells item to take up x amount of total flex space
@@ -40,6 +41,21 @@ const setSpace = val => {
     return css`
       flex: 0 1 auto;
       max-width: none;
+    `;
+  }
+  return null;
+};
+
+const setOffset = val => {
+  const parsedVal = parseInt(val, 10);
+  console.log('parsedVal', parsedVal);
+  if (parsedVal) {
+    return css`
+      margin-left: ${parsedVal}%;
+    `;
+  } else if (val === 'reset') {
+    return css`
+      margin-left: 0;
     `;
   }
   return null;

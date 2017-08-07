@@ -9,8 +9,8 @@ import StoriesContainer from 'containers/StoriesContainer';
 import UserAuthContainer from 'containers/UserAuthContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import CreateProfileContainer from 'containers/CreateProfileContainer';
-import AppHeader from 'components/AppHeader/AppHeader';
-import './App.css';
+import AppHeader from 'components/AppHeader';
+import Container from 'components/Container';
 
 class App extends Component {
   componentWillMount() {
@@ -21,17 +21,17 @@ class App extends Component {
     return (
       <div>
         <AppHeader user={this.props.user} />
-        <div className="container page-container">
+        <Container>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
+            <Route path="/101" component={About} />
             <Route path="/create-story" component={CreateStoryContainer} />
             <Route path="/stories" component={StoriesContainer} />
             <Route path="/authenticate" component={UserAuthContainer} />
             <Route path="/create-profile" component={CreateProfileContainer} />
             <Route path="/profile" component={ProfileContainer} />
           </Switch>
-        </div>
+        </Container>
       </div>
     );
   }

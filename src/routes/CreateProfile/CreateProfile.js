@@ -50,7 +50,7 @@ class CreateProfile extends Component {
       <div style={{ paddingBottom: '2rem' }}>
         <h1>Create Profile</h1>
         <h2>Update Or Fill In Info Below</h2>
-        <div className="input-group">
+        <p>
           <label>Full Name: </label>
           <input
             type="text"
@@ -58,8 +58,8 @@ class CreateProfile extends Component {
             placeholder="Marquis De Sade"
             onChange={e => this.setState({ displayName: e.target.value })}
           />
-        </div>
-        <div className="input-group">
+        </p>
+        <p>
           <label>User Name: @</label>
           <input
             type="text"
@@ -67,15 +67,15 @@ class CreateProfile extends Component {
             placeholder="theoriginalsadist"
             onChange={e => this.setState({ userName: e.target.value })}
           />
-        </div>
-        <div className="input-group">
+        </p>
+        <p>
           <label>Email: </label>
           <input
             type="email"
             value={email}
             onChange={e => this.setState({ email: e.target.value })}
           />
-        </div>
+        </p>
         <Button onClick={displayName && userName && email && this.submitRegistration}>
           create profile
         </Button>
