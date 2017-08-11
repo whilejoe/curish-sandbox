@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  max-width: 70rem;
+  max-width: ${props => (props.narrow ? '22rem' : '70rem')};
   margin-right: auto;
   margin-left: auto;
   padding-right: 1.25rem;

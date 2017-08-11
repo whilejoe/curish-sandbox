@@ -8,21 +8,27 @@ const theme = {
 };
 
 const Button = styled.button`
-  padding: 0.35rem .8rem;
+  padding: 0.4rem .8rem;
   background-color: transparent;
   color: ${props => theme[props.theme] || theme['primary']};
-  font-size: .85rem;
   font-size: ${props => (props.large ? '1rem' : '.85rem')};
   font-weight: 600;
-  text-transform: uppercase;
+  font-family: inherit;
   line-height: 1;
-  border-radius: 3px;
+  border-radius: 20px;
   border: 2px solid ${props => theme[props.theme] || theme['primary']};
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover,
   &:focus {
     background-color: ${props => theme[props.theme] || theme['primary']};
     color: white;
+    outline: none;
   }
 `;
 

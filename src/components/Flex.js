@@ -49,7 +49,6 @@ const setSpace = val => {
 // offset
 const setOffset = val => {
   const parsedVal = parseInt(val, 10);
-  console.log('parsedVal', parsedVal);
   if (parsedVal) {
     return css`
       margin-left: ${parsedVal}%;

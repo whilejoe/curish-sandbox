@@ -31,9 +31,10 @@ const Avatar = props => {
   return (
     <AvatarLink to="/profile" className={className}>
       {src && alt && <AvatarImage src={src} alt={alt} small={small} />}
-      <AvatarName>
-        @{name}
-      </AvatarName>
+      {name &&
+        <AvatarName>
+          @{name}
+        </AvatarName>}
     </AvatarLink>
   );
 };

@@ -1,87 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'components/Button';
+import Container from 'components/Container';
+import InputGroup from 'components/InputGroup';
 
-class CreateProfile extends Component {
-  state = {
-    userName: '',
-    displayName: '',
-    email: '',
-    photoURL: ''
+const CreateProfile = props => {
+  const { user, registerForm, createAppUser } = props;
+  const { userName, fullName } = registerForm.model;
+  const userData = {
+    userName,
+    displayName: fullName
   };
-
-  componentWillMount() {
-    const { user } = this.props;
-    const providerName = user.providerData ? user.providerData[0].displayName : '';
-    const providerPhotoURL = user.providerData ? user.providerData[0].photoURL : '';
-    this.setState({
-      displayName: providerName || user.displayName || '',
-      email: user.email,
-      photoURL: providerPhotoURL || user.photoURL || ''
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) {
-      const { user } = nextProps;
-      const providerName = user.providerData ? user.providerData[0].displayName : '';
-      const providerPhotoURL = user.providerData ? user.providerData[0].photoURL : '';
-      this.setState({
-        displayName: providerName || user.displayName || '',
-        email: user.email,
-        photoURL: providerPhotoURL || user.photoURL || ''
-      });
-    }
-  }
-
-  submitRegistration = () => {
-    const { userName, displayName, email, photoURL } = this.state;
-    const user = {
-      userName,
-      displayName,
-      email,
-      photoURL
-    };
-    this.props.createAppUser(user);
-  };
-
-  render() {
-    const { userName, displayName, email } = this.state;
-    return (
-      <div style={{ paddingBottom: '2rem' }}>
-        <h1>Create Profile</h1>
-        <h2>Update Or Fill In Info Below</h2>
-        <p>
-          <label>Full Name: </label>
-          <input
-            type="text"
-            value={displayName}
-            placeholder="Marquis De Sade"
-            onChange={e => this.setState({ displayName: e.target.value })}
-          />
-        </p>
-        <p>
-          <label>User Name: @</label>
-          <input
-            type="text"
-            value={userName}
-            placeholder="theoriginalsadist"
-            onChange={e => this.setState({ userName: e.target.value })}
-          />
-        </p>
-        <p>
-          <label>Email: </label>
-          <input
-            type="email"
-            value={email}
-            onChange={e => this.setState({ email: e.target.value })}
-          />
-        </p>
-        <Button onClick={displayName && userName && email && this.submitRegistration}>
-          create profile
-        </Button>
-      </div>
-    );
-  }
-}
+  return (
+    <Container narrow>
+      <h1>Complete Profile</h1>
+      <InputGroup
+        autoFocus
+        id="fullName"
+        label="Full Name"
+        type="text"
+        model="register.fullName"
+        defaultValue={user.displayName}
+        placeholder="Marquis De Sade"
+        hasValue={fullName && fullName.length > 0}
+        validators={{ required: value => !value }}
+        errorMessages={{ required: 'Full Name is required' }}
+      />
+      <InputGroup
+        id="userName"
+        label="username"
+        type="text"
+        model="register.userName"
+        placeholder="theoriginalsadist"
+        hasValue={userName && userName.length > 0}
+        validators={{ required: value => !value }}
+        errorMessages={{ required: 'username is required' }}
+      />
+      <Button onClick={() => createAppUser(userData)}>complete profile</Button>
+    </Container>
+  );
+};
 
 export default CreateProfile;

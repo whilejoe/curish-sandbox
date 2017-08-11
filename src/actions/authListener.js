@@ -9,17 +9,21 @@ export function addAuthListener(dispatch) {
     console.log('***LISTENING FOR AUTHENTICATION*****');
     if (user) {
       const { displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData } = user;
+      const fullName = providerData ? providerData[0].displayName : displayName;
+      const userPhoto = providerData ? providerData[0].photoURL : photoURL;
       const appUserRef = database.ref('users/' + uid);
+
       appUserRef.once('value', snap => {
         const appUser = snap.val();
+
         if (!appUser) {
           // user is not registered so pass firebase user to populate profile form and redirect
           dispatch(
             listenToAuthAction({
-              displayName,
+              displayName: fullName,
               email,
               emailVerified,
-              photoURL,
+              photoURL: userPhoto,
               isAnonymous,
               uid,
               providerData
@@ -28,7 +32,15 @@ export function addAuthListener(dispatch) {
           dispatch(pushRoute('/create-profile'));
         } else {
           // user is registered so pass app user and append relevant up to date firebase user data
-          dispatch(listenToAuthAction({ ...appUser, emailVerified, providerData }));
+          dispatch(
+            listenToAuthAction({
+              photoURL: userPhoto,
+              email,
+              ...appUser,
+              emailVerified,
+              providerData
+            })
+          );
           // dispatch(pushRoute('/profile'));
         }
       });
