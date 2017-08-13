@@ -46,10 +46,10 @@ const Auth = ({
       />
       <AuthButton onClick={() => loginWithEmail(email, password)}>Login With Email</AuthButton>
       <AuthButton theme="secondary" onClick={() => loginWithFacebook()}>
-        Login With Facebook
+        Continue With Facebook
       </AuthButton>
       <AuthButton theme="tertiary" onClick={() => loginWithGoogle()}>
-        Login With Google
+        Continue With Google
       </AuthButton>
       <AuthButton onClick={() => registerWithEmail(email, password)}>Create Account</AuthButton>
     </Container>
