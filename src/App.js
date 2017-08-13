@@ -42,7 +42,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addAuthListener: () => addAuthListener(dispatch)
+  addAuthListener: () => dispatch(addAuthListener())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -9,15 +9,14 @@ const AuthButton = styled(Button)`
   margin-bottom: .8rem;
 `;
 
-const Auth = props => {
-  const {
-    user,
-    authForm,
-    loginWithEmail,
-    loginWithFacebook,
-    loginWithGoogle,
-    registerWithEmail
-  } = props;
+const Auth = ({
+  user,
+  authForm,
+  loginWithEmail,
+  loginWithFacebook,
+  loginWithGoogle,
+  registerWithEmail
+}) => {
   const { email, password } = authForm.model;
   return (
     <Container narrow id="container">
@@ -42,7 +41,6 @@ const Auth = props => {
         type="password"
         model="auth.password"
         hasValue={password && password.length > 0}
-        onFocus={() => console.log('i got clicked')}
         validators={{ required: value => !value }}
         errorMessages={{ required: 'A password is required' }}
       />

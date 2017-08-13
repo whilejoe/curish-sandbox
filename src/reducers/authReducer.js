@@ -14,14 +14,15 @@ const initialState = {
   inProgress: false,
   error: '',
   success: '',
+  isAuthed: false,
   displayName: null,
   email: null,
   emailVerified: null,
-  photoURL: null,
-  isAuthed: false,
   isAnonymous: null,
+  photoURL: null,
+  providerData: null,
   uid: null,
-  providerData: null
+  userSince: null
 };
 
 export function authReducer(state = initialState, action) {

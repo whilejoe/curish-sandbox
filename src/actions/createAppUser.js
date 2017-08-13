@@ -10,20 +10,22 @@ export function createAppUser(userData) {
   return dispatch => {
     dispatch(createAppUserRequestedAction());
     const currentUser = firebase.auth().currentUser;
+    // confirm user is authed
     if (currentUser) {
-      // make sure user is logged in
       const { uid } = currentUser;
-      const appUser = { ...userData, uid };
+      const userSince = Date.now();
+      const appUser = { ...userData, uid, userSince };
+
       return database
         .ref('users/' + uid)
         .set({ ...appUser }) // this is only called for a new user so we can create a new record
         .then(() => {
-          dispatch(createAppUserFulfilledAction(userData));
+          dispatch(createAppUserFulfilledAction(appUser));
           dispatch(pushRoute('/profile'));
           console.log('USER SUCCESSFULLY CREATED');
         })
         .catch(error => dispatch(createAppUserRejectedAction(error.message)));
-    } else console.log('USER IS NOT LOGGED IN');
+    } else dispatch(createAppUserRejectedAction('USER IS NOT LOGGED IN'));
   };
 }
 

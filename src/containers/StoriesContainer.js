@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Stories from 'routes/Stories/Stories';
-import {getStories} from 'actions/getStories';
+import { getStories } from 'actions/getStories';
 
 const mapStateToProps = state => ({
   stories: state.stories.stories

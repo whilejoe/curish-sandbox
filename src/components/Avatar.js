@@ -26,8 +26,7 @@ const AvatarLink = styled(NavLink)`
 
 const AvatarName = styled.span`vertical-align: middle;`;
 
-const Avatar = props => {
-  const { src, alt, small, name, className } = props;
+const Avatar = ({ src, alt, small, name, className }) => {
   return (
     <AvatarLink to="/profile" className={className}>
       {src && alt && <AvatarImage src={src} alt={alt} small={small} />}

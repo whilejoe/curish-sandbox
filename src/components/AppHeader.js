@@ -41,8 +41,8 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const AppHeader = props => {
-  const { isAuthed, userName, photoURL } = props.user;
+const AppHeader = ({ user }) => {
+  const { isAuthed, userName, photoURL } = user;
   return (
     <Header>
       <Container>

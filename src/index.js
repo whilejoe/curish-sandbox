@@ -4,7 +4,8 @@ import App from './App';
 import { render } from 'react-snapshot';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import store, { history } from './store';
+import store, { history } from 'state/store';
+
 import registerServiceWorker from './registerServiceWorker';
 
 render(

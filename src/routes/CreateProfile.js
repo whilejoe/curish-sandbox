@@ -3,8 +3,7 @@ import Button from 'components/Button';
 import Container from 'components/Container';
 import InputGroup from 'components/InputGroup';
 
-const CreateProfile = props => {
-  const { user, registerForm, createAppUser } = props;
+const CreateProfile = ({ user, registerForm, createAppUser }) => {
   const { userName, fullName } = registerForm.model;
   const userData = {
     userName,

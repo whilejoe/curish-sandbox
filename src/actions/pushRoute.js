@@ -1,4 +1,4 @@
-import store from '../store';
+import store from 'state/store';
 import { push } from 'react-router-redux';
 
 export function pushRoute(path) {
