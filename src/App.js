@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addAuthListener } from 'actions/authListener';
 import Home from 'routes/Home';
 import About from 'routes/About';
+import NoMatch from 'routes/NoMatch';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import StoriesContainer from 'containers/StoriesContainer';
 import UserAuthContainer from 'containers/UserAuthContainer';
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path="/authenticate" component={UserAuthContainer} />
             <Route path="/create-profile" component={CreateProfileContainer} />
             <Route path="/profile" component={ProfileContainer} />
+            <Route component={NoMatch} />
           </Switch>
         </Container>
       </div>
