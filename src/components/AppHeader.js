@@ -5,7 +5,10 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Avatar from 'components/Avatar';
 
-const Header = styled.header`border-bottom: 1px solid #eee;`;
+const Header = styled.header`
+  background-color: white;
+  border-bottom: 1px solid #eee;
+`;
 
 const HeaderLink = styled(NavLink)`
   display: inline-block;

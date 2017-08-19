@@ -15,6 +15,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "next",
     "react-scripts": "1.0.10",
+    "react-transition-group": "^2.2.0",
     "redux": "^3.7.0",
     "redux-action-buffer": "^1.1.0",
     "redux-devtools-extension": "^2.13.2",

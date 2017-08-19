@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
+import Container from 'components/Container';
 import Button from 'components/Button';
 import 'draft-js/dist/Draft.css';
 import './CreateStory.css';
@@ -61,7 +62,7 @@ class CreateStory extends Component {
     }
 
     return (
-      <section>
+      <Container>
         <h1>Create A Story</h1>
         <div className="RichEditor-root">
           <BlockStyleControls editorState={editorState} onToggle={this.toggleBlockType} />
@@ -84,7 +85,7 @@ class CreateStory extends Component {
           </div>
         </div>
         <Button onClick={content && this.handleSubmit}>submit for review</Button>
-      </section>
+      </Container>
     );
   }
 }

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import FadeRoute from 'components/FadeRoute';
+import FadeIn from 'components/FadeIn';
 import { connect } from 'react-redux';
 import { addAuthListener } from 'actions/authListener';
+import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import Transition from 'react-transition-group/Transition';
 import Home from 'routes/Home';
 import About from 'routes/About';
 import NoMatch from 'routes/NoMatch';
@@ -11,7 +16,7 @@ import UserAuthContainer from 'containers/UserAuthContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import CreateProfileContainer from 'containers/CreateProfileContainer';
 import AppHeader from 'components/AppHeader';
-import Container from 'components/Container';
+import { FADE_DURATION } from 'constants/animation';
 
 class App extends Component {
   componentWillMount() {
@@ -20,21 +25,33 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <AppHeader user={this.props.user} />
-        <Container>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/101" component={About} />
-            <Route path="/create-story" component={CreateStoryContainer} />
-            <Route path="/stories" component={StoriesContainer} />
-            <Route path="/authenticate" component={UserAuthContainer} />
-            <Route path="/create-profile" component={CreateProfileContainer} />
-            <Route path="/profile" component={ProfileContainer} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Container>
-      </div>
+      <TransitionGroup>
+        <Transition in appear enter={false} exit={false} timeout={FADE_DURATION}>
+          {status =>
+            <FadeIn status={status} duration={FADE_DURATION}>
+              <FlexApp>
+                <FlexHeader>
+                  <AppHeader user={this.props.user} />
+                </FlexHeader>
+                <Route
+                  children={props =>
+                    <TransitionGroup component={FlexMain}>
+                      <Switch key={props.location.pathname} location={props.location}>
+                        <FadeRoute exact path="/" component={Home} />
+                        <FadeRoute path="/101" component={About} />
+                        <FadeRoute path="/create-story" component={CreateStoryContainer} />
+                        <FadeRoute path="/stories" component={StoriesContainer} />
+                        <FadeRoute path="/authenticate" component={UserAuthContainer} />
+                        <FadeRoute path="/create-profile" component={CreateProfileContainer} />
+                        <FadeRoute path="/profile" component={ProfileContainer} />
+                        <FadeRoute component={NoMatch} />
+                      </Switch>
+                    </TransitionGroup>}
+                />
+              </FlexApp>
+            </FadeIn>}
+        </Transition>
+      </TransitionGroup>
     );
   }
 }

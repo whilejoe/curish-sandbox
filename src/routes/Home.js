@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from 'components/Button';
 import { Flex, FlexContent } from 'components/Flex';
 import { Input } from 'components/InputGroup';
+import Container from 'components/Container';
 
 const Title = styled.h1`
   margin-top: 25vh;
@@ -11,7 +12,7 @@ const Title = styled.h1`
 
 const Home = () => {
   return (
-    <div>
+    <Container>
       <Title>Curious?</Title>
       <Flex gutters guttersVertical align="flex-end" justify="center">
         <FlexContent space={[100, { sm: 45, md: 40, lg: 30 }]}>
@@ -26,7 +27,7 @@ const Home = () => {
           <Button theme="secondary">Search</Button>
         </FlexContent>
       </Flex>
-    </div>
+    </Container>
   );
 };
 
