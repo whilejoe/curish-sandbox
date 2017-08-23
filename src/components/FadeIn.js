@@ -12,8 +12,6 @@ const FadeIn = styled.div`
   transition-property: opacity, background-color;
   transition-duration: ${props => (props.duration ? props.duration : '200')}ms;
   transition-timing-function: linear;
-
-  ${props => console.log('props', props)};
 `;
 
 export default FadeIn;
