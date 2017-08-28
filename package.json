@@ -23,9 +23,11 @@
     "redux-persist": "^4.8.3",
     "redux-thunk": "^2.2.0",
     "reset-css": "^2.2.0",
-    "styled-components": "^2.1.1"
+    "styled-components": "^2.1.1",
+    "subscriptions-transport-ws": "^0.8.2"
   },
   "devDependencies": {
+    "@playlyfe/gql": "^2.3.2",
     "flow-bin": "^0.53.1",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.0.2",

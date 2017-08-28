@@ -15,13 +15,18 @@ import StoriesContainer from 'containers/StoriesContainer';
 import UserAuthContainer from 'containers/UserAuthContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import CreateProfileContainer from 'containers/CreateProfileContainer';
-import AppHeader from 'components/AppHeader';
+// import AppHeader from 'components/AppHeader';
+import TutsAppHeader from 'components/TutsAppHeader';
 import { FADE_DURATION } from 'constants/animation';
 
+import CreateLink from 'routes/CreateLink';
+import TutsLogin from 'routes/TutsLogin';
+import Search from 'routes/Search';
+
 class App extends Component {
-  componentWillMount() {
-    this.props.addAuthListener();
-  }
+  // componentWillMount() {
+  //   this.props.addAuthListener();
+  // }
 
   render() {
     return (
@@ -31,7 +36,7 @@ class App extends Component {
             <FadeIn status={status} duration={FADE_DURATION}>
               <FlexApp>
                 <FlexHeader>
-                  <AppHeader user={this.props.user} />
+                  <TutsAppHeader />
                 </FlexHeader>
                 <Route
                   children={props =>
@@ -44,6 +49,9 @@ class App extends Component {
                         <FadeRoute path="/authenticate" component={UserAuthContainer} />
                         <FadeRoute path="/create-profile" component={CreateProfileContainer} />
                         <FadeRoute path="/profile" component={ProfileContainer} />
+                        <FadeRoute path="/graph-ql" component={CreateLink} />
+                        <FadeRoute path="/search" component={Search} />
+                        <FadeRoute path="/login-tuts" component={TutsLogin} />
                         <FadeRoute component={NoMatch} />
                       </Switch>
                     </TransitionGroup>}
