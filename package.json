@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "abyss-form": "^0.4.0",
+    "auth0-lock": "^10.20.0",
     "draft-js": "^0.10.1",
     "firebase": "^4.1.2",
     "history": "^4.7.2",
@@ -14,7 +15,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
-    "react-scripts": "1.0.11",
+    "react-scripts": "^1.0.12",
     "react-transition-group": "^2.2.0",
     "redux": "^3.7.0",
     "redux-action-buffer": "^1.1.0",
@@ -30,10 +31,10 @@
     "@playlyfe/gql": "^2.3.2",
     "flow-bin": "^0.53.1",
     "node-sass-chokidar": "^0.0.3",
-    "npm-run-all": "^4.1.0",
-    "prettier": "^1.5.3",
-    "prettier-eslint": "^6.4.2",
-    "react-app-rewired": "^1.2.2",
+    "npm-run-all": "^4.1.1",
+    "prettier": "^1.6.1",
+    "prettier-eslint": "^7.0.1",
+    "react-app-rewired": "^1.2.4",
     "react-snapshot": "^1.1.0"
   },
   "scripts": {
