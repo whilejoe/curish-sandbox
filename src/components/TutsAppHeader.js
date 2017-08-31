@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Button from 'components/Button';
-import store from 'state/store';
-import { push } from 'react-router-redux';
-import { GC_USER_ID, GC_AUTH_TOKEN } from 'constants/tuts';
+// import store from 'state/store';
+// import { push } from 'react-router-redux';
+import { USER_ID, AUTH_TOKEN } from 'constants/tuts';
 
 const Header = styled.header`
   background-color: white;
@@ -50,7 +50,7 @@ const HeaderLink = styled(NavLink)`
 const ButtonLink = Button.withComponent(NavLink);
 
 const TutsAppHeader = () => {
-  const userId = localStorage.getItem(GC_USER_ID);
+  const userId = localStorage.getItem(USER_ID);
   return (
     <Header>
       <Container>
@@ -71,9 +71,10 @@ const TutsAppHeader = () => {
               ? <Button
                   theme="tertiary"
                   onClick={() => {
-                    localStorage.removeItem(GC_USER_ID);
-                    localStorage.removeItem(GC_AUTH_TOKEN);
-                    store.dispatch(push('/'));
+                    localStorage.removeItem(USER_ID);
+                    localStorage.removeItem(AUTH_TOKEN);
+                    window.location.reload();
+                    // store.dispatch(push('/'));
                   }}
                 >
                   Logout

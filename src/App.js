@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { gql, graphql } from 'react-apollo';
 import FadeRoute from 'components/FadeRoute';
 import FadeIn from 'components/FadeIn';
-import { connect } from 'react-redux';
-import { addAuthListener } from 'actions/authListener';
+// import { connect } from 'react-redux';
+// import { addAuthListener } from 'actions/authListener';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Transition from 'react-transition-group/Transition';
@@ -58,14 +59,28 @@ class App extends Component {
       </TransitionGroup>
     );
   }
+
+  _isLoggedIn = () => {
+    return this.props.data.user;
+  };
 }
 
-const mapStateToProps = state => ({
-  user: state.user
-});
+// const mapStateToProps = state => ({
+//   user: state.user
+// });
 
-const mapDispatchToProps = dispatch => ({
-  addAuthListener: () => dispatch(addAuthListener())
-});
+// const mapDispatchToProps = dispatch => ({
+//   addAuthListener: () => dispatch(addAuthListener())
+// });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+
+const userQuery = gql`
+  query {
+    user {
+      id
+    }
+  }
+`;
+
+export default graphql(userQuery, { options: { fetchPolicy: 'network-only' } })(withRouter(App));

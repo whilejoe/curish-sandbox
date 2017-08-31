@@ -4,7 +4,7 @@ import StatelessInput from 'components/StatelessInput';
 import Container from 'components/Container';
 import Button from 'components/Button';
 import LinkList, { ALL_LINKS_QUERY } from 'components/LinkList';
-import { GC_USER_ID } from 'constants/tuts';
+import { USER_ID } from 'constants/tuts';
 
 class CreateLink extends Component {
   state = {
@@ -37,7 +37,7 @@ class CreateLink extends Component {
   }
 
   _createLink = async () => {
-    const postedById = localStorage.getItem(GC_USER_ID);
+    const postedById = localStorage.getItem(USER_ID);
     if (!postedById) {
       console.error('No user logged in');
       return;

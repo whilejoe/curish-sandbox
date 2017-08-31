@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
-import { GC_USER_ID } from 'constants/tuts';
+import { USER_ID } from 'constants/tuts';
 import { timeDifferenceForDate } from 'utils/timeDifferenceForDate';
 
 class Link extends Component {
   render() {
-    const userId = localStorage.getItem(GC_USER_ID);
+    const userId = localStorage.getItem(USER_ID);
     return (
       <Flex gutters align="center">
         <FlexContent space="self">
@@ -29,7 +29,7 @@ class Link extends Component {
   }
 
   _voteForLink = async () => {
-    const userId = localStorage.getItem(GC_USER_ID);
+    const userId = localStorage.getItem(USER_ID);
     const voterIds = this.props.link.votes.map(vote => vote.user.id);
     if (voterIds.includes(userId)) {
       console.log(`User (${userId}) already voted for this link.`);

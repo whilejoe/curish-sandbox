@@ -6,7 +6,7 @@ import Button from 'components/Button';
 import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 import { pushRoute } from 'actions/pushRoute';
-import { GC_USER_ID, GC_AUTH_TOKEN } from 'constants/tuts';
+import { USER_ID, AUTH_TOKEN } from 'constants/tuts';
 
 class TutsLogin extends Component {
   state = {
@@ -95,8 +95,8 @@ class TutsLogin extends Component {
   };
 
   _saveUserData = (id, token) => {
-    localStorage.setItem(GC_USER_ID, id);
-    localStorage.setItem(GC_AUTH_TOKEN, token);
+    localStorage.setItem(USER_ID, id);
+    localStorage.setItem(AUTH_TOKEN, token);
   };
 }
 
