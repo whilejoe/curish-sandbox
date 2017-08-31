@@ -10,16 +10,16 @@ import Transition from 'react-transition-group/Transition';
 import Home from 'routes/Home';
 import About from 'routes/About';
 import NoMatch from 'routes/NoMatch';
-import CreateStoryContainer from 'containers/CreateStoryContainer';
-import StoriesContainer from 'containers/StoriesContainer';
-import UserAuthContainer from 'containers/UserAuthContainer';
+// import CreateStoryContainer from 'containers/CreateStoryContainer';
+// import StoriesContainer from 'containers/StoriesContainer';
+// import UserAuthContainer from 'containers/UserAuthContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import CreateProfileContainer from 'containers/CreateProfileContainer';
 // import AppHeader from 'components/AppHeader';
 import TutsAppHeader from 'components/TutsAppHeader';
 import { FADE_DURATION } from 'constants/animation';
 
-import CreateLink from 'routes/CreateLink';
+// import CreateLink from 'routes/CreateLink';
 import TutsLogin from 'routes/TutsLogin';
 import Search from 'routes/Search';
 
@@ -44,12 +44,8 @@ class App extends Component {
                       <Switch key={props.location.pathname} location={props.location}>
                         <FadeRoute exact path="/" component={Home} />
                         <FadeRoute path="/101" component={About} />
-                        <FadeRoute path="/create-story" component={CreateStoryContainer} />
-                        <FadeRoute path="/stories" component={StoriesContainer} />
-                        <FadeRoute path="/authenticate" component={UserAuthContainer} />
                         <FadeRoute path="/create-profile" component={CreateProfileContainer} />
                         <FadeRoute path="/profile" component={ProfileContainer} />
-                        <FadeRoute path="/graph-ql" component={CreateLink} />
                         <FadeRoute path="/search" component={Search} />
                         <FadeRoute path="/login-tuts" component={TutsLogin} />
                         <FadeRoute component={NoMatch} />

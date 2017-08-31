@@ -47,6 +47,8 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
+const ButtonLink = Button.withComponent(NavLink);
+
 const TutsAppHeader = () => {
   const userId = localStorage.getItem(GC_USER_ID);
   return (
@@ -60,7 +62,7 @@ const TutsAppHeader = () => {
           </FlexContent>
           <FlexContent offset={{ md: 4 }}>
             <nav>
-              <HeaderLink to="/graph-ql">GraphQL</HeaderLink>
+              <HeaderLink to="/101">101</HeaderLink>
               <HeaderLink to="/search">Search</HeaderLink>
             </nav>
           </FlexContent>
@@ -76,7 +78,7 @@ const TutsAppHeader = () => {
                 >
                   Logout
                 </Button>
-              : <HeaderLink to="/login-tuts">Tuts Login</HeaderLink>}
+              : <ButtonLink to="/login-tuts">Tuts Login</ButtonLink>}
           </FlexContent>
         </Flex>
       </Container>

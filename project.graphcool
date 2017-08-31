@@ -1,15 +1,5 @@
-# project: cj6ppvelr0y0t0177u31owwi4
-# version: 5
-
-type Link implements Node {
-  createdAt: DateTime!
-  description: String!
-  id: ID! @isUnique
-  updatedAt: DateTime!
-  url: String!
-  postedBy: User @relation(name: "UsersLinks")
-  votes: [Vote!]! @relation(name: "VotesOnLink")
-}
+# project: cj6l71pg81npn0191lrufaos5
+# version: 9
 
 type File implements Node {
   contentType: String!
@@ -25,18 +15,10 @@ type File implements Node {
 type User implements Node {
   createdAt: DateTime!
   id: ID! @isUnique
+  updatedAt: DateTime!
+  userName: String! @isUnique
+  fullName: String!
+  auth0UserId: String @isUnique
   email: String @isUnique
-  updatedAt: DateTime!
-  name: String!
   password: String
-  links: [Link!]! @relation(name: "UsersLinks")
-  votes: [Vote!]! @relation(name: "UsersVotes")
-}
-
-type Vote implements Node {
-  user: User! @relation(name: "UsersVotes")
-  link: Link! @relation(name: "VotesOnLink")
-  createdAt: DateTime!
-  id: ID! @isUnique
-  updatedAt: DateTime!
 }
