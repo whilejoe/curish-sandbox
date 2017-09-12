@@ -10,9 +10,16 @@ import { isEnvBrowser } from './env';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 const CALLBACK_PATH = '/callback';
+
+// const CALLBACK_URL =
+//   process.env.NODE_ENV === 'production'
+//     ? `${process.env.URL}${CALLBACK_PATH}`
+//     : `http://localhost:3000${CALLBACK_PATH}`;
+
+// can't get netlify env var to work so hardcoding
 const CALLBACK_URL =
   process.env.NODE_ENV === 'production'
-    ? `${process.env.URL}${CALLBACK_PATH}`
+    ? `https://feature-graphql.curish.com${CALLBACK_PATH}`
     : `http://localhost:3000${CALLBACK_PATH}`;
 console.log('callback URL', CALLBACK_URL);
 // const REDIRECT = 'http://localhost:3000/callback';
