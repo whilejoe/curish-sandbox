@@ -5816,9 +5816,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier-eslint@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/prettier-eslint/-/prettier-eslint-7.1.0.tgz#cba3925f90a14498bd1ebb5464c3bbba00659868"
+prettier-eslint@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/prettier-eslint/-/prettier-eslint-8.0.0.tgz#966e966810a7ad5a390416ed3f610d4e5ee7f2b3"
   dependencies:
     common-tags "^1.4.0"
     dlv "^1.1.0"
@@ -6073,9 +6073,9 @@ react-app-rewired@^1.2.0:
     cross-spawn "^5.1.0"
     dotenv "^4.0.0"
 
-react-app-rewired@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/react-app-rewired/-/react-app-rewired-1.2.5.tgz#118d8ad4956d66bb84e8714c6d02d3bc25e99ebb"
+react-app-rewired@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/react-app-rewired/-/react-app-rewired-1.2.7.tgz#2d9da9b99b0b79da82382c1d43b4ebcf0f416b5e"
   dependencies:
     cross-spawn "^5.1.0"
     dotenv "^4.0.0"

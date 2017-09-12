@@ -35,8 +35,8 @@
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.6.1",
-    "prettier-eslint": "^7.1.0",
-    "react-app-rewired": "^1.2.5",
+    "prettier-eslint": "^8.0.0",
+    "react-app-rewired": "^1.2.7",
     "react-snapshot": "^1.1.0"
   },
   "scripts": {
