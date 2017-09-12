@@ -12,7 +12,7 @@ const ACCESS_TOKEN_KEY = 'access_token';
 const CALLBACK_PATH = '/callback';
 const CALLBACK_URL =
   process.env.NODE_ENV === 'production'
-    ? `${process.env.PUBLIC_URL}${CALLBACK_PATH}`
+    ? `${process.env.URL}${CALLBACK_PATH}`
     : `http://localhost:3000${CALLBACK_PATH}`;
 console.log('callback URL', CALLBACK_URL);
 // const REDIRECT = 'http://localhost:3000/callback';
