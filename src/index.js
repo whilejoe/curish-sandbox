@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from 'state/store';
 import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
-import { AUTH_TOKEN } from 'constants/tuts';
+import { getIdToken } from 'utils/AuthService';
 import registerServiceWorker from './registerServiceWorker';
 
 const networkInterface = createNetworkInterface({
@@ -18,7 +18,7 @@ const wsClient = new SubscriptionClient(
   {
     reconnect: true,
     connectionParams: {
-      authToken: localStorage.getItem(AUTH_TOKEN)
+      authToken: getIdToken()
     }
   }
 );
@@ -28,25 +28,22 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(networkInterfa
 networkInterface.use([
   {
     applyMiddleware(req, next) {
-      if (!req.options.headers) {
-        req.options.headers = {};
-      }
-      // const token = localStorage.getItem(AUTH_TOKEN);
-      // req.options.headers.authorization = token ? `Bearer ${token}` : null;
-      // next();
-
+      if (!req.options.headers) req.options.headers = {};
       // get the authentication token from local storage if it exists
-      if (localStorage.getItem(AUTH_TOKEN)) {
-        req.options.headers.authorization = `Bearer ${localStorage.getItem(AUTH_TOKEN)}`;
-      }
+      const token = getIdToken();
+      req.options.headers.authorization = token ? `Bearer ${token}` : null;
       next();
+      // if (idToken) req.options.headers.authorization = `Bearer ${idToken}`;
+      // next();
     }
   }
 ]);
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions
 });
+
+// new subscription implementation. revisit
 
 // const GRAPHQL_ENDPOINT = 'wss://subscriptions.us-west-2.graph.cool/v1/cj6ppvelr0y0t0177u31owwi4l';
 

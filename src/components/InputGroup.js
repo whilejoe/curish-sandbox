@@ -3,8 +3,10 @@ import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import FormError from 'components/FormError';
 
+let activeClass = '';
 const color = 'inherit';
 const activeColor = 'SeaGreen';
+const errorColor = 'red';
 
 export const Label = styled.label`
   position: absolute;
@@ -14,7 +16,7 @@ export const Label = styled.label`
   font-size: inherit;
   color: ${color};
   cursor: text;
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
   transform-origin: 0% 100%;
   text-align: initial;
   transform: translateY(10px);
@@ -25,12 +27,6 @@ const activeState = css`
   outline: none;
   border-bottom: 1px solid ${activeColor};
   box-shadow: 0 1px 0 0 ${activeColor};
-
-  & + ${Label} {
-    color: ${activeColor};
-    transform: translateY(-14px) scale(0.8);
-    transform-origin: 0 0;
-  }
 `;
 
 export const Input = styled(TextInput)`
@@ -48,22 +44,27 @@ export const Input = styled(TextInput)`
   box-sizing: content-box;
 
   &:focus,
-  &[placeholder],
   &.active {
-    ${activeState}
+    ${activeState};
   }
 
-  &:-webkit-autofill {
-    ${activeState}
+  &:focus,
+  &.active,
+  &[placeholder] {
+    & + ${Label} {
+      color: ${activeColor};
+      transform: translateY(-14px) scale(0.8);
+      transform-origin: 0 0;
+    }
   }
 
   &.abyss-form-invalid {
-    color: red;
+    color: ${errorColor};
     border-bottom: 1px solid red;
     box-shadow: 0 1px 0 0 red;
 
     & + ${Label} {
-      color: red;
+      color: ${errorColor};
     }
   }
 
@@ -73,9 +74,13 @@ export const Input = styled(TextInput)`
   }
 
   &:-webkit-autofill {
+    ${activeState};
+  }
+
+  &:-webkit-autofill {
     -webkit-text-fill-color: inherit;
     box-shadow: 0 0 0px 100px white inset;
-    
+
     &:hover,
     &:focus {
       -webkit-text-fill-color: inherit;
@@ -91,13 +96,14 @@ export const Container = styled.div`
 
 const InputGroup = props => {
   const { label, children, errorMessages, hasValue, ...rest } = props;
-  const activeClass = hasValue ? 'active' : '';
   return (
     <Container>
-      <Input {...rest} className={activeClass} />
-      <Label htmlFor={props.id}>
-        {label}
-      </Label>
+      <Input
+        {...rest}
+        onChange={e => (activeClass = e.target.value ? 'active' : '')}
+        className={activeClass}
+      />
+      <Label htmlFor={props.id}>{label}</Label>
       <FormError model={rest.model} messages={errorMessages} />
     </Container>
   );

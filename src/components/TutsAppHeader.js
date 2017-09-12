@@ -6,7 +6,7 @@ import Container from 'components/Container';
 import Button from 'components/Button';
 // import store from 'state/store';
 // import { push } from 'react-router-redux';
-import { USER_ID, AUTH_TOKEN } from 'constants/tuts';
+import { getIdToken, logout } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: white;
@@ -16,10 +16,10 @@ const Header = styled.header`
 const HeaderLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  padding: 1.8rem .8rem;
+  padding: 1.8rem 0.8rem;
 
   &:not(:last-child) {
-    margin-right: .9rem;
+    margin-right: 0.9rem;
   }
 
   &:after {
@@ -50,7 +50,7 @@ const HeaderLink = styled(NavLink)`
 const ButtonLink = Button.withComponent(NavLink);
 
 const TutsAppHeader = () => {
-  const userId = localStorage.getItem(USER_ID);
+  const isAuthed = getIdToken();
   return (
     <Header>
       <Container>
@@ -67,19 +67,13 @@ const TutsAppHeader = () => {
             </nav>
           </FlexContent>
           <FlexContent space="self">
-            {userId
-              ? <Button
-                  theme="tertiary"
-                  onClick={() => {
-                    localStorage.removeItem(USER_ID);
-                    localStorage.removeItem(AUTH_TOKEN);
-                    window.location.reload();
-                    // store.dispatch(push('/'));
-                  }}
-                >
-                  Logout
-                </Button>
-              : <ButtonLink to="/login-tuts">Tuts Login</ButtonLink>}
+            {isAuthed ? (
+              <Button theme="tertiary" onClick={() => logout()}>
+                Logout
+              </Button>
+            ) : (
+              <ButtonLink to="/login">Login</ButtonLink>
+            )}
           </FlexContent>
         </Flex>
       </Container>
