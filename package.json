@@ -37,13 +37,11 @@
     "prettier": "^1.6.1",
     "prettier-eslint": "^8.0.0",
     "react-app-rewired": "^1.2.7",
-    "react-snapshot": "^1.1.0"
+    "react-snapshot": "1.2.0"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-app-rewired start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-app-rewired build && react-snapshot",
@@ -53,7 +51,9 @@
     "flow": "flow"
   },
   "reactSnapshot": {
-    "exclude": ["/callback"],
+    "exclude": [
+      "/callback"
+    ],
     "snapshotDelay": 300
   }
 }

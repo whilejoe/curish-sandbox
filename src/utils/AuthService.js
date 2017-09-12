@@ -5,21 +5,26 @@ import auth0 from 'auth0-js';
 import store from 'state/store';
 import { push, replace } from 'react-router-redux';
 import { client } from 'index';
-import { isEnvBrowser } from './isEnvBrowser';
+import { isEnvBrowser } from './env';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
-const REDIRECT = 'http://localhost:3000/callback';
-const isBrowser = isEnvBrowser();
+const CALLBACK_PATH = '/callback';
+const CALLBACK_URL =
+  process.env.NODE_ENV === 'production'
+    ? `${process.env.PUBLIC_URL}${CALLBACK_PATH}`
+    : `http://localhost:3000${CALLBACK_PATH}`;
+console.log('callback URL', CALLBACK_URL);
+// const REDIRECT = 'http://localhost:3000/callback';
 // const SCOPE = 'YOUR_SCOPE';
 // const AUDIENCE = 'AUDIENCE_ATTRIBUTE';
 
 const webAuth =
-  isBrowser &&
+  isEnvBrowser &&
   new auth0.WebAuth({
     clientID: process.env.REACT_APP_AUTH_0_CLIENT_ID,
     domain: process.env.REACT_APP_AUTH_0_DOMAIN,
-    redirectUri: REDIRECT,
+    redirectUri: CALLBACK_URL,
     responseType: 'id_token token',
     scope: 'openid'
   });
@@ -138,18 +143,18 @@ export const logout = () => {
 //   }
 // }
 
-export const getIdToken = () => (isBrowser ? window.localStorage.getItem(ID_TOKEN_KEY) : null);
+export const getIdToken = () => (isEnvBrowser ? window.localStorage.getItem(ID_TOKEN_KEY) : null);
 
 export const getAccessToken = () =>
-  isBrowser ? window.localStorage.getItem(ACCESS_TOKEN_KEY) : null;
+  isEnvBrowser ? window.localStorage.getItem(ACCESS_TOKEN_KEY) : null;
 
 // Get and store access_token in local storage
 export const setAccessToken = accessToken =>
-  isBrowser && window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+  isEnvBrowser && window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 
 // Get and store id_token in local storage
 export const setIdToken = idToken =>
-  isBrowser && window.localStorage.setItem(ID_TOKEN_KEY, idToken);
+  isEnvBrowser && window.localStorage.setItem(ID_TOKEN_KEY, idToken);
 
 // export function isLoggedIn() {
 //   const idToken = getIdToken();

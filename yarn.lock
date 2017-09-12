@@ -6244,9 +6244,9 @@ react-select@^1.0.0-rc.5:
     prop-types "^15.5.8"
     react-input-autosize "^1.1.3"
 
-react-snapshot@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-snapshot/-/react-snapshot-1.1.0.tgz#03bf427065d2d8c70db9bd04d4b8364ab30b8675"
+react-snapshot@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-snapshot/-/react-snapshot-1.2.0.tgz#5e2cba30e45aa6f5dd1abfdaef0042c47b9e3ef9"
   dependencies:
     connect-history-api-fallback "^1.3.0"
     express "^4.15.2"

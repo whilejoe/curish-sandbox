@@ -7,17 +7,15 @@ import store, { history } from 'state/store';
 import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 import { getIdToken } from 'utils/AuthService';
-import { isEnvBrowser } from 'utils/isEnvBrowser';
+import { isEnvBrowser } from 'utils/env';
 import registerServiceWorker from './registerServiceWorker';
-
-const isBrowser = isEnvBrowser();
 
 const networkInterface = createNetworkInterface({
   uri: 'https://api.graph.cool/simple/v1/cj6l71pg81npn0191lrufaos5'
 });
 
 const wsClient =
-  isBrowser &&
+  isEnvBrowser &&
   new SubscriptionClient('wss://subscriptions.us-west-2.graph.cool/v1/cj6l71pg81npn0191lrufaos5', {
     reconnect: true,
     connectionParams: {
@@ -25,7 +23,7 @@ const wsClient =
     }
   });
 
-const networkInterfaceWithSubscriptions = isBrowser
+const networkInterfaceWithSubscriptions = isEnvBrowser
   ? addGraphQLSubscriptions(networkInterface, wsClient)
   : networkInterface;
 
