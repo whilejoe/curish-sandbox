@@ -40,8 +40,10 @@
     "react-snapshot": "^1.1.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css":
+      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-app-rewired start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-app-rewired build && react-snapshot",
@@ -49,5 +51,9 @@
     "eject": "react-app-rewired eject",
     "deploy": "npm run build && firebase deploy",
     "flow": "flow"
+  },
+  "reactSnapshot": {
+    "exclude": ["/callback"],
+    "snapshotDelay": 300
   }
 }

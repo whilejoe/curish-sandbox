@@ -18,13 +18,13 @@ import NoMatch from 'routes/NoMatch';
 // import UserAuthContainer from 'containers/UserAuthContainer';
 import LoginContainer from 'containers/LoginContainer';
 // import ProfileContainer from 'containers/ProfileContainer';
-import CreateProfileContainer from 'containers/CreateProfileContainer';
+// import CreateProfileContainer from 'containers/CreateProfileContainer';
 // import AppHeader from 'components/AppHeader';
 import TutsAppHeader from 'components/TutsAppHeader';
 import { APP_FADE_DURATION } from 'constants/animation';
 
 // import CreateLink from 'routes/CreateLink';
-import TutsLogin from 'routes/TutsLogin';
+// import TutsLogin from 'routes/TutsLogin';
 import Search from 'routes/Search';
 import Callback from 'routes/Callback';
 // import Profile from 'routes/Profile';
@@ -49,10 +49,8 @@ class App extends Component {
                         <Switch key={props.location.pathname} location={props.location}>
                           <FadeRoute exact path="/" component={Home} />
                           <FadeRoute path="/101" component={About} />
-                          <FadeRoute path="/create-profile" component={CreateProfileContainer} />
                           <FadeRoute path="/profile" component={UserProfile} />
                           <FadeRoute path="/search" component={Search} />
-                          <FadeRoute path="/login-tuts" component={TutsLogin} />
                           <FadeRoute path="/join" component={CreateUser} />
                           <FadeRoute path="/login" component={LoginContainer} />
                           <FadeRoute path="/callback" component={Callback} />

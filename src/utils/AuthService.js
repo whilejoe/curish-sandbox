@@ -5,20 +5,24 @@ import auth0 from 'auth0-js';
 import store from 'state/store';
 import { push, replace } from 'react-router-redux';
 import { client } from 'index';
+import { isEnvBrowser } from './isEnvBrowser';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 const REDIRECT = 'http://localhost:3000/callback';
+const isBrowser = isEnvBrowser();
 // const SCOPE = 'YOUR_SCOPE';
 // const AUDIENCE = 'AUDIENCE_ATTRIBUTE';
 
-const webAuth = new auth0.WebAuth({
-  clientID: process.env.REACT_APP_AUTH_0_CLIENT_ID,
-  domain: process.env.REACT_APP_AUTH_0_DOMAIN,
-  redirectUri: REDIRECT,
-  responseType: 'id_token token',
-  scope: 'openid'
-});
+const webAuth =
+  isBrowser &&
+  new auth0.WebAuth({
+    clientID: process.env.REACT_APP_AUTH_0_CLIENT_ID,
+    domain: process.env.REACT_APP_AUTH_0_DOMAIN,
+    redirectUri: REDIRECT,
+    responseType: 'id_token token',
+    scope: 'openid'
+  });
 
 // export const startPasswordless = phone => {
 //   webAuth.passwordlessStart(
@@ -121,8 +125,8 @@ export const parseHash = () => {
 // };
 
 export const logout = () => {
-  localStorage.removeItem(ID_TOKEN_KEY);
-  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  window.localStorage.removeItem(ID_TOKEN_KEY);
+  window.localStorage.removeItem(ACCESS_TOKEN_KEY);
   client.resetStore();
   store.dispatch(push('/login'));
   // window.location.reload();
@@ -134,15 +138,18 @@ export const logout = () => {
 //   }
 // }
 
-export const getIdToken = () => localStorage.getItem(ID_TOKEN_KEY);
+export const getIdToken = () => (isBrowser ? window.localStorage.getItem(ID_TOKEN_KEY) : null);
 
-export const getAccessToken = () => localStorage.getItem(ACCESS_TOKEN_KEY);
+export const getAccessToken = () =>
+  isBrowser ? window.localStorage.getItem(ACCESS_TOKEN_KEY) : null;
 
 // Get and store access_token in local storage
-export const setAccessToken = accessToken => localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+export const setAccessToken = accessToken =>
+  isBrowser && window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 
 // Get and store id_token in local storage
-export const setIdToken = idToken => localStorage.setItem(ID_TOKEN_KEY, idToken);
+export const setIdToken = idToken =>
+  isBrowser && window.localStorage.setItem(ID_TOKEN_KEY, idToken);
 
 // export function isLoggedIn() {
 //   const idToken = getIdToken();
