@@ -6,10 +6,10 @@ const About = () => {
     <StoryContainer>
       <h1>How She Made Me Feel</h1>
       <p>
-        Kay thought this day would end up being the worst day of her life. Her mother finally kicked
-        her out of their trailer, this time for good, after getting into a heated fight with one of
-        her drunk boyfriends. She was in such a hurry to get out of there that she hardly had time
-        to grab any of her things. All she had in the world were the clothes on her back and a
+        Kay always thought this day would end up being the worst day of her life. Her mother finally
+        kicked her out of their trailer, this time for good, after getting into a heated fight with
+        one of her drunk boyfriends. She was in such a hurry to get out of there that she hardly had
+        time to grab any of her things. All she had in the world were the clothes on her back and a
         backpack full of underwear, t-shirts, and make-up. She had almost no money either, just a
         few crumpled one dollar bills in the back pocket of her jean shorts.
       </p>
