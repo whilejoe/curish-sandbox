@@ -16,10 +16,11 @@ import LoginContainer from 'containers/LoginContainer';
 import CreateUserContainer from 'containers/CreateUserContainer';
 import Home from 'routes/Home';
 import About from 'routes/About';
-import Search from 'routes/Search';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
 import NoMatch from 'routes/NoMatch';
+import QuillEditor from 'components/QuillEditor';
+// import Search from 'routes/Search';
 // import Profile from 'routes/Profile';
 
 class App extends Component {
@@ -38,7 +39,7 @@ class App extends Component {
                     <FadeRoute exact path="/" component={Home} />
                     <FadeRoute path="/101" component={About} />
                     <FadeRoute path="/profile" component={UserProfile} />
-                    <FadeRoute path="/search" component={Search} />
+                    <FadeRoute path="/write/:id?" component={QuillEditor} />
                     <FadeRoute path="/join" component={CreateUserContainer} />
                     <FadeRoute path="/login" component={LoginContainer} />
                     <FadeRoute path="/callback" component={Callback} />

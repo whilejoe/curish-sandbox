@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { graphql } from 'react-apollo';
+import { USER_PROFILE_QUERY } from 'routes/UserProfile';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
@@ -48,9 +50,8 @@ const HeaderLink = styled(NavLink)`
 
 const ButtonLink = Button.withComponent(NavLink);
 
-const TutsAppHeader = () => {
+const TutsAppHeader = props => {
   const isUserAuthed = isAuthed();
-  const userName = 'Joey P'; // temp until i can create a user container
   return (
     <Header>
       <Container>
@@ -63,12 +64,12 @@ const TutsAppHeader = () => {
           <FlexContent offset={{ md: 4 }}>
             <nav>
               <HeaderLink to="/101">101</HeaderLink>
-              <HeaderLink to="/search">Search</HeaderLink>
+              <HeaderLink to="/write">Write</HeaderLink>
             </nav>
           </FlexContent>
           <FlexContent space="self">
-            {isUserAuthed ? (
-              <Avatar name={userName} small />
+            {isUserAuthed ? !props.data.user ? null : (
+              <Avatar name={props.data.user.userName} small />
             ) : (
               <ButtonLink to="/login">Login</ButtonLink>
             )}
@@ -79,4 +80,4 @@ const TutsAppHeader = () => {
   );
 };
 
-export default TutsAppHeader;
+export default graphql(USER_PROFILE_QUERY)(TutsAppHeader);

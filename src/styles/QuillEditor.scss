@@ -1,0 +1,24 @@
+// Quill Editor Overrides
+
+.ql-container {
+  font-size: inherit;
+}
+
+.ql-editor {
+  line-height: inherit;
+  padding: 0;
+}
+
+.ql-bubble .ql-editor h2 {
+  font-size: 1.6111111rem;
+  margin-bottom: 0.8rem;
+}
+
+.ql-bubble .ql-editor h3 {
+  font-size: 1.36rem;
+  margin-bottom: 0.5rem;
+}
+
+.ql-editor p {
+  margin-bottom: 1.5rem;
+}

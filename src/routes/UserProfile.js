@@ -28,7 +28,7 @@ const UserProfile = ({ data: { loading, user, refetch } }) => {
   );
 };
 
-const USER_PROFILE_QUERY = gql`
+export const USER_PROFILE_QUERY = gql`
   query {
     user {
       id
