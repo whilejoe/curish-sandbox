@@ -4,8 +4,7 @@ import Container from 'components/Container';
 import Button from 'components/Button';
 import { logout } from 'utils/AuthService';
 
-const UserProfile = props => {
-  const { data: { loading, user, refetch } } = props;
+const UserProfile = ({ data: { loading, user, refetch } }) => {
   if (loading) return <div>Loading</div>;
   if (!user) {
     // is this a better approach than fetchPolicy to make
@@ -20,7 +19,7 @@ const UserProfile = props => {
   return (
     <Container>
       <h1>Profile</h1>
-      <p>username: @{userName}</p>
+      <p>Username: @{userName}</p>
       <p>Full Name: {fullName}</p>
       <p>Email: {email}</p>
       <p>Year Joined: {joinedDate}</p>
