@@ -7,14 +7,13 @@ import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
 // import TextInput from 'abyss-form/lib/TextInput';
 
-export const Input = styled.input`
+const Input = styled.input`
   margin-top: 3rem;
   margin-bottom: 1.8rem;
   background-color: transparent;
   color: inherit;
   border: none;
   outline: none;
-  height: 2.5rem;
   width: 100%;
   font-size: 2rem;
   font-family: 'Roboto Slab', serif;
@@ -32,11 +31,16 @@ export const Input = styled.input`
 class QuillEditor extends Component {
   state = {
     text: '', // You can also pass a Quill Delta here
+    titleEditor: '',
     title: ''
   };
 
   componentWillMount() {
-    if (this.props.match.params.id) this.setState({ title: this.props.match.params.id });
+    if (this.props.match.params.id)
+      this.setState({
+        title: this.props.match.params.id,
+        titleEditor: `<h1>${this.props.match.params.id}</h1>`
+      });
   }
 
   componentDidMount() {
@@ -73,13 +77,13 @@ class QuillEditor extends Component {
   };
 
   render() {
-    const { title } = this.state;
+    const { title, text } = this.state;
     return (
       <StoryContainer>
         <Input
           autoFocus
           type="text"
-          placeholder="My Great Title"
+          placeholder="The First Time We Met"
           value={title}
           onChange={e => this.setState({ title: e.target.value })}
           onKeyDown={e => this.handleTitle(e)}
@@ -88,7 +92,7 @@ class QuillEditor extends Component {
           theme="bubble"
           readOnly={!title.length}
           // placeholder={'It all started this one day...'}
-          value={this.state.text}
+          value={text}
           onChange={this.handleChange}
           modules={QuillEditor.modules}
           formats={QuillEditor.formats}

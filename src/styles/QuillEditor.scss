@@ -22,3 +22,15 @@
 .ql-editor p {
   margin-bottom: 1.5rem;
 }
+
+.title-editor {
+  margin-top: 3rem;
+  margin-bottom: 1.8rem;
+}
+
+.title-editor .ql-editor.ql-blank::before {
+  color: #ccc;
+  font-size: 2rem;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+}
