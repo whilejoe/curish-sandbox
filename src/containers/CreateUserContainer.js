@@ -1,12 +1,12 @@
 import CreateUser from 'components/CreateUser';
 import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { getIdToken } from 'utils/AuthService';
 import { submit } from 'abyss-form/lib/actions';
+import { pushRoute } from 'actions/pushRoute';
 
 const mapStateToProps = state => ({
-  registerForm: state.forms.register.model
+  profileForm: state.forms.profile.model
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           }
         });
         console.log('create user result =', result);
-        dispatch(push('/profile'));
+        dispatch(pushRoute('/profile'));
       })
     );
   }

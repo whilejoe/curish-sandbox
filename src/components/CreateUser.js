@@ -1,12 +1,12 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import Container from 'components/Container';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
+import { Redirect } from 'react-router-dom';
 
 const CreateUser = ({
   userData: { loading, user },
-  registerForm: { email, fullName, userName },
+  profileForm: { email, fullName, userName },
   createUser
 }) => {
   if (loading) return <div>Loading</div>;

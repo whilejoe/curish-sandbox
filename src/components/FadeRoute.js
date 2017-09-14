@@ -8,25 +8,20 @@ const FadeRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
-        // Combine passed props with route props
-        const merged = { ...rest, ...props };
-        return (
-          <Transition
-            // {...rest}
-            in={props.history.location.pathname === props.location.pathname}
-            timeout={CROSS_FADE_DURATION}
-            unmountOnExit
-            mountOnEnter
-          >
-            {status => (
-              <CrossFade status={status} duration={CROSS_FADE_DURATION}>
-                <Component {...merged} />
-              </CrossFade>
-            )}
-          </Transition>
-        );
-      }}
+      render={props => (
+        <Transition
+          in={props.history.location.pathname === props.location.pathname}
+          timeout={CROSS_FADE_DURATION}
+          unmountOnExit
+          mountOnEnter
+        >
+          {status => (
+            <CrossFade status={status} duration={CROSS_FADE_DURATION}>
+              <Component {...props} />
+            </CrossFade>
+          )}
+        </Transition>
+      )}
     />
   );
 };
