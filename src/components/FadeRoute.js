@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Transition from 'react-transition-group/Transition';
-import { CrossFade } from 'components/FadeIn';
+import { CrossFade } from 'components/FadeAnimations';
 import { CROSS_FADE_DURATION } from 'constants/animation';
 
 const FadeRoute = ({ component: Component, ...rest }) => {
