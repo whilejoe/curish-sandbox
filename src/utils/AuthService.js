@@ -1,6 +1,6 @@
 // TODO: Cleanup
 
-// import decode from 'jwt-decode';
+import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
 import store from 'state/store';
 import { push, replace } from 'react-router-redux';
@@ -35,20 +35,6 @@ const webAuth =
     responseType: 'id_token token',
     scope: 'openid'
   });
-
-// export const startPasswordless = phone => {
-//   webAuth.passwordlessStart(
-//     {
-//       connection: 'sms',
-//       send: 'code',
-//       phoneNumber: phone
-//     },
-//     (err, res) => {
-//       // handle errors or continue
-//       console.log(err, '<= error, response =>', res);
-//     }
-//   );
-// };
 
 // export const authorize = () => {
 //   webAuth.authorize();
@@ -85,25 +71,6 @@ export const verifyCode = (phone, code) => {
     );
   });
 };
-
-// export const verifyCode = (phone, code) => {
-//   webAuth.passwordlessVerify(
-//     {
-//       connection: 'sms',
-//       phoneNumber: phone,
-//       verificationCode: code
-//     },
-//     (err, res) => {
-//       if (err) {
-//         // Handle error
-//         console.log('unsuccessful login err', err);
-//         return;
-//       }
-//       console.log('successful response', res);
-//       // If successful, save the user's token and proceed
-//     }
-//   );
-// };
 
 export const parseHash = () => {
   webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
@@ -163,33 +130,31 @@ export const setAccessToken = accessToken =>
 export const setIdToken = idToken =>
   isEnvBrowser && window.localStorage.setItem(ID_TOKEN_KEY, idToken);
 
-// export function isLoggedIn() {
-//   const idToken = getIdToken();
-//   return !!idToken && !isTokenExpired(idToken);
-// }
+export const isAuthed = () => {
+  const idToken = getIdToken();
+  return !!idToken && !isTokenExpired(idToken);
+};
 
-// function getTokenExpirationDate(encodedToken) {
-//   const token = decode(encodedToken);
-//   if (!token.exp) {
-//     return null;
-//   }
+const getTokenExpirationDate = encodedToken => {
+  const token = decode(encodedToken);
+  if (!token.exp) return null;
 
-//   const date = new Date(0);
-//   date.setUTCSeconds(token.exp);
+  const date = new Date(0);
+  date.setUTCSeconds(token.exp);
 
-//   return date;
-// }
+  return date;
+};
 
-// function isTokenExpired(token) {
-//   const expirationDate = getTokenExpirationDate(token);
-//   return expirationDate < new Date();
-// }
+const isTokenExpired = token => {
+  const expirationDate = getTokenExpirationDate(token);
+  return expirationDate < new Date();
+};
 
 // Helper function that will allow us to extract the access_token and id_token
-function getParameterByName(name, hash) {
+const getParameterByName = (name, hash) => {
   let match = RegExp('[#&]' + name + '=([^&]*)').exec(hash);
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
+};
 
 export const parseURL = hash => {
   if (hash) {

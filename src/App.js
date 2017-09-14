@@ -11,7 +11,7 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Transition from 'react-transition-group/Transition';
 import Home from 'routes/Home';
 import About from 'routes/About';
-import CreateUser from 'components/CreateUser';
+import CreateUserContainer from 'containers/CreateUserContainer';
 import NoMatch from 'routes/NoMatch';
 // import CreateStoryContainer from 'containers/CreateStoryContainer';
 // import StoriesContainer from 'containers/StoriesContainer';
@@ -51,7 +51,7 @@ class App extends Component {
                           <FadeRoute path="/101" component={About} />
                           <FadeRoute path="/profile" component={UserProfile} />
                           <FadeRoute path="/search" component={Search} />
-                          <FadeRoute path="/join" component={CreateUser} />
+                          <FadeRoute path="/join" component={CreateUserContainer} />
                           <FadeRoute path="/login" component={LoginContainer} />
                           <FadeRoute path="/callback" component={Callback} />
                           <FadeRoute component={NoMatch} />

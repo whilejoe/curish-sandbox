@@ -13,7 +13,7 @@ const UserProfile = props => {
     refetch();
     console.log('!user');
     // determine how to handle this.
-    return <div>No User Here</div>;
+    return <Button onClick={logout}>Logout</Button>;
   }
   const { fullName, userName, email, createdAt } = user;
   const joinedDate = new Date(createdAt).getFullYear();

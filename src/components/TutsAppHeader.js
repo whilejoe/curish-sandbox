@@ -4,9 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Button from 'components/Button';
-// import store from 'state/store';
-// import { push } from 'react-router-redux';
-import { getIdToken, logout } from 'utils/AuthService';
+import Avatar from 'components/Avatar';
+import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: white;
@@ -50,7 +49,8 @@ const HeaderLink = styled(NavLink)`
 const ButtonLink = Button.withComponent(NavLink);
 
 const TutsAppHeader = () => {
-  const isAuthed = getIdToken();
+  const isUserAuthed = isAuthed();
+  const userName = 'Joey P'; // temp until i can create a user container
   return (
     <Header>
       <Container>
@@ -67,10 +67,8 @@ const TutsAppHeader = () => {
             </nav>
           </FlexContent>
           <FlexContent space="self">
-            {isAuthed ? (
-              <Button theme="tertiary" onClick={() => logout()}>
-                Logout
-              </Button>
+            {isUserAuthed ? (
+              <Avatar name={userName} small />
             ) : (
               <ButtonLink to="/login">Login</ButtonLink>
             )}

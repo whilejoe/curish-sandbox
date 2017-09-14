@@ -79,7 +79,7 @@ class PasswordlessLogin extends Component {
           autoFocus
           id="code"
           label="Code"
-          type="text"
+          type="tel"
           model="auth.code"
           validators={{ required: value => !value }}
           errorMessages={{ required: 'Code is required' }}

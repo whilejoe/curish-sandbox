@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 // import store from 'state/store';
 // import { push } from 'react-router-redux';
 import Container from 'components/Container';
-import StatelessInput from 'components/StatelessInput';
+import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
 import { getIdToken } from 'utils/AuthService';
 
@@ -19,8 +19,8 @@ class CreateUser extends React.Component {
     if (this.props.userData.loading) {
       return <div>Loading</div>;
     }
-    if (this.props.userData.user || !getIdToken()) {
-      console.warn('not a new user or already logged in');
+    if (this.props.userData.user) {
+      console.warn('Already Registered');
       // decide if Redirect is the best way to go
       // this.props.history.push('/profile');
       // store.dispatch(push('/profile'));
@@ -34,33 +34,42 @@ class CreateUser extends React.Component {
     }
 
     return (
-      <Container>
-        <StatelessInput
-          value={this.state.email}
-          onChange={e => this.setState({ email: e.target.value })}
-          type="text"
-          placeholder="email"
+      <Container narrow>
+        <h1>Join</h1>
+        <InputGroup
+          autoFocus
+          id="email"
+          label="Email"
+          type="email"
+          model="register.email"
+          placeholder="me@me.com"
+          validators={{ required: value => !value }}
+          errorMessages={{ required: 'Email is required' }}
         />
-        <StatelessInput
-          value={this.state.fullName}
-          onChange={e => this.setState({ fullName: e.target.value })}
+        <InputGroup
+          id="fullName"
+          label="Full Name"
           type="text"
-          placeholder="Full Name"
+          model="register.fullName"
+          placeholder="Marquis De Sade"
+          validators={{ required: value => !value }}
+          errorMessages={{ required: 'Full Name is required' }}
         />
-        <StatelessInput
-          value={this.state.userName}
-          onChange={e => this.setState({ userName: e.target.value })}
+        <InputGroup
+          id="userName"
+          label="Username"
           type="text"
-          placeholder="username"
+          model="register.userName"
+          placeholder="theoriginalsadist"
+          validators={{ required: value => !value }}
+          errorMessages={{ required: 'Username is required' }}
         />
-        {this.state.email &&
-        this.state.fullName &&
-        this.state.userName && <Button onClick={this.createUser}>Sign up</Button>}
+        <Button onClick={this.createUser}>Join Curish</Button>
       </Container>
     );
   }
   createUser = async () => {
-    const { fullName, userName, email } = this.state;
+    const { email, fullName, userName } = this.props.registerForm.model;
     const idToken = getIdToken();
     const result = await this.props.createUserMutation({
       variables: {
