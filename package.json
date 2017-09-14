@@ -15,7 +15,7 @@
     "react-apollo": "^1.4.15",
     "react-app-rewire-styled-components": "^3.0.0",
     "react-dom": "^15.6.1",
-    "react-quill": "v1.0.0",
+    "react-quill": "1.1.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",

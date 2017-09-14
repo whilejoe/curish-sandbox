@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
-// import 'react-quill/dist/quill.core.css';
 import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
@@ -91,7 +90,7 @@ class QuillEditor extends Component {
         <ReactQuill
           theme="bubble"
           readOnly={!title.length}
-          // placeholder={'It all started this one day...'}
+          placeholder="It all started this one day..."
           value={text}
           onChange={this.handleChange}
           modules={QuillEditor.modules}
