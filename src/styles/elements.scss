@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,600|Source+Sans+Pro:400,600');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Source+Sans+Pro:400');
 
 $serif-font: 'Roboto Slab', serif !default;
 $heading-font: $serif-font !default;
@@ -147,8 +147,4 @@ sup {
 }
 sub {
   bottom: -0.25em;
-}
-
-strong {
-  font-weight: 600;
 }
