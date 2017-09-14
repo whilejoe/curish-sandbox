@@ -43,7 +43,6 @@ class App extends Component {
                 </FlexHeader>
                 <Route
                   children={props => {
-                    console.log('route props', props);
                     return (
                       <TransitionGroup component={FlexMain}>
                         <Switch key={props.location.pathname} location={props.location}>
@@ -68,16 +67,6 @@ class App extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   user: state.user
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   addAuthListener: () => dispatch(addAuthListener())
-// });
-
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 // export const USER_QUERY = gql`
 // query UserQuery {
