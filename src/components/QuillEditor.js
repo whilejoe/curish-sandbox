@@ -82,7 +82,7 @@ class QuillEditor extends Component {
         <Input
           autoFocus
           type="text"
-          placeholder="The First Time We Met"
+          placeholder="Our First Time"
           value={title}
           onChange={e => this.setState({ title: e.target.value })}
           onKeyDown={e => this.handleTitle(e)}
@@ -103,7 +103,10 @@ class QuillEditor extends Component {
 }
 
 QuillEditor.modules = {
-  toolbar: [[{ header: [2, 3, false] }], ['blockquote'], ['clean']]
+  toolbar: [[{ header: [2, 3, false] }], ['blockquote'], ['clean']],
+  clipboard: {
+    matchVisual: false
+  }
 };
 
 QuillEditor.formats = ['header', 'blockquote'];
