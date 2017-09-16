@@ -48,8 +48,7 @@ const HeaderLink = styled(NavLink)`
 
 const ButtonLink = Button.withComponent(NavLink);
 
-const AppHeader = ({ userResult }) => {
-  const { loading, user } = userResult;
+const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
   console.log('isUserAuthed', isUserAuthed);
   return (

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import InputGroup from 'components/InputGroup';
-import { startPasswordless, verifyCode } from 'utils/AuthService';
+import { Redirect } from 'react-router-dom';
+import { isAuthed, startPasswordless, verifyCode } from 'utils/AuthService';
 
 class PasswordlessLogin extends Component {
   state = {
     showCode: false
   };
+
+  isUserAuthed = isAuthed();
 
   beginLogin = phone => {
     const preparedPhone = this.preparePhone(phone);
@@ -34,7 +37,7 @@ class PasswordlessLogin extends Component {
     const rgx = /^\+[0-9]{1,15}$/;
     const isValid = rgx.test(preparedPhone);
     console.log('isValid phone number', isValid);
-    return isValid;
+    return !isValid;
   };
 
   preparePhone(phone) {
@@ -44,6 +47,9 @@ class PasswordlessLogin extends Component {
   }
 
   render() {
+    // If user is already login redirect to profile
+    if (this.isUserAuthed) return <Redirect to={{ pathname: '/profile' }} />;
+
     const { phone, code } = this.props.authForm.model;
     const { showCode } = this.state;
     if (!showCode)
