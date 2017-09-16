@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Button from 'components/Button';
-import Avatar from 'components/Avatar';
+import { AvatarLink } from 'components/Avatar';
 import { isAuthed, logout } from 'utils/AuthService';
 
 const Header = styled.header`
@@ -71,7 +71,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
               !user ? (
                 <Button onClick={logout}>Logout</Button>
               ) : (
-                <Avatar name={user.userName} small />
+                <AvatarLink user={user} small />
               )
             ) : (
               <ButtonLink to="/login">Login</ButtonLink>

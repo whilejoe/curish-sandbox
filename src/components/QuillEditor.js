@@ -4,11 +4,13 @@ import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
+import { Avatar } from 'components/Avatar';
+import { Flex, FlexContent } from 'components/Flex';
 // import TextInput from 'abyss-form/lib/TextInput';
 
 const Input = styled.input`
   margin-top: 3rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.5rem;
   padding: 0;
   background-color: transparent;
   color: inherit;
@@ -27,6 +29,8 @@ const Input = styled.input`
     color: #ccc;
   }
 `;
+
+const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
 
 class QuillEditor extends Component {
   state = {
@@ -98,17 +102,26 @@ class QuillEditor extends Component {
   };
 
   render() {
+    const { userResult: { user } } = this.props;
     const { title, text } = this.state;
     return (
       <StoryContainer>
-        <Input
-          autoFocus
-          type="text"
-          placeholder="Our First Time"
-          value={title}
-          onChange={e => this.setState({ title: e.target.value })}
-          onKeyDown={e => this.handleTitle(e)}
-        />
+        <StoryHeader>
+          <Input
+            autoFocus
+            type="text"
+            placeholder="Our First Time"
+            value={title}
+            onChange={e => this.setState({ title: e.target.value })}
+            onKeyDown={e => this.handleTitle(e)}
+          />
+          <Flex align="flex-end">
+            <FlexContent space="self">Author:&nbsp;</FlexContent>
+            <FlexContent>
+              <Avatar user={user} small />
+            </FlexContent>
+          </Flex>
+        </StoryHeader>
         <ReactQuill
           theme="bubble"
           readOnly={!title.length}
