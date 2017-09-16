@@ -13,7 +13,6 @@ const FadeRoute = ({ component: Component, ...rest }) => {
         const merged = { ...rest, ...props };
         return (
           <Transition
-            // {...rest}
             in={props.history.location.pathname === props.location.pathname}
             timeout={CROSS_FADE_DURATION}
             unmountOnExit

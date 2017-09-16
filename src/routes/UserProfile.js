@@ -12,7 +12,7 @@ const UserProfile = ({ data: { loading, user, refetch } }) => {
     refetch();
     console.log('!user');
     // determine how to handle this.
-    return <Button onClick={logout}>Logout</Button>;
+    return <h1>Sorry you don't exist :(</h1>;
   }
   const { fullName, userName, email, createdAt } = user;
   const joinedDate = new Date(createdAt).getFullYear();

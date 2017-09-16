@@ -1,12 +1,19 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
-import FormError from 'components/FormError';
+import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 
 let activeClass = '';
+
 const color = 'inherit';
 const activeColor = 'SeaGreen';
 const errorColor = 'red';
+
+const activeState = css`
+  outline: none;
+  border-bottom: 1px solid ${activeColor};
+  box-shadow: 0 1px 0 0 ${activeColor};
+`;
 
 export const Label = styled.label`
   position: absolute;
@@ -21,12 +28,6 @@ export const Label = styled.label`
   text-align: initial;
   transform: translateY(10px);
   pointer-events: none;
-`;
-
-const activeState = css`
-  outline: none;
-  border-bottom: 1px solid ${activeColor};
-  box-shadow: 0 1px 0 0 ${activeColor};
 `;
 
 export const Input = styled(TextInput)`
@@ -89,7 +90,14 @@ export const Input = styled(TextInput)`
   }
 `;
 
-export const Container = styled.div`
+const FormError = styled(ErrorMessage)`
+  position: absolute;
+  padding-top: 0.2rem;
+  font-size: 0.75em;
+  color: ${errorColor};
+`;
+
+const Container = styled.div`
   position: relative;
   margin-bottom: 2.2rem;
 `;

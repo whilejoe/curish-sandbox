@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql } from 'react-apollo';
-import { USER_PROFILE_QUERY } from 'routes/UserProfile';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
-import Button from 'components/Button';
 import Avatar from 'components/Avatar';
-import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: white;
@@ -17,10 +13,10 @@ const Header = styled.header`
 const HeaderLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  padding: 1.8rem 0.8rem;
+  padding: 1.8rem .8rem;
 
   &:not(:last-child) {
-    margin-right: 0.9rem;
+    margin-right: .9rem;
   }
 
   &:after {
@@ -48,10 +44,8 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const ButtonLink = Button.withComponent(NavLink);
-
-const TutsAppHeader = props => {
-  const isUserAuthed = isAuthed();
+const AppHeader = ({ user }) => {
+  const { isAuthed, userName, photoURL } = user;
   return (
     <Header>
       <Container>
@@ -64,15 +58,14 @@ const TutsAppHeader = props => {
           <FlexContent offset={{ md: 4 }}>
             <nav>
               <HeaderLink to="/101">101</HeaderLink>
-              <HeaderLink to="/write">Write</HeaderLink>
+              <HeaderLink to="/create-story">Create Story</HeaderLink>
+              <HeaderLink to="/stories">Stories</HeaderLink>
             </nav>
           </FlexContent>
           <FlexContent space="self">
-            {isUserAuthed ? !props.data.user ? null : (
-              <Avatar name={props.data.user.userName} small />
-            ) : (
-              <ButtonLink to="/login">Login</ButtonLink>
-            )}
+            {isAuthed
+              ? <Avatar src={photoURL} alt="user-profile-header-link" name={userName} small />
+              : <HeaderLink to="/authenticate">Login</HeaderLink>}
           </FlexContent>
         </Flex>
       </Container>
@@ -80,4 +73,4 @@ const TutsAppHeader = props => {
   );
 };
 
-export default graphql(USER_PROFILE_QUERY)(TutsAppHeader);
+export default AppHeader;
