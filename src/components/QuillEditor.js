@@ -9,6 +9,7 @@ import StoryContainer from 'components/StoryContainer';
 const Input = styled.input`
   margin-top: 3rem;
   margin-bottom: 1.8rem;
+  padding: 0;
   background-color: transparent;
   color: inherit;
   border: none;
@@ -17,7 +18,7 @@ const Input = styled.input`
   font-size: 2rem;
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
-  padding: 0;
+  text-transform: capitalize;
   box-shadow: none;
   box-sizing: content-box;
 
@@ -36,6 +37,7 @@ class QuillEditor extends Component {
 
   componentWillMount() {
     if (this.props.match.params.id) {
+      // TODO: Update to query by story id to handle a page refresh or direct route
       const { title } = this.props.location.state;
       this.setState({
         title,
@@ -78,16 +80,21 @@ class QuillEditor extends Component {
   };
 
   createStory = async () => {
-    const { createStoryMutation, userResult } = this.props;
+    const { createStoryMutation, userResult: { user }, history } = this.props;
+    if (!user) {
+      console.error('No user logged in');
+      return;
+    }
     const { title } = this.state;
     const result = await createStoryMutation({
       variables: {
-        authorId: userResult.user.id,
+        userId: user.id,
         title
       }
     });
-    console.log('create user result =', result);
-    this.props.history.push(`/write/${result.data.createStory.id}`, { title });
+    console.log('create story result =', result);
+    // Push id onto route and pass title as state to populate title on page
+    history.push(`/write/${result.data.createStory.id}`, { title });
   };
 
   render() {
