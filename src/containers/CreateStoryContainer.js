@@ -1,23 +1,34 @@
-import { connect } from 'react-redux';
-import CreateStory from 'routes/CreateStory/CreateStory';
-import { addToStory } from 'actions/addToStory';
+import CreateUser from 'components/CreateUser';
+import { gql, graphql, compose } from 'react-apollo';
 
-const mapStateToProps = state => ({
-  stories: state.stories,
-  user: state.user
-});
+export const createStory = async (title, { createStoryMutation, user: { id } }) => {
+  const result = await createStoryMutation({
+    variables: {
+      id,
+      title
+    }
+  });
+  console.log('create user result =', result);
+};
 
-const mapDispatchToProps = dispatch => ({
-  onAddToStory: (author, title, rawData) =>
-    dispatch(
-      addToStory({
-        author,
-        title,
-        rawData
-      })
-    )
-});
+const CREATE_STORY_MUTATION = gql`
+  mutation CreateStoryMutation($id: String!, $title: String!) {
+    createStory(authorId: $id, title: $title) {
+      id
+      title
+    }
+  }
+`;
 
-const CreateStoryContainer = connect(mapStateToProps, mapDispatchToProps)(CreateStory);
+const USER_QUERY = gql`
+  query {
+    user {
+      id
+    }
+  }
+`;
 
-export default CreateStoryContainer;
+export default compose(
+  graphql(CREATE_STORY_MUTATION, { name: 'createStoryMutation' }),
+  graphql(USER_QUERY)
+)(CreateUser);
