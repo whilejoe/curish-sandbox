@@ -11,11 +11,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   createUser: (email, fullName, userName) => {
-    const { createUserMutation } = ownProps;
+    const { createUserMutation, userResult } = ownProps;
     dispatch(
-      submit('register', async () => {
+      submit('profile', async () => {
         const idToken = getIdToken();
-        const result = await createUserMutation({
+        await createUserMutation({
           variables: {
             idToken,
             fullName,
@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             email
           }
         });
-        console.log('create user result =', result);
+        // Refetch user query after create
+        await userResult.refetch();
         dispatch(pushRoute('/profile'));
       })
     );
@@ -48,16 +49,7 @@ const CREATE_USER_MUTATION = gql`
   }
 `;
 
-const USER_QUERY = gql`
-  query {
-    user {
-      id
-    }
-  }
-`;
-
 export default compose(
   graphql(CREATE_USER_MUTATION, { name: 'createUserMutation' }),
-  graphql(USER_QUERY, { name: 'userData', options: { fetchPolicy: 'network-only' } }),
   connect(mapStateToProps, mapDispatchToProps)
 )(CreateUser);

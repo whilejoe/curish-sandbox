@@ -1,18 +1,18 @@
 import React from 'react';
-import { gql, graphql } from 'react-apollo';
 import Container from 'components/Container';
 import Button from 'components/Button';
 import { logout } from 'utils/AuthService';
 
-const UserProfile = ({ data: { loading, user, refetch } }) => {
+const UserProfile = ({ userResult: { loading, user }, ...props }) => {
   if (loading) return <div>Loading</div>;
   if (!user) {
-    // is this a better approach than fetchPolicy to make
-    // the user query reload data after creating a user?
-    refetch();
     console.log('!user');
-    // determine how to handle this.
-    return <h1>Sorry you don't exist :(</h1>;
+    // determine how to handle this
+    return (
+      <Container>
+        <h1>Sorry you don't exist :(</h1>
+      </Container>
+    );
   }
   const { fullName, userName, email, createdAt } = user;
   const joinedDate = new Date(createdAt).getFullYear();
@@ -28,16 +28,4 @@ const UserProfile = ({ data: { loading, user, refetch } }) => {
   );
 };
 
-export const USER_PROFILE_QUERY = gql`
-  query {
-    user {
-      id
-      fullName
-      userName
-      email
-      createdAt
-    }
-  }
-`;
-
-export default graphql(USER_PROFILE_QUERY)(UserProfile);
+export default UserProfile;

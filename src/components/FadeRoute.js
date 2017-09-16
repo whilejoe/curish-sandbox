@@ -10,6 +10,7 @@ const FadeRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={props => {
         // Combine passed props with route props
+        // cleanest way atm for passing props to component. revisit.
         const merged = { ...rest, ...props };
         return (
           <Transition

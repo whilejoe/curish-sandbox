@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql } from 'react-apollo';
-import { USER_PROFILE_QUERY } from 'routes/UserProfile';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
@@ -50,8 +48,10 @@ const HeaderLink = styled(NavLink)`
 
 const ButtonLink = Button.withComponent(NavLink);
 
-const AppHeader = props => {
+const AppHeader = ({ userResult }) => {
+  const { loading, user } = userResult;
   const isUserAuthed = isAuthed();
+  console.log('isUserAuthed', isUserAuthed);
   return (
     <Header>
       <Container>
@@ -68,11 +68,11 @@ const AppHeader = props => {
             </nav>
           </FlexContent>
           <FlexContent space="self">
-            {isUserAuthed ? (
-              !props.data.user ? (
+            {isUserAuthed && !loading ? (
+              !user ? (
                 <Button onClick={logout}>Logout</Button>
               ) : (
-                <Avatar name={props.data.user.userName} small />
+                <Avatar name={user.userName} small />
               )
             ) : (
               <ButtonLink to="/login">Login</ButtonLink>
@@ -84,4 +84,4 @@ const AppHeader = props => {
   );
 };
 
-export default graphql(USER_PROFILE_QUERY)(AppHeader);
+export default AppHeader;

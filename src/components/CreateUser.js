@@ -5,7 +5,7 @@ import Button from 'components/Button';
 import { Redirect } from 'react-router-dom';
 
 const CreateUser = ({
-  userData: { loading, user },
+  userResult: { loading, user },
   profileForm: { email, fullName, userName },
   createUser
 }) => {

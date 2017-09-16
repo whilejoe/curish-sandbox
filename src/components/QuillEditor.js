@@ -35,11 +35,13 @@ class QuillEditor extends Component {
   };
 
   componentWillMount() {
-    if (this.props.match.params.id)
+    if (this.props.match.params.id) {
+      const { title } = this.props.location.state;
       this.setState({
-        title: this.props.match.params.id,
-        titleEditor: `<h1>${this.props.match.params.id}</h1>`
+        title,
+        titleEditor: `<h1>${title}</h1>`
       });
+    }
   }
 
   componentDidMount() {
@@ -65,7 +67,7 @@ class QuillEditor extends Component {
   handleTitle = e => {
     const { title } = this.state;
     if (e && (e.keyCode === 9 || e.keyCode === 13)) {
-      if (!this.props.match.params.id) this.props.history.push(`/write/${title}`);
+      if (!this.props.match.params.id) this.createStory();
       else if (title.length) this.handleSetEditorFocus();
       else console.warn('Must Add A Title');
     }
@@ -73,6 +75,19 @@ class QuillEditor extends Component {
 
   setRef = node => {
     this.quillRef = node;
+  };
+
+  createStory = async () => {
+    const { createStoryMutation, userResult } = this.props;
+    const { title } = this.state;
+    const result = await createStoryMutation({
+      variables: {
+        authorId: userResult.user.id,
+        title
+      }
+    });
+    console.log('create user result =', result);
+    this.props.history.push(`/write/${result.data.createStory.id}`, { title });
   };
 
   render() {

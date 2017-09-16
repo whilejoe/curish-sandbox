@@ -99,10 +99,3 @@ const USER_QUERY = gql`
 `;
 
 export default graphql(USER_QUERY, { options: { fetchPolicy: 'network-only' } })(Callback);
-// export default graphql(USER_QUERY)(withRouter(Callback));
-// export default Callback;
-
-// const CallbackWithQuery = graphql(USER_QUERY, { options: { fetchPolicy: 'network-only' } })(
-//   Callback
-// );
-// export default withRouter(CallbackWithQuery);
