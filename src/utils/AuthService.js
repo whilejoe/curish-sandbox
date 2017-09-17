@@ -4,7 +4,7 @@ import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
 import store from 'state/store';
 import { push, replace } from 'react-router-redux';
-import { client } from 'index';
+import { apolloClient } from 'index';
 import { isEnvBrowser } from './env';
 
 const ID_TOKEN_KEY = 'id_token';
@@ -106,7 +106,7 @@ export const parseHash = () => {
 export const logout = () => {
   window.localStorage.removeItem(ID_TOKEN_KEY);
   window.localStorage.removeItem(ACCESS_TOKEN_KEY);
-  client.resetStore();
+  apolloClient.resetStore();
   store.dispatch(push('/login'));
   // window.location.reload();
 };

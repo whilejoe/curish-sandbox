@@ -41,7 +41,7 @@ networkInterface.use([
   }
 ]);
 
-export const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions
 });
 
@@ -61,7 +61,7 @@ export const client = new ApolloClient({
 // });
 
 render(
-  <ApolloProvider client={client} store={store}>
+  <ApolloProvider client={apolloClient} store={store}>
     <ConnectedRouter history={history}>
       <App />
     </ConnectedRouter>
