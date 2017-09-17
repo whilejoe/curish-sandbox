@@ -6108,9 +6108,9 @@ react-app-rewired@^1.2.0:
     cross-spawn "^5.1.0"
     dotenv "^4.0.0"
 
-react-app-rewired@^1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/react-app-rewired/-/react-app-rewired-1.2.7.tgz#2d9da9b99b0b79da82382c1d43b4ebcf0f416b5e"
+react-app-rewired@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/react-app-rewired/-/react-app-rewired-1.2.9.tgz#5da3d15ac05af6cebea9e82f758b9243bce53e7c"
   dependencies:
     cross-spawn "^5.1.0"
     dotenv "^4.0.0"
