@@ -37,7 +37,7 @@ const App = ({ userData: user }) => {
                   />
                   <FadeRoute path="/join" userResult={user} component={CreateUserContainer} />
                   <FadeRoute path="/login" component={LoginContainer} />
-                  <FadeRoute path="/callback" component={Callback} />
+                  <FadeRoute path="/callback" userResult={user} component={Callback} />
                   <FadeRoute component={NoMatch} />
                 </Switch>
               </TransitionGroup>

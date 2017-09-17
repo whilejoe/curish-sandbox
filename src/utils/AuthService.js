@@ -150,36 +150,17 @@ const isTokenExpired = token => {
   return expirationDate < new Date();
 };
 
-// Helper function that will allow us to extract the access_token and id_token
+// Helper function to extract the access_token and id_token from url hash
 const getParameterByName = (name, hash) => {
   let match = RegExp('[#&]' + name + '=([^&]*)').exec(hash);
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 };
 
 export const parseURL = hash => {
-  if (hash) {
-    const accessToken = getParameterByName('access_token', hash);
-    const idToken = getParameterByName('id_token', hash);
-    console.log('***** accessToken *****', accessToken);
-    console.log('***** idToken *****', idToken);
-    if (accessToken && idToken) {
-      setAccessToken(accessToken);
-      setIdToken(idToken);
-      return { idToken, accessToken };
-    }
-    return null;
-  }
-  return null;
-
-  // return new Promise((resolve, reject) => {
-  //   if (!hash) return reject('no hash to parse');
-  //   const accessToken = getParameterByName('access_token', hash);
-  //   const idToken = getParameterByName('id_token', hash);
-  //   if (!accessToken || !idToken) return reject('no token available');
-  //   // console.log('***** accessToken *****', accessToken);
-  //   // console.log('***** idToken *****', idToken);
-  //   setAccessToken(accessToken);
-  //   setIdToken(idToken);
-  //   resolve({ idToken, accessToken });
-  // });
+  // In case callback url is hit directly and not from Auth0
+  // Return t or f to redirect in component
+  if (!hash || isAuthed()) return false;
+  setAccessToken(getParameterByName('access_token', hash));
+  setIdToken(getParameterByName('id_token', hash));
+  return true;
 };
