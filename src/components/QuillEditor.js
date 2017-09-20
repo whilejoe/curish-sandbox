@@ -4,7 +4,7 @@ import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
-import { Avatar } from 'components/Avatar';
+import { AvatarLink } from 'components/Avatar';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import debounce from 'lodash/debounce';
@@ -230,11 +230,11 @@ class QuillEditor extends Component {
             disabled={!isEditMode && match.params.id}
           />
           <Flex align="flex-end">
-            <FlexContent space="self">
+            <FlexContent space="self" hide>
               <span style={{ color: '#777' }}>Author:&nbsp;</span>
             </FlexContent>
             <FlexContent>
-              <Avatar
+              <AvatarLink
                 user={!match.params.id ? user : storyData.Story.author}
                 small
                 style={{ color: '#666' }}
