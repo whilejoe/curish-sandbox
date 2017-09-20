@@ -5,27 +5,27 @@ import { render } from 'react-snapshot';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from 'state/store';
 import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
-import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+// import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+// import { isEnvBrowser } from 'utils/env';
 import { getIdToken } from 'utils/AuthService';
-import { isEnvBrowser } from 'utils/env';
 import registerServiceWorker from './registerServiceWorker';
 
 const networkInterface = createNetworkInterface({
   uri: 'https://api.graph.cool/simple/v1/cj6l71pg81npn0191lrufaos5'
 });
 
-const wsClient =
-  isEnvBrowser &&
-  new SubscriptionClient('wss://subscriptions.us-west-2.graph.cool/v1/cj6l71pg81npn0191lrufaos5', {
-    reconnect: true,
-    connectionParams: {
-      authToken: getIdToken()
-    }
-  });
+// const wsClient =
+//   isEnvBrowser &&
+//   new SubscriptionClient('wss://subscriptions.us-west-2.graph.cool/v1/cj6l71pg81npn0191lrufaos5', {
+//     reconnect: true,
+//     connectionParams: {
+//       authToken: getIdToken()
+//     }
+//   });
 
-const networkInterfaceWithSubscriptions = isEnvBrowser
-  ? addGraphQLSubscriptions(networkInterface, wsClient)
-  : networkInterface;
+// const networkInterfaceWithSubscriptions = isEnvBrowser
+//   ? addGraphQLSubscriptions(networkInterface, wsClient)
+//   : networkInterface;
 
 networkInterface.use([
   {
@@ -42,7 +42,9 @@ networkInterface.use([
 ]);
 
 export const apolloClient = new ApolloClient({
-  networkInterface: networkInterfaceWithSubscriptions
+  // networkInterface: networkInterfaceWithSubscriptions,
+  networkInterface,
+  dataIdFromObject: o => o.id
 });
 
 // new subscription implementation. revisit

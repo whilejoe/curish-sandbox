@@ -6,7 +6,13 @@ import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
 import { Avatar } from 'components/Avatar';
 import { Flex, FlexContent } from 'components/Flex';
+import Button from 'components/Button';
+import debounce from 'lodash/debounce';
 // import TextInput from 'abyss-form/lib/TextInput';
+
+const EDIT_MODE_UNSAVED = 'Unsaved Changes';
+const EDIT_MODE_SAVING = 'Saving...';
+const EDIT_MODE_SAVED = 'Saved';
 
 const Input = styled.input`
   margin-top: 3rem;
@@ -32,51 +38,100 @@ const Input = styled.input`
 
 const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
 
+const EditModeContainer = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+`;
+
+const EditModeStatus = styled.span`
+  color: ${props => (props.mode === EDIT_MODE_SAVING ? 'SeaGreen' : '#b4b4b4')};
+  font-size: 0.8em;
+`;
+
 class QuillEditor extends Component {
   state = {
-    text: '', // You can also pass a Quill Delta here
-    titleEditor: '',
-    title: ''
+    quillContent: { ops: [{ insert: '\n' }] }, // Init with a blank Delta
+    title: '',
+    isEditMode: false,
+    editModeState: ''
   };
 
   componentWillMount() {
-    if (this.props.match.params.id) {
-      // TODO: Update to query by story id to handle a page refresh or direct route
-      const { title } = this.props.location.state;
-      this.setState({
-        title,
-        titleEditor: `<h1>${title}</h1>`
-      });
+    const { match, storyData } = this.props;
+    // console.log('storyData willMount', storyData);
+    if (match.params.id) {
+      if (storyData.Story && storyData.Story.quillContent) {
+        const parsed = JSON.parse(storyData.Story.quillContent);
+        this.setState({
+          quillContent: parsed,
+          title: storyData.Story.title
+        });
+      } else if (this.props.location.state) {
+        const { title = '', isEditMode = false, editModeState = '' } = this.props.location.state;
+        this.setState({
+          title,
+          isEditMode,
+          editModeState
+        });
+      }
     }
   }
 
-  componentDidMount() {
-    if (this.state.title.length) this.handleSetEditorFocus();
-  }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.match.params.id !== nextProps.match.params.id) {
-  //     console.log('nextProps.match.params', nextProps.match.params);
-  //     if (nextProps.match.params.id) this.setState({ title: nextProps.match.params.id });
+  // componentDidMount() {
+  //   if (this.state.title.length) {
+  //     setTimeout(() => this.handleSetEditorFocus(), 50);
   //   }
   // }
 
-  handleChange = value => {
-    this.setState({ text: value });
-    // console.log('editor value', value);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.id) {
+      if (!this.props.storyData.Story && nextProps.storyData.Story) {
+        console.log('nextProps.storyData.Story', nextProps.storyData.Story);
+        this.setState({ title: nextProps.storyData.Story.title, editModeState: EDIT_MODE_SAVED });
+        if (nextProps.storyData.Story.quillContent) {
+          const parsed = JSON.parse(nextProps.storyData.Story.quillContent);
+          this.setState({ quillContent: parsed, editModeState: EDIT_MODE_SAVED });
+        }
+        this.handleSetEditorFocus();
+      }
+    }
+  }
+
+  handleChange = () => {
+    if (!this.quillRef) return;
+    const editor = this.quillRef.getEditor();
+    const delta = editor.getContents();
+    this.setState({ quillContent: delta, editModeState: EDIT_MODE_UNSAVED });
+    this.debouncedUpdateStory(delta);
   };
 
   handleSetEditorFocus = () => {
+    console.log('handle set editor focus called');
     this.quillRef && this.quillRef.focus();
   };
 
-  handleTitle = e => {
-    const { title } = this.state;
+  handleTitle = () => {
+    if (!this.props.match.params.id) {
+      if (this.state.title.length) this.createStory();
+    } else this.updateTitle();
+  };
+
+  handleKeyDown = e => {
     if (e && (e.keyCode === 9 || e.keyCode === 13)) {
-      if (!this.props.match.params.id) this.createStory();
-      else if (title.length) this.handleSetEditorFocus();
-      else console.warn('Must Add A Title');
+      this.handleTitle();
+      this.handleSetEditorFocus();
     }
+  };
+
+  handleBlur = e => {
+    if (e) this.handleTitle();
+  };
+
+  handleEditModeButton = e => {
+    this.setState({ isEditMode: true, editModeState: EDIT_MODE_SAVED }, () =>
+      this.handleSetEditorFocus()
+    );
   };
 
   setRef = node => {
@@ -85,48 +140,113 @@ class QuillEditor extends Component {
 
   createStory = async () => {
     const { createStoryMutation, userResult: { user }, history } = this.props;
-    if (!user) {
-      console.error('No user logged in');
-      return;
-    }
+    if (!user) return;
     const { title } = this.state;
+    // this.setState({ editModeState: EDIT_MODE_SAVING });
     const result = await createStoryMutation({
       variables: {
         userId: user.id,
         title
       }
     });
-    console.log('create story result =', result);
+    // console.log('create story result =', result);
     // Push id onto route and pass title as state to populate title on page
-    history.push(`/write/${result.data.createStory.id}`, { title });
+    history.push(`/write/${result.data.createStory.id}`, {
+      title,
+      isEditMode: true,
+      editModeState: EDIT_MODE_SAVING
+    });
+  };
+
+  debouncedUpdateStory = debounce(
+    delta => {
+      this.updateStory(delta);
+      this.setState({ editModeState: EDIT_MODE_SAVING });
+    },
+    1200
+    // { maxWait: 5000 }
+  );
+
+  updateStory = async (delta = null) => {
+    const { updateStoryMutation, userResult: { user }, storyData: { variables } } = this.props;
+
+    if (!user || !delta) return;
+
+    const stringifiedDelta = JSON.stringify(delta);
+    const result = await updateStoryMutation({
+      variables: {
+        storyId: variables.storyId,
+        quillContent: stringifiedDelta
+      }
+    });
+    this.setState({ editModeState: EDIT_MODE_SAVED });
+    console.log('update story result with delta =', result);
+  };
+
+  updateTitle = async () => {
+    const { updateStoryMutation, userResult: { user }, storyData: { variables } } = this.props;
+    const { title } = this.state;
+
+    if (!user) return;
+    // this.setState({ editModeState: EDIT_MODE_SAVING });
+    const result = await updateStoryMutation({
+      variables: {
+        storyId: variables.storyId,
+        title
+      }
+    });
+    // this.setState({ editModeState: EDIT_MODE_SAVED });
+    console.log('update story result title only =', result);
   };
 
   render() {
-    const { userResult: { user } } = this.props;
-    const { title, text } = this.state;
+    const { userResult: { user }, match, storyData } = this.props;
+    const { title, quillContent, isEditMode, editModeState } = this.state;
+    // console.log('this.props', this.props);
+    if (storyData && storyData.loading) return <p>loading...</p>;
     return (
-      <StoryContainer>
+      <StoryContainer style={{ position: 'relative' }}>
+        {match.params.id ? (
+          <EditModeContainer>
+            {isEditMode ? (
+              <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
+            ) : (
+              <Button theme="primary" editMode={isEditMode} onClick={this.handleEditModeButton}>
+                Edit
+              </Button>
+            )}
+          </EditModeContainer>
+        ) : null}
         <StoryHeader>
           <Input
-            autoFocus
+            autoFocus={isEditMode && !match.params.id}
             type="text"
             placeholder="Our First Time"
             value={title}
             onChange={e => this.setState({ title: e.target.value })}
-            onKeyDown={e => this.handleTitle(e)}
+            onKeyDown={e => this.handleKeyDown(e)}
+            // onBlur={e => this.handleBlur(e)}
+            disabled={!isEditMode && match.params.id}
           />
           <Flex align="flex-end">
-            <FlexContent space="self">Author:&nbsp;</FlexContent>
+            <FlexContent space="self">
+              <span style={{ color: '#777' }}>Author:&nbsp;</span>
+            </FlexContent>
             <FlexContent>
-              <Avatar user={user} small />
+              <Avatar
+                user={!match.params.id ? user : storyData.Story.author}
+                small
+                style={{ color: '#666' }}
+              />
             </FlexContent>
           </Flex>
         </StoryHeader>
         <ReactQuill
+          // onFocus={() => console.log('Editor is focused!!!!!')}
           theme="bubble"
-          readOnly={!title.length}
+          readOnly={!title.length || !isEditMode}
           placeholder="It all started this one day..."
-          value={text}
+          value={quillContent}
           onChange={this.handleChange}
           modules={QuillEditor.modules}
           formats={QuillEditor.formats}

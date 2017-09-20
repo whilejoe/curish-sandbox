@@ -38,7 +38,7 @@ export const AvatarLink = ({ user, small }) => {
   );
 };
 
-export const Avatar = ({ user, small }) => {
+export const Avatar = ({ user, small, style }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
   return (
@@ -46,7 +46,7 @@ export const Avatar = ({ user, small }) => {
       {profileURL && (
         <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
       )}
-      {userName && <AvatarName>@{userName}</AvatarName>}
+      {userName && <AvatarName style={style}>@{userName}</AvatarName>}
     </div>
   );
 };

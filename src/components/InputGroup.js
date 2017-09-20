@@ -103,7 +103,7 @@ const Container = styled.div`
 `;
 
 const InputGroup = props => {
-  const { label, children, errorMessages, hasValue, ...rest } = props;
+  const { label, children, errorMessages, ...rest } = props;
   return (
     <Container>
       <Input
