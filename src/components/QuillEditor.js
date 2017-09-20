@@ -8,6 +8,7 @@ import { Avatar } from 'components/Avatar';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import debounce from 'lodash/debounce';
+import { isAuthed } from 'utils/AuthService';
 // import TextInput from 'abyss-form/lib/TextInput';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
@@ -36,7 +37,7 @@ const Input = styled.input`
   }
 `;
 
-const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
+const StoryHeader = styled.div`margin-bottom: 2.4rem;`;
 
 const EditModeContainer = styled.div`
   position: absolute;
@@ -206,7 +207,7 @@ class QuillEditor extends Component {
     if (storyData && storyData.loading) return <p>loading...</p>;
     return (
       <StoryContainer style={{ position: 'relative' }}>
-        {match.params.id ? (
+        {match.params.id && isAuthed() ? (
           <EditModeContainer>
             {isEditMode ? (
               <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
