@@ -19,22 +19,30 @@ const Input = styled.input`
   margin-top: 3rem;
   margin-bottom: 0.5rem;
   padding: 0;
+  width: 100%;
   background-color: transparent;
   color: inherit;
-  border: none;
-  outline: none;
-  width: 100%;
+  line-height: inherit;
   font-size: 2rem;
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
   text-transform: capitalize;
+  border: none;
+  outline: none;
   box-shadow: none;
-  box-sizing: content-box;
 
   &::placeholder {
     font-size: inherit;
     color: #ccc;
   }
+`;
+
+const StoryTitle = styled.h1`
+  display: inline-block;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  text-transform: capitalize;
 `;
 
 const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
@@ -219,16 +227,20 @@ class QuillEditor extends Component {
           </EditModeContainer>
         ) : null}
         <StoryHeader>
-          <Input
-            autoFocus={isEditMode && !match.params.id}
-            type="text"
-            placeholder="Our First Time"
-            value={title}
-            onChange={e => this.setState({ title: e.target.value })}
-            onKeyDown={e => this.handleKeyDown(e)}
-            // onBlur={e => this.handleBlur(e)}
-            disabled={!isEditMode && match.params.id}
-          />
+          {isEditMode ? (
+            <Input
+              autoFocus={isEditMode && !match.params.id}
+              type="text"
+              placeholder="Our First Time"
+              value={title}
+              onChange={e => this.setState({ title: e.target.value })}
+              onKeyDown={e => this.handleKeyDown(e)}
+              // onBlur={e => this.handleBlur(e)}
+              disabled={!isEditMode && match.params.id}
+            />
+          ) : (
+            <StoryTitle>{title}</StoryTitle>
+          )}
           <Flex align="center">
             <FlexContent space="self">
               <span>Author:&nbsp;</span>
