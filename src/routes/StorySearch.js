@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { gql, withApollo } from 'react-apollo';
 import qs from 'qs';
-import Container from 'components/Container';
+import StoryContainer from 'components/StoryContainer';
 import StatelessInput from 'components/StatelessInput';
 import ListStory from 'components/ListStory';
 
@@ -48,18 +48,20 @@ class StorySearch extends Component {
 
   render() {
     return (
-      <Container>
+      <StoryContainer>
         <h1>Search Stories</h1>
         <form onSubmit={this.handleOnSubmit}>
           <StatelessInput
+            autoFocus
             type="search"
+            placeholder="Search titles, tags, descriptions"
             value={this.state.searchText}
             onChange={e => this.setState({ searchText: e.target.value })}
             // onKeyDown={e => this.handleKeyDown(e)}
           />
         </form>
         {this.state.stories.map(story => <ListStory key={story.id} story={story} />)}
-      </Container>
+      </StoryContainer>
     );
   }
 
@@ -82,6 +84,8 @@ const ALL_STORIES_SEARCH_QUERY = gql`
   query AllStoriesSearchQuery($searchText: String!) {
     allStories(
       filter: { OR: [{ title_contains: $searchText }, { description_contains: $searchText }] }
+      first: 10
+      orderBy: title_ASC
     ) {
       id
       title
