@@ -123,7 +123,7 @@ class QuillEditor extends Component {
   handleKeyDown = e => {
     if (e && (e.keyCode === 9 || e.keyCode === 13)) {
       this.handleTitle();
-      this.handleSetEditorFocus();
+      if (this.props.match.params.id) this.handleSetEditorFocus();
     }
   };
 

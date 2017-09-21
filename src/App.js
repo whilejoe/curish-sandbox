@@ -8,6 +8,7 @@ import CreateUserContainer from 'containers/CreateUserContainer';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import Home from 'routes/Home';
 import About from 'routes/About';
+import StorySearch from 'routes/StorySearch';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
 import NoMatch from 'routes/NoMatch';
@@ -29,6 +30,7 @@ const App = ({ userData: user }) => {
                 <Switch key={props.location.pathname} location={props.location}>
                   <FadeRoute exact path="/" component={Home} />
                   <FadeRoute path="/101" component={About} />
+                  <FadeRoute path="/search/:q?" component={StorySearch} />
                   <FadeRoute path="/profile" userResult={user} component={UserProfile} />
                   <FadeRoute
                     path="/write/:id?"

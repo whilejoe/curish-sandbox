@@ -64,6 +64,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
             <nav>
               <HeaderLink to="/101">101</HeaderLink>
               <HeaderLink to="/write">Write</HeaderLink>
+              <HeaderLink to="/search">Search</HeaderLink>
             </nav>
           </FlexContent>
           <FlexContent space="self">
