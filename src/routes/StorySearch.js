@@ -19,9 +19,8 @@ class StorySearch extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps.location.search', nextProps.location.search);
     if (this.props.location.search !== nextProps.location.search && nextProps.location.search) {
-      // console.log('query', query);
+      console.log('nextProps.location.search', nextProps.location.search);
       this._executeSearch(nextProps.location.search);
     }
   }
@@ -81,7 +80,9 @@ class StorySearch extends Component {
 
 const ALL_STORIES_SEARCH_QUERY = gql`
   query AllStoriesSearchQuery($searchText: String!) {
-    allStories(filter: { OR: [{ title_contains: $searchText }] }) {
+    allStories(
+      filter: { OR: [{ title_contains: $searchText }, { description_contains: $searchText }] }
+    ) {
       id
       title
       description

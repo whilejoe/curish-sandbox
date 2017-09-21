@@ -11,6 +11,13 @@ const StoryItemTitle = styled.h2`
   font-size: 1.4rem;
 `;
 
+const StoryDescription = styled.p`
+  margin-top: 0.8rem;
+  max-width: 40rem;
+  font-size: 0.9rem;
+  color: #666;
+`;
+
 const ListStory = ({ story }) => (
   <StoryItemContainer>
     <Flex gutters align="center">
@@ -23,6 +30,7 @@ const ListStory = ({ story }) => (
         <AvatarLink user={story.author} />
       </FlexContent>
     </Flex>
+    {story.description && <StoryDescription>{story.description}</StoryDescription>}
   </StoryItemContainer>
 );
 
