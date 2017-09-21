@@ -4,7 +4,7 @@ import Button from 'components/Button';
 import { logout } from 'utils/AuthService';
 
 const UserProfile = ({ userResult: { loading, user }, ...props }) => {
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Container>Loading...</Container>;
   if (!user) {
     console.log('!user');
     // determine how to handle this

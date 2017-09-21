@@ -17,13 +17,12 @@ const networkInterface = createBatchingNetworkInterface({
   batchMax: 10
 });
 
-const token = getIdToken();
-
 const authMiddleware = {
   applyBatchMiddleware(req, next) {
     if (!req.options.headers) {
       req.options.headers = {}; // Create the headers object if needed.
     }
+    const token = getIdToken();
     req.options.headers.authorization = token ? `Bearer ${token}` : null;
     next();
   }

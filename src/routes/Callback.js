@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
+import Container from 'components/Container';
 import { parseURL } from 'utils/AuthService';
 
 class Callback extends Component {
-  state = {
-    userExists: false
-  };
-
   componentWillMount() {
     const { location, history } = this.props;
     // parseUrl returns false is hash doesn't exist or user is already authed
@@ -22,7 +19,7 @@ class Callback extends Component {
   }
 
   render() {
-    return this.props.userResult.loading ? <p>Callback Loading...</p> : null;
+    return this.props.userResult.loading ? <Container>Loading...</Container> : null;
   }
 }
 
