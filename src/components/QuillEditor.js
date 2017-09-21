@@ -101,12 +101,11 @@ class QuillEditor extends Component {
     }
   }
 
-  handleChange = () => {
-    if (!this.quillRef) return;
-    const editor = this.quillRef.getEditor();
-    const delta = editor.getContents();
-    this.setState({ quillContent: delta, editModeState: EDIT_MODE_UNSAVED });
-    this.debouncedUpdateStory(delta);
+  handleChange = (content, delta, source, editor) => {
+    if (!editor) return;
+    const fullDelta = editor.getContents();
+    this.setState({ quillContent: fullDelta, editModeState: EDIT_MODE_UNSAVED });
+    this.debouncedUpdateStory(fullDelta);
   };
 
   handleSetEditorFocus = () => {
@@ -170,7 +169,6 @@ class QuillEditor extends Component {
 
   updateStory = async (delta = null) => {
     const { updateStoryMutation, userResult: { user }, storyData } = this.props;
-
     if (!user || !delta || !storyData) return;
     this.setState({ editModeState: EDIT_MODE_SAVING });
     const stringifiedDelta = JSON.stringify(delta);

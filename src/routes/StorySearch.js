@@ -20,7 +20,6 @@ class StorySearch extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location.search !== nextProps.location.search && nextProps.location.search) {
-      console.log('nextProps.location.search', nextProps.location.search);
       this._executeSearch(nextProps.location.search);
     }
   }
@@ -39,11 +38,12 @@ class StorySearch extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
+    const query = { q: this.state.searchText };
+    const str = qs.stringify(query);
     this.props.history.push({
       pathname: '/search',
-      search: `q=${this.state.searchText}`
+      search: str
     });
-    // this._executeSearch();
   };
 
   render() {
@@ -66,7 +66,6 @@ class StorySearch extends Component {
   }
 
   _executeSearch = async queryString => {
-    // const { searchText } = this.state;
     const query = qs.parse(queryString, { ignoreQueryPrefix: true });
     if (query.q) {
       const result = await this.props.client.query({
