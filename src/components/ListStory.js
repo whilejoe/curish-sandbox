@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { Flex, FlexContent } from 'components/Flex';
 import { Link } from 'react-router-dom';
 import { AvatarLink } from 'components/Avatar';
 
