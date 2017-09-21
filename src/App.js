@@ -62,8 +62,7 @@ const USER_PROFILE_QUERY = gql`
   }
 `;
 
-// export default App;
 export default graphql(USER_PROFILE_QUERY, {
-  name: 'userData'
-  // options: { fetchPolicy: 'network-only' }
+  name: 'userData',
+  options: { fetchPolicy: 'network-only' } // Do we need this fetchPolicy?
 })(App);
