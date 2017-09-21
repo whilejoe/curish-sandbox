@@ -68,7 +68,6 @@ class QuillEditor extends Component {
 
   componentWillMount() {
     const { match, storyData } = this.props;
-    // console.log('storyData willMount', storyData);
     if (match.params.id) {
       if (storyData.Story && storyData.Story.quillContent) {
         const parsed = JSON.parse(storyData.Story.quillContent);
@@ -84,14 +83,8 @@ class QuillEditor extends Component {
           editModeState
         });
       }
-    }
+    } else this.setState({ isEditMode: true });
   }
-
-  // componentDidMount() {
-  //   if (this.state.title.length) {
-  //     setTimeout(() => this.handleSetEditorFocus(), 50);
-  //   }
-  // }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id) {
@@ -151,7 +144,6 @@ class QuillEditor extends Component {
     const { createStoryMutation, userResult: { user }, history } = this.props;
     if (!user) return;
     const { title } = this.state;
-    // this.setState({ editModeState: EDIT_MODE_SAVING });
     const result = await createStoryMutation({
       variables: {
         userId: user.id,
@@ -170,21 +162,20 @@ class QuillEditor extends Component {
   debouncedUpdateStory = debounce(
     delta => {
       this.updateStory(delta);
-      this.setState({ editModeState: EDIT_MODE_SAVING });
     },
     1200
     // { maxWait: 5000 }
   );
 
   updateStory = async (delta = null) => {
-    const { updateStoryMutation, userResult: { user }, storyData: { variables } } = this.props;
+    const { updateStoryMutation, userResult: { user }, storyData } = this.props;
 
-    if (!user || !delta) return;
-
+    if (!user || !delta || !storyData) return;
+    this.setState({ editModeState: EDIT_MODE_SAVING });
     const stringifiedDelta = JSON.stringify(delta);
     const result = await updateStoryMutation({
       variables: {
-        storyId: variables.storyId,
+        storyId: storyData.variables.storyId,
         quillContent: stringifiedDelta
       }
     });
@@ -211,7 +202,6 @@ class QuillEditor extends Component {
   render() {
     const { userResult: { user }, match, storyData } = this.props;
     const { title, quillContent, isEditMode, editModeState } = this.state;
-    // console.log('this.props', this.props);
     if (storyData && storyData.loading) return <p>loading...</p>;
     return (
       <StoryContainer style={{ position: 'relative' }}>
@@ -251,7 +241,6 @@ class QuillEditor extends Component {
           </Flex>
         </StoryHeader>
         <ReactQuill
-          // onFocus={() => console.log('Editor is focused!!!!!')}
           theme="bubble"
           readOnly={!title.length || !isEditMode}
           placeholder="It all started this one day..."
