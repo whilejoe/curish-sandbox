@@ -37,7 +37,7 @@ const Input = styled.input`
   }
 `;
 
-const StoryHeader = styled.div`margin-bottom: 2.4rem;`;
+const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
 
 const EditModeContainer = styled.div`
   position: absolute;
@@ -229,16 +229,12 @@ class QuillEditor extends Component {
             // onBlur={e => this.handleBlur(e)}
             disabled={!isEditMode && match.params.id}
           />
-          <Flex align="flex-end">
-            <FlexContent space="self" hide>
-              <span style={{ color: '#777' }}>Author:&nbsp;</span>
+          <Flex align="center">
+            <FlexContent space="self">
+              <span>Author:&nbsp;</span>
             </FlexContent>
             <FlexContent>
-              <AvatarLink
-                user={!match.params.id ? user : storyData.Story.author}
-                small
-                style={{ color: '#666' }}
-              />
+              <AvatarLink user={!match.params.id ? user : storyData.Story.author} small />
             </FlexContent>
           </Flex>
         </StoryHeader>

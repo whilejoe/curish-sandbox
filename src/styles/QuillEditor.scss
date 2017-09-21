@@ -31,31 +31,24 @@
 }
 
 .ql-bubble .ql-editor blockquote {
-  margin-bottom: 1.6rem;
-  margin-top: 1.6rem;
-  // padding-left: 0;
-  padding: 0.8rem 1.2rem;
-  border-radius: 0.15rem;
-  // color: #454545;
-  // text-align: justify;
-  // font-size: 1.1em;
-  line-height: 1.35em;
-  // font-style: italic;
-  // background: #faf9f9;
-  border-left: none;
-  position: relative;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding-left: 0.8rem;
+  margin-left: 2vw;
+  line-height: 1.44em;
+  border-left: 3px solid lightseagreen;
+  font-size: 1.1em;
+  color: darkgray;
 
   &:before,
   &:after {
     font-size: 1.8em;
-    // line-height: 0.7em;
-    vertical-align: -0.3em;
-    // color: #555;
+    vertical-align: -0.2em;
   }
 
   &:before {
     content: '\201c';
-    margin-right: 0.2em;
+    margin-right: 0.15em;
   }
 
   &:after {

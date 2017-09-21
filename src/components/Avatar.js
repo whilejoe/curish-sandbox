@@ -23,7 +23,7 @@ const Link = styled(NavLink)`
   }
 `;
 
-const AvatarName = styled.span`vertical-align: middle;`;
+// const AvatarName = styled.span`vertical-align: middle;`;
 
 export const AvatarLink = ({ user, small }) => {
   if (!user) return null;
@@ -33,12 +33,12 @@ export const AvatarLink = ({ user, small }) => {
       {profileURL && (
         <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
       )}
-      {userName && <AvatarName>@{userName}</AvatarName>}
+      {userName && <span>@{userName}</span>}
     </Link>
   );
 };
 
-export const Avatar = ({ user, small, style }) => {
+export const Avatar = ({ user, small }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
   return (
@@ -46,7 +46,7 @@ export const Avatar = ({ user, small, style }) => {
       {profileURL && (
         <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
       )}
-      {userName && <AvatarName style={style}>@{userName}</AvatarName>}
+      {userName && <span>@{userName}</span>}
     </div>
   );
 };
