@@ -1,10 +1,13 @@
 // Quill Editor Overrides
+@import './elements.scss';
 
 .ql-container {
   font-size: inherit;
 }
 
 .ql-editor {
+  font-family: $copy-font;
+  font-weight: $copy-font-weight;
   line-height: inherit;
   padding: 0;
 }

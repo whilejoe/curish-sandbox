@@ -96,13 +96,14 @@ class QuillEditor extends Component {
           const parsed = JSON.parse(nextProps.storyData.Story.quillContent);
           this.setState({ quillContent: parsed, editModeState: EDIT_MODE_SAVED });
         }
-        this.handleSetEditorFocus();
+        // this.handleSetEditorFocus();
       }
     }
   }
 
   handleChange = (content, delta, source, editor) => {
     if (!editor) return;
+    console.log('content length', editor.getLength());
     const fullDelta = editor.getContents();
     this.setState({ quillContent: fullDelta, editModeState: EDIT_MODE_UNSAVED });
     this.debouncedUpdateStory(fullDelta);
