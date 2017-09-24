@@ -13,10 +13,10 @@
     "localforage": "^1.5.0",
     "lodash": "^4.17.4",
     "qs": "^6.5.1",
-    "react": "^16.0.0-rc.3",
+    "react": "^15.6.1",
     "react-apollo": "^1.4.15",
     "react-app-rewire-styled-components": "^3.0.0",
-    "react-dom": "^16.0.0-rc.3",
+    "react-dom": "^15.6.1",
     "react-quill": "1.1.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.2.2",
@@ -27,7 +27,7 @@
     "redux-action-buffer": "^1.1.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-persist": "^4.8.3",
+    "redux-persist": "^4.10.0",
     "redux-thunk": "^2.2.0",
     "reset-css": "^2.2.0",
     "styled-components": "^2.1.1",
@@ -41,7 +41,7 @@
     "prettier": "^1.7.0",
     "prettier-eslint": "^8.1.1",
     "react-app-rewired": "^1.2.9",
-    "react-snapshot": "^2.0.0-0"
+    "react-snapshot": "^1.2.0"
   },
   "scripts": {
     "build-css":
@@ -50,7 +50,7 @@
       "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-app-rewired start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-app-rewired build",
+    "build": "npm run build-css && react-app-rewired build && react-snapshot",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject",
     "deploy": "npm run build && firebase deploy",
