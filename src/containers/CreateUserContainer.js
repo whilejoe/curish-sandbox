@@ -3,7 +3,8 @@ import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 import { getIdToken } from 'utils/AuthService';
 import { submit } from 'abyss-form/lib/actions';
-import { pushRoute } from 'actions/pushRoute';
+import store from 'state/store';
+import { push } from 'react-router-redux';
 
 const mapStateToProps = state => ({
   profileForm: state.forms.profile.model
@@ -25,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         });
         // Refetch user query after create
         await userResult.refetch();
-        dispatch(pushRoute('/profile'));
+        store.dispatch(push('/profile'));
       })
     );
   }

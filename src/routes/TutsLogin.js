@@ -5,7 +5,7 @@ import StatelessInput from 'components/StatelessInput';
 import Button from 'components/Button';
 import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
-import { pushRoute } from 'actions/pushRoute';
+// import { pushRoute } from 'actions/pushRoute';
 import { USER_ID, AUTH_TOKEN } from 'constants/tuts';
 
 class TutsLogin extends Component {
@@ -20,10 +20,8 @@ class TutsLogin extends Component {
   render() {
     return (
       <Container>
-        <h1>
-          {this.state.login ? 'Login' : 'Join'}
-        </h1>
-        {!this.state.login &&
+        <h1>{this.state.login ? 'Login' : 'Join'}</h1>
+        {!this.state.login && (
           <div>
             <StatelessInput
               value={this.state.fullName}
@@ -37,7 +35,8 @@ class TutsLogin extends Component {
               type="text"
               placeholder="username"
             />
-          </div>}
+          </div>
+        )}
         <StatelessInput
           value={this.state.email}
           onChange={e => this.setState({ email: e.target.value })}
@@ -91,7 +90,7 @@ class TutsLogin extends Component {
       const token = result.data.signinUser.token;
       this._saveUserData(id, token);
     }
-    this.props.dispatch(pushRoute('/')); // Update once profile is hooked up
+    // this.props.dispatch(pushRoute('/')); // Update once profile is hooked up
   };
 
   _saveUserData = (id, token) => {
