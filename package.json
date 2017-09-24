@@ -6,8 +6,6 @@
     "abyss-form": "0.4.3",
     "auth0-js": "^8.10.1",
     "draft-js": "^0.10.2",
-    "firebase": "^4.4.0",
-    "graphql-type-json": "^0.1.4",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "localforage": "^1.5.0",
@@ -44,10 +42,8 @@
     "react-snapshot": "^1.2.0"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-app-rewired start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-app-rewired build && react-snapshot",
@@ -57,7 +53,9 @@
     "flow": "flow"
   },
   "reactSnapshot": {
-    "exclude": ["/callback"],
+    "exclude": [
+      "/callback"
+    ],
     "snapshotDelay": 300
   }
 }
