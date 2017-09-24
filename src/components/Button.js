@@ -15,6 +15,7 @@ const Button = styled.button`
   font-weight: 600;
   font-family: inherit;
   line-height: 1;
+  text-transform: capitalize;
   border-radius: 20px;
   border: 2px solid ${props => theme[props.theme] || theme['primary']};
   transition: background-color 200ms ease-out, color 200ms ease-out;

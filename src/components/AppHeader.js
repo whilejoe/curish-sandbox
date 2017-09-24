@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
-import Avatar from 'components/Avatar';
+import Button from 'components/Button';
+import { AvatarLink } from 'components/Avatar';
+import { isAuthed, logout } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: white;
@@ -13,10 +15,10 @@ const Header = styled.header`
 const HeaderLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  padding: 1.8rem .8rem;
+  padding: 1.8rem 0.8rem;
 
   &:not(:last-child) {
-    margin-right: .9rem;
+    margin-right: 0.9rem;
   }
 
   &:after {
@@ -44,8 +46,11 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const AppHeader = ({ user }) => {
-  const { isAuthed, userName, photoURL } = user;
+const ButtonLink = Button.withComponent(NavLink);
+
+const AppHeader = ({ userResult: { loading, user } }) => {
+  const isUserAuthed = isAuthed();
+  console.log('isUserAuthed', isUserAuthed);
   return (
     <Header>
       <Container>
@@ -58,14 +63,20 @@ const AppHeader = ({ user }) => {
           <FlexContent offset={{ md: 4 }}>
             <nav>
               <HeaderLink to="/101">101</HeaderLink>
-              <HeaderLink to="/create-story">Create Story</HeaderLink>
-              <HeaderLink to="/stories">Stories</HeaderLink>
+              <HeaderLink to="/write">Write</HeaderLink>
+              <HeaderLink to="/search">Search</HeaderLink>
             </nav>
           </FlexContent>
           <FlexContent space="self">
-            {isAuthed
-              ? <Avatar src={photoURL} alt="user-profile-header-link" name={userName} small />
-              : <HeaderLink to="/authenticate">Login</HeaderLink>}
+            {isUserAuthed && !loading ? (
+              !user ? (
+                <Button onClick={logout}>Logout</Button>
+              ) : (
+                <AvatarLink user={user} small />
+              )
+            ) : (
+              <ButtonLink to="/login">Login</ButtonLink>
+            )}
           </FlexContent>
         </Flex>
       </Container>
