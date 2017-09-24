@@ -8,7 +8,7 @@
        {
          match: 'ui/src/**/*.js',
          parser: ['EmbeddedQueryParser', { startTag: 'Relay\\.QL`', endTag: '`' }],
-         isRelay: true,
+         isRelay: false,
        },
        {
          match: 'features/**/*.feature',
