@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Source+Sans+Pro:400');
 
 $serif-font: 'Roboto Slab', serif !default;
+$sanserif-font: 'Source Sans Pro', sans-serif !default;
+
 $heading-font: $serif-font !default;
 $heading-font-weight: 400 !default;
 
-$sanserif-font: 'Source Sans Pro', sans-serif !default;
 $copy-font: $sanserif-font !default;
 $copy-font-weight: 400;
+
+$link-font: $serif-font;
+$link-font-weight: 400;
 
 *,
 *:before,
@@ -49,7 +53,7 @@ h5,
 h6 {
   font-family: $heading-font;
   font-weight: $heading-font-weight;
-  color: #222;
+  color: #333;
 }
 
 input,
@@ -63,13 +67,17 @@ a {
 
 a {
   color: currentColor;
-  font-family: $heading-font;
+  font-family: $link-font;
+  font-weight: $link-font-weight;
   text-decoration: none;
-  font-weight: 400;
 
   &:hover,
   &:focus {
     text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 

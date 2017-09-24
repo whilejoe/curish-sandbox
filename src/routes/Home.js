@@ -24,7 +24,7 @@ const Home = () => {
           />
         </FlexContent>
         <FlexContent space="self">
-          <Button theme="secondary">Search</Button>
+          <Button>Search</Button>
         </FlexContent>
       </Flex>
     </Container>

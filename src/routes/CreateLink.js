@@ -5,6 +5,7 @@ import Container from 'components/Container';
 import Button from 'components/Button';
 import LinkList, { ALL_LINKS_QUERY } from 'components/LinkList';
 import { USER_ID } from 'constants/tuts';
+import { SECONDARY_KEY } from 'constants/theme';
 
 class CreateLink extends Component {
   state = {
@@ -28,7 +29,7 @@ class CreateLink extends Component {
           type="text"
           placeholder="The URL for the link"
         />
-        <Button theme="secondary" onClick={() => this._createLink()}>
+        <Button theme={SECONDARY_KEY} onClick={() => this._createLink()}>
           Submit
         </Button>
         <LinkList />

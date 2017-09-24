@@ -4,6 +4,7 @@ import { gql, graphql } from 'react-apollo';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import AppHeader from 'components/AppHeader';
 import LoginContainer from 'containers/LoginContainer';
+import VerifyContainer from 'containers/VerifyContainer';
 import CreateUserContainer from 'containers/CreateUserContainer';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import Home from 'routes/Home';
@@ -39,6 +40,7 @@ const App = ({ userData: user }) => {
                   />
                   <FadeRoute path="/join" userResult={user} component={CreateUserContainer} />
                   <FadeRoute path="/login" component={LoginContainer} />
+                  <FadeRoute path="/verify" component={VerifyContainer} />
                   <FadeRoute path="/callback" userResult={user} component={Callback} />
                   <FadeRoute component={NoMatch} />
                 </Switch>

@@ -4,6 +4,7 @@ import Container from 'components/Container';
 import StatelessInput from 'components/StatelessInput';
 import Button from 'components/Button';
 import Link from 'components/Link';
+import { SECONDARY_KEY } from 'constants/theme';
 
 class Search extends Component {
   state = {
@@ -16,7 +17,7 @@ class Search extends Component {
       <Container>
         <h1>Search</h1>
         <StatelessInput type="text" onChange={e => this.setState({ searchText: e.target.value })} />
-        <Button theme="secondary" onClick={() => this._executeSearch()}>
+        <Button theme={SECONDARY_KEY} onClick={() => this._executeSearch()}>
           Search
         </Button>
         {this.state.links.map((link, index) => <Link key={link.id} link={link} index={index} />)}

@@ -2,17 +2,19 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
+import { THEME, PRIMARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
 
 let activeClass = '';
 
-const color = 'inherit';
-const activeColor = 'SeaGreen';
-const errorColor = 'red';
+const COLOR = 'inherit';
+const ACTIVE_COLOR = THEME[PRIMARY_KEY];
+const ERROR_COLOR = THEME[ERROR_KEY];
+const PLACEHOLDER_COLOR = PALETTE.GRAY.MEDIUM;
 
 const activeState = css`
   outline: none;
-  border-bottom: 1px solid ${activeColor};
-  box-shadow: 0 1px 0 0 ${activeColor};
+  border-bottom: 1px solid ${ACTIVE_COLOR};
+  box-shadow: 0 1px 0 0 ${ACTIVE_COLOR};
 `;
 
 export const Label = styled.label`
@@ -21,7 +23,7 @@ export const Label = styled.label`
   left: 0;
   height: 100%;
   font-size: inherit;
-  color: ${color};
+  color: ${COLOR};
   cursor: text;
   transition: transform 0.2s ease-out;
   transform-origin: 0% 100%;
@@ -32,9 +34,9 @@ export const Label = styled.label`
 
 export const Input = styled(TextInput)`
   background-color: transparent;
-  color: ${color};
+  color: ${COLOR};
   border: none;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${PLACEHOLDER_COLOR};
   border-radius: 0;
   outline: none;
   height: 2.5rem;
@@ -53,25 +55,25 @@ export const Input = styled(TextInput)`
   &.active,
   &[placeholder] {
     & + ${Label} {
-      color: ${activeColor};
+      color: ${ACTIVE_COLOR};
       transform: translateY(-14px) scale(0.8);
       transform-origin: 0 0;
     }
   }
 
   &.abyss-form-invalid {
-    color: ${errorColor};
+    color: ${ERROR_COLOR};
     border-bottom: 1px solid red;
     box-shadow: 0 1px 0 0 red;
 
     & + ${Label} {
-      color: ${errorColor};
+      color: ${ERROR_COLOR};
     }
   }
 
   &::placeholder {
     font-size: inherit;
-    color: #ccc;
+    color: ${PLACEHOLDER_COLOR};
   }
 
   &:-webkit-autofill {
@@ -94,7 +96,7 @@ const FormError = styled(ErrorMessage)`
   position: absolute;
   padding-top: 0.2rem;
   font-size: 0.75em;
-  color: ${errorColor};
+  color: ${ERROR_COLOR};
 `;
 
 const Container = styled.div`

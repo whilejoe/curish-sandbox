@@ -210,7 +210,7 @@ class QuillEditor extends Component {
             {isEditMode ? (
               <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
             ) : (
-              <Button theme="primary" editMode={isEditMode} onClick={this.handleEditModeButton}>
+              <Button editMode={isEditMode} onClick={this.handleEditModeButton}>
                 Edit
               </Button>
             )}

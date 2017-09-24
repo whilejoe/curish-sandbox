@@ -1,10 +1,27 @@
 import { connect } from 'react-redux';
-import PasswordlessLogin from 'routes/PasswordlessLogin';
+import { submit } from 'abyss-form/lib/actions';
+import { formatNumber } from 'utils/phoneNumber';
+import { startPasswordless } from 'utils/AuthService';
+import Login from 'routes/Login';
 
 const mapStateToProps = state => ({
-  authForm: state.forms.auth
+  loginForm: state.forms.login
 });
 
-const LoginContainer = connect(mapStateToProps)(PasswordlessLogin);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  beginLogin: phone => {
+    dispatch(
+      submit('login', () => {
+        const formatted = formatNumber(phone);
+        startPasswordless(formatted)
+          .then(res => {
+            console.log('response in login', res);
+            ownProps.history.push('/verify');
+          })
+          .catch(err => console.error('error logging in', err));
+      })
+    );
+  }
+});
 
-export default LoginContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
