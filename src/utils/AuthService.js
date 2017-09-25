@@ -19,22 +19,20 @@ const CALLBACK_PATH = '/callback';
 // can't get netlify env var to work so hardcoding
 const CALLBACK_URL =
   process.env.NODE_ENV === 'production'
-    ? `https://feature-graphql.curish.com${CALLBACK_PATH}`
+    ? `https://curish.com${CALLBACK_PATH}`
     : `http://localhost:3000${CALLBACK_PATH}`;
 console.log('callback URL', CALLBACK_URL);
 // const REDIRECT = 'http://localhost:3000/callback';
 // const SCOPE = 'YOUR_SCOPE';
 // const AUDIENCE = 'AUDIENCE_ATTRIBUTE';
 
-const webAuth =
-  isEnvBrowser &&
-  new auth0.WebAuth({
-    clientID: process.env.REACT_APP_AUTH_0_CLIENT_ID,
-    domain: process.env.REACT_APP_AUTH_0_DOMAIN,
-    redirectUri: CALLBACK_URL,
-    responseType: 'id_token token',
-    scope: 'openid'
-  });
+const webAuth = new auth0.WebAuth({
+  clientID: process.env.REACT_APP_AUTH_0_CLIENT_ID,
+  domain: process.env.REACT_APP_AUTH_0_DOMAIN,
+  redirectUri: CALLBACK_URL,
+  responseType: 'id_token token',
+  scope: 'openid'
+});
 
 // export const authorize = () => {
 //   webAuth.authorize();
