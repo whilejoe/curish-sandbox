@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { isAuthed } from 'utils/AuthService';
 
 const Verify = ({ loginForm, verifyForm, verifyLoginCode }) => {
-  if (isAuthed()) return <Redirect to="/profile" />;
+  if (isAuthed()) return <Redirect to="/" />;
 
   const { phone } = loginForm.model;
   const { code } = verifyForm.model;

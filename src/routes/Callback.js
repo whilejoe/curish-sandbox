@@ -13,7 +13,7 @@ class Callback extends Component {
     // User will initially be undefined and query will either return user object or null
     if (this.props.userResult.user !== nextProps.userResult.user) {
       const { history } = nextProps;
-      if (nextProps.userResult.user) history.push('/profile');
+      if (nextProps.userResult.user) history.push('/');
       else history.push('/join');
     }
   }

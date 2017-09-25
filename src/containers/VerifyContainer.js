@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         verifyCode(formatted, code)
           .then(res => {
             console.log('response in verify', res);
-            ownProps.history.push('/profile');
+            ownProps.history.push('/');
           })
           .catch(err => console.error('error verifying code', err));
       })

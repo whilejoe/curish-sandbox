@@ -1,16 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
-import Button, { ButtonLink } from 'components/Button';
+import { ButtonLink } from 'components/Button';
 import { AvatarLink } from 'components/Avatar';
 import OmniSearch from 'components/OmniSearch';
-import { isAuthed, logout } from 'utils/AuthService';
+import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: white;
   border-bottom: 1px solid #eee;
+
+  ${props => {
+    if (props.isAuthed)
+      return css`
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+      `;
+  }};
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -47,39 +55,59 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
+const AuthedLogo = styled(NavLink)`
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &.active {
+    font-weight: 600;
+  }
+`;
+
 const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
   console.log('isUserAuthed', isUserAuthed);
   return (
-    <Header>
+    <Header isAuthed={isUserAuthed}>
       <Container>
-        <Flex gutters align="center">
-          <FlexContent space="self">
-            <NavLink exact to="/">
-              Curish
-            </NavLink>
-          </FlexContent>
-          <FlexContent offset={{ md: 4 }} space="self">
-            <nav>
-              <HeaderLink to="/101">101</HeaderLink>
-              <HeaderLink to="/search">Search</HeaderLink>
-            </nav>
-          </FlexContent>
-          <FlexContent>
-            <OmniSearch />
-          </FlexContent>
-          <FlexContent space="self">
-            {isUserAuthed && !loading ? (
-              !user ? (
-                <Button onClick={logout}>Logout</Button>
-              ) : (
-                <AvatarLink user={user} small />
-              )
-            ) : (
+        {!isUserAuthed ? (
+          <Flex gutters guttersVertical align="center">
+            <FlexContent space="self">
+              <HeaderLink exact to="/">
+                Curish
+              </HeaderLink>
+            </FlexContent>
+            <FlexContent offset={{ md: 4 }}>
+              <nav>
+                <HeaderLink to="/101">101</HeaderLink>
+                <HeaderLink to="/search">Search</HeaderLink>
+              </nav>
+            </FlexContent>
+            <FlexContent space="self">
               <ButtonLink to="/login">Login</ButtonLink>
-            )}
-          </FlexContent>
-        </Flex>
+            </FlexContent>
+          </Flex>
+        ) : (
+          <Flex gutters guttersVertical align="center" justify="space-between">
+            <FlexContent space="self">
+              <AuthedLogo exact to="/">
+                C
+              </AuthedLogo>
+            </FlexContent>
+            <FlexContent space={{ sm: 60, md: 45 }}>
+              <OmniSearch />
+            </FlexContent>
+            <FlexContent space="self">
+              {isUserAuthed && !loading && <AvatarLink user={user} small />}
+            </FlexContent>
+          </Flex>
+        )}
       </Container>
     </Header>
   );

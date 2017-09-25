@@ -1,9 +1,16 @@
-import styled from 'styled-components';
-import { PALETTE } from 'constants/theme';
+import styled, { css } from 'styled-components';
+import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
 import { darken } from 'polished';
 
+const ACTIVE_COLOR = THEME[PRIMARY_KEY];
 const PLACEHOLDER_COLOR = PALETTE.GRAY.MEDIUM;
 const ACTIVE_PLACEHOLDER_COLOR = darken(0.2, PALETTE.GRAY.MEDIUM);
+
+const activeState = css`
+  outline: none;
+  border-bottom: 1px solid ${ACTIVE_COLOR};
+  box-shadow: 0 1px 0 0 ${ACTIVE_COLOR};
+`;
 
 export const StatelessInput = styled.input`
   margin-bottom: 1.5rem;
@@ -24,7 +31,7 @@ export const StatelessInput = styled.input`
   }
 
   &:focus {
-    border-bottom-color: ${darken(0.2, PALETTE.GRAY.LIGHT)};
+    ${activeState};
 
     &::placeholder {
       color: ${ACTIVE_PLACEHOLDER_COLOR};

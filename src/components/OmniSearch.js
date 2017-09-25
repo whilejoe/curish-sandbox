@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { withApollo } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 import qs from 'qs';
 import { Flex, FlexContent } from 'components/Flex';
 import StatelessInput from 'components/StatelessInput';
@@ -8,20 +9,17 @@ import Icon from 'components/Icon';
 import { PALETTE } from 'constants/theme';
 
 const OmniIcon = styled(Icon)`
-  width: 1.15em;
-  height: 1.15em;
-  margin-right: 0.1em;
+  width: 1.2em;
+  height: 1.2em;
   color: ${PALETTE.GRAY.MEDIUM};
-  vertical-align: middle;
+  vertical-align: text-bottom;
 `;
 const OmniInput = styled(StatelessInput)`
   height: 2rem;
-  max-width: 20rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
   margin-bottom: 0;
-  font-size: 0.9em;
-  border-radius: 0px;
+  padding-left: 0.2rem;
+  padding-right: 0.5rem;
+  font-size: 1em;
 `;
 
 class OmniSearch extends Component {
@@ -33,7 +31,12 @@ class OmniSearch extends Component {
     e.preventDefault();
     const query = { q: this.state.searchText };
     const str = qs.stringify(query);
-    this.executeSearch(str);
+    this.setState({ searchText: '' });
+    this.props.history.push({
+      pathname: '/search',
+      search: str
+    });
+    // this.executeSearch(str);
     console.log('str', str);
   };
 
@@ -61,6 +64,7 @@ class OmniSearch extends Component {
     const query = qs.parse(queryString, { ignoreQueryPrefix: true });
     if (query.q) {
       console.log('query.q', query.q);
+      // query here
       this.setState({ searchText: query.q });
     }
   };
@@ -84,5 +88,5 @@ class OmniSearch extends Component {
 //     }
 //   }
 // `;
-
-export default withApollo(OmniSearch);
+const OmniWithRouter = withRouter(OmniSearch);
+export default withApollo(OmniWithRouter);

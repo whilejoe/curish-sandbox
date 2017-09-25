@@ -14,7 +14,7 @@ const CreateUser = ({
   if (user) {
     console.warn('Already Registered');
     // decide if Redirect is the best way to go
-    return <Redirect to="/profile" />;
+    return <Redirect to="/" />;
   } else if (!isAuthed()) return <Redirect to="/login" />;
 
   const validators = { required: value => !value };
