@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
@@ -13,11 +13,12 @@ const Header = styled.header`
   border-bottom: 1px solid #eee;
 
   ${props => {
-    if (props.isAuthed)
-      return css`
-        padding-top: 0.6rem;
-        padding-bottom: 0.6rem;
-      `;
+    if (props.isAuthed) {
+      // return css`
+      //   padding-top: 0.6rem;
+      //   padding-bottom: 0.6rem;
+      // `;
+    }
   }};
 `;
 
@@ -100,7 +101,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
                 C
               </AuthedLogo>
             </FlexContent>
-            <FlexContent space={{ sm: 60, md: 45 }}>
+            <FlexContent space={{ sm: 60, md: 40, lg: 30 }}>
               <OmniSearch />
             </FlexContent>
             <FlexContent space="self">

@@ -15,11 +15,10 @@ const OmniIcon = styled(Icon)`
   vertical-align: text-bottom;
 `;
 const OmniInput = styled(StatelessInput)`
-  height: 2rem;
-  margin-bottom: 0;
-  padding-left: 0.2rem;
-  padding-right: 0.5rem;
-  font-size: 1em;
+  height: 3rem;
+  margin-bottom: -1px;
+  padding-left: 0.3rem;
+  border-bottom-color: transparent;
 `;
 
 class OmniSearch extends Component {
