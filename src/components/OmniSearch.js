@@ -9,15 +9,16 @@ import Icon from 'components/Icon';
 import { PALETTE } from 'constants/theme';
 
 const OmniIcon = styled(Icon)`
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.15em;
+  height: 1.15em;
   color: ${PALETTE.GRAY.MEDIUM};
   vertical-align: text-bottom;
 `;
 const OmniInput = styled(StatelessInput)`
   height: 3rem;
-  margin-bottom: -1px;
+  margin-bottom: 0;
   padding-left: 0.3rem;
+  font-size: 0.9em;
   border-bottom-color: transparent;
 `;
 

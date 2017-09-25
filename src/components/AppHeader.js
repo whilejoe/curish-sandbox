@@ -66,8 +66,8 @@ const AuthedLogo = styled(NavLink)`
     text-decoration: none;
   }
 
-  &.active {
-    font-weight: 600;
+  span {
+    font-size: 0.7em;
   }
 `;
 
@@ -98,14 +98,14 @@ const AppHeader = ({ userResult: { loading, user } }) => {
           <Flex gutters guttersVertical align="center" justify="space-between">
             <FlexContent space="self">
               <AuthedLogo exact to="/">
-                C
+                C<span>u</span>
               </AuthedLogo>
             </FlexContent>
             <FlexContent space={{ sm: 60, md: 40, lg: 30 }}>
               <OmniSearch />
             </FlexContent>
             <FlexContent space="self">
-              {isUserAuthed && !loading && <AvatarLink user={user} small />}
+              {isUserAuthed && !loading && <AvatarLink user={user} />}
             </FlexContent>
           </Flex>
         )}
