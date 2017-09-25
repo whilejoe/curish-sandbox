@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const Button = styled.button`
@@ -18,10 +19,13 @@ const Button = styled.button`
   cursor: pointer;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     background-color: ${props => THEME[props.theme] || THEME[PRIMARY_KEY]};
     color: white;
   }
 `;
+
+export const ButtonLink = Button.withComponent(NavLink);
 
 export default Button;

@@ -11,6 +11,9 @@ const AvatarImage = styled.img`
 `;
 
 const Link = styled(NavLink)`
+  color: currentColor;
+  transition: color 100ms ease-out;
+
   &:hover,
   &:focus,
   &.active {
@@ -28,11 +31,11 @@ const AvatarName = styled.span`
   font-size: ${props => (props.small ? '0.9em' : '1em')};
 `;
 
-export const AvatarLink = ({ user, small }) => {
+export const AvatarLink = ({ user, small, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
   return (
-    <Link to="/profile">
+    <Link to="/profile" className={className}>
       {profileURL && (
         <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
       )}
@@ -41,11 +44,11 @@ export const AvatarLink = ({ user, small }) => {
   );
 };
 
-export const Avatar = ({ user, small }) => {
+export const Avatar = ({ user, small, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
   return (
-    <div>
+    <div className={className}>
       {profileURL && (
         <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
       )}

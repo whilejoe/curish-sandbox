@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
-import Button from 'components/Button';
+import Button, { ButtonLink } from 'components/Button';
 import { AvatarLink } from 'components/Avatar';
+import OmniSearch from 'components/OmniSearch';
 import { isAuthed, logout } from 'utils/AuthService';
 
 const Header = styled.header`
@@ -46,8 +47,6 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const ButtonLink = Button.withComponent(NavLink);
-
 const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
   console.log('isUserAuthed', isUserAuthed);
@@ -60,12 +59,14 @@ const AppHeader = ({ userResult: { loading, user } }) => {
               Curish
             </NavLink>
           </FlexContent>
-          <FlexContent offset={{ md: 4 }}>
+          <FlexContent offset={{ md: 4 }} space="self">
             <nav>
               <HeaderLink to="/101">101</HeaderLink>
-              <HeaderLink to="/write">Write</HeaderLink>
               <HeaderLink to="/search">Search</HeaderLink>
             </nav>
+          </FlexContent>
+          <FlexContent>
+            <OmniSearch />
           </FlexContent>
           <FlexContent space="self">
             {isUserAuthed && !loading ? (

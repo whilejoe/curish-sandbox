@@ -10,6 +10,7 @@
     "jwt-decode": "^2.2.0",
     "localforage": "^1.5.0",
     "lodash": "^4.17.4",
+    "material-design-icons-svg": "^1.1.2",
     "polished": "^1.7.0",
     "qs": "^6.5.1",
     "react": "^15.6.1",

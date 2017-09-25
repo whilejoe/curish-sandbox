@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
+import SrOnly from 'components/SrOnly';
 import { THEME, PRIMARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
 
 let activeClass = '';
@@ -105,7 +106,7 @@ const Container = styled.div`
 `;
 
 const InputGroup = props => {
-  const { label, children, errorMessages, ...rest } = props;
+  const { hideLabel, label, children, errorMessages, ...rest } = props;
   return (
     <Container>
       <Input
@@ -113,8 +114,14 @@ const InputGroup = props => {
         onChange={e => (activeClass = e.target.value ? 'active' : '')}
         className={activeClass}
       />
-      <Label htmlFor={props.id}>{label}</Label>
-      <FormError model={rest.model} messages={errorMessages} />
+      {hideLabel ? (
+        <SrOnly>
+          <label htmlFor={props.id}>{label}</label>
+        </SrOnly>
+      ) : (
+        <Label htmlFor={props.id}>{label}</Label>
+      )}
+      {errorMessages && <FormError model={rest.model} messages={errorMessages} />}
     </Container>
   );
 };

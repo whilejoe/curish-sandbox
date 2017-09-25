@@ -13,7 +13,7 @@ export const THEME = {
 export const PALETTE = {
   GRAY: {
     LIGHT: '#F5F5F5',
-    MEDIUM: '#CCC',
+    MEDIUM: '#C7C7C7',
     DARK: '#333'
   }
 };

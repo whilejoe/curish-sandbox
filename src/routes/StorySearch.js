@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { gql, withApollo } from 'react-apollo';
 import qs from 'qs';
 import StoryContainer from 'components/StoryContainer';
-import StatelessInput from 'components/StatelessInput';
+import InputGroup from 'components/InputGroup';
 import ListStory from 'components/ListStory';
+import { set, reset } from 'abyss-form/lib/actions';
 
 class StorySearch extends Component {
   state = {
-    stories: [],
-    searchText: ''
+    stories: []
   };
 
   componentWillMount() {
@@ -38,7 +39,7 @@ class StorySearch extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    const query = { q: this.state.searchText };
+    const query = { q: this.props.storySearchForm.model.search };
     const str = qs.stringify(query);
     this.props.history.push({
       pathname: '/search',
@@ -51,12 +52,14 @@ class StorySearch extends Component {
       <StoryContainer>
         <h1>Search Stories</h1>
         <form onSubmit={this.handleOnSubmit}>
-          <StatelessInput
+          <InputGroup
             autoFocus
-            type="search"
+            id="search"
+            label="Search Stories"
+            hideLabel
+            type="text"
+            model="storySearch.search"
             placeholder="Search titles, tags, descriptions"
-            value={this.state.searchText}
-            onChange={e => this.setState({ searchText: e.target.value })}
             // onKeyDown={e => this.handleKeyDown(e)}
           />
         </form>
@@ -68,13 +71,14 @@ class StorySearch extends Component {
   _executeSearch = async queryString => {
     const query = qs.parse(queryString, { ignoreQueryPrefix: true });
     if (query.q) {
+      this.props.setSearchForm(query.q);
       const result = await this.props.client.query({
         query: ALL_STORIES_SEARCH_QUERY,
         variables: { searchText: query.q }
       });
       console.log('story search result', result);
       const stories = result.data.allStories;
-      this.setState({ stories, searchText: query.q });
+      this.setState({ stories });
     }
   };
 }
@@ -98,4 +102,15 @@ const ALL_STORIES_SEARCH_QUERY = gql`
   }
 `;
 
-export default withApollo(StorySearch);
+const mapStateToProps = state => ({
+  storySearchForm: state.forms.storySearch
+});
+
+const mapDispatchToProps = dispatch => ({
+  setSearchForm: val => dispatch(set('storySearch.search', val)),
+  clearSearchForm: dispatch(reset('storySearch.search'))
+});
+
+const ConnectedStorySearch = connect(mapStateToProps, mapDispatchToProps)(StorySearch);
+
+export default withApollo(ConnectedStorySearch);

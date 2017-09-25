@@ -29,7 +29,7 @@ const App = ({ userData: user }) => {
             return (
               <TransitionGroup component={FlexMain}>
                 <Switch key={props.location.pathname} location={props.location}>
-                  <FadeRoute exact path="/" component={Home} />
+                  <FadeRoute exact path="/" userResult={user} component={Home} />
                   <FadeRoute path="/101" component={About} />
                   <FadeRoute path="/search" component={StorySearch} />
                   <FadeRoute path="/profile" userResult={user} component={UserProfile} />
