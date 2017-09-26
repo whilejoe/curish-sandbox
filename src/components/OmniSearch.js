@@ -17,9 +17,9 @@ const OmniIcon = styled(Icon)`
 `;
 
 const OmniButton = styled.button`
+  height: 2rem;
   background-color: white;
   color: ${props => (props.expand ? THEME[PRIMARY_KEY] : PALETTE.GRAY.DARK)};
-  vertical-align: middle;
   transition: color 200ms ease-out;
 
   &:hover {
