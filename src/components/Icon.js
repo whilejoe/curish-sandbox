@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ICONS = {
-  newStory: require('material-design-icons-svg/paths/feather'),
-  newMessage: require('material-design-icons-svg/paths/message-plus'),
+  story: require('material-design-icons-svg/paths/feather'),
+  message: require('material-design-icons-svg/paths/message-text'),
   userCool: require('material-design-icons-svg/paths/emoticon-cool'),
   menu: require('material-design-icons-svg/paths/menu'),
   plus: require('material-design-icons-svg/paths/plus'),

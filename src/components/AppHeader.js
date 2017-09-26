@@ -98,7 +98,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
           <Flex gutters guttersVertical align="center" justify="space-between">
             <FlexContent space="self">
               <AuthedLogo exact to="/">
-                C<span>u</span>
+                C<span>urish</span>
               </AuthedLogo>
             </FlexContent>
             <FlexContent space={{ sm: 60, md: 40, lg: 30 }}>
