@@ -5,7 +5,7 @@ import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
 import Container from 'components/Container';
-import { AvatarLink } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import debounce from 'lodash/debounce';
@@ -236,7 +236,7 @@ class QuillEditor extends Component {
               <span>Author:&nbsp;</span>
             </FlexContent>
             <FlexContent>
-              <AvatarLink user={!match.params.id ? user : storyData.Story.author} small />
+              <Avatar user={!match.params.id ? user : storyData.Story.author} small />
             </FlexContent>
           </Flex>
         </StoryHeader>

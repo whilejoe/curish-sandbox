@@ -1,23 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
-import { AvatarLink } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import OmniSearch from 'components/OmniSearch';
 import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
+  position: relative;
   background-color: white;
   border-bottom: 1px solid #eee;
 
   ${props => {
     if (props.isAuthed) {
-      // return css`
-      //   padding-top: 0.6rem;
-      //   padding-bottom: 0.6rem;
-      // `;
+      return css`
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      `;
     }
   }};
 `;
@@ -96,16 +97,16 @@ const AppHeader = ({ userResult: { loading, user } }) => {
           </Flex>
         ) : (
           <Flex gutters guttersVertical align="center" justify="space-between">
-            <FlexContent space="self">
+            <FlexContent>
               <AuthedLogo exact to="/">
                 C<span>urish</span>
               </AuthedLogo>
             </FlexContent>
-            <FlexContent space={{ sm: 60, md: 40, lg: 30 }}>
+            <FlexContent space="self">
               <OmniSearch />
             </FlexContent>
             <FlexContent space="self">
-              {isUserAuthed && !loading && <AvatarLink user={user} />}
+              {isUserAuthed && !loading && <Avatar user={user} />}
             </FlexContent>
           </Flex>
         )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { AvatarLink } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 
 const StoryItemContainer = styled.div`margin-bottom: 2rem;`;
 
@@ -22,7 +22,7 @@ const ListStory = ({ story }) => (
     <StoryItemTitle>
       <Link to={`/write/${story.id}`}>{story.title}</Link>
     </StoryItemTitle>
-    <AvatarLink user={story.author} small />
+    <Avatar user={story.author} small />
     <StoryDescription>{story.description ? story.description : 'No description'}</StoryDescription>
   </StoryItemContainer>
 );

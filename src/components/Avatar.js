@@ -31,7 +31,7 @@ const AvatarName = styled.span`
   font-size: ${props => (props.small ? '0.9em' : '1em')};
 `;
 
-export const AvatarLink = ({ user, small, className }) => {
+const Avatar = ({ user, small, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
   return (
@@ -44,17 +44,4 @@ export const AvatarLink = ({ user, small, className }) => {
   );
 };
 
-export const Avatar = ({ user, small, className }) => {
-  if (!user) return null;
-  const { userName, profileURL } = user;
-  return (
-    <div className={className}>
-      {profileURL && (
-        <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
-      )}
-      {userName && <AvatarName small={small}>@{userName}</AvatarName>}
-    </div>
-  );
-};
-
-// export default Avatar;
+export default Avatar;

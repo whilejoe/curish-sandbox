@@ -7,8 +7,10 @@ const BREAK_POINTS = {
   lg: '1080px'
 };
 
-export const media = Object.keys(BREAK_POINTS).reduce((acc, label) => {
+const media = Object.keys(BREAK_POINTS).reduce((acc, label) => {
   acc[label] = (...args) => css`@media (min-width: ${BREAK_POINTS[label]}) {${css(...args)};}`;
 
   return acc;
 }, {});
+
+export default media;

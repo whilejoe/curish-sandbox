@@ -65,6 +65,18 @@ a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+button {
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 a {
   color: currentColor;
   font-family: $link-font;

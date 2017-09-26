@@ -7,7 +7,7 @@ import Icon from 'components/Icon';
 // import { AvatarLink } from 'components/Avatar';
 // import { THEME } from 'constants/theme';
 import { lighten, darken } from 'polished';
-import { media } from 'utils/media';
+import media from 'utils/media';
 
 const COLOR = 'DarkCyan';
 
