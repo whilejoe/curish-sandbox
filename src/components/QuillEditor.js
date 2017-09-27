@@ -10,6 +10,7 @@ import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import TextInput from 'abyss-form/lib/TextInput';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
@@ -25,8 +26,8 @@ const Input = styled.input`
   color: inherit;
   line-height: inherit;
   font-size: 2rem;
-  font-family: 'Roboto Slab', serif;
-  font-weight: 400;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
   text-transform: capitalize;
   border: none;
   outline: none;
@@ -55,7 +56,7 @@ const EditModeContainer = styled.div`
 `;
 
 const EditModeStatus = styled.span`
-  color: ${props => (props.mode === EDIT_MODE_SAVING ? 'SeaGreen' : '#b4b4b4')};
+  color: ${props => (props.mode === EDIT_MODE_SAVING ? THEME[PRIMARY_KEY] : '#b4b4b4')};
   font-size: 0.8em;
 `;
 

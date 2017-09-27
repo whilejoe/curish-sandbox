@@ -12,15 +12,6 @@ const Header = styled.header`
   position: relative;
   background-color: white;
   border-bottom: 1px solid #eee;
-
-  ${props => {
-    if (props.isAuthed) {
-      return css`
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-      `;
-    }
-  }};
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -57,18 +48,14 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const AuthedLogo = styled(NavLink)`
-  display: block;
-  font-size: 1.6rem;
-  line-height: 1;
+const Brand = styled(NavLink)`
+  display: inline-block;
+  padding: 1.8rem 1.8rem 1.8rem 0;
+  font-family: 'Merriweather', serif;
 
   &:hover,
   &:focus {
     text-decoration: none;
-  }
-
-  span {
-    font-size: 0.7em;
   }
 `;
 
@@ -81,9 +68,9 @@ const AppHeader = ({ userResult: { loading, user } }) => {
         {!isUserAuthed ? (
           <Flex gutters guttersVertical align="center">
             <FlexContent space="self">
-              <HeaderLink exact to="/">
+              <Brand exact to="/">
                 Curish
-              </HeaderLink>
+              </Brand>
             </FlexContent>
             <FlexContent offset={{ md: 4 }}>
               <nav>
@@ -98,9 +85,9 @@ const AppHeader = ({ userResult: { loading, user } }) => {
         ) : (
           <Flex gutters guttersVertical align="center" justify="space-between">
             <FlexContent>
-              <AuthedLogo exact to="/">
-                C<span>urish</span>
-              </AuthedLogo>
+              <Brand exact to="/">
+                Curish
+              </Brand>
             </FlexContent>
             <FlexContent space="self">
               <OmniSearch />

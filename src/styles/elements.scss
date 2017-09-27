@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Source+Sans+Pro:400');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Merriweather:700');
 
-$serif-font: 'Roboto Slab', serif !default;
+$serif-font: 'Merriweather', serif !default;
 $sanserif-font: 'Source Sans Pro', sans-serif !default;
 
 $heading-font: $serif-font !default;
-$heading-font-weight: 400 !default;
+$heading-font-weight: 700 !default;
 
 $copy-font: $sanserif-font !default;
 $copy-font-weight: 400;
 
-$link-font: $serif-font;
-$link-font-weight: 400;
+$link-font: $sanserif-font;
+$link-font-weight: 600;
 
 *,
 *:before,
@@ -53,7 +53,7 @@ h5,
 h6 {
   font-family: $heading-font;
   font-weight: $heading-font-weight;
-  color: #333;
+  color: #444;
 }
 
 input,
@@ -92,6 +92,10 @@ a {
   &:focus {
     outline: none;
   }
+}
+
+button {
+  font-weight: $link-font-weight;
 }
 
 img {

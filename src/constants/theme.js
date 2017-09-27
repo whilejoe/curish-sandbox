@@ -4,7 +4,7 @@ export const TERTIARY_KEY = 'tertiary';
 export const ERROR_KEY = 'error';
 
 export const THEME = {
-  [PRIMARY_KEY]: 'SteelBlue',
+  [PRIMARY_KEY]: 'DarkCyan',
   [SECONDARY_KEY]: 'lightseagreen',
   [TERTIARY_KEY]: 'Tomato',
   [ERROR_KEY]: 'IndianRed'

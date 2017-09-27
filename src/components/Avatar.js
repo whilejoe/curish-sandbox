@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const AvatarImage = styled.img`
   max-width: ${props => (props.small ? '2rem' : '2.5rem')};
@@ -17,11 +18,11 @@ const Link = styled(NavLink)`
   &:hover,
   &:focus,
   &.active {
-    color: Tomato;
+    color: ${THEME[PRIMARY_KEY]};
     text-decoration: none;
 
     & ${AvatarImage} {
-      border-color: Tomato;
+      border-color: ${THEME[PRIMARY_KEY]};
     }
   }
 `;

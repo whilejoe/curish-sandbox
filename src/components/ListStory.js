@@ -11,6 +11,8 @@ const StoryItemTitle = styled.h2`
   font-size: 1.25rem;
 `;
 
+const StoryItemLink = styled(Link)`font-family: inherit;`;
+
 const StoryDescription = styled.p`
   margin-top: 0.8rem;
   font-size: 0.9rem;
@@ -20,7 +22,7 @@ const StoryDescription = styled.p`
 const ListStory = ({ story }) => (
   <StoryItemContainer>
     <StoryItemTitle>
-      <Link to={`/write/${story.id}`}>{story.title}</Link>
+      <StoryItemLink to={`/write/${story.id}`}>{story.title}</StoryItemLink>
     </StoryItemTitle>
     <Avatar user={story.author} small />
     <StoryDescription>{story.description ? story.description : 'No description'}</StoryDescription>

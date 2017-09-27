@@ -7,7 +7,6 @@ import { Flex, FlexContent } from 'components/Flex';
 import StatelessInput from 'components/StatelessInput';
 import Icon from 'components/Icon';
 import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
-import media from 'utils/media';
 
 const OmniIcon = styled(Icon)`
   width: 1.2em;
@@ -29,30 +28,16 @@ const OmniButton = styled.button`
 
 const OmniInput = styled(StatelessInput)`
   position: absolute;
-  top: 100%;
-  width: 100%;
-  height: ${props => (props.expand ? '2rem' : '0px')};
   left: 0;
-  padding-top: ${props => (props.expand ? '1.3rem' : '0px')};
-  padding-bottom: ${props => (props.expand ? '1.3rem' : '0px')};
-  padding-right: 1.3rem;
-  padding-left: 1.3rem;
+  bottom: 0;
+  height: 3rem;
+  padding: 1.4rem;
   margin-bottom: 0;
-  background-color: white;
+  background-color: #f5f5f5;
   font-size: 0.85em;
-  overflow: hidden;
-  z-index: 1;
-  transition: height 180ms ease-out, padding 180ms ease-out;
-
-  ${media.md`
-    position: relative;
-    top: auto;
-    left: auto;
-    width: ${props => (props.expand ? '16rem' : 0)};
-    height: 2rem;
-    padding: ${props => (props.expand ? '0 0.5rem' : '0px')};
-    transition: width 180ms ease-out, padding 180ms ease-out;    
-  `};
+  z-index: ${props => (props.expand ? '1' : '-1')};
+  transform: ${props => (props.expand ? 'translateY(100%)' : 'translateY(0)')};
+  transition: transform 180ms ease-out;
 `;
 
 class OmniSearch extends Component {

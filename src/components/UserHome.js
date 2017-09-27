@@ -5,41 +5,39 @@ import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Icon from 'components/Icon';
 // import { AvatarLink } from 'components/Avatar';
-// import { THEME } from 'constants/theme';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { lighten, darken } from 'polished';
 import media from 'utils/media';
 
-const COLOR = 'DarkCyan';
+const COLOR = THEME[PRIMARY_KEY];
 
 const Header = styled.div`
-  padding-top: 4vw;
-  padding-bottom: 4vw;
-  margin-bottom: 3vh;
-  background-image: linear-gradient(to bottom, ${COLOR} 20%, ${lighten(0.1, COLOR)} 100%);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  background-image: linear-gradient(to bottom, ${COLOR} 30%, ${lighten(0.1, COLOR)} 100%);
   border-top: 1px solid ${darken(0.05, COLOR)};
   border-bottom: 1px solid ${darken(0.05, COLOR)};
   color: ${lighten(0.71, COLOR)};
 
   ${media.sm`
-    padding-top: 3vw;
-    padding-bottom: 3vw;
+    padding-top: 1.7rem;
+    padding-bottom: 1.7rem;
     background-image: linear-gradient(to right, ${COLOR} 30%, ${lighten(0.1, COLOR)} 100%);
   `};
 
-  ${media.lg`
-    padding-top: 2vw;
-    padding-bottom: 2vw;
+  ${media.md`
+    padding-top: 2rem;
+    padding-bottom: 2.2rem;
+    background-image: linear-gradient(to right, ${COLOR} 30%, ${lighten(0.1, COLOR)} 100%);
   `};
 `;
 
 const Headline = styled.h1`
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 1.28em;
-  line-height: 1.2;
+  font-size: 1.6em;
   color: inherit;
-
-  ${media.sm`font-size: 1.4em;`};
 `;
 
 const HeaderButton = ButtonLink.extend`
@@ -47,11 +45,11 @@ const HeaderButton = ButtonLink.extend`
   flex: 1 1 0%;
   align-items: center;
   justify-content: center;
-  height: 2rem;
-  width: 2rem;
+  height: 2.3rem;
+  width: 2.3rem;
   padding: 0;
   color: ${darken(0.18, COLOR)};
-  border-color: ${darken(0.18, COLOR)};
+  border: 2px solid ${darken(0.18, COLOR)};
   border-radius: 50%;
 
   &:hover,
@@ -60,11 +58,6 @@ const HeaderButton = ButtonLink.extend`
     background-color: ${darken(0.18, COLOR)};
     color: white;
   }
-
-  ${media.md`
-    height: 2.2rem;
-    width: 2.2rem;
-  `};
 `;
 
 const ButtonIcon = styled(Icon)`
@@ -93,7 +86,7 @@ const UserHome = ({ userResult }) => {
         <Container>
           <Flex gutters guttersVertical align="center" justify="space-between">
             <FlexContent space={[100, { sm: 'self' }]}>
-              <Headline>Hello, {user.fullName}</Headline>
+              <Headline>{user.fullName}</Headline>
             </FlexContent>
             <Flex space={[100, { sm: 'self' }]} gutters align="center">
               <FlexContent space="self">
@@ -112,7 +105,9 @@ const UserHome = ({ userResult }) => {
       </Header>
       <Container>
         <Flex gutters guttersVertical>
-          <FlexContent space={[100, { sm: 45, md: 40, lg: 30 }]}>placeholder</FlexContent>
+          <FlexContent>
+            <p>placeholder</p>
+          </FlexContent>
         </Flex>
       </Container>
     </div>
