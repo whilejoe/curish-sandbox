@@ -5,7 +5,6 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
-// import OmniSearch from 'components/OmniSearch';
 import Icon from 'components/Icon';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
@@ -55,6 +54,7 @@ const HeaderAvatar = styled(Avatar)`
 `;
 
 const Brand = styled(NavLink)`
+  display: block;
   padding: 1.8rem 0;
   font-family: 'Merriweather', serif;
 

@@ -23,7 +23,7 @@ const Icon = ({ type, title, ...props }) => {
     <SvgIcon
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1.3em 1.3em"
+      viewBox="0 0 24 24"
       focusable="false"
       aria-hidden={title ? false : true}
     >
