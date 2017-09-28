@@ -13,10 +13,10 @@
     "material-design-icons-svg": "^1.1.2",
     "polished": "^1.7.0",
     "qs": "^6.5.1",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-app-rewire-styled-components": "^3.0.0",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-quill": "1.1.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.2.2",
@@ -44,20 +44,20 @@
     "react-snapshot": "^1.2.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css":
+      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-app-rewired start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-app-rewired build && react-snapshot",
+    "build": "npm run build-css && react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject",
     "deploy": "npm run build && firebase deploy",
     "flow": "flow"
   },
   "reactSnapshot": {
-    "exclude": [
-      "/callback"
-    ],
+    "exclude": ["/callback"],
     "snapshotDelay": 300
   }
 }
