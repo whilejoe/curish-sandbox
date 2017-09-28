@@ -27,11 +27,6 @@ const Link = styled(NavLink)`
   }
 `;
 
-const AvatarName = styled.span`
-  display: inline-block;
-  font-size: ${props => (props.small ? '0.9em' : '1em')};
-`;
-
 const Avatar = ({ user, small, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
@@ -40,7 +35,7 @@ const Avatar = ({ user, small, className }) => {
       {profileURL && (
         <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
       )}
-      {userName && <AvatarName small={small}>@{userName}</AvatarName>}
+      {userName && <span>@{userName}</span>}
     </Link>
   );
 };

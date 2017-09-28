@@ -5,11 +5,12 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
-import OmniSearch from 'components/OmniSearch';
+// import OmniSearch from 'components/OmniSearch';
+import Icon from 'components/Icon';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
-  position: relative;
   background-color: white;
   border-bottom: 1px solid #eee;
 `;
@@ -48,13 +49,29 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
+const HeaderAvatar = styled(Avatar)`
+  display: block;
+  padding: 1.8rem 0;
+`;
+
 const Brand = styled(NavLink)`
-  display: inline-block;
-  padding: 1.8rem 1.8rem 1.8rem 0;
+  padding: 1.8rem 0;
   font-family: 'Merriweather', serif;
 
   &:hover,
   &:focus {
+    text-decoration: none;
+  }
+`;
+
+const SearchButton = styled(NavLink)`
+  display: block;
+  transition: color 200ms ease-out;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: ${THEME[PRIMARY_KEY]};
     text-decoration: none;
   }
 `;
@@ -90,10 +107,12 @@ const AppHeader = ({ userResult: { loading, user } }) => {
               </Brand>
             </FlexContent>
             <FlexContent space="self">
-              <OmniSearch />
+              <SearchButton to="/search">
+                <Icon type="search" />
+              </SearchButton>
             </FlexContent>
             <FlexContent space="self">
-              {isUserAuthed && !loading && <Avatar user={user} />}
+              {isUserAuthed && !loading && <HeaderAvatar user={user} />}
             </FlexContent>
           </Flex>
         )}
