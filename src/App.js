@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { gql, graphql } from 'react-apollo';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import AppHeader from 'components/AppHeader';
+import SubHeader from 'components/SubHeader';
 import LoginContainer from 'containers/LoginContainer';
 import VerifyContainer from 'containers/VerifyContainer';
 import CreateUserContainer from 'containers/CreateUserContainer';
@@ -23,6 +24,7 @@ const App = ({ userData: user }) => {
       <FlexApp>
         <FlexHeader>
           <AppHeader userResult={user} />
+          <SubHeader userResult={user} />
         </FlexHeader>
         <Route
           children={props => {

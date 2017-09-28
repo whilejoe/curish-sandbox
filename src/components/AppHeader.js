@@ -57,6 +57,7 @@ const Brand = styled(NavLink)`
   display: block;
   padding: 1.8rem 0;
   font-family: 'Merriweather', serif;
+  font-size: 1.2em;
 
   &:hover,
   &:focus {
@@ -78,9 +79,8 @@ const SearchButton = styled(NavLink)`
 
 const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
-  console.log('isUserAuthed', isUserAuthed);
   return (
-    <Header isAuthed={isUserAuthed}>
+    <Header>
       <Container>
         {!isUserAuthed ? (
           <Flex gutters guttersVertical align="center">

@@ -7,7 +7,8 @@ const ICONS = {
   userCool: require('material-design-icons-svg/paths/emoticon-cool'),
   menu: require('material-design-icons-svg/paths/menu'),
   plus: require('material-design-icons-svg/paths/plus'),
-  search: require('material-design-icons-svg/paths/magnify')
+  search: require('material-design-icons-svg/paths/magnify'),
+  home: require('material-design-icons-svg/paths/home')
 };
 
 const SvgIcon = styled.svg`
