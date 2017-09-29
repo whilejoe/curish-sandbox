@@ -17,7 +17,7 @@ const Header = styled.header`background-color: #f7f7f7;`;
 const HeaderLink = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.6rem 0.8rem;
+  padding: 0.8rem;
   font-size: 1.05em;
   text-align: center;
 
