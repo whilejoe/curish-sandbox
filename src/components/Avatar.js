@@ -22,14 +22,15 @@ const AvatarLink = styled(Link)`
   }
 `;
 
-const Avatar = ({ user, showImage = false, small, className }) => {
+const Avatar = ({ user, showImage = false, to, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
+  const location = to ? { pathname: '/profile', ...to } : '/profile';
   return (
-    <AvatarLink to="/profile" className={className}>
+    <AvatarLink to={location} className={className}>
       {showImage ? (
         profileURL ? (
-          <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
+          <AvatarImage src={profileURL} alt={`${userName} profile photo`} />
         ) : (
           <Icon type="user" title="profile link" />
         )

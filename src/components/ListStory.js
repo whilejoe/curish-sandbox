@@ -19,14 +19,20 @@ const StoryDescription = styled.p`
   color: #666;
 `;
 
-const ListStory = ({ story }) => (
-  <StoryItemContainer>
-    <StoryItemTitle>
-      <StoryItemLink to={`/write/${story.id}`}>{story.title}</StoryItemLink>
-    </StoryItemTitle>
-    <Avatar user={story.author} small />
-    <StoryDescription>{story.description ? story.description : 'No description'}</StoryDescription>
-  </StoryItemContainer>
-);
+const ListStory = ({ story, referrer }) => {
+  return (
+    <StoryItemContainer>
+      <StoryItemTitle>
+        <StoryItemLink to={{ pathname: `/write/${story.id}`, state: { referrer } }}>
+          {story.title}
+        </StoryItemLink>
+      </StoryItemTitle>
+      <Avatar user={story.author} to={{ state: { referrer } }} />
+      <StoryDescription>
+        {story.description ? story.description : 'No description'}
+      </StoryDescription>
+    </StoryItemContainer>
+  );
+};
 
 export default ListStory;

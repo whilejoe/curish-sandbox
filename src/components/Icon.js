@@ -5,12 +5,13 @@ const ICONS = {
   story: require('material-design-icons-svg/paths/feather'),
   message: require('material-design-icons-svg/paths/message-text-outline'),
   user: require('material-design-icons-svg/paths/account'),
-  menu: require('material-design-icons-svg/paths/menu'),
-  plus: require('material-design-icons-svg/paths/plus'),
+  // menu: require('material-design-icons-svg/paths/menu'),
+  // plus: require('material-design-icons-svg/paths/plus'),
   search: require('material-design-icons-svg/paths/magnify'),
   home: require('material-design-icons-svg/paths/home-outline'),
   alert: require('material-design-icons-svg/paths/bell-outline'),
-  trending: require('material-design-icons-svg/paths/pulse')
+  // trending: require('material-design-icons-svg/paths/pulse'),
+  back: require('material-design-icons-svg/paths/arrow-left')
 };
 
 const SvgIcon = styled.svg`

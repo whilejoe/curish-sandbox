@@ -13,7 +13,6 @@ class StorySearch extends Component {
   };
 
   componentWillMount() {
-    console.log('this.props.location.search', this.props.location.search);
     if (this.props.location.search) {
       this._executeSearch(this.props.location.search);
     }
@@ -63,7 +62,9 @@ class StorySearch extends Component {
             // onKeyDown={e => this.handleKeyDown(e)}
           />
         </form>
-        {this.state.stories.map(story => <ListStory key={story.id} story={story} />)}
+        {this.state.stories.map(story => (
+          <ListStory key={story.id} story={story} referrer={this.props.location} />
+        ))}
       </StoryContainer>
     );
   }

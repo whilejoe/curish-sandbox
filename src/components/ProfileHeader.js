@@ -38,7 +38,7 @@ const ProfileAvatar = styled(Avatar)`
   &:hover,
   &:focus,
   &.active {
-    color: currentColor;
+    color: inherit;
   }
 `;
 

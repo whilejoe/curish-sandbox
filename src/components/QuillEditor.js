@@ -4,7 +4,6 @@ import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
-import Container from 'components/Container';
 import Avatar from 'components/Avatar';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
@@ -203,7 +202,7 @@ class QuillEditor extends Component {
   render() {
     const { userResult: { user }, match, storyData } = this.props;
     const { title, quillContent, isEditMode, editModeState } = this.state;
-    if (storyData && storyData.loading) return <Container>Loading...</Container>;
+    if (storyData && storyData.loading) return <StoryContainer>Loading...</StoryContainer>;
     return (
       <StoryContainer style={{ position: 'relative' }}>
         {match.params.id && isAuthed() ? (
@@ -237,7 +236,7 @@ class QuillEditor extends Component {
               <span>Author:&nbsp;</span>
             </FlexContent>
             <FlexContent>
-              <Avatar user={!match.params.id ? user : storyData.Story.author} small />
+              <Avatar user={!match.params.id ? user : storyData.Story.author} />
             </FlexContent>
           </Flex>
         </StoryHeader>

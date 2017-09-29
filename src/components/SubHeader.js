@@ -1,5 +1,7 @@
-import React from 'react';
+// TODO: Clean up file
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
@@ -7,12 +9,10 @@ import Icon from 'components/Icon';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
-const Header = styled.header`background-color: #f7f7f7;`;
-
-// const HeaderNav = styled.div`
-//   margin-right: -1.2rem;
-//   margin-left: -1.2rem;
-// `;
+const Header = styled.header`
+  background-color: #f7f7f7;
+  overflow-y: hidden;
+`;
 
 const HeaderLink = styled(NavLink)`
   display: block;
@@ -20,6 +20,9 @@ const HeaderLink = styled(NavLink)`
   padding: 0.8rem;
   font-size: 1.05em;
   text-align: center;
+  transform: ${props => (props.showBack ? 'translate3d(0, 100%, 0)' : 'translate3d(0, 0%, 0)')};
+  opacity: ${props => (props.showBack ? '0' : '1')};
+  transition: transform 160ms ease-out, opacity 160ms ease-out, color 180ms ease-out;
 
   &:after {
     position: absolute;
@@ -31,7 +34,7 @@ const HeaderLink = styled(NavLink)`
     background-color: currentColor;
     opacity: 0;
     transform: translateY(5px);
-    transition: opacity 150ms ease, transform 150ms ease, color 150ms ease;
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
   }
 
   &:hover,
@@ -47,37 +50,69 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const SubHeader = ({ userResult: { user } }) => {
-  const isUserAuthed = isAuthed();
-  if (!isUserAuthed || !user) return null;
-  return (
-    <Header>
-      <Container>
-        <Flex align="center" justify="space-around">
-          <FlexContent space="self">
-            <HeaderLink to="/stories">
-              <Icon type="story" title="stories link" />
-            </HeaderLink>
-          </FlexContent>
-          <FlexContent space="self">
-            <HeaderLink to="/messages">
-              <Icon type="message" title="messages link" />
-            </HeaderLink>
-          </FlexContent>
-          <FlexContent space="self">
-            <HeaderLink exact to="/notifications">
-              <Icon type="alert" title="notififcations link" />
-            </HeaderLink>
-          </FlexContent>
-          <FlexContent space="self">
-            <HeaderLink to="/search">
-              <Icon type="search" title="link" />
-            </HeaderLink>
-          </FlexContent>
-        </Flex>
-      </Container>
-    </Header>
-  );
-};
+const BackLink = HeaderLink.extend`
+  position: absolute;
+  left: 1.2rem;
+  transform: ${props => (props.showBack ? 'translate3d(0%, 0, 0)' : 'translate3d(-100%, 0, 0)')};
+  opacity: ${props => (props.showBack ? '1' : '0')};
+  transition: transform 160ms ease-out, opacity 160ms ease-out;
+`;
 
-export default SubHeader;
+class SubHeader extends Component {
+  state = {
+    showBack: false
+  };
+  componentWillMount() {
+    if (this.props.location.state && this.props.location.state.referrer) {
+      this.setState({ showBack: true });
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.state !== this.props.location.state) {
+      if (nextProps.location.state && nextProps.location.state.referrer) {
+        this.setState({ showBack: true });
+      } else this.setState({ showBack: false });
+    }
+  }
+
+  render() {
+    const isUserAuthed = isAuthed();
+    const { userResult: { user }, location: { state } } = this.props;
+    const { showBack } = this.state;
+    if (!isUserAuthed || !user) return null;
+    console.log('this.state.showBack', showBack);
+    return (
+      <Header>
+        <Container style={{ position: 'relative' }}>
+          <BackLink to={state && state.referrer ? state.referrer : ''} showBack={showBack}>
+            <Icon type="back" title="go back" />
+          </BackLink>
+          <Flex align="center" justify="space-around">
+            <FlexContent space="self">
+              <HeaderLink to="/stories" showBack={showBack}>
+                <Icon type="story" title="stories link" />
+              </HeaderLink>
+            </FlexContent>
+            <FlexContent space="self">
+              <HeaderLink to="/messages" showBack={showBack}>
+                <Icon type="message" title="messages link" />
+              </HeaderLink>
+            </FlexContent>
+            <FlexContent space="self">
+              <HeaderLink exact to="/notifications" showBack={showBack}>
+                <Icon type="alert" title="notifications link" />
+              </HeaderLink>
+            </FlexContent>
+            <FlexContent space="self">
+              <HeaderLink to="/search" showBack={showBack}>
+                <Icon type="search" title="link" />
+              </HeaderLink>
+            </FlexContent>
+          </Flex>
+        </Container>
+      </Header>
+    );
+  }
+}
+
+export default withRouter(SubHeader);
