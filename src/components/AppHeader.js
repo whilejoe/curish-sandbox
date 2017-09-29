@@ -5,8 +5,8 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
-import Icon from 'components/Icon';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import Icon from 'components/Icon';
+// import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
@@ -49,15 +49,15 @@ const HeaderLink = styled(NavLink)`
 `;
 
 const HeaderAvatar = styled(Avatar)`
-  display: block;
-  padding: 1.8rem 0;
+  display: inline-block;
+  vertical-align: middle;
 `;
 
 const Brand = styled(NavLink)`
   display: block;
   padding: 1.8rem 0;
   font-family: 'Merriweather', serif;
-  font-size: 1.2em;
+  font-size: 1.15em;
 
   &:hover,
   &:focus {
@@ -65,17 +65,17 @@ const Brand = styled(NavLink)`
   }
 `;
 
-const SearchButton = styled(NavLink)`
-  display: block;
-  transition: color 200ms ease-out;
+// const SearchButton = styled(NavLink)`
+//   display: block;
+//   transition: color 200ms ease-out;
 
-  &:hover,
-  &:focus,
-  &.active {
-    color: ${THEME[PRIMARY_KEY]};
-    text-decoration: none;
-  }
-`;
+//   &:hover,
+//   &:focus,
+//   &.active {
+//     color: ${THEME[PRIMARY_KEY]};
+//     text-decoration: none;
+//   }
+// `;
 
 const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
@@ -107,12 +107,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
               </Brand>
             </FlexContent>
             <FlexContent space="self">
-              <SearchButton to="/search">
-                <Icon type="search" />
-              </SearchButton>
-            </FlexContent>
-            <FlexContent space="self">
-              {isUserAuthed && !loading && <HeaderAvatar user={user} />}
+              {isUserAuthed && !loading && <HeaderAvatar user={user} showImage />}
             </FlexContent>
           </Flex>
         )}

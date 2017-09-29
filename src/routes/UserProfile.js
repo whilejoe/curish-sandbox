@@ -15,13 +15,12 @@ const UserProfile = ({ userResult: { loading, user }, ...props }) => {
       </Container>
     );
   }
-  const { userName, email, createdAt } = user;
+  const { email, createdAt } = user;
   const joinedDate = new Date(createdAt).getFullYear();
   return (
     <div>
       <ProfileHeader user={user} />
       <Container>
-        <p>Username: @{userName}</p>
         <p>Email: {email}</p>
         <p>Year Joined: {joinedDate}</p>
         <Button onClick={logout}>Logout</Button>
