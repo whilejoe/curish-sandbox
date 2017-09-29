@@ -60,11 +60,6 @@ const SubHeader = ({ userResult: { user } }) => {
             </HeaderLink>
           </FlexContent>
           <FlexContent space="self">
-            <HeaderLink to="/search">
-              <Icon type="search" title="link" />
-            </HeaderLink>
-          </FlexContent>
-          <FlexContent space="self">
             <HeaderLink to="/messages">
               <Icon type="message" title="messages link" />
             </HeaderLink>
@@ -72,6 +67,11 @@ const SubHeader = ({ userResult: { user } }) => {
           <FlexContent space="self">
             <HeaderLink exact to="/notifications">
               <Icon type="alert" title="notififcations link" />
+            </HeaderLink>
+          </FlexContent>
+          <FlexContent space="self">
+            <HeaderLink to="/search">
+              <Icon type="search" title="link" />
             </HeaderLink>
           </FlexContent>
         </Flex>

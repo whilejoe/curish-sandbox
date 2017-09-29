@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import Link from 'components/Link';
 import Icon from 'components/Icon';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 
@@ -9,18 +9,13 @@ const AvatarImage = styled.img`
   vertical-align: middle;
   border: 2px solid transparent;
   border-radius: 50%;
+  transition: border-color 180ms ease-out;
 `;
 
-const Link = styled(NavLink)`
-  color: currentColor;
-  transition: color 100ms ease-out;
-
+const AvatarLink = styled(Link)`
   &:hover,
   &:focus,
   &.active {
-    color: ${THEME[PRIMARY_KEY]};
-    text-decoration: none;
-
     & ${AvatarImage} {
       border-color: ${THEME[PRIMARY_KEY]};
     }
@@ -31,7 +26,7 @@ const Avatar = ({ user, showImage = false, small, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
   return (
-    <Link to="/profile" className={className}>
+    <AvatarLink to="/profile" className={className}>
       {showImage ? (
         profileURL ? (
           <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
@@ -41,7 +36,7 @@ const Avatar = ({ user, showImage = false, small, className }) => {
       ) : (
         <span>@{userName}</span>
       )}
-    </Link>
+    </AvatarLink>
   );
 };
 
