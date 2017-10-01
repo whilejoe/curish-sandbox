@@ -27,7 +27,12 @@ const BackButton = ({ referrer, show }) => {
     <Transition in={show} timeout={DURATION}>
       {status => {
         return (
-          <BackLink to={referrer ? referrer : ''} status={status}>
+          <BackLink
+            to={referrer ? referrer : ''}
+            status={status}
+            tabIndex={!show && -1}
+            aria-hidden={!show}
+          >
             <Icon type="back" title="go back" />
           </BackLink>
         );
