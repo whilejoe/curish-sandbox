@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FADE_IN_DURATION, CROSS_FADE_DURATION } from 'constants/animation';
 import { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
 
-const statusOpacity = {
+const STATES = {
   [ENTERING]: 0.01,
   [ENTERED]: 1,
   [EXITING]: 0.01,
@@ -10,7 +10,7 @@ const statusOpacity = {
 };
 
 export const FadeIn = styled.div`
-  opacity: ${props => statusOpacity[props.status]};
+  opacity: ${props => STATES[props.status]};
   transition-property: opacity, background-color;
   transition-duration: ${props => props.duration || FADE_IN_DURATION}ms;
   transition-timing-function: ${props =>

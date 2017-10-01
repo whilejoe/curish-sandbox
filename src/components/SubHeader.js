@@ -1,8 +1,9 @@
 // TODO: Clean up file
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
+// import Link from 'components/Link';
+import BackButton from 'components/BackButton';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
@@ -50,13 +51,15 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const BackLink = HeaderLink.extend`
-  position: absolute;
-  left: 1.2rem;
-  transform: ${props => (props.showBack ? 'translate3d(0%, 0, 0)' : 'translate3d(-100%, 0, 0)')};
-  opacity: ${props => (props.showBack ? '1' : '0')};
-  transition: transform 160ms ease-out, opacity 160ms ease-out;
-`;
+// const BackLink = styled(Link)`
+//   position: absolute;
+//   top: 50%;
+//   left: 1.2rem;
+//   transform: ${props =>
+//     props.showBack ? 'translate3d(0%, -50%, 0)' : 'translate3d(-100%, -50%, 0)'};
+//   opacity: ${props => (props.showBack ? '1' : '0')};
+//   transition: transform 160ms ease-out, opacity 160ms ease-out;
+// `;
 
 class SubHeader extends Component {
   state = {
@@ -84,9 +87,7 @@ class SubHeader extends Component {
     return (
       <Header>
         <Container style={{ position: 'relative' }}>
-          <BackLink to={state && state.referrer ? state.referrer : ''} showBack={showBack}>
-            <Icon type="back" title="go back" />
-          </BackLink>
+          <BackButton referrer={state && state.referrer} show={showBack} />
           <Flex align="center" justify="space-around">
             <FlexContent space="self">
               <HeaderLink to="/stories" showBack={showBack}>
