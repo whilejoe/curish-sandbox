@@ -27,7 +27,6 @@ const Input = styled.input`
   font-size: 2rem;
   font-family: 'Merriweather', serif;
   font-weight: 700;
-  text-transform: capitalize;
   border: none;
   outline: none;
   box-shadow: none;

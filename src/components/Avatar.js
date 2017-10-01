@@ -25,7 +25,7 @@ const AvatarLink = styled(Link)`
 const Avatar = ({ user, showImage = false, to, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
-  const location = to ? { pathname: '/profile', ...to } : '/profile';
+  const location = to ? { pathname: `/${userName}`, ...to } : `/${userName}`;
   return (
     <AvatarLink to={location} className={className}>
       {showImage ? (

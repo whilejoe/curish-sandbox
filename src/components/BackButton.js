@@ -30,7 +30,7 @@ const BackButton = ({ referrer, show }) => {
           <BackLink
             to={referrer ? referrer : ''}
             status={status}
-            tabIndex={!show && -1}
+            tabIndex={!show ? -1 : 0}
             aria-hidden={!show}
           >
             <Icon type="back" title="go back" />

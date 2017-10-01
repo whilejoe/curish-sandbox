@@ -5,7 +5,6 @@ import Container from 'components/Container';
 const UserHome = ({ userResult }) => {
   if (userResult.loading) return <Container>Loading....</Container>;
   // add logic to redirect when user doesn't exist.
-  console.log('userResult', userResult);
   return (
     <div>
       <Container>

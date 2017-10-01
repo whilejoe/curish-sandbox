@@ -107,7 +107,8 @@ const AppHeader = ({ userResult: { loading, user } }) => {
               </Brand>
             </FlexContent>
             <FlexContent space="self">
-              {isUserAuthed && !loading && <HeaderAvatar user={user} showImage />}
+              {isUserAuthed &&
+                !loading && <HeaderAvatar user={user} showImage to={{ pathname: '/profile' }} />}
             </FlexContent>
           </Flex>
         )}

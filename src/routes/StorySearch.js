@@ -4,7 +4,7 @@ import { gql, withApollo } from 'react-apollo';
 import qs from 'qs';
 import StoryContainer from 'components/StoryContainer';
 import InputGroup from 'components/InputGroup';
-import ListStory from 'components/ListStory';
+import SearchStoryList from 'components/SearchStoryList';
 import { set, reset } from 'abyss-form/lib/actions';
 
 class StorySearch extends Component {
@@ -63,7 +63,7 @@ class StorySearch extends Component {
           />
         </form>
         {this.state.stories.map(story => (
-          <ListStory key={story.id} story={story} referrer={this.props.location} />
+          <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
         ))}
       </StoryContainer>
     );

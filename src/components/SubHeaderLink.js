@@ -54,7 +54,7 @@ const SubHeaderLink = ({ show, children, ...props }) => {
     <Transition in={show} timeout={DURATION}>
       {status => {
         return (
-          <NavAction {...props} status={status} tabIndex={!show && -1} aria-hidden={!show}>
+          <NavAction {...props} status={status} tabIndex={!show ? -1 : 0} aria-hidden={!show}>
             {children}
           </NavAction>
         );
