@@ -5,7 +5,7 @@
   "dependencies": {
     "abyss-form": "0.4.3",
     "auth0-js": "^8.10.1",
-    "draft-js": "^0.10.2",
+    "draft-js": "^0.10.3",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "localforage": "^1.5.0",
@@ -22,7 +22,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "react-scripts": "^1.0.14",
-    "react-transition-group": "^2.2.0",
+    "react-transition-group": "^2.2.1",
     "redux": "^3.7.0",
     "redux-action-buffer": "^1.1.0",
     "redux-devtools-extension": "^2.13.2",
@@ -44,10 +44,8 @@
     "react-snapshot": "^1.2.0"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-app-rewired start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-app-rewired build",
@@ -57,7 +55,9 @@
     "flow": "flow"
   },
   "reactSnapshot": {
-    "exclude": ["/callback"],
+    "exclude": [
+      "/callback"
+    ],
     "snapshotDelay": 300
   }
 }
