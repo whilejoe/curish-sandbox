@@ -65,7 +65,7 @@ class StorySearch extends Component {
         <h1>Search Curish</h1>
         <form onSubmit={this.handleOnSubmit}>
           <InputGroup
-            autoFocus
+            autoFocus={!this.props.location.search}
             id="search"
             label="Search Stories"
             hideLabel
