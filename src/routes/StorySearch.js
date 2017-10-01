@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { gql, withApollo } from 'react-apollo';
-import qs from 'qs';
+import { Flex, FlexContent } from 'components/Flex';
 import StoryContainer from 'components/StoryContainer';
 import InputGroup from 'components/InputGroup';
 import SearchStoryList from 'components/SearchStoryList';
+import Avatar from 'components/Avatar';
 import { set, reset } from 'abyss-form/lib/actions';
+import qs from 'qs';
+
+const CategoryHeader = styled.h2`
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #eee;
+`;
 
 class StorySearch extends Component {
   state = {
-    stories: []
+    stories: [],
+    users: []
   };
 
   componentWillMount() {
@@ -47,9 +59,10 @@ class StorySearch extends Component {
   };
 
   render() {
+    const { stories, users } = this.state;
     return (
       <StoryContainer>
-        <h1>Search Stories</h1>
+        <h1>Search Curish</h1>
         <form onSubmit={this.handleOnSubmit}>
           <InputGroup
             autoFocus
@@ -58,13 +71,36 @@ class StorySearch extends Component {
             hideLabel
             type="text"
             model="storySearch.search"
-            placeholder="Search titles, tags, descriptions"
+            placeholder="Search Users, Story titles/descriptions"
             // onKeyDown={e => this.handleKeyDown(e)}
           />
         </form>
-        {this.state.stories.map(story => (
-          <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
-        ))}
+        <Flex gutters guttersVertical>
+          {users.length > 0 && (
+            <FlexContent space={[100, { sm: 'reset' }]}>
+              <div>
+                <CategoryHeader>Users</CategoryHeader>
+              </div>
+              {users.map(user => (
+                <Avatar
+                  key={user.id}
+                  user={user}
+                  to={{ state: { referrer: this.props.location } }}
+                />
+              ))}
+            </FlexContent>
+          )}
+          {stories.length > 0 && (
+            <FlexContent space={[100, { sm: 'reset' }]}>
+              <div>
+                <CategoryHeader>Stories</CategoryHeader>
+              </div>
+              {stories.map(story => (
+                <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
+              ))}
+            </FlexContent>
+          )}
+        </Flex>
       </StoryContainer>
     );
   }
@@ -78,8 +114,8 @@ class StorySearch extends Component {
         variables: { searchText: query.q }
       });
       console.log('story search result', result);
-      const stories = result.data.allStories;
-      this.setState({ stories });
+      const { allStories, allUsers } = result.data;
+      this.setState({ stories: allStories, users: allUsers });
     }
   };
 }
@@ -92,6 +128,7 @@ const ALL_STORIES_SEARCH_QUERY = gql`
       orderBy: title_ASC
     ) {
       id
+      createdAt
       title
       description
       tags
@@ -99,6 +136,16 @@ const ALL_STORIES_SEARCH_QUERY = gql`
         id
         userName
       }
+    }
+    allUsers(
+      filter: { OR: [{ userName_contains: $searchText }, { fullName_contains: $searchText }] }
+      first: 10
+      orderBy: userName_ASC
+    ) {
+      id
+      userName
+      fullName
+      photoURL
     }
   }
 `;

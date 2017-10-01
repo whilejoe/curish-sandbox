@@ -17,14 +17,14 @@ const EDIT_MODE_SAVING = 'Saving...';
 const EDIT_MODE_SAVED = 'Saved';
 
 const Input = styled.input`
-  margin-top: 3rem;
+  margin-top: 2.8rem;
   margin-bottom: 0.5rem;
   padding: 0;
   width: 100%;
   background-color: transparent;
   color: inherit;
   line-height: inherit;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: 'Merriweather', serif;
   font-weight: 700;
   border: none;
@@ -39,10 +39,9 @@ const Input = styled.input`
 
 const StoryTitle = styled.h1`
   display: inline-block;
-  margin-top: 3rem;
+  margin-top: 2.8rem;
   margin-bottom: 0.5rem;
-  font-size: 2rem;
-  text-transform: capitalize;
+  font-size: 1.8rem;
 `;
 
 const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
@@ -76,9 +75,8 @@ class QuillEditor extends Component {
           title: storyData.Story.title
         });
       } else if (this.props.location.state) {
-        const { title = '', isEditMode = false, editModeState = '' } = this.props.location.state;
+        const { isEditMode = false, editModeState = '' } = this.props.location.state;
         this.setState({
-          title,
           isEditMode,
           editModeState
         });
@@ -199,7 +197,7 @@ class QuillEditor extends Component {
   };
 
   render() {
-    const { userResult: { user }, match, storyData } = this.props;
+    const { userResult: { user }, match, storyData, location } = this.props;
     const { title, quillContent, isEditMode, editModeState } = this.state;
     if (storyData && storyData.loading) return <StoryContainer>Loading...</StoryContainer>;
     return (
@@ -235,7 +233,10 @@ class QuillEditor extends Component {
               <span>Author:&nbsp;</span>
             </FlexContent>
             <FlexContent>
-              <Avatar user={!match.params.id ? user : storyData.Story.author} />
+              <Avatar
+                user={!match.params.id ? user : storyData.Story.author}
+                to={{ state: { referrer: location } }}
+              />
             </FlexContent>
           </Flex>
         </StoryHeader>

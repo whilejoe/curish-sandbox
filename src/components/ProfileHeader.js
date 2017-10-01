@@ -42,6 +42,11 @@ const ProfileAvatar = styled(Avatar)`
   }
 `;
 
+const Attribute = styled.p`
+  margin-bottom: 0;
+  font-size: 0.9em;
+`;
+
 // const HeaderButton = ButtonLink.extend`
 //   display: flex;
 //   flex: 1 1 0%;
@@ -68,13 +73,17 @@ const ProfileAvatar = styled(Avatar)`
 // `;
 
 const ProfileHeader = ({ user }) => {
+  const joined = user.createdAt ? new Date(user.createdAt).getFullYear() : '';
   return (
     <Header>
       <Container>
-        <Flex gutters guttersVertical align="center" justify="space-between">
+        <Flex gutters guttersVertical justify="space-between">
           <FlexContent space={[100, { sm: 'self' }]}>
             <Headline>{user && user.fullName}</Headline>
             <ProfileAvatar user={user} />
+          </FlexContent>
+          <FlexContent space={[100, { sm: 'self' }]}>
+            <Attribute>Since: {joined}</Attribute>
           </FlexContent>
           {/* <Flex space={[100, { sm: 'self' }]} gutters align="center">
             <FlexContent space="self">
