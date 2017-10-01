@@ -13,6 +13,9 @@ import About from 'routes/About';
 import StorySearch from 'routes/StorySearch';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
+import UserStories from 'routes/UserStories';
+import Messages from 'routes/Messages';
+import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
 import FadeRoute from 'components/FadeRoute';
@@ -35,6 +38,9 @@ const App = ({ userData: user }) => {
                   <FadeRoute path="/101" component={About} />
                   <FadeRoute path="/search" component={StorySearch} />
                   <FadeRoute path="/profile" userResult={user} component={UserProfile} />
+                  <FadeRoute path="/stories" userResult={user} component={UserStories} />
+                  <FadeRoute path="/messages" userResult={user} component={Messages} />
+                  <FadeRoute path="/notifications" userResult={user} component={Notifications} />
                   <FadeRoute
                     path="/write/:id?"
                     userResult={user}
