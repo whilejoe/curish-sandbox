@@ -76,6 +76,16 @@ class StorySearch extends Component {
           />
         </form>
         <Flex gutters guttersVertical>
+          {stories.length > 0 && (
+            <FlexContent space={[100, { sm: 55, md: 70, lg: 75 }]}>
+              <div>
+                <CategoryHeader>Stories</CategoryHeader>
+              </div>
+              {stories.map(story => (
+                <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
+              ))}
+            </FlexContent>
+          )}
           {users.length > 0 && (
             <FlexContent space={[100, { sm: 'reset' }]}>
               <div>
@@ -87,16 +97,6 @@ class StorySearch extends Component {
                   user={user}
                   to={{ state: { referrer: this.props.location } }}
                 />
-              ))}
-            </FlexContent>
-          )}
-          {stories.length > 0 && (
-            <FlexContent space={[100, { sm: 'reset' }]}>
-              <div>
-                <CategoryHeader>Stories</CategoryHeader>
-              </div>
-              {stories.map(story => (
-                <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
               ))}
             </FlexContent>
           )}
