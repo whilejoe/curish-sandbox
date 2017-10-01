@@ -7,8 +7,8 @@ import { THEME, PRIMARY_KEY } from 'constants/theme';
 const DURATION = 160;
 
 const STATES = {
-  [ENTERING]: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
-  [ENTERED]: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
+  [ENTERING]: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+  [ENTERED]: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
   [EXITING]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' },
   [EXITED]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' }
 };
@@ -32,7 +32,7 @@ const NavAction = styled(NavLink)`
     width: 100%;
     background-color: currentColor;
     opacity: 0;
-    transform: translateY(5px);
+    transform: translate3d(0, 5px, 0);
     transition: opacity 200ms ease-in, transform 200ms ease-in;
   }
 
@@ -44,7 +44,7 @@ const NavAction = styled(NavLink)`
 
     &:after {
       opacity: 1;
-      transform: translateY(0px);
+      transform: translate3d(0, 0, 0);
     }
   }
 `;
