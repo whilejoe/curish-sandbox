@@ -105,15 +105,16 @@ const Container = styled.div`
   margin-bottom: 2.2rem;
 `;
 
+const handleOnChange = (e, onChange) => {
+  activeClass = e.target.value ? 'active' : '';
+  if (onChange) onChange();
+};
+
 const InputGroup = props => {
-  const { hideLabel, label, children, errorMessages, ...rest } = props;
+  const { hideLabel, label, children, errorMessages, onChange, ...rest } = props;
   return (
     <Container>
-      <Input
-        {...rest}
-        onChange={e => (activeClass = e.target.value ? 'active' : '')}
-        className={activeClass}
-      />
+      <Input {...rest} onChange={e => handleOnChange(e, onChange)} className={activeClass} />
       {hideLabel ? (
         <SrOnly>
           <label htmlFor={props.id}>{label}</label>
