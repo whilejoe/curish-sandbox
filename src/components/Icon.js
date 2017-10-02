@@ -11,7 +11,8 @@ const ICONS = {
   home: require('material-design-icons-svg/paths/home-outline'),
   alert: require('material-design-icons-svg/paths/bell-outline'),
   // trending: require('material-design-icons-svg/paths/pulse'),
-  back: require('material-design-icons-svg/paths/arrow-left')
+  back: require('material-design-icons-svg/paths/arrow-left'),
+  plus: require('material-design-icons-svg/paths/plus')
 };
 
 const SvgIcon = styled.svg`

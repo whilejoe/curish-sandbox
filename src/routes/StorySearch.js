@@ -109,7 +109,7 @@ class StorySearch extends Component {
         <InputGroup
           autoFocus={!this.props.location.search}
           id="search"
-          label="Search Stories"
+          label="Search Users, Story titles/descriptions"
           hideLabel
           type="text"
           model="storySearch.search"

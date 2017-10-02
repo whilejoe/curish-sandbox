@@ -11,7 +11,7 @@ const STATES = {
 
 export const FadeIn = styled.div`
   opacity: ${props => STATES[props.status]};
-  transition-property: opacity, background-color;
+  transition-property: opacity;
   transition-duration: ${props => props.duration || FADE_IN_DURATION}ms;
   transition-timing-function: ${props =>
     props.status === ENTERING || props.status === ENTERED ? 'ease-in' : 'ease-out'};
