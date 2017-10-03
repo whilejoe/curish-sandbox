@@ -23,7 +23,21 @@ const About = () => {
       <h2>The Moment We Kissed</h2>
       <p>
         "Sweetie, what is a girl like you doing hitchhiking out in the middle of nowhere?" said a
+        middle aged woman seated in the passenger seat of the Jeep. She was in such a hurry to get
+        out of there that she hardly had time to grab any of her things. All she had in the world
+        were the clothes on her back and a backpack full of underwear, t-shirts, and make-up.
+      </p>
+      <p>
+        "Sweetie, what is a girl like you doing hitchhiking out in the middle of nowhere?" said a
         middle aged woman seated in the passenger seat of the Jeep.
+      </p>
+      <h3>Our Last Night</h3>
+      <p>
+        That is why she was hitchhiking along the interstate that afternoon, praying to God that
+        someone would stop before it got dark. She had no idea where she wanted to go, just that she
+        needed to get far away from the life she was leaving behind. Just when she was beginning to
+        think no one would stop for her, an old Jeep slowed to a stop just a few yards ahead of her.
+        Thinking it could take off at any moment, Kay ran toward it with her tired legs.
       </p>
     </StoryContainer>
   );

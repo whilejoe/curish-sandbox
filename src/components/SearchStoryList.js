@@ -5,26 +5,14 @@ import Avatar from 'components/Avatar';
 
 const StoryItemContainer = styled.div`margin-bottom: 2rem;`;
 
-const StoryItemHeader = styled.div`
-  margin-top: 0;
-  margin-bottom: 0.4rem;
-`;
+const StoryItemHeader = styled.div`margin-bottom: 0.4rem;`;
 
-const StoryItemTitle = styled.h3`
-  display: inline-block;
-  margin-top: 0;
-  margin-right: 0.8rem;
-  margin-bottom: 0;
-  vertical-align: middle;
-`;
+const StoryItemTitle = styled.h3`margin-bottom: 0.1em;`;
 
-const StoryItemLink = styled(Link)`
-  font-family: inherit;
-  font-size: 1.2rem;
-`;
+const StoryItemLink = styled(Link)`font-family: inherit;`;
 
 const StoryDescription = styled.p`
-  margin-top: 0.8rem;
+  margin-top: 0.5rem;
   font-size: 0.9rem;
   color: #666;
 `;

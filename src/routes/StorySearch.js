@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { gql, withApollo } from 'react-apollo';
 import { Flex, FlexContent } from 'components/Flex';
-import StoryContainer from 'components/StoryContainer';
+import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import InputGroup from 'components/InputGroup';
 import SearchStoryList from 'components/SearchStoryList';
 import Avatar from 'components/Avatar';
@@ -11,12 +12,11 @@ import debounce from 'lodash/debounce';
 import { set, reset } from 'abyss-form/lib/actions';
 import qs from 'qs';
 
-const CategoryHeader = styled.h2`
-  display: inline-block;
-  margin-top: 0rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid #eee;
+const CategoryHeader = styled.h2`margin-top: 0;`;
+
+const SearchContainer = styled.div`
+  max-width: 44rem;
+  margin: 0 auto;
 `;
 
 class StorySearch extends Component {
@@ -104,46 +104,50 @@ class StorySearch extends Component {
   render() {
     const { stories, users } = this.state;
     return (
-      <StoryContainer>
-        <h1>Search Curish</h1>
-        <InputGroup
-          autoFocus={!this.props.location.search}
-          id="search"
-          label="Search Users, Story titles/descriptions"
-          hideLabel
-          type="text"
-          model="storySearch.search"
-          placeholder="Search Users, Story titles/descriptions"
-          // onKeyDown={this.handleKeyDown}
-          onChange={this.debouncedOnChange}
-        />
-        <Flex gutters guttersVertical>
-          {stories.length > 0 && (
-            <FlexContent space={[100, { sm: 'reset' }]}>
-              <div>
-                <CategoryHeader>Stories</CategoryHeader>
-              </div>
-              {stories.map(story => (
-                <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
-              ))}
-            </FlexContent>
-          )}
-          {users.length > 0 && (
-            <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
-              <div>
-                <CategoryHeader>Users</CategoryHeader>
-              </div>
-              {users.map(user => (
-                <Avatar
-                  key={user.id}
-                  user={user}
-                  to={{ state: { referrer: this.props.location } }}
-                />
-              ))}
-            </FlexContent>
-          )}
-        </Flex>
-      </StoryContainer>
+      <PageContainer>
+        <Container>
+          <SearchContainer>
+            <h1>Search Curish</h1>
+            <InputGroup
+              autoFocus={!this.props.location.search}
+              id="search"
+              label="Search Users, Story titles/descriptions"
+              hideLabel
+              type="text"
+              model="storySearch.search"
+              placeholder="Search Users, Story titles/descriptions"
+              // onKeyDown={this.handleKeyDown}
+              onChange={this.debouncedOnChange}
+            />
+            <Flex gutters guttersVertical>
+              {stories.length > 0 && (
+                <FlexContent space={[100, { sm: 'reset' }]}>
+                  <div>
+                    <CategoryHeader>Stories</CategoryHeader>
+                  </div>
+                  {stories.map(story => (
+                    <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
+                  ))}
+                </FlexContent>
+              )}
+              {users.length > 0 && (
+                <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
+                  <div>
+                    <CategoryHeader>Users</CategoryHeader>
+                  </div>
+                  {users.map(user => (
+                    <Avatar
+                      key={user.id}
+                      user={user}
+                      to={{ state: { referrer: this.props.location } }}
+                    />
+                  ))}
+                </FlexContent>
+              )}
+            </Flex>
+          </SearchContainer>
+        </Container>
+      </PageContainer>
     );
   }
 }

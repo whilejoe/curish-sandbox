@@ -1,25 +1,21 @@
 import React from 'react';
-import { Flex, FlexContent } from 'components/Flex';
+import PageContainer from 'components/PageContainer';
 import Container from 'components/Container';
 import NewItemButton from 'components/NewItemButton';
 
-const Messages = ({ userResult: { loading, user }, location, ...props }) => {
+const UserStories = ({ userResult: { loading, user }, location, ...props }) => {
   if (loading) return <Container>Loading...</Container>;
   return (
-    <Container>
-      <Flex gutters align="center">
-        <FlexContent>
-          <h1>Messages</h1>
-        </FlexContent>
-        <FlexContent space="self">
-          <NewItemButton
-            to={{ pathname: '/message', state: { referrer: location } }}
-            title="new message"
-          />
-        </FlexContent>
-      </Flex>
-    </Container>
+    <PageContainer>
+      <Container>
+        <h1>Messages</h1>
+        <NewItemButton
+          to={{ pathname: '/write', state: { referrer: location } }}
+          title="new story"
+        />
+      </Container>
+    </PageContainer>
   );
 };
 
-export default Messages;
+export default UserStories;

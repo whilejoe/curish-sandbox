@@ -17,16 +17,14 @@ const EDIT_MODE_SAVING = 'Saving...';
 const EDIT_MODE_SAVED = 'Saved';
 
 const Input = styled.input`
-  margin-top: 2.8rem;
-  margin-bottom: 0.5rem;
-  padding: 0;
   width: 100%;
+  margin: 0.87890625em 0 0.2em;
   background-color: transparent;
-  color: inherit;
-  line-height: inherit;
-  font-size: 1.8rem;
+  font-size: 1.7578125em;
   font-family: 'Merriweather', serif;
   font-weight: 700;
+  line-height: inherit;
+  color: #444;
   border: none;
   outline: none;
   box-shadow: none;
@@ -37,19 +35,14 @@ const Input = styled.input`
   }
 `;
 
-const StoryTitle = styled.h1`
-  display: inline-block;
-  margin-top: 2.8rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
-`;
+const StoryTitle = styled.h1`margin-bottom: 0.2em;`;
 
 const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
 
 const EditModeContainer = styled.div`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.25rem;
+  right: 1.25rem;
 `;
 
 const EditModeStatus = styled.span`
