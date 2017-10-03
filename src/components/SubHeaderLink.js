@@ -16,8 +16,9 @@ const STATES = {
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.8rem;
+  padding: 0.85rem;
   font-size: 1.05em;
+  line-height: 1;
   text-align: center;
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};

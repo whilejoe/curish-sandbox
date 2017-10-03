@@ -16,9 +16,11 @@ const ICONS = {
 };
 
 const SvgIcon = styled.svg`
+  display: inline-block;
   width: 1.25em;
   height: 1.25em;
   fill: currentColor;
+  vertical-align: middle;
 `;
 
 const Icon = ({ type, title, ...props }) => {
