@@ -39,7 +39,7 @@ class SubHeader extends Component {
       <Header>
         <Container style={{ position: 'relative' }}>
           <BackButton referrer={state && state.referrer} show={showBack} />
-          <Flex align="center" justify="space-around">
+          <Flex align="center" justify={['space-between', { sm: 'space-around' }]}>
             <FlexContent space="self">
               <SubHeaderLink to="/stories" show={!showBack}>
                 <Icon type="story" title="stories link" />
