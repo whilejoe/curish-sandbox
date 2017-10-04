@@ -21,6 +21,7 @@ const Verify = ({ loginForm, verifyForm, verifyLoginCode }) => {
         model="verify.code"
         validators={{ required: value => !value }}
         errorMessages={{ required: 'A code is required' }}
+        onKeyDown={e => e.keyCode === 13 && verifyLoginCode(phone, code)}
       />
       <Button onClick={() => verifyLoginCode(phone, code)}>Verify Code</Button>
     </PageContainer>

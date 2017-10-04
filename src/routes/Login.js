@@ -30,6 +30,7 @@ const Login = ({ loginForm, beginLogin }) => {
           required: 'A phone number is required to log in'
           // validate: 'Phone number must be valid'
         }}
+        onKeyDown={e => e.keyCode === 13 && beginLogin(phone)}
       />
       <Button onClick={() => beginLogin(phone)}>Send Text</Button>
     </PageContainer>
