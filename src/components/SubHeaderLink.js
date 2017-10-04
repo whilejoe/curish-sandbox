@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const DURATION = 160;
 
@@ -16,8 +16,8 @@ const STATES = {
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.85rem;
-  font-size: 1.05em;
+  padding: 0.85rem 0.9rem;
+  font-size: 1.15em;
   line-height: 1;
   text-align: center;
   transform: ${props => STATES[props.status].transform};
@@ -34,13 +34,12 @@ const NavAction = styled(NavLink)`
     background-color: currentColor;
     opacity: 0;
     transform: translate3d(0, 5px, 0);
-    transition: opacity 200ms ease-in, transform 200ms ease-in;
+    transition: opacity 180ms ease-out, transform 180ms ease-out;
   }
 
   &:hover,
   &:focus,
   &.active {
-    color: ${THEME[PRIMARY_KEY]};
     text-decoration: none;
 
     &:after {

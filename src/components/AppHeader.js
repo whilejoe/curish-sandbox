@@ -6,12 +6,12 @@ import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
 // import Icon from 'components/Icon';
-// import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
-  background-color: white;
-  border-bottom: 1px solid #eee;
+  background-color: ${THEME[PRIMARY_KEY]};
+  color: white;
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -50,12 +50,13 @@ const HeaderLink = styled(NavLink)`
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
+  padding: 1rem 0;
   vertical-align: middle;
 `;
 
 const Brand = styled(NavLink)`
   display: block;
-  padding: 1.25rem 0;
+  padding: 1rem 0;
   font-family: 'Merriweather', serif;
   font-size: 1.15em;
   line-height: 1;
@@ -84,7 +85,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
     <Header>
       <Container>
         {!isUserAuthed ? (
-          <Flex gutters guttersVertical align="center">
+          <Flex gutters align="center">
             <FlexContent space="self">
               <Brand exact to="/">
                 Curish
@@ -101,7 +102,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
             </FlexContent>
           </Flex>
         ) : (
-          <Flex gutters guttersVertical align="center" justify="space-between">
+          <Flex gutters align="center" justify="space-between">
             <FlexContent>
               <Brand exact to="/">
                 Curish

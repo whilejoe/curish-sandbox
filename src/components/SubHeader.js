@@ -6,11 +6,15 @@ import SubHeaderLink from 'components/SubHeaderLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { lighten } from 'polished';
 import { isAuthed } from 'utils/AuthService';
 
-const Header = styled.header`
-  background-color: #f7f7f7;
-  overflow-y: hidden;
+const Header = styled.div`
+  background-color: ${lighten(0.52, THEME[PRIMARY_KEY])};
+  color: ${THEME[PRIMARY_KEY]};
+  box-shadow: 0px -2px 8px -1px;
+  overflow: hidden;
 `;
 
 class SubHeader extends Component {
@@ -39,7 +43,7 @@ class SubHeader extends Component {
       <Header>
         <Container style={{ position: 'relative' }}>
           <BackButton referrer={state && state.referrer} show={showBack} />
-          <Flex align="center" justify={['space-between', { sm: 'space-around' }]}>
+          <Flex align="center" justify="space-around">
             <FlexContent space="self">
               <SubHeaderLink to="/stories" show={!showBack}>
                 <Icon type="story" title="stories link" />

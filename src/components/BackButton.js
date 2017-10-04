@@ -17,7 +17,9 @@ const BackLink = styled(Link)`
   position: absolute;
   top: 50%;
   left: 0;
-  padding: 0.8rem 1.2rem;
+  padding: 0.85rem;
+  font-size: 1.15em;
+  line-height: 1;
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
   transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out`};
