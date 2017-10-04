@@ -1,11 +1,12 @@
 import React from 'react';
 import Container from 'components/Container';
+import PageContainer from 'components/PageContainer';
 import ProfileHeader from 'components/ProfileHeader';
 import ProfileStoryList from 'components/ProfileStoryList';
 import NoMatch from 'routes/NoMatch';
 
 const Profile = ({ profile: { loading, User }, location }) => {
-  if (loading) return <Container>Loading...</Container>;
+  if (loading) return <PageContainer>Loading...</PageContainer>;
   // Since userName is a param on the root url
   // we catch the no match here.
   if (!User) return <NoMatch location={location} />;

@@ -5,6 +5,7 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
+import Icon from 'components/Icon';
 // import Icon from 'components/Icon';
 import { PALETTE } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
@@ -17,11 +18,8 @@ const Header = styled.header`
 const HeaderLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  padding: 1.8rem 0.8rem;
-
-  &:not(:last-child) {
-    margin-right: 0.9rem;
-  }
+  padding: 1.15rem 1rem;
+  line-height: 1;
 
   &:after {
     position: absolute;
@@ -48,6 +46,12 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
+const IconLink = styled(NavLink)`
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+`;
+
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
   padding: 1rem 0;
@@ -70,6 +74,17 @@ const Brand = styled(NavLink)`
   &:hover,
   &:focus {
     text-decoration: none;
+  }
+`;
+
+const LoginButton = ButtonLink.extend`
+  color: currentColor;
+
+  &:hover,
+  &:focus,
+  &.active {
+    background-color: white;
+    color: ${PALETTE.HEADER};
   }
 `;
 
@@ -98,13 +113,15 @@ const AppHeader = ({ userResult: { loading, user } }) => {
               </Brand>
             </FlexContent>
             <FlexContent offset={{ md: 4 }}>
-              <nav>
-                <HeaderLink to="/101">101</HeaderLink>
-                <HeaderLink to="/search">Search</HeaderLink>
-              </nav>
+              <HeaderLink to="/101">101</HeaderLink>
             </FlexContent>
             <FlexContent space="self">
-              <ButtonLink to="/login">Login</ButtonLink>
+              <IconLink to="/search">
+                <Icon type="search" title="search link" />
+              </IconLink>
+            </FlexContent>
+            <FlexContent space="self">
+              <LoginButton to="/login">Login</LoginButton>
             </FlexContent>
           </Flex>
         ) : (

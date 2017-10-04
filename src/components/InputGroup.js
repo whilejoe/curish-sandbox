@@ -24,6 +24,7 @@ export const Label = styled.label`
   left: 0;
   height: 100%;
   font-size: inherit;
+  font-weight: 600;
   color: ${COLOR};
   cursor: text;
   transition: transform 0.2s ease-out;
@@ -102,7 +103,8 @@ const FormError = styled(ErrorMessage)`
 
 const Container = styled.div`
   position: relative;
-  margin-bottom: 2.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
 `;
 
 const handleOnChange = (e, onChange) => {

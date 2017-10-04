@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Button from 'components/Button';
 import { Flex, FlexContent } from 'components/Flex';
 import { Input } from 'components/InputGroup';
-import Container from 'components/Container';
-import UserHome from 'components/UserHome';
+import PageContainer from 'components/PageContainer';
+import UserHome from 'routes/UserHome';
 import { isAuthed } from 'utils/AuthService';
 
 const Title = styled.h1`
@@ -15,7 +15,7 @@ const Title = styled.h1`
 const Home = ({ userResult }) => {
   if (!isAuthed()) {
     return (
-      <Container>
+      <PageContainer>
         <Title>Curious?</Title>
         <Flex gutters guttersVertical align="flex-end" justify="center">
           <FlexContent space={[100, { sm: 45, md: 40, lg: 30 }]}>
@@ -30,7 +30,7 @@ const Home = ({ userResult }) => {
             <Button>Search</Button>
           </FlexContent>
         </Flex>
-      </Container>
+      </PageContainer>
     );
   }
   return <UserHome userResult={userResult} />;

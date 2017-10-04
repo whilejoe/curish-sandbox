@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'components/Button';
-import Container from 'components/Container';
+import PageContainer from 'components/PageContainer';
 import InputGroup from 'components/InputGroup';
 import { Redirect } from 'react-router-dom';
 import { isAuthed } from 'utils/AuthService';
@@ -11,7 +11,7 @@ const Verify = ({ loginForm, verifyForm, verifyLoginCode }) => {
   const { phone } = loginForm.model;
   const { code } = verifyForm.model;
   return (
-    <Container narrow>
+    <PageContainer narrow>
       <h1>Enter Code!</h1>
       <InputGroup
         autoFocus
@@ -23,7 +23,7 @@ const Verify = ({ loginForm, verifyForm, verifyLoginCode }) => {
         errorMessages={{ required: 'A code is required' }}
       />
       <Button onClick={() => verifyLoginCode(phone, code)}>Verify Code</Button>
-    </Container>
+    </PageContainer>
   );
 };
 

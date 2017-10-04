@@ -16,7 +16,7 @@ const PlusIcon = styled(Icon)`
 
 const HeaderButton = styled(Link)`
   position: absolute;
-  top: 0;
+  top: 2rem;
   right: 0.8rem;
   display: flex;
   flex: 1 1 0%;

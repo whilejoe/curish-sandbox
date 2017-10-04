@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'components/Button';
-import Container from 'components/Container';
+import PageContainer from 'components/PageContainer';
 import InputGroup from 'components/InputGroup';
 import { Redirect } from 'react-router-dom';
 import { isAuthed } from 'utils/AuthService';
@@ -10,9 +10,9 @@ const Login = ({ loginForm, beginLogin }) => {
 
   const { phone } = loginForm.model;
   return (
-    <Container narrow>
+    <PageContainer narrow>
       <h1>Login/Join</h1>
-      <h3>We'll text you a login code</h3>
+      <p>We'll text you a login code</p>
       <InputGroup
         autoFocus
         id="phone"
@@ -32,7 +32,7 @@ const Login = ({ loginForm, beginLogin }) => {
         }}
       />
       <Button onClick={() => beginLogin(phone)}>Send Text</Button>
-    </Container>
+    </PageContainer>
   );
 };
 

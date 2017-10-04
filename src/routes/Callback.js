@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Container from 'components/Container';
+import PageContainer from 'components/PageContainer';
 import { parseURL } from 'utils/AuthService';
 
 class Callback extends Component {
@@ -19,7 +19,7 @@ class Callback extends Component {
   }
 
   render() {
-    return this.props.userResult.loading ? <Container>Loading...</Container> : null;
+    return this.props.userResult.loading ? <PageContainer>Loading...</PageContainer> : null;
   }
 }
 
