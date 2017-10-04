@@ -16,6 +16,7 @@ const CategoryHeader = styled.h2`margin-top: 0;`;
 const SearchContainer = styled.div`
   max-width: 44rem;
   margin: 0 auto;
+  padding-top: 0.5rem;
 `;
 
 class StorySearch extends Component {
@@ -105,16 +106,16 @@ class StorySearch extends Component {
     return (
       <PageContainer>
         <SearchContainer>
-          <h1>Search Curish</h1>
           <InputGroup
             autoFocus={!this.props.location.search}
             id="search"
-            label="Search Users, Story titles/descriptions"
-            hideLabel
+            label="Search Curish"
+            // hideLabel
             type="text"
             model="storySearch.search"
-            placeholder="Search Users, Story titles/descriptions"
+            // placeholder="Search Curish"
             // onKeyDown={this.handleKeyDown}
+            placeholder=""
             onChange={this.debouncedOnChange}
           />
           <Flex gutters guttersVertical>
