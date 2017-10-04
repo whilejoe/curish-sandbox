@@ -6,11 +6,11 @@ import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
 // import Icon from 'components/Icon';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { PALETTE } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
-  background-color: ${THEME[PRIMARY_KEY]};
+  background-color: ${PALETTE.HEADER};
   color: white;
 `;
 
@@ -52,10 +52,16 @@ const HeaderAvatar = styled(Avatar)`
   display: inline-block;
   padding: 1rem 0;
   vertical-align: middle;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: white;
+  }
 `;
 
 const Brand = styled(NavLink)`
-  display: block;
+  display: inline-block;
   padding: 1rem 0;
   font-family: 'Merriweather', serif;
   font-size: 1.15em;

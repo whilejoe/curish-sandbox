@@ -6,14 +6,17 @@ import SubHeaderLink from 'components/SubHeaderLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { PALETTE } from 'constants/theme';
 import { lighten } from 'polished';
 import { isAuthed } from 'utils/AuthService';
 
+// box-shadow: 0px -2px 8px -1px;
+const COLOR = PALETTE.HEADER;
+
 const Header = styled.div`
-  background-color: ${lighten(0.52, THEME[PRIMARY_KEY])};
-  color: ${THEME[PRIMARY_KEY]};
-  box-shadow: 0px -2px 8px -1px;
+  background-color: ${lighten(0.41, COLOR)};
+  color: ${COLOR};
+  border-bottom: 1px solid ${lighten(0.38, COLOR)};
   overflow: hidden;
 `;
 

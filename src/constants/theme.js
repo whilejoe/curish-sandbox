@@ -18,5 +18,6 @@ export const PALETTE = {
     LIGHT: '#F5F5F5',
     MEDIUM: '#CCC',
     DARK: '#333'
-  }
+  },
+  HEADER: '#695dca'
 };
