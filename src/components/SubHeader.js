@@ -64,7 +64,7 @@ class SubHeader extends Component {
             </FlexContent>
             <FlexContent space="self">
               <SubHeaderLink to="/search" show={!showBack}>
-                <Icon type="search" title="link" />
+                <Icon type="search" title="search link" />
               </SubHeaderLink>
             </FlexContent>
           </Flex>
