@@ -134,6 +134,7 @@ injectGlobal`
   p {
     font-size: 1.1em;
     line-height: 1.54;
+    letter-spacing: .01em;
   }
 
   p,
