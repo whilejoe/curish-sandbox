@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Transition from 'react-transition-group/Transition';
-import { Slide } from 'components/SlideAnimations';
+import { Slide, Backdrop, SlideContent } from 'components/SlideAnimations';
 import { SLIDE_DURATION } from 'constants/animation';
 
 const SlideRoute = ({ component: Component, ...rest }) => {
@@ -20,9 +20,14 @@ const SlideRoute = ({ component: Component, ...rest }) => {
             mountOnEnter
           >
             {status => (
-              <Slide status={status} duration={SLIDE_DURATION}>
-                <Component {...merged} />
-              </Slide>
+              <div>
+                <Slide status={status} duration={SLIDE_DURATION}>
+                  <SlideContent>
+                    <Component {...merged} />
+                  </SlideContent>
+                </Slide>
+                <Backdrop status={status} />
+              </div>
             )}
           </Transition>
         );
