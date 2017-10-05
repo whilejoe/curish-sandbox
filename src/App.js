@@ -20,7 +20,7 @@ import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
 import FadeRoute from 'components/FadeRoute';
-import SlideRoute from 'components/SlideRoute';
+// import SlideRoute from 'components/SlideRoute';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 const App = ({ userData: user }) => {
@@ -43,7 +43,7 @@ const App = ({ userData: user }) => {
                   <FadeRoute path="/stories" userResult={user} component={UserStories} />
                   <FadeRoute path="/messages" userResult={user} component={Messages} />
                   <FadeRoute path="/notifications" userResult={user} component={Notifications} />
-                  <SlideRoute
+                  <FadeRoute
                     path="/write/:id?"
                     userResult={user}
                     component={CreateStoryContainer}

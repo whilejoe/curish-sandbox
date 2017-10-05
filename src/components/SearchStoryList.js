@@ -4,7 +4,7 @@ import Link from 'components/Link';
 import Avatar from 'components/Avatar';
 
 const StoryItemContainer = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
 `;
 
 const StoryItemHeader = styled.div`
@@ -12,8 +12,8 @@ const StoryItemHeader = styled.div`
 `;
 
 const StoryItemTitle = styled.h2`
-  margin-bottom: 0.15em;
-  font-size: 1em;
+  margin-bottom: 0.18em;
+  font-size: 1.04em;
 `;
 
 const StoryItemLink = styled(Link)`
@@ -21,8 +21,8 @@ const StoryItemLink = styled(Link)`
 `;
 
 const StoryDescription = styled.p`
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
+  margin-top: 0.3em;
+  font-size: 0.9em;
   color: #666;
 `;
 
