@@ -19,7 +19,7 @@ const CALLBACK_PATH = '/callback';
 // can't get netlify env var to work so hardcoding
 const CALLBACK_URL =
   process.env.NODE_ENV === 'production'
-    ? `https://curish.com${CALLBACK_PATH}`
+    ? `https://www.curish.com${CALLBACK_PATH}`
     : `http://localhost:3000${CALLBACK_PATH}`;
 console.log('callback URL', CALLBACK_URL);
 // const REDIRECT = 'http://localhost:3000/callback';
