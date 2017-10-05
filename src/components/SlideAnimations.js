@@ -3,7 +3,7 @@ import { SLIDE_DURATION } from 'constants/animation';
 import { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
 
 const SLIDE_STATES = {
-  [ENTERING]: 'translate3d(0, 150%, 0)',
+  [ENTERING]: 'translate3d(0, 140%, 0)',
   [ENTERED]: 'translate3d(0, 0%, 0)',
   [EXITING]: 'translate3d(0, 70%, 0)',
   [EXITED]: 'translate3d(0, 70%, 0)'
@@ -18,7 +18,7 @@ const OPACITY_STATES = {
 
 const BACKDROP_STATE = {
   [ENTERING]: 0,
-  [ENTERED]: 0.5,
+  [ENTERED]: 0.6,
   [EXITING]: 0,
   [EXITED]: 0
 };
@@ -31,7 +31,7 @@ export const Backdrop = styled.div`
   left: 0;
   background-color: white;
   opacity: ${props => BACKDROP_STATE[props.status]};
-  transition: opacity ${SLIDE_DURATION * 0.65}ms linear;
+  transition: opacity ${SLIDE_DURATION * 0.85}ms linear;
 `;
 
 export const Slide = styled.div`
@@ -45,8 +45,8 @@ export const Slide = styled.div`
   background-color: white;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.3);
   transform: ${props => SLIDE_STATES[props.status]};
-  transition: transform ${SLIDE_DURATION}ms cubic-bezier(0, 0.45, 0.7, 1),
-    opacity ${SLIDE_DURATION * 0.7}ms linear;
+  transition: transform ${SLIDE_DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1),
+    opacity ${SLIDE_DURATION * 0.75}ms linear;
   z-index: 1;
 `;
 
