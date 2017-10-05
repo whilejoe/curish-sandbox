@@ -2,7 +2,6 @@
   "short_name": "Curish",
   "name": "Curish Lit",
   "start_url": "/",
-  "scope": "/",
   "icons": [
     {
       "src": "./favicon.ico",
@@ -11,7 +10,7 @@
     }
   ],
   "display": "standalone",
-  "theme_color": "#ffffff",
+  "theme_color": "#695dca",
   "background_color": "#695dca",
   "description": "Literature"
 }
