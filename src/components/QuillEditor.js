@@ -62,8 +62,8 @@ class QuillEditor extends Component {
     editModeState: ''
   };
 
-  componentDidMount() {
-    const { match, storyData } = this.props;
+  componentWillMount() {
+    const { match, storyData, location } = this.props;
     if (match.params.id) {
       if (storyData.Story && storyData.Story.quillContent) {
         const parsed = JSON.parse(storyData.Story.quillContent);
@@ -71,8 +71,8 @@ class QuillEditor extends Component {
           quillContent: parsed,
           title: storyData.Story.title
         });
-      } else if (this.props.location.state) {
-        const { isEditMode = false, editModeState = '' } = this.props.location.state;
+      } else if (location.state) {
+        const { isEditMode = false, editModeState = '' } = location.state;
         this.setState({
           isEditMode,
           editModeState
@@ -97,7 +97,7 @@ class QuillEditor extends Component {
 
   handleChange = (content, delta, source, editor) => {
     if (!editor) return;
-    console.log('content length', editor.getLength());
+    // console.log('content length', editor.getLength());
     const fullDelta = editor.getContents();
     this.setState({ quillContent: fullDelta, editModeState: EDIT_MODE_UNSAVED });
     this.debouncedUpdateStory(fullDelta);
