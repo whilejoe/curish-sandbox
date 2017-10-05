@@ -11,12 +11,19 @@ import debounce from 'lodash/debounce';
 import { set, reset } from 'abyss-form/lib/actions';
 import qs from 'qs';
 
-const CategoryHeader = styled.h2`margin-top: 0;`;
+// const CategoryHeader = styled.p`
+//   border-bottom: 1px solid #868686;
+//   display: inline-block;
+//   margin-bottom: 0.2rem;
+//   font-weight: 600;
+//   font-size: 1em;
+//   color: #868686;
+// `;
 
 const SearchContainer = styled.div`
   max-width: 44rem;
   margin: 0 auto;
-  padding-top: 0.5rem;
+  padding-top: 0.6rem;
 `;
 
 class StorySearch extends Component {
@@ -118,12 +125,9 @@ class StorySearch extends Component {
             placeholder=""
             onChange={this.debouncedOnChange}
           />
-          <Flex gutters guttersVertical>
+          <Flex gutters guttersVertical align="center">
             {stories.length > 0 && (
               <FlexContent space={[100, { sm: 'reset' }]}>
-                <div>
-                  <CategoryHeader>Stories</CategoryHeader>
-                </div>
                 {stories.map(story => (
                   <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
                 ))}
@@ -131,9 +135,6 @@ class StorySearch extends Component {
             )}
             {users.length > 0 && (
               <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
-                <div>
-                  <CategoryHeader>Users</CategoryHeader>
-                </div>
                 {users.map(user => (
                   <Avatar
                     key={user.id}

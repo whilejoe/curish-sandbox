@@ -5,7 +5,6 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
-import Icon from 'components/Icon';
 // import Icon from 'components/Icon';
 import { PALETTE } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
@@ -46,11 +45,11 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const IconLink = styled(NavLink)`
-  display: inline-block;
-  line-height: 1;
-  vertical-align: middle;
-`;
+// const IconLink = styled(NavLink)`
+//   display: inline-block;
+//   line-height: 1;
+//   vertical-align: middle;
+// `;
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
@@ -114,11 +113,6 @@ const AppHeader = ({ userResult: { loading, user } }) => {
             </FlexContent>
             <FlexContent offset={{ md: 4 }}>
               <HeaderLink to="/101">101</HeaderLink>
-            </FlexContent>
-            <FlexContent space="self">
-              <IconLink to="/search">
-                <Icon type="search" title="search link" />
-              </IconLink>
             </FlexContent>
             <FlexContent space="self">
               <LoginButton to="/login">Login</LoginButton>

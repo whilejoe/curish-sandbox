@@ -7,7 +7,10 @@ const StoryItemContainer = styled.div`margin-bottom: 2rem;`;
 
 const StoryItemHeader = styled.div`margin-bottom: 0.4rem;`;
 
-const StoryItemTitle = styled.h3`margin-bottom: 0.1em;`;
+const StoryItemTitle = styled.h2`
+  margin-bottom: 0.15em;
+  font-size: 1em;
+`;
 
 const StoryItemLink = styled(Link)`font-family: inherit;`;
 

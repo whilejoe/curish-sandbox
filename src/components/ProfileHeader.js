@@ -5,12 +5,12 @@ import Container from 'components/Container';
 // import { ButtonLink } from 'components/Button';
 // import Icon from 'components/Icon';
 import Avatar from 'components/Avatar';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { THEME, SECONDARY_KEY } from 'constants/theme';
 // import { lighten, darken } from 'polished';
 import { lighten } from 'polished';
 import media from 'utils/media';
 
-const COLOR = THEME[PRIMARY_KEY];
+const COLOR = THEME[SECONDARY_KEY];
 
 const Header = styled.div`
   padding-top: 1.5rem;
