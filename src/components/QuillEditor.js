@@ -35,9 +35,13 @@ const Input = styled.input`
   }
 `;
 
-const StoryTitle = styled.h1`margin-bottom: 0.2em;`;
+const StoryTitle = styled.h1`
+  margin-bottom: 0.2em;
+`;
 
-const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
+const StoryHeader = styled.div`
+  margin-bottom: 1.8rem;
+`;
 
 const EditModeContainer = styled.div`
   position: absolute;
@@ -58,7 +62,7 @@ class QuillEditor extends Component {
     editModeState: ''
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { match, storyData } = this.props;
     if (match.params.id) {
       if (storyData.Story && storyData.Story.quillContent) {
