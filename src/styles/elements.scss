@@ -1,158 +1,171 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Source+Sans+Pro:400');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Merriweather:700');
 
-$serif-font: 'Roboto Slab', serif !default;
+$serif-font: 'Merriweather', serif !default;
 $sanserif-font: 'Source Sans Pro', sans-serif !default;
 
 $heading-font: $serif-font !default;
-$heading-font-weight: 400 !default;
+$heading-font-weight: 700 !default;
 
 $copy-font: $sanserif-font !default;
 $copy-font-weight: 400;
 
-$link-font: $serif-font;
-$link-font-weight: 400;
+$link-font: $sanserif-font;
+$link-font-weight: 600;
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+// *,
+// *:before,
+// *:after {
+//   box-sizing: border-box;
+//   padding: 0;
+//   margin: 0;
+// }
 
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
-}
+// html,
+// body,
+// #root {
+//   height: 100%;
+//   width: 100%;
+// }
 
-html {
-  font-size: 18px;
-  line-height: 28px;
-}
+// html {
+//   font-size: 18px;
+//   line-height: 30px;
+// }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: $copy-font;
-  font-weight: $copy-font-weight;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: #333;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: auto;
-  text-rendering: optimizeLegibility;
-}
+// body {
+//   margin: 0;
+//   padding: 0;
+//   font-family: $copy-font;
+//   font-weight: $copy-font-weight;
+//   font-size: 1rem;
+//   line-height: 1.4;
+//   color: #333;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: auto;
+//   text-rendering: optimizeLegibility;
+// }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: $heading-font;
-  font-weight: $heading-font-weight;
-  color: #333;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   font-family: $heading-font;
+//   font-weight: $heading-font-weight;
+//   color: #444;
+// }
 
-input,
-textarea,
-button,
-select,
-label,
-a {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+// input,
+// textarea,
+// button,
+// select,
+// label,
+// a {
+//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+// }
 
-a {
-  color: currentColor;
-  font-family: $link-font;
-  font-weight: $link-font-weight;
-  text-decoration: none;
+// button {
+//   display: inline-block;
+//   background: transparent;
+//   border: none;
+//   font-size: inherit;
+//   font-family: inherit;
+//   font-weight: $link-font-weight;
+//   cursor: pointer;
 
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
+//   &:focus {
+//     outline: none;
+//   }
+// }
 
-  &:focus {
-    outline: none;
-  }
-}
+// a {
+//   color: currentColor;
+//   font-family: $link-font;
+//   font-weight: $link-font-weight;
+//   text-decoration: none;
 
-img {
-  max-width: 100%;
-  height: auto;
-}
+//   &:hover,
+//   &:focus {
+//     text-decoration: underline;
+//   }
 
-p {
-  font-size: 1.125rem;
-  line-height: 1.6;
-}
+//   &:focus {
+//     outline: none;
+//   }
+// }
 
-// TODO: update to follow a scale
-h1 {
-  font-size: 2rem;
-  // line-height: 3;
-  margin-top: 3rem;
-  margin-bottom: 1.8rem;
-}
+// img {
+//   max-width: 100%;
+//   height: auto;
+// }
 
-h2 {
-  font-size: 1.6111111rem;
-  // line-height: 2;
-  margin-top: 3rem;
-  margin-bottom: 0.8rem;
-}
+// p {
+//   font-size: 1.1em;
+//   line-height: 1.54;
+// }
 
-h3 {
-  font-size: 1rem;
-  // line-height: 1.5;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
+// // TODO: update to follow a scale
+// h1 {
+//   font-size: 1.8rem;
+//   margin-top: 2.8rem;
+//   margin-bottom: 1.4rem;
+// }
 
-p,
-ul,
-ol,
-pre,
-table,
-blockquote {
-  margin-top: 0rem;
-  margin-bottom: 1.5rem;
-}
-ul ul,
-ol ol,
-ul ol,
-ol ul {
-  margin-top: 0rem;
-  margin-bottom: 0rem;
-}
+// h2 {
+//   font-size: 1.56rem;
+//   // line-height: 2;
+//   margin-top: 1rem;
+//   margin-bottom: 1rem;
+// }
 
-/* Let's make sure all's aligned */
-hr {
-  border: 1px solid;
-  margin: -1px 0;
-}
-a,
-b,
-i,
-strong,
-em,
-small,
-code {
-  line-height: 0;
-}
-sub,
-sup {
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sup {
-  top: -0.5em;
-}
-sub {
-  bottom: -0.25em;
-}
+// h3 {
+//   font-size: 1rem;
+//   // line-height: 1.5;
+//   margin-top: 1.5rem;
+//   margin-bottom: 1.5rem;
+// }
+
+// p,
+// ul,
+// ol,
+// pre,
+// table,
+// blockquote {
+//   margin-top: 0rem;
+//   margin-bottom: 1.5em;
+// }
+// ul ul,
+// ol ol,
+// ul ol,
+// ol ul {
+//   margin-top: 0;
+//   margin-bottom: 0;
+// }
+
+// /* Let's make sure all's aligned */
+// hr {
+//   border: 1px solid;
+//   margin: -1px 0;
+// }
+// a,
+// b,
+// i,
+// strong,
+// em,
+// small,
+// code {
+//   line-height: 0;
+// }
+// sub,
+// sup {
+//   line-height: 0;
+//   position: relative;
+//   vertical-align: baseline;
+// }
+// sup {
+//   top: -0.5em;
+// }
+// sub {
+//   bottom: -0.25em;
+// }

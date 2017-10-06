@@ -11,4 +11,6 @@ export const FlexMain = styled.div`
   width: 100%;
 `;
 
-export const FlexHeader = styled.div`flex: none;`;
+export const FlexHeader = styled.div`
+  flex: none;
+`;

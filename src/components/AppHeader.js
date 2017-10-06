@@ -3,23 +3,22 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
-import Button from 'components/Button';
-import { AvatarLink } from 'components/Avatar';
-import { isAuthed, logout } from 'utils/AuthService';
+import { ButtonLink } from 'components/Button';
+import Avatar from 'components/Avatar';
+// import Icon from 'components/Icon';
+import { PALETTE } from 'constants/theme';
+import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
-  background-color: white;
-  border-bottom: 1px solid #eee;
+  background-color: ${PALETTE.HEADER};
+  color: white;
 `;
 
 const HeaderLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  padding: 1.8rem 0.8rem;
-
-  &:not(:last-child) {
-    margin-right: 0.9rem;
-  }
+  padding: 1.15rem 1rem;
+  line-height: 1;
 
   &:after {
     position: absolute;
@@ -46,39 +45,92 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-const ButtonLink = Button.withComponent(NavLink);
+// const IconLink = styled(NavLink)`
+//   display: inline-block;
+//   line-height: 1;
+//   vertical-align: middle;
+// `;
+
+const HeaderAvatar = styled(Avatar)`
+  display: inline-block;
+  padding: 1rem 0;
+  vertical-align: middle;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: white;
+  }
+`;
+
+const Brand = styled(NavLink)`
+  display: inline-block;
+  padding: 1rem 0;
+  font-family: 'Merriweather', serif;
+  font-size: 1.15em;
+  line-height: 1;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+`;
+
+const LoginButton = ButtonLink.extend`
+  color: currentColor;
+
+  &:hover,
+  &:focus,
+  &.active {
+    background-color: white;
+    color: ${PALETTE.HEADER};
+  }
+`;
+
+// const SearchButton = styled(NavLink)`
+//   display: block;
+//   transition: color 200ms ease-out;
+
+//   &:hover,
+//   &:focus,
+//   &.active {
+//     color: ${THEME[PRIMARY_KEY]};
+//     text-decoration: none;
+//   }
+// `;
 
 const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
-  console.log('isUserAuthed', isUserAuthed);
   return (
     <Header>
       <Container>
-        <Flex gutters align="center">
-          <FlexContent space="self">
-            <NavLink exact to="/">
-              Curish
-            </NavLink>
-          </FlexContent>
-          <FlexContent offset={{ md: 4 }}>
-            <nav>
+        {!isUserAuthed ? (
+          <Flex gutters align="center">
+            <FlexContent space="self">
+              <Brand exact to="/">
+                Curish
+              </Brand>
+            </FlexContent>
+            <FlexContent offset={{ md: 4 }}>
               <HeaderLink to="/101">101</HeaderLink>
-              <HeaderLink to="/write">Write</HeaderLink>
-              <HeaderLink to="/search">Search</HeaderLink>
-            </nav>
-          </FlexContent>
-          <FlexContent space="self">
-            {isUserAuthed && !loading ? (
-              !user ? (
-                <Button onClick={logout}>Logout</Button>
-              ) : (
-                <AvatarLink user={user} small />
-              )
-            ) : (
-              <ButtonLink to="/login">Login</ButtonLink>
-            )}
-          </FlexContent>
-        </Flex>
+            </FlexContent>
+            <FlexContent space="self">
+              <LoginButton to="/login">Login</LoginButton>
+            </FlexContent>
+          </Flex>
+        ) : (
+          <Flex gutters align="center" justify="space-between">
+            <FlexContent>
+              <Brand exact to="/">
+                Curish
+              </Brand>
+            </FlexContent>
+            <FlexContent space="self">
+              {isUserAuthed &&
+                !loading && <HeaderAvatar user={user} showImage to={{ pathname: '/profile' }} />}
+            </FlexContent>
+          </Flex>
+        )}
       </Container>
     </Header>
   );

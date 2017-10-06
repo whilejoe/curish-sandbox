@@ -1,10 +1,12 @@
 import React from 'react';
 import Container from 'components/Container';
+import PageContainer from 'components/PageContainer';
 import Button from 'components/Button';
+import ProfileHeader from 'components/ProfileHeader';
 import { logout } from 'utils/AuthService';
 
 const UserProfile = ({ userResult: { loading, user }, ...props }) => {
-  if (loading) return <Container>Loading...</Container>;
+  if (loading) return <PageContainer>Loading...</PageContainer>;
   if (!user) {
     console.log('!user');
     // determine how to handle this
@@ -14,17 +16,15 @@ const UserProfile = ({ userResult: { loading, user }, ...props }) => {
       </Container>
     );
   }
-  const { fullName, userName, email, createdAt } = user;
-  const joinedDate = new Date(createdAt).getFullYear();
+  const { email } = user;
   return (
-    <Container>
-      <h1>Profile</h1>
-      <p>Username: @{userName}</p>
-      <p>Full Name: {fullName}</p>
-      <p>Email: {email}</p>
-      <p>Year Joined: {joinedDate}</p>
-      <Button onClick={logout}>Logout</Button>
-    </Container>
+    <div>
+      <ProfileHeader user={user} />
+      <Container>
+        <p>Email: {email}</p>
+        <Button onClick={logout}>Logout</Button>
+      </Container>
+    </div>
   );
 };
 

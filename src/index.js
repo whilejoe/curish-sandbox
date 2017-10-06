@@ -1,8 +1,9 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import 'styles/index.css';
+import 'styles/elements.js';
 import App from './App';
-import { render } from 'react-snapshot';
+// import { render } from 'react-snapshot';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from 'state/store';
 import { ApolloProvider, createBatchingNetworkInterface, ApolloClient } from 'react-apollo';
@@ -97,7 +98,7 @@ export const apolloClient = new ApolloClient({
 //   networkInterface: client
 // });
 
-render(
+ReactDOM.render(
   <ApolloProvider client={apolloClient} store={store}>
     <ConnectedRouter history={history}>
       <App />

@@ -1,57 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import Link from 'components/Link';
+import Icon from 'components/Icon';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const AvatarImage = styled.img`
   max-width: ${props => (props.small ? '2rem' : '2.5rem')};
-  margin-right: 0.5rem;
   vertical-align: middle;
   border: 2px solid transparent;
   border-radius: 50%;
+  transition: border-color 180ms ease-out;
 `;
 
-const Link = styled(NavLink)`
+const AvatarLink = styled(Link)`
   &:hover,
   &:focus,
   &.active {
-    color: Tomato;
-    text-decoration: none;
-
     & ${AvatarImage} {
-      border-color: Tomato;
+      border-color: ${THEME[PRIMARY_KEY]};
     }
   }
 `;
 
-const AvatarName = styled.span`
-  display: inline-block;
-  font-size: ${props => (props.small ? '0.9em' : '1em')};
-`;
-
-export const AvatarLink = ({ user, small }) => {
+const Avatar = ({ user, showImage = false, to, className }) => {
   if (!user) return null;
   const { userName, profileURL } = user;
+  const location = to ? { pathname: `/${userName}`, ...to } : `/${userName}`;
   return (
-    <Link to="/profile">
-      {profileURL && (
-        <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
+    <AvatarLink to={location} className={className}>
+      {showImage ? (
+        profileURL ? (
+          <AvatarImage src={profileURL} alt={`${userName} profile photo`} />
+        ) : (
+          <Icon type="user" title="profile link" />
+        )
+      ) : (
+        <span>@{userName}</span>
       )}
-      {userName && <AvatarName small={small}>@{userName}</AvatarName>}
-    </Link>
+    </AvatarLink>
   );
 };
 
-export const Avatar = ({ user, small }) => {
-  if (!user) return null;
-  const { userName, profileURL } = user;
-  return (
-    <div>
-      {profileURL && (
-        <AvatarImage src={profileURL} alt={`${userName} profile photo`} small={small} />
-      )}
-      {userName && <AvatarName small={small}>@{userName}</AvatarName>}
-    </div>
-  );
-};
-
-// export default Avatar;
+export default Avatar;

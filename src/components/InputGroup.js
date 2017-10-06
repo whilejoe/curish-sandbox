@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
+import SrOnly from 'components/SrOnly';
 import { THEME, PRIMARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
 
 let activeClass = '';
@@ -23,6 +24,7 @@ export const Label = styled.label`
   left: 0;
   height: 100%;
   font-size: inherit;
+  font-weight: 600;
   color: ${COLOR};
   cursor: text;
   transition: transform 0.2s ease-out;
@@ -101,20 +103,28 @@ const FormError = styled(ErrorMessage)`
 
 const Container = styled.div`
   position: relative;
-  margin-bottom: 2.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
 `;
 
+const handleOnChange = (e, onChange) => {
+  activeClass = e.target.value ? 'active' : '';
+  if (onChange) onChange();
+};
+
 const InputGroup = props => {
-  const { label, children, errorMessages, ...rest } = props;
+  const { hideLabel, label, children, errorMessages, onChange, ...rest } = props;
   return (
     <Container>
-      <Input
-        {...rest}
-        onChange={e => (activeClass = e.target.value ? 'active' : '')}
-        className={activeClass}
-      />
-      <Label htmlFor={props.id}>{label}</Label>
-      <FormError model={rest.model} messages={errorMessages} />
+      <Input {...rest} onChange={e => handleOnChange(e, onChange)} className={activeClass} />
+      {hideLabel ? (
+        <SrOnly>
+          <label htmlFor={props.id}>{label}</label>
+        </SrOnly>
+      ) : (
+        <Label htmlFor={props.id}>{label}</Label>
+      )}
+      {errorMessages && <FormError model={rest.model} messages={errorMessages} />}
     </Container>
   );
 };

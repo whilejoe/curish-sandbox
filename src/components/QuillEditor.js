@@ -4,12 +4,12 @@ import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
-import Container from 'components/Container';
-import { AvatarLink } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import TextInput from 'abyss-form/lib/TextInput';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
@@ -17,17 +17,14 @@ const EDIT_MODE_SAVING = 'Saving...';
 const EDIT_MODE_SAVED = 'Saved';
 
 const Input = styled.input`
-  margin-top: 3rem;
-  margin-bottom: 0.5rem;
-  padding: 0;
   width: 100%;
+  margin: 0.87890625em 0 0.2em;
   background-color: transparent;
-  color: inherit;
+  font-size: 1.7578125em;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
   line-height: inherit;
-  font-size: 2rem;
-  font-family: 'Roboto Slab', serif;
-  font-weight: 400;
-  text-transform: capitalize;
+  color: #444;
   border: none;
   outline: none;
   box-shadow: none;
@@ -39,23 +36,21 @@ const Input = styled.input`
 `;
 
 const StoryTitle = styled.h1`
-  display: inline-block;
-  margin-top: 3rem;
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-  text-transform: capitalize;
+  margin-bottom: 0.2em;
 `;
 
-const StoryHeader = styled.div`margin-bottom: 1.8rem;`;
+const StoryHeader = styled.div`
+  margin-bottom: 1.8rem;
+`;
 
 const EditModeContainer = styled.div`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.25rem;
+  right: 1.25rem;
 `;
 
 const EditModeStatus = styled.span`
-  color: ${props => (props.mode === EDIT_MODE_SAVING ? 'SeaGreen' : '#b4b4b4')};
+  color: ${props => (props.mode === EDIT_MODE_SAVING ? THEME[PRIMARY_KEY] : '#b4b4b4')};
   font-size: 0.8em;
 `;
 
@@ -68,7 +63,7 @@ class QuillEditor extends Component {
   };
 
   componentWillMount() {
-    const { match, storyData } = this.props;
+    const { match, storyData, location } = this.props;
     if (match.params.id) {
       if (storyData.Story && storyData.Story.quillContent) {
         const parsed = JSON.parse(storyData.Story.quillContent);
@@ -76,10 +71,9 @@ class QuillEditor extends Component {
           quillContent: parsed,
           title: storyData.Story.title
         });
-      } else if (this.props.location.state) {
-        const { title = '', isEditMode = false, editModeState = '' } = this.props.location.state;
+      } else if (location.state) {
+        const { isEditMode = false, editModeState = '' } = location.state;
         this.setState({
-          title,
           isEditMode,
           editModeState
         });
@@ -103,7 +97,7 @@ class QuillEditor extends Component {
 
   handleChange = (content, delta, source, editor) => {
     if (!editor) return;
-    console.log('content length', editor.getLength());
+    // console.log('content length', editor.getLength());
     const fullDelta = editor.getContents();
     this.setState({ quillContent: fullDelta, editModeState: EDIT_MODE_UNSAVED });
     this.debouncedUpdateStory(fullDelta);
@@ -200,9 +194,9 @@ class QuillEditor extends Component {
   };
 
   render() {
-    const { userResult: { user }, match, storyData } = this.props;
+    const { userResult: { user }, match, storyData, location } = this.props;
     const { title, quillContent, isEditMode, editModeState } = this.state;
-    if (storyData && storyData.loading) return <Container>Loading...</Container>;
+    if (storyData && storyData.loading) return <StoryContainer>Loading...</StoryContainer>;
     return (
       <StoryContainer style={{ position: 'relative' }}>
         {match.params.id && isAuthed() ? (
@@ -236,7 +230,10 @@ class QuillEditor extends Component {
               <span>Author:&nbsp;</span>
             </FlexContent>
             <FlexContent>
-              <AvatarLink user={!match.params.id ? user : storyData.Story.author} small />
+              <Avatar
+                user={!match.params.id ? user : storyData.Story.author}
+                to={{ state: { referrer: location } }}
+              />
             </FlexContent>
           </Flex>
         </StoryHeader>

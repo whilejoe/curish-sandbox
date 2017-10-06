@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         });
         // Refetch user query after create
         await userResult.refetch();
-        store.dispatch(push('/profile'));
+        store.dispatch(push('/'));
       })
     );
   }
