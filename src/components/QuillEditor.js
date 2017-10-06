@@ -82,15 +82,16 @@ class QuillEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.id) {
+    if (nextProps.match.params.id) {
       if (!this.props.storyData.Story && nextProps.storyData.Story) {
-        console.log('nextProps.storyData.Story', nextProps.storyData.Story);
-        this.setState({ title: nextProps.storyData.Story.title, editModeState: EDIT_MODE_SAVED });
-        if (nextProps.storyData.Story.quillContent) {
-          const parsed = JSON.parse(nextProps.storyData.Story.quillContent);
-          this.setState({ quillContent: parsed, editModeState: EDIT_MODE_SAVED });
+        const { storyData } = nextProps;
+        console.log('nextProps.storyData.Story', storyData.Story);
+        this.setState({ title: storyData.Story.title, editModeState: EDIT_MODE_SAVED });
+        if (storyData.Story.quillContent) {
+          const parsed = JSON.parse(storyData.Story.quillContent);
+          this.setState({ quillContent: parsed });
         }
-        // this.handleSetEditorFocus();
+        // this.handleSetEditorFocus(); This is not working, why?
       }
     }
   }
