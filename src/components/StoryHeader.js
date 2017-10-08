@@ -4,38 +4,42 @@ import { withRouter } from 'react-router-dom';
 import BackButton from 'components/BackButton';
 import { Flex } from 'components/Flex';
 import Container from 'components/Container';
+import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.div`
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #eee;
-  overflow: hidden;
+  position: absolute;
+  top: -3.2rem;
+  height: 3.2rem;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #f3f3f3;
+  z-index: 2;
 `;
 
-class StoryHeader extends Component {
-  state = {
-    showBack: false
-  };
-  componentWillMount() {
-    if (this.props.location.state && this.props.location.state.referrer) {
-      this.setState({ showBack: true });
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location.state !== this.props.location.state) {
-      if (nextProps.location.state && nextProps.location.state.referrer) {
-        this.setState({ showBack: true });
-      } else this.setState({ showBack: false });
-    }
-  }
+// const HeaderBackButton = styled(BackButton)`
+//   position: relative;
+//   padding: 0;
+//   top: auto;
+//   left: auto;
+// `;
 
+class StoryHeader extends Component {
   render() {
     const { location: { state }, children } = this.props;
-    const { showBack } = this.state;
     return (
       <Header>
-        <Container style={{ position: 'relative' }}>
-          <BackButton referrer={state && state.referrer} show={showBack} />
-          <Flex align="center" justify="space-around">
+        <Container style={{ height: '100%' }}>
+          <BackButton
+            referrer={state && state.referrer ? state.referrer : isAuthed() ? '/stories' : '/'}
+            show
+          />
+          <Flex
+            gutters
+            align="center"
+            justify="space-between"
+            offset={[8, { sm: 6, md: 4 }]}
+            style={{ height: '100%' }}
+          >
             {children}
           </Flex>
         </Container>

@@ -4,27 +4,39 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
+import { FlexContent } from 'components/Flex';
+import Button from 'components/Button';
 import StoryContainer from 'components/StoryContainer';
 import TitleEditor from 'components/TitleEditor';
-import Button from 'components/Button';
+import StoryHeader from 'components/StoryHeader';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import { ellipsis } from 'polished';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
 const EDIT_MODE_SAVING = 'Saving...';
 const EDIT_MODE_SAVED = 'Saved';
 
-const EditModeContainer = styled.div`
-  position: absolute;
-  top: 0.3rem;
-  right: 1.25rem;
-  z-index: 1;
-`;
+// const EditModeContainer = styled.div`
+//   position: absolute;
+//   top: 0.3rem;
+//   right: 1.25rem;
+//   z-index: 1;
+// `;
+// const EditModeContainer = styled.div`
+//   padding: 0.65rem;
+//   text-align: right;
+// `;
 
 const EditModeStatus = styled.span`
   color: ${props => (props.mode === EDIT_MODE_SAVING ? THEME[PRIMARY_KEY] : '#b4b4b4')};
   font-size: 0.8em;
+`;
+
+const HeaderTitle = styled.div`
+  font-size: 0.9em;
+  color: #666;
 `;
 
 class QuillEditor extends Component {
@@ -190,37 +202,56 @@ class QuillEditor extends Component {
     const { userResult: { user }, match, storyData, location } = this.props;
     const { storyTitle, storyBody, isEditMode, editModeState } = this.state;
     if (storyData && storyData.loading) return <StoryContainer>Loading...</StoryContainer>;
+    if (
+      (match.params.id && !storyData.Story) ||
+      (storyData && storyData.Story && match.params.id !== storyData.Story.id)
+    ) {
+      return (
+        <StoryContainer>
+          <h1>Whoops, that story doesn't exist :(</h1>
+        </StoryContainer>
+      );
+    }
     return (
-      <StoryContainer style={{ position: 'relative' }}>
-        {match.params.id && isAuthed() ? (
-          <EditModeContainer>
-            {isEditMode ? (
-              <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
-            ) : (
-              <Button editMode={isEditMode} onClick={this.handleEditModeButton}>
-                Edit
-              </Button>
-            )}
-          </EditModeContainer>
-        ) : null}
-        <TitleEditor
-          author={user}
-          title={storyTitle}
-          readOnly={!isEditMode}
-          onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
-          referrer={location}
-        />
-        <ReactQuill
-          theme="bubble"
-          readOnly={!storyData || !isEditMode}
-          placeholder="It all started this one day..."
-          value={storyBody}
-          onChange={this.handleChange}
-          modules={QuillEditor.modules}
-          formats={QuillEditor.formats}
-          ref={node => this.setRef(node)}
-        />
-      </StoryContainer>
+      <div>
+        <StoryHeader>
+          <FlexContent>
+            <HeaderTitle>
+              {storyData && storyData.Story && (storyData.Story.titleText || 'Untitled')}
+            </HeaderTitle>
+          </FlexContent>
+          {match.params.id && isAuthed() ? (
+            <FlexContent space="self">
+              {isEditMode ? (
+                <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
+              ) : (
+                <Button editMode={isEditMode} onClick={this.handleEditModeButton}>
+                  Edit
+                </Button>
+              )}
+            </FlexContent>
+          ) : null}
+        </StoryHeader>
+        <StoryContainer style={{ position: 'relative' }}>
+          <TitleEditor
+            author={user}
+            title={storyTitle}
+            readOnly={!isEditMode}
+            onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
+            referrer={location}
+          />
+          <ReactQuill
+            theme="bubble"
+            readOnly={!storyData || !isEditMode}
+            placeholder="It all started this one day..."
+            value={storyBody}
+            onChange={this.handleChange}
+            modules={QuillEditor.modules}
+            formats={QuillEditor.formats}
+            ref={node => this.setRef(node)}
+          />
+        </StoryContainer>
+      </div>
     );
   }
 }

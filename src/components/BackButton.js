@@ -28,12 +28,13 @@ const BackLink = styled(Link)`
   transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out`};
 `;
 
-const BackButton = ({ referrer, show }) => {
+const BackButton = ({ referrer, show, ...props }) => {
   return (
     <Transition in={show} timeout={DURATION}>
       {status => {
         return (
           <BackLink
+            {...props}
             to={referrer ? referrer : ''}
             status={status}
             tabIndex={!show ? -1 : 0}
