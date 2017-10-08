@@ -53,7 +53,7 @@ const HeaderLink = styled(NavLink)`
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
-  padding: 1rem 0;
+  padding: 0.95rem 0;
   vertical-align: middle;
 
   &:hover,
@@ -65,7 +65,7 @@ const HeaderAvatar = styled(Avatar)`
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding: 1rem 0;
+  padding: 0.95rem 0;
   font-family: 'Merriweather', serif;
   font-size: 1.11em;
   font-weight: 700;
@@ -128,7 +128,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
             </FlexContent>
             <FlexContent space="self">
               {isUserAuthed &&
-                !loading && <HeaderAvatar user={user} showImage to={{ pathname: '/profile' }} />}
+                !loading && <HeaderAvatar user={user} to={{ pathname: '/profile' }} />}
             </FlexContent>
           </Flex>
         )}

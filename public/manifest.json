@@ -10,7 +10,7 @@
     }
   ],
   "display": "standalone",
-  "theme_color": "lightcoral",
-  "background_color": "lightcoral",
+  "theme_color": "goldenrod",
+  "background_color": "#f8f8f8",
   "description": "Literature"
 }

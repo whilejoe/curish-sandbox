@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import { darken } from 'polished';
 
 const DURATION = 160;
@@ -14,7 +14,7 @@ const STATES = {
   [EXITED]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' }
 };
 
-const COLOR = THEME[PRIMARY_KEY];
+const COLOR = '#b7b7b7';
 // const COLOR_ACTIVE = THEME[PRIMARY_KEY];
 
 const NavAction = styled(NavLink)`
@@ -45,6 +45,7 @@ const NavAction = styled(NavLink)`
   &:focus,
   &.active {
     text-decoration: none;
+    color: inherit;
 
     &:after {
       opacity: 1;

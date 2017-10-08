@@ -9,8 +9,8 @@ export const ERROR_KEY = 'error';
 // mediumseagreen
 
 export const THEME = {
-  [PRIMARY_KEY]: 'lightseagreen',
-  [SECONDARY_KEY]: 'lightcoral',
+  [PRIMARY_KEY]: 'darkgoldenrod',
+  [SECONDARY_KEY]: 'lightseagreen',
   [TERTIARY_KEY]: 'RoyalBlue',
   [ERROR_KEY]: 'IndianRed'
 };

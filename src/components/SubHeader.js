@@ -30,11 +30,13 @@ class SubHeader extends Component {
   state = {
     showBack: false
   };
+
   componentWillMount() {
     if (this.props.location.state && this.props.location.state.referrer) {
       this.setState({ showBack: true });
     }
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.state !== this.props.location.state) {
       if (nextProps.location.state && nextProps.location.state.referrer) {
@@ -52,7 +54,7 @@ class SubHeader extends Component {
       <Header>
         <Container style={{ position: 'relative' }}>
           <BackButton referrer={state && state.referrer} show={showBack} />
-          <Flex align="center" justify="space-around">
+          <Flex align="center" justify={['space-between', { md: 'space-around' }]}>
             <FlexContent space="self">
               <SubHeaderLink to="/stories" show={!showBack}>
                 <Icon type="story" title="stories link" />
