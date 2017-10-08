@@ -11,6 +11,7 @@ import Icon from 'components/Icon';
 import { isAuthed } from 'utils/AuthService';
 
 // box-shadow: 0px -2px 8px -1px;
+// box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.07);
 // const COLOR = THEME[PRIMARY_KEY];
 
 // const Header = styled.div`

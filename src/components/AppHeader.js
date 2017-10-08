@@ -11,7 +11,7 @@ import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: #f8f8f8;
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 1px solid #f4f4f4;
 `;
 
 const HeaderLink = styled(NavLink)`
