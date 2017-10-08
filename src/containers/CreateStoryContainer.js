@@ -5,8 +5,9 @@ export const STORY_QUERY = gql`
   query getStoryById($storyId: ID!) {
     Story(id: $storyId) {
       id
-      title
-      quillContent
+      titleText
+      titleDelta
+      bodyDelta
       author {
         id
         userName
@@ -16,10 +17,11 @@ export const STORY_QUERY = gql`
 `;
 
 const CREATE_STORY_MUTATION = gql`
-  mutation CreateStoryMutation($userId: ID!, $title: String!) {
-    createStory(authorId: $userId, title: $title) {
+  mutation CreateStoryMutation($userId: ID!, $titleText: String!, $titleDelta: String!) {
+    createStory(authorId: $userId, titleText: $titleText, titleDelta: $titleDelta) {
       id
-      title
+      titleText
+      titleDelta
       author {
         id
         userName
@@ -29,11 +31,24 @@ const CREATE_STORY_MUTATION = gql`
 `;
 
 const UPDATE_STORY_MUTATION = gql`
-  mutation UpdateStoryMutation($storyId: ID!, $title: String, $quillContent: String) {
-    updateStory(id: $storyId, title: $title, quillContent: $quillContent) {
+  mutation UpdateStoryMutation(
+    $storyId: ID!
+    $titleText: String
+    $titleDelta: String
+    $bodyMarkup: String
+    $bodyDelta: String
+  ) {
+    updateStory(
+      id: $storyId
+      titleText: $titleText
+      titleDelta: $titleDelta
+      bodyMarkup: $bodyMarkup
+      bodyDelta: $bodyDelta
+    ) {
       id
-      title
-      quillContent
+      titleText
+      titleDelta
+      bodyDelta
       author {
         id
         userName

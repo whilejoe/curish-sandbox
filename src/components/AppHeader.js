@@ -6,12 +6,12 @@ import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
 // import Icon from 'components/Icon';
-import { PALETTE } from 'constants/theme';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
-  background-color: ${PALETTE.HEADER};
-  color: white;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #f3f3f3;
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -59,7 +59,7 @@ const HeaderAvatar = styled(Avatar)`
   &:hover,
   &:focus,
   &.active {
-    color: white;
+    color: ${THEME[PRIMARY_KEY]};
   }
 `;
 
@@ -67,7 +67,8 @@ const Brand = styled(NavLink)`
   display: inline-block;
   padding: 1rem 0;
   font-family: 'Merriweather', serif;
-  font-size: 1.15em;
+  font-size: 1.1em;
+  font-weight: 700;
   line-height: 1;
 
   &:hover,
@@ -83,7 +84,7 @@ const LoginButton = ButtonLink.extend`
   &:focus,
   &.active {
     background-color: white;
-    color: ${PALETTE.HEADER};
+    color: ${THEME[PRIMARY_KEY]};
   }
 `;
 

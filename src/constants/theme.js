@@ -4,11 +4,13 @@ export const TERTIARY_KEY = 'tertiary';
 export const ERROR_KEY = 'error';
 
 // #695dca
-// #5548a4
+// #5f55b1
+// lightcoral
+// mediumseagreen
 
 export const THEME = {
-  [PRIMARY_KEY]: '#695dca',
-  [SECONDARY_KEY]: 'lightseagreen',
+  [PRIMARY_KEY]: 'slateblue',
+  [SECONDARY_KEY]: 'lightcoral',
   [TERTIARY_KEY]: 'RoyalBlue',
   [ERROR_KEY]: 'IndianRed'
 };
@@ -19,5 +21,5 @@ export const PALETTE = {
     MEDIUM: '#CCC',
     DARK: '#333'
   },
-  HEADER: '#695dca'
+  HEADER: 'mistyrose'
 };

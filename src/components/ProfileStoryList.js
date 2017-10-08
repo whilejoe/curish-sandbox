@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Link from 'components/Link';
 import Avatar from 'components/Avatar';
 
-const StoryItemContainer = styled.div`margin-bottom: 1rem;`;
+const StoryItemContainer = styled.div`
+  margin-bottom: 1rem;
+`;
 
 const StoryItemTitle = styled.h2`
   margin-top: 0;
@@ -11,7 +13,9 @@ const StoryItemTitle = styled.h2`
   font-size: 1em;
 `;
 
-const StoryItemLink = styled(Link)`font-family: inherit;`;
+const StoryItemLink = styled(Link)`
+  font-family: inherit;
+`;
 
 const StoryDescription = styled.p`
   margin-top: 0.4em;
@@ -24,7 +28,7 @@ const ProfileStoryList = ({ story, referrer }) => {
     <StoryItemContainer>
       <StoryItemTitle>
         <StoryItemLink to={{ pathname: `/write/${story.id}`, state: { referrer } }}>
-          {story.title}
+          {story.titleText}
         </StoryItemLink>
       </StoryItemTitle>
       <Avatar user={story.author} to={{ state: { referrer } }} />

@@ -6,18 +6,22 @@ import SubHeaderLink from 'components/SubHeaderLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
-import { PALETTE } from 'constants/theme';
-import { lighten } from 'polished';
+// import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import { lighten, darken } from 'polished';
 import { isAuthed } from 'utils/AuthService';
 
 // box-shadow: 0px -2px 8px -1px;
-const COLOR = PALETTE.HEADER;
+// const COLOR = THEME[PRIMARY_KEY];
+
+// const Header = styled.div`
+//   background-color: ${lighten(0.41, COLOR)};
+//   color: ${COLOR};
+//   border-bottom: 1px solid ${lighten(0.38, COLOR)};
+//   overflow: hidden;
+// `;
 
 const Header = styled.div`
-  background-color: ${lighten(0.41, COLOR)};
-  color: ${COLOR};
-  border-bottom: 1px solid ${lighten(0.38, COLOR)};
-  overflow: hidden;
+  border-bottom: 1px solid #f3f3f3;
 `;
 
 class SubHeader extends Component {

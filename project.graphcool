@@ -1,5 +1,5 @@
 # project: cj6l71pg81npn0191lrufaos5
-# version: 39
+# version: 41
 
 type File implements Node {
   contentType: String!
@@ -29,9 +29,11 @@ type Story implements Node {
   id: ID! @isUnique
   updatedAt: DateTime!
   author: User @relation(name: "StoryAuthor")
-  title: String!
+  titleText: String
+  titleDelta: String
+  bodyMarkup: String
+  bodyDelta: String
   description: String
   tags: [String!]
-  quillContent: String
   publishedAt: DateTime
 }

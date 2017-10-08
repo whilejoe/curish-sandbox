@@ -2,16 +2,19 @@ import { normalize } from 'polished';
 import { css, injectGlobal } from 'styled-components';
 import { modularScale, stripUnit } from 'polished';
 
+// font-family: 'Noto Serif', serif;
+// font-family: 'Peddana', serif;
+
 export const serifFont = '"Merriweather", serif';
 export const sanserifFont = '"Source Sans Pro", sans-serif';
 
 export const headingFont = serifFont;
-export const headingFontWeight = 700;
-export const headingFontColor = '#444';
+export const headingFontWeight = 400;
+export const headingFontColor = '#333';
 
 export const copyFont = sanserifFont;
 export const copyFontWeight = 400;
-export const copyFontColor = '#333';
+export const copyFontColor = '#222';
 
 export const linkFont = sanserifFont;
 export const linkFontWeight = 600;
@@ -65,25 +68,25 @@ injectGlobal`
 
   h1 {
     font-size: ${modularScale(3, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(3, BASE, RATIO)) * 0.5}em 0;
+    margin: ${stripUnit(modularScale(3, BASE, RATIO)) * 0.45}em 0;
     ${headingMixin};
   }
 
   h2 {
     font-size: ${modularScale(2, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(2, BASE, RATIO)) * 0.5}em 0;
+    margin: ${stripUnit(modularScale(2, BASE, RATIO)) * 0.4}em 0;
     ${headingMixin};
   }
 
   h3 {
     font-size: ${modularScale(1, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(1, BASE, RATIO)) * 0.5}em 0;
+    margin: ${stripUnit(modularScale(1, BASE, RATIO)) * 0.35}em 0;
     ${headingMixin};
   }
 
   h4 {
     font-size: ${modularScale(0, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(0, BASE, RATIO)) * 0.5}em 0;
+    margin: ${stripUnit(modularScale(0, BASE, RATIO)) * 0.3}em 0;
     ${headingMixin};
   }
 
@@ -132,9 +135,8 @@ injectGlobal`
   }
   
   p {
-    font-size: 1.1em;
-    line-height: 1.54;
-    letter-spacing: .01em;
+    font-size: 1.15em;
+    line-height: 1.5;
   }
 
   p,
@@ -144,7 +146,7 @@ injectGlobal`
   table,
   blockquote {
     margin-top: 0rem;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.2em;
   }
 
   ul ul,

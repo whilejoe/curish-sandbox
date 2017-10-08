@@ -154,13 +154,13 @@ class StorySearch extends Component {
 const ALL_STORIES_SEARCH_QUERY = gql`
   query AllStoriesSearchQuery($searchText: String!) {
     allStories(
-      filter: { OR: [{ title_contains: $searchText }, { description_contains: $searchText }] }
+      filter: { OR: [{ titleText_contains: $searchText }, { description_contains: $searchText }] }
       first: 10
-      orderBy: title_ASC
+      orderBy: titleText_ASC
     ) {
       id
       createdAt
-      title
+      titleText
       description
       tags
       author {

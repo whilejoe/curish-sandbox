@@ -1,52 +1,25 @@
+// TODO: Cleanup
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import StoryContainer from 'components/StoryContainer';
-import Avatar from 'components/Avatar';
-import { Flex, FlexContent } from 'components/Flex';
+import TitleEditor from 'components/TitleEditor';
 import Button from 'components/Button';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
-// import TextInput from 'abyss-form/lib/TextInput';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
 const EDIT_MODE_SAVING = 'Saving...';
 const EDIT_MODE_SAVED = 'Saved';
 
-const Input = styled.input`
-  width: 100%;
-  margin: 0.87890625em 0 0.2em;
-  background-color: transparent;
-  font-size: 1.7578125em;
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
-  line-height: inherit;
-  color: #444;
-  border: none;
-  outline: none;
-  box-shadow: none;
-
-  &::placeholder {
-    font-size: inherit;
-    color: #ccc;
-  }
-`;
-
-const StoryTitle = styled.h1`
-  margin-bottom: 0.2em;
-`;
-
-const StoryHeader = styled.div`
-  margin-bottom: 1.8rem;
-`;
-
 const EditModeContainer = styled.div`
   position: absolute;
-  top: 1.25rem;
+  top: 0.3rem;
   right: 1.25rem;
+  z-index: 1;
 `;
 
 const EditModeStatus = styled.span`
@@ -57,7 +30,7 @@ const EditModeStatus = styled.span`
 class QuillEditor extends Component {
   state = {
     quillContent: { ops: [{ insert: '\n' }] }, // Init with a blank Delta
-    title: '',
+    title: { ops: [{ insert: 'Untitled' }, { insert: '\n', attributes: { header: 1 } }] },
     isEditMode: false,
     editModeState: ''
   };
@@ -65,12 +38,15 @@ class QuillEditor extends Component {
   componentWillMount() {
     const { match, storyData, location } = this.props;
     if (match.params.id) {
-      if (storyData.Story && storyData.Story.quillContent) {
-        const parsed = JSON.parse(storyData.Story.quillContent);
-        this.setState({
-          quillContent: parsed,
-          title: storyData.Story.title
-        });
+      if (storyData.Story) {
+        if (storyData.Story.titleDelta) {
+          const title = JSON.parse(storyData.Story.titleDelta);
+          this.setState({ title });
+        }
+        if (storyData.Story.bodyDelta) {
+          const quillContent = JSON.parse(storyData.Story.bodyDelta);
+          this.setState({ quillContent });
+        }
       } else if (location.state) {
         const { isEditMode = false, editModeState = '' } = location.state;
         this.setState({
@@ -86,9 +62,12 @@ class QuillEditor extends Component {
       if (!this.props.storyData.Story && nextProps.storyData.Story) {
         const { storyData } = nextProps;
         console.log('nextProps.storyData.Story', storyData.Story);
-        this.setState({ title: storyData.Story.title, editModeState: EDIT_MODE_SAVED });
+        this.setState({
+          title: JSON.parse(storyData.Story.titleDelta),
+          editModeState: EDIT_MODE_SAVED
+        });
         if (storyData.Story.quillContent) {
-          const parsed = JSON.parse(storyData.Story.quillContent);
+          const parsed = JSON.parse(storyData.Story.bodyDelta);
           this.setState({ quillContent: parsed });
         }
         // this.handleSetEditorFocus(); This is not working, why?
@@ -109,22 +88,23 @@ class QuillEditor extends Component {
     this.quillRef && this.quillRef.focus();
   };
 
-  handleTitle = () => {
-    if (!this.props.match.params.id) {
-      if (this.state.title.length) this.createStory();
-    } else this.updateTitle();
+  handleTitle = (delta = null, content) => {
+    this.setState({ title: delta, editModeState: EDIT_MODE_UNSAVED });
+    if (!this.props.match.params.id) this.debouncedCreateStory(delta, content);
+    else this.debouncedUpdateTitle(delta, content);
   };
 
-  handleKeyDown = e => {
-    if (e && (e.keyCode === 9 || e.keyCode === 13)) {
-      this.handleTitle();
-      if (this.props.match.params.id) this.handleSetEditorFocus();
-    }
-  };
+  // TODO: Revisit
+  // handleKeyDown = e => {
+  //   if (e && (e.keyCode === 9 || e.keyCode === 13)) {
+  //     this.handleTitle();
+  //     if (this.props.match.params.id) this.handleSetEditorFocus();
+  //   }
+  // };
 
-  handleBlur = e => {
-    if (e) this.handleTitle();
-  };
+  // handleBlur = e => {
+  //   if (e) this.handleTitle();
+  // };
 
   handleEditModeButton = e => {
     this.setState({ isEditMode: true, editModeState: EDIT_MODE_SAVED }, () =>
@@ -136,32 +116,36 @@ class QuillEditor extends Component {
     this.quillRef = node;
   };
 
-  createStory = async () => {
+  createStory = async (delta = null, content) => {
     const { createStoryMutation, userResult: { user }, history } = this.props;
-    if (!user) return;
-    const { title } = this.state;
+    if (!user || !delta) return;
+    const stringifiedDelta = JSON.stringify(delta);
     const result = await createStoryMutation({
       variables: {
         userId: user.id,
-        title
+        titleDelta: stringifiedDelta,
+        titleText: content
       }
     });
-    // console.log('create story result =', result);
     // Push id onto route and pass title as state to populate title on page
     history.push(`/write/${result.data.createStory.id}`, {
-      title,
       isEditMode: true,
       editModeState: EDIT_MODE_SAVING
     });
   };
 
-  debouncedUpdateStory = debounce(
-    delta => {
-      this.updateStory(delta);
-    },
-    1200
-    // { maxWait: 5000 }
-  );
+  // TODO: Consolidate duplicate functionality
+  debouncedCreateStory = debounce((delta, content) => {
+    this.createStory(delta, content);
+  }, 1200);
+
+  debouncedUpdateStory = debounce(delta => {
+    this.updateStory(delta);
+  }, 1200);
+
+  debouncedUpdateTitle = debounce((delta, content) => {
+    this.updateTitle(delta, content);
+  }, 1200);
 
   updateStory = async (delta = null) => {
     const { updateStoryMutation, userResult: { user }, storyData } = this.props;
@@ -171,26 +155,27 @@ class QuillEditor extends Component {
     const result = await updateStoryMutation({
       variables: {
         storyId: storyData.variables.storyId,
-        quillContent: stringifiedDelta
+        bodyDelta: stringifiedDelta
       }
     });
     this.setState({ editModeState: EDIT_MODE_SAVED });
     console.log('update story result with delta =', result);
   };
 
-  updateTitle = async () => {
-    const { updateStoryMutation, userResult: { user }, storyData: { variables } } = this.props;
-    const { title } = this.state;
+  updateTitle = async (delta = null, content) => {
+    const { updateStoryMutation, userResult: { user }, storyData } = this.props;
 
-    if (!user) return;
-    // this.setState({ editModeState: EDIT_MODE_SAVING });
+    if (!user || !delta || !storyData) return;
+    this.setState({ editModeState: EDIT_MODE_SAVING });
+    const stringifiedDelta = JSON.stringify(delta);
     const result = await updateStoryMutation({
       variables: {
-        storyId: variables.storyId,
-        title
+        storyId: storyData.variables.storyId,
+        titleDelta: stringifiedDelta,
+        titleText: content
       }
     });
-    // this.setState({ editModeState: EDIT_MODE_SAVED });
+    this.setState({ editModeState: EDIT_MODE_SAVED });
     console.log('update story result title only =', result);
   };
 
@@ -211,36 +196,16 @@ class QuillEditor extends Component {
             )}
           </EditModeContainer>
         ) : null}
-        <StoryHeader>
-          {isEditMode ? (
-            <Input
-              autoFocus={isEditMode && !match.params.id}
-              type="text"
-              placeholder="Our First Time"
-              value={title}
-              onChange={e => this.setState({ title: e.target.value })}
-              onKeyDown={e => this.handleKeyDown(e)}
-              // onBlur={e => this.handleBlur(e)}
-              disabled={!isEditMode && match.params.id}
-            />
-          ) : (
-            <StoryTitle>{title}</StoryTitle>
-          )}
-          <Flex align="center">
-            <FlexContent space="self">
-              <span>Author:&nbsp;</span>
-            </FlexContent>
-            <FlexContent>
-              <Avatar
-                user={!match.params.id ? user : storyData.Story.author}
-                to={{ state: { referrer: location } }}
-              />
-            </FlexContent>
-          </Flex>
-        </StoryHeader>
+        <TitleEditor
+          author={user}
+          title={title}
+          readOnly={!isEditMode}
+          onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
+          referrer={location}
+        />
         <ReactQuill
           theme="bubble"
-          readOnly={!title.length || !isEditMode}
+          readOnly={!storyData || !isEditMode}
           placeholder="It all started this one day..."
           value={quillContent}
           onChange={this.handleChange}
@@ -255,9 +220,7 @@ class QuillEditor extends Component {
 
 QuillEditor.modules = {
   toolbar: [[{ header: [2, 3, false] }], ['blockquote'], ['clean']],
-  clipboard: {
-    matchVisual: false
-  }
+  clipboard: { matchVisual: false }
 };
 
 QuillEditor.formats = ['header', 'blockquote'];

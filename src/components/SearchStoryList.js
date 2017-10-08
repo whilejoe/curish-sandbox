@@ -32,7 +32,7 @@ const ListStory = ({ story, referrer }) => {
       <StoryItemHeader>
         <StoryItemTitle>
           <StoryItemLink to={{ pathname: `/write/${story.id}`, state: { referrer } }}>
-            {story.title}
+            {story.titleText}
           </StoryItemLink>
         </StoryItemTitle>
         <Avatar user={story.author} to={{ state: { referrer } }} />

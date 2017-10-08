@@ -9,10 +9,9 @@ export const PROFILE_QUERY = gql`
       userName
       fullName
       photoURL
-      stories(orderBy: createdAt_DESC) {
+      stories(orderBy: updatedAt_DESC) {
         id
-        createdAt
-        title
+        titleText
         publishedAt
       }
     }

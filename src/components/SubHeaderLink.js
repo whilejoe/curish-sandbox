@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-// import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import { darken } from 'polished';
 
 const DURATION = 160;
 
@@ -13,28 +14,31 @@ const STATES = {
   [EXITED]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' }
 };
 
+const COLOR = THEME[PRIMARY_KEY];
+// const COLOR_ACTIVE = THEME[PRIMARY_KEY];
+
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.85rem 0.9rem;
+  padding: 0.85rem 1rem;
   font-size: 1.15em;
+  color: ${COLOR};
   line-height: 1;
   text-align: center;
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
-  transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out, color 180ms ease-out`};
+  transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out, color 150ms linear`};
 
   &:after {
     position: absolute;
     content: '';
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     height: 2px;
     width: 100%;
     background-color: currentColor;
     opacity: 0;
-    transform: translate3d(0, 5px, 0);
-    transition: opacity 180ms ease-out, transform 180ms ease-out;
+    transition: opacity 150ms linear, background-color 150ms linear;
   }
 
   &:hover,
@@ -44,7 +48,6 @@ const NavAction = styled(NavLink)`
 
     &:after {
       opacity: 1;
-      transform: translate3d(0, 0, 0);
     }
   }
 `;
