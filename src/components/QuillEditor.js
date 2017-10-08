@@ -201,26 +201,16 @@ class QuillEditor extends Component {
   render() {
     const { userResult: { user }, match, storyData, location } = this.props;
     const { storyTitle, storyBody, isEditMode, editModeState } = this.state;
-    if (storyData && storyData.loading) return <StoryContainer>Loading...</StoryContainer>;
-    if (
+    const noMatch =
       (match.params.id && !storyData.Story) ||
-      (storyData && storyData.Story && match.params.id !== storyData.Story.id)
-    ) {
-      return (
-        <StoryContainer>
-          <h1>Whoops, that story doesn't exist :(</h1>
-        </StoryContainer>
-      );
-    }
+      (storyData && storyData.Story && match.params.id !== storyData.Story.id);
     return (
       <div>
         <StoryHeader>
           <FlexContent>
-            <HeaderTitle>
-              {storyData && storyData.Story && (storyData.Story.titleText || 'Untitled')}
-            </HeaderTitle>
+            <HeaderTitle>{storyData && storyData.Story && storyData.Story.titleText}</HeaderTitle>
           </FlexContent>
-          {match.params.id && isAuthed() ? (
+          {!noMatch && isAuthed() ? (
             <FlexContent space="self">
               {isEditMode ? (
                 <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
@@ -233,23 +223,31 @@ class QuillEditor extends Component {
           ) : null}
         </StoryHeader>
         <StoryContainer style={{ position: 'relative' }}>
-          <TitleEditor
-            author={user}
-            title={storyTitle}
-            readOnly={!isEditMode}
-            onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
-            referrer={location}
-          />
-          <ReactQuill
-            theme="bubble"
-            readOnly={!storyData || !isEditMode}
-            placeholder="It all started this one day..."
-            value={storyBody}
-            onChange={this.handleChange}
-            modules={QuillEditor.modules}
-            formats={QuillEditor.formats}
-            ref={node => this.setRef(node)}
-          />
+          {storyData && storyData.loading && !storyData.Story ? (
+            <span>loading...</span>
+          ) : noMatch ? (
+            <h1>Whoops, that story doesn't exist :(</h1>
+          ) : (
+            <div>
+              <TitleEditor
+                author={user}
+                title={storyTitle}
+                readOnly={!isEditMode}
+                onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
+                referrer={location}
+              />
+              <ReactQuill
+                theme="bubble"
+                readOnly={!storyData || !isEditMode}
+                placeholder="It all started this one day..."
+                value={storyBody}
+                onChange={this.handleChange}
+                modules={QuillEditor.modules}
+                formats={QuillEditor.formats}
+                ref={node => this.setRef(node)}
+              />
+            </div>
+          )}
         </StoryContainer>
       </div>
     );

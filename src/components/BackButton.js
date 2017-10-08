@@ -10,8 +10,8 @@ import Icon from 'components/Icon';
 const DURATION = 160;
 
 const STATES = {
-  [ENTERING]: { opacity: 1, transform: 'translate3d(0, -50%, 0)' },
-  [ENTERED]: { opacity: 1, transform: 'translate3d(0, -50%, 0)' },
+  [ENTERING]: { opacity: 1, transform: 'translate3d(0%, -50%, 0)' },
+  [ENTERED]: { opacity: 1, transform: 'translate3d(0%, -50%, 0)' },
   [EXITING]: { opacity: 0, transform: 'translate3d(-200%, -50%, 0)' },
   [EXITED]: { opacity: 0, transform: 'translate3d(-200%, -50%, 0)' }
 };
