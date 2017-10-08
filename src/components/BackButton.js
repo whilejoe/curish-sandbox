@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
 import Link from 'components/Link';
 import Icon from 'components/Icon';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const DURATION = 160;
 
@@ -16,8 +17,9 @@ const STATES = {
 const BackLink = styled(Link)`
   position: absolute;
   top: 50%;
-  left: 0.1em;
+  left: 0;
   padding: 0.85rem;
+  color: ${THEME[PRIMARY_KEY]};
   font-size: 1.15em;
   line-height: 1;
   transform: ${props => STATES[props.status].transform};

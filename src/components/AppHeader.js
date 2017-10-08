@@ -67,7 +67,7 @@ const Brand = styled(NavLink)`
   display: inline-block;
   padding: 1rem 0;
   font-family: 'Merriweather', serif;
-  font-size: 1.1em;
+  font-size: 1.11em;
   font-weight: 700;
   line-height: 1;
 
