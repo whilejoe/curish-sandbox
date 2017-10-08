@@ -22,6 +22,7 @@ import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.div`
   border-bottom: 1px solid #f3f3f3;
+  overflow: hidden;
 `;
 
 class SubHeader extends Component {

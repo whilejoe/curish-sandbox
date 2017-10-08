@@ -32,7 +32,7 @@ const NavAction = styled(NavLink)`
   &:after {
     position: absolute;
     content: '';
-    bottom: -1px;
+    bottom: 0;
     left: 0;
     height: 2px;
     width: 100%;
