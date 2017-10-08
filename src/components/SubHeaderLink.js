@@ -27,7 +27,10 @@ const NavAction = styled(NavLink)`
   text-align: center;
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
-  transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out, color 150ms linear`};
+  transition: ${`
+    transform ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1),
+    opacity ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1), color 150ms linear
+  `};
 
   &:after {
     position: absolute;
