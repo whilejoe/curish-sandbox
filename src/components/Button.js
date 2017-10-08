@@ -4,12 +4,14 @@ import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const Button = styled.button`
   display: inline-block;
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.7rem;
   background-color: transparent;
   color: ${props => THEME[props.theme] || THEME[PRIMARY_KEY]};
   font-family: inherit;
-  line-height: normal;
-  text-transform: capitalize;
+  font-size: 0.9em;
+  line-height: 1;
+  vertical-align: middle;
+  text-transform: uppercase;
   border-radius: 2px;
   transition: background-color 200ms ease-out, color 200ms ease-out;
   outline: none;

@@ -215,9 +215,10 @@ class QuillEditor extends Component {
               {isEditMode ? (
                 <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
               ) : (
-                <Button editMode={isEditMode} onClick={this.handleEditModeButton}>
-                  Edit
-                </Button>
+                <div>
+                  <Button onClick={this.handleEditModeButton}>Edit</Button>
+                  <Button theme="tertiary">Publish</Button>
+                </div>
               )}
             </FlexContent>
           ) : null}
