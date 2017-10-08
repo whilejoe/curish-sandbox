@@ -29,8 +29,8 @@ const EditModeStatus = styled.span`
 
 class QuillEditor extends Component {
   state = {
-    quillContent: { ops: [{ insert: '\n' }] }, // Init with a blank Delta
-    title: { ops: [{ insert: 'Untitled' }, { insert: '\n', attributes: { header: 1 } }] },
+    storyBody: { ops: [{ insert: '\n' }] }, // Init with a blank Delta
+    storyTitle: { ops: [{ insert: 'Untitled' }, { insert: '\n', attributes: { header: 1 } }] },
     isEditMode: false,
     editModeState: ''
   };
@@ -40,12 +40,10 @@ class QuillEditor extends Component {
     if (match.params.id) {
       if (storyData.Story) {
         if (storyData.Story.titleDelta) {
-          const title = JSON.parse(storyData.Story.titleDelta);
-          this.setState({ title });
+          this.setState({ storyTitle: JSON.parse(storyData.Story.titleDelta) });
         }
         if (storyData.Story.bodyDelta) {
-          const quillContent = JSON.parse(storyData.Story.bodyDelta);
-          this.setState({ quillContent });
+          this.setState({ storyBody: JSON.parse(storyData.Story.bodyDelta) });
         }
       } else if (location.state) {
         const { isEditMode = false, editModeState = '' } = location.state;
@@ -63,12 +61,11 @@ class QuillEditor extends Component {
         const { storyData } = nextProps;
         console.log('nextProps.storyData.Story', storyData.Story);
         this.setState({
-          title: JSON.parse(storyData.Story.titleDelta),
+          storyTitle: JSON.parse(storyData.Story.titleDelta),
           editModeState: EDIT_MODE_SAVED
         });
-        if (storyData.Story.quillContent) {
-          const parsed = JSON.parse(storyData.Story.bodyDelta);
-          this.setState({ quillContent: parsed });
+        if (storyData.Story.bodyDelta) {
+          this.setState({ storyBody: JSON.parse(storyData.Story.bodyDelta) });
         }
         // this.handleSetEditorFocus(); This is not working, why?
       }
@@ -79,7 +76,10 @@ class QuillEditor extends Component {
     if (!editor) return;
     // console.log('content length', editor.getLength());
     const fullDelta = editor.getContents();
-    this.setState({ quillContent: fullDelta, editModeState: EDIT_MODE_UNSAVED });
+    this.setState({
+      storyBody: fullDelta,
+      editModeState: EDIT_MODE_UNSAVED
+    });
     this.debouncedUpdateStory(fullDelta);
   };
 
@@ -89,7 +89,10 @@ class QuillEditor extends Component {
   };
 
   handleTitle = (delta = null, content) => {
-    this.setState({ title: delta, editModeState: EDIT_MODE_UNSAVED });
+    this.setState({
+      storyTitle: delta,
+      editModeState: EDIT_MODE_UNSAVED
+    });
     if (!this.props.match.params.id) this.debouncedCreateStory(delta, content);
     else this.debouncedUpdateTitle(delta, content);
   };
@@ -107,8 +110,12 @@ class QuillEditor extends Component {
   // };
 
   handleEditModeButton = e => {
-    this.setState({ isEditMode: true, editModeState: EDIT_MODE_SAVED }, () =>
-      this.handleSetEditorFocus()
+    this.setState(
+      {
+        isEditMode: true,
+        editModeState: EDIT_MODE_SAVED
+      },
+      () => this.handleSetEditorFocus()
     );
   };
 
@@ -181,7 +188,7 @@ class QuillEditor extends Component {
 
   render() {
     const { userResult: { user }, match, storyData, location } = this.props;
-    const { title, quillContent, isEditMode, editModeState } = this.state;
+    const { storyTitle, storyBody, isEditMode, editModeState } = this.state;
     if (storyData && storyData.loading) return <StoryContainer>Loading...</StoryContainer>;
     return (
       <StoryContainer style={{ position: 'relative' }}>
@@ -198,7 +205,7 @@ class QuillEditor extends Component {
         ) : null}
         <TitleEditor
           author={user}
-          title={title}
+          title={storyTitle}
           readOnly={!isEditMode}
           onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
           referrer={location}
@@ -207,7 +214,7 @@ class QuillEditor extends Component {
           theme="bubble"
           readOnly={!storyData || !isEditMode}
           placeholder="It all started this one day..."
-          value={quillContent}
+          value={storyBody}
           onChange={this.handleChange}
           modules={QuillEditor.modules}
           formats={QuillEditor.formats}

@@ -16,7 +16,7 @@ const STATES = {
 const BackLink = styled(Link)`
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 0.1em;
   padding: 0.85rem;
   font-size: 1.15em;
   line-height: 1;
