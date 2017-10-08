@@ -20,7 +20,7 @@ const COLOR = THEME[PRIMARY_KEY];
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 0.9rem;
   font-size: 1.15em;
   color: ${COLOR};
   line-height: 1;
