@@ -6,32 +6,24 @@ import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import { FlexContent } from 'components/Flex';
 import Button from 'components/Button';
+import Modal from 'components/Modal';
 import StoryContainer from 'components/StoryContainer';
 import TitleEditor from 'components/TitleEditor';
 import StoryHeader from 'components/StoryHeader';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
-// import { ellipsis } from 'polished';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
 const EDIT_MODE_SAVING = 'Saving...';
 const EDIT_MODE_SAVED = 'Saved';
 
-// const EditModeContainer = styled.div`
-//   position: absolute;
-//   top: 0.3rem;
-//   right: 1.25rem;
-//   z-index: 1;
-// `;
-// const EditModeContainer = styled.div`
-//   padding: 0.65rem;
-//   text-align: right;
-// `;
-
 const EditModeStatus = styled.span`
+  display: inline-block;
+  margin-right: 0.5rem;
   color: ${props => (props.mode === EDIT_MODE_SAVING ? THEME[PRIMARY_KEY] : '#b4b4b4')};
   font-size: 0.8em;
+  vertical-align: middle;
 `;
 
 const HeaderTitle = styled.div`
@@ -204,54 +196,69 @@ class QuillEditor extends Component {
     const noMatch =
       (match.params.id && !storyData.Story) ||
       (storyData && storyData.Story && match.params.id !== storyData.Story.id);
-    return (
-      <div>
-        <StoryHeader>
-          <FlexContent>
-            <HeaderTitle>{storyData && storyData.Story && storyData.Story.titleText}</HeaderTitle>
+    return [
+      <StoryHeader key="storyHeader">
+        <FlexContent>
+          <HeaderTitle>{storyData && storyData.Story && storyData.Story.titleText}</HeaderTitle>
+        </FlexContent>
+        {!noMatch && isAuthed() ? (
+          <FlexContent space="self">
+            {isEditMode ? (
+              <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
+            ) : (
+              <Button key="modalTrigger" onClick={this.handleEditModeButton}>
+                Edit
+              </Button>
+            )}
+            <Modal key="modal" trigger={<Button theme="tertiary">Publish</Button>}>
+              <p>
+                Kayla always thought this day would end up being the worst day of her life. Her
+                mother finally kicked her out of their trailer, this time for good, after getting
+                into a heated fight with one of her drunk boyfriends. She was in such a hurry to get
+                out of there that she hardly had time to grab any of her things. All she had in the
+                world were the clothes on her back and a backpack full of underwear, t-shirts, and
+                make-up. She had almost no money either, just a few crumpled one dollar bills in the
+                back pocket of her jean shorts. That is why she was hitchhiking along the interstate
+                that afternoon, praying to God that someone would stop before it got dark. She had
+                no idea where she wanted to go, just that she needed to get far away from the life
+                she was leaving behind. Just when she was beginning to think no one would stop for
+                her, an old Jeep slowed to a stop just a few yards ahead of her. Thinking it could
+                take off at any moment, Kay ran toward it with her tired legs.
+              </p>
+            </Modal>
           </FlexContent>
-          {!noMatch && isAuthed() ? (
-            <FlexContent space="self">
-              {isEditMode ? (
-                <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
-              ) : (
-                <div>
-                  <Button onClick={this.handleEditModeButton}>Edit</Button>
-                  <Button theme="tertiary">Publish</Button>
-                </div>
-              )}
-            </FlexContent>
-          ) : null}
-        </StoryHeader>
-        <StoryContainer style={{ position: 'relative' }}>
-          {storyData && storyData.loading && !storyData.Story ? (
-            <span>loading...</span>
-          ) : noMatch ? (
-            <h1>Whoops, that story doesn't exist :(</h1>
-          ) : (
-            <div>
-              <TitleEditor
-                author={user}
-                title={storyTitle}
-                readOnly={!isEditMode}
-                onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
-                referrer={location}
-              />
-              <ReactQuill
-                theme="bubble"
-                readOnly={!storyData || !isEditMode}
-                placeholder="It all started this one day..."
-                value={storyBody}
-                onChange={this.handleChange}
-                modules={QuillEditor.modules}
-                formats={QuillEditor.formats}
-                ref={node => this.setRef(node)}
-              />
-            </div>
-          )}
-        </StoryContainer>
-      </div>
-    );
+        ) : null}
+      </StoryHeader>,
+      <StoryContainer key="storyContainer" style={{ position: 'relative' }}>
+        {storyData && storyData.loading && !storyData.Story ? (
+          <span>loading...</span>
+        ) : noMatch ? (
+          <h1>Whoops, that story doesn't exist :(</h1>
+        ) : (
+          [
+            <TitleEditor
+              key="titleEditor"
+              author={user}
+              title={storyTitle}
+              readOnly={!isEditMode}
+              onChangeTitle={(delta, content) => this.handleTitle(delta, content)}
+              referrer={location}
+            />,
+            <ReactQuill
+              key="bodyEditor"
+              theme="bubble"
+              readOnly={!storyData || !isEditMode}
+              placeholder="It all started this one day..."
+              value={storyBody}
+              onChange={this.handleChange}
+              modules={QuillEditor.modules}
+              formats={QuillEditor.formats}
+              ref={node => this.setRef(node)}
+            />
+          ]
+        )}
+      </StoryContainer>
+    ];
   }
 }
 
