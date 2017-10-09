@@ -109,38 +109,34 @@ class StorySearch extends Component {
   };
 
   render() {
+    const { storySearchForm: { model }, location } = this.props;
     const { stories, users } = this.state;
+    const hasValue = model.search && model.search.length > 0;
     return (
       <PageContainer>
         <SearchContainer>
           <InputGroup
-            autoFocus={!this.props.location.search}
+            autoFocus={!hasValue}
             id="search"
             label="Search Curish"
-            // hideLabel
+            hasValue={hasValue}
             type="text"
             model="storySearch.search"
-            // placeholder="Search Curish"
             // onKeyDown={this.handleKeyDown}
-            placeholder=""
             onChange={this.debouncedOnChange}
           />
           <Flex gutters guttersVertical align="center">
             {stories.length > 0 && (
               <FlexContent space={[100, { sm: 'reset' }]}>
                 {stories.map(story => (
-                  <SearchStoryList key={story.id} story={story} referrer={this.props.location} />
+                  <SearchStoryList key={story.id} story={story} referrer={location} />
                 ))}
               </FlexContent>
             )}
             {users.length > 0 && (
               <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
                 {users.map(user => (
-                  <Avatar
-                    key={user.id}
-                    user={user}
-                    to={{ state: { referrer: this.props.location } }}
-                  />
+                  <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
                 ))}
               </FlexContent>
             )}

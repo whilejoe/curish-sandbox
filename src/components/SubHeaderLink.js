@@ -14,14 +14,14 @@ const STATES = {
   [EXITED]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' }
 };
 
-const COLOR = '#b9b9b9';
+const COLOR = '#ccc';
 // const COLOR_ACTIVE = THEME[PRIMARY_KEY];
 
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
   padding: 0.85rem 0.9rem;
-  font-size: 1.15em;
+  font-size: 1.13em;
   color: ${COLOR};
   line-height: 1;
   text-align: center;
@@ -48,7 +48,7 @@ const NavAction = styled(NavLink)`
   &:focus,
   &.active {
     text-decoration: none;
-    color: inherit;
+    color: #333;
 
     &:after {
       opacity: 1;

@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 import SrOnly from 'components/SrOnly';
 import { THEME, PRIMARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
-
-let activeClass = '';
 
 const COLOR = 'inherit';
 const ACTIVE_COLOR = THEME[PRIMARY_KEY];
@@ -58,7 +56,7 @@ export const Input = styled(TextInput)`
   &[placeholder] {
     & + ${Label} {
       color: ${ACTIVE_COLOR};
-      transform: translateY(-14px) scale(0.8);
+      transform: translateY(-14px) scale(0.9);
       transform-origin: 0 0;
     }
   }
@@ -107,26 +105,51 @@ const Container = styled.div`
   margin-bottom: 1.2rem;
 `;
 
-const handleOnChange = (e, onChange) => {
-  activeClass = e.target.value ? 'active' : '';
-  if (onChange) onChange();
-};
+class InputGroup extends Component {
+  state = {
+    isActive: false
+  };
 
-const InputGroup = props => {
-  const { hideLabel, label, children, errorMessages, onChange, ...rest } = props;
-  return (
-    <Container>
-      <Input {...rest} onChange={e => handleOnChange(e, onChange)} className={activeClass} />
-      {hideLabel ? (
-        <SrOnly>
-          <label htmlFor={props.id}>{label}</label>
-        </SrOnly>
-      ) : (
-        <Label htmlFor={props.id}>{label}</Label>
-      )}
-      {errorMessages && <FormError model={rest.model} messages={errorMessages} />}
-    </Container>
-  );
-};
+  componentWillMount() {
+    if (this.props.hasValue) this.setState({ isActive: true });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.hasValue !== this.props.hasValue) {
+      this.setState({ isActive: nextProps.hasValue });
+    }
+  }
+
+  handleOnChange = (e, onChange) => {
+    if (e) {
+      if (e.target.value && !this.state.isActive) this.setState({ isActive: true });
+      else if (!e.target.value && this.state.isActive) this.setState({ isActive: false });
+      if (onChange) onChange();
+    }
+  };
+
+  render() {
+    const { hideLabel, label, children, errorMessages, hasValue, onChange, ...rest } = this.props;
+    const { isActive } = this.state;
+    console.log('hasValue', hasValue);
+    return (
+      <Container>
+        <Input
+          {...rest}
+          onChange={e => this.handleOnChange(e, onChange)}
+          className={isActive ? 'active' : ''}
+        />
+        {hideLabel ? (
+          <SrOnly>
+            <label htmlFor={this.props.id}>{label}</label>
+          </SrOnly>
+        ) : (
+          <Label htmlFor={this.props.id}>{label}</Label>
+        )}
+        {errorMessages && <FormError model={rest.model} messages={errorMessages} />}
+      </Container>
+    );
+  }
+}
 
 export default InputGroup;

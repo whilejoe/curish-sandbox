@@ -11,7 +11,7 @@ import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.header`
   background-color: #f8f8f8;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f3f3f3;
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -53,7 +53,8 @@ const HeaderLink = styled(NavLink)`
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
-  padding: 0.95rem 0;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
   vertical-align: middle;
 
   &:hover,
@@ -65,7 +66,8 @@ const HeaderAvatar = styled(Avatar)`
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding: 0.95rem 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-family: 'Merriweather', serif;
   font-size: 1.11em;
   font-weight: 700;
