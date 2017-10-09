@@ -55,17 +55,13 @@ class Modal extends Component {
             in={isModalOpen}
             appear
             timeout={SLIDE_DURATION}
+            onEntered={() => this.modalContentRef && this.modalContentRef.focus()}
             onExited={this.onPortalClosed}
           >
             {status => (
               <Backdrop key="backdrop" status={status}>
-                <Slide
-                  key="slide"
-                  status={status}
-                  duration={SLIDE_DURATION}
-                  innerRef={node => this.setRef(node)}
-                >
-                  <SlideContent>
+                <Slide key="slide" status={status} duration={SLIDE_DURATION}>
+                  <SlideContent innerRef={node => this.setRef(node)} tabIndex={0}>
                     <div style={{ textAlign: 'right' }}>
                       <Button
                         style={{ marginBottom: '.5rem' }}
