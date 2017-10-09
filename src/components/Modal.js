@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Portal } from 'react-portal';
 import Transition from 'react-transition-group/Transition';
 import { Slide, Backdrop, SlideContent } from 'components/ModalAnimations';
+import Button from 'components/Button';
 import { SLIDE_DURATION } from 'constants/animation';
 
 class Modal extends Component {
@@ -10,23 +11,34 @@ class Modal extends Component {
     isModalOpen: false
   };
 
-  onPortalOpen = e => {
-    window.addEventListener('keydown', this.handleKeyDown, false);
+  onPortalOpen = () => {
+    document.addEventListener('keydown', this.handleKeyDown, false);
+    document.addEventListener('click', this.handleWindowClick, false);
     this.setState({ isPortalOpen: true, isModalOpen: true });
   };
 
   handleKeyDown = e => {
-    console.log('handleKeyDown event listener called');
     if (e && e.keyCode === 27) this.onCloseModal();
+  };
+
+  handleWindowClick = e => {
+    if (e && this.modalContentRef && !this.modalContentRef.contains(e.target)) {
+      this.onCloseModal();
+    }
   };
 
   onPortalClosed = () => {
     this.setState({ isPortalOpen: false });
-    window.removeEventListener('keydown', this.handleKeyDown, false);
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+    document.removeEventListener('click', this.handleWindowClick, false);
   };
 
   onCloseModal = () => {
     this.setState({ isModalOpen: false });
+  };
+
+  setRef = node => {
+    this.modalContentRef = node;
   };
 
   render() {
@@ -46,10 +58,23 @@ class Modal extends Component {
             onExited={this.onPortalClosed}
           >
             {status => (
-              <Backdrop onClick={this.onCloseModal} key="backdrop" status={status}>
-                <Slide key="slide" status={status} duration={SLIDE_DURATION}>
+              <Backdrop key="backdrop" status={status}>
+                <Slide
+                  key="slide"
+                  status={status}
+                  duration={SLIDE_DURATION}
+                  innerRef={node => this.setRef(node)}
+                >
                   <SlideContent>
-                    <button onClick={this.onCloseModal}>close</button>
+                    <div style={{ textAlign: 'right' }}>
+                      <Button
+                        style={{ marginBottom: '.5rem' }}
+                        theme="tertiary"
+                        onClick={this.onCloseModal}
+                      >
+                        close
+                      </Button>
+                    </div>
                     {children}
                   </SlideContent>
                 </Slide>
