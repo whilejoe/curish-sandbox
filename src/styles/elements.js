@@ -4,6 +4,7 @@ import { modularScale, stripUnit } from 'polished';
 
 // font-family: 'Noto Serif', serif;
 // font-family: 'Peddana', serif;
+// '"Playfair Display", serif'
 
 export const serifFont = '"Merriweather", serif';
 export const sanserifFont = '"Source Sans Pro", sans-serif';

@@ -4,10 +4,10 @@ import { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Trans
 import media from 'utils/media';
 
 const SLIDE_STATES = {
-  [ENTERING]: 'translate3d(0, 140%, 0)',
-  [ENTERED]: 'translate3d(0, 0%, 0)',
-  [EXITING]: 'translate3d(0, 70%, 0)',
-  [EXITED]: 'translate3d(0, 70%, 0)'
+  [ENTERING]: 'translate3d(0, 100vh, 0)',
+  [ENTERED]: 'translate3d(0, 0, 0)',
+  [EXITING]: 'translate3d(0, 100vh, 0)',
+  [EXITED]: 'translate3d(0, 100vh, 0)'
 };
 
 const OPACITY_STATES = {

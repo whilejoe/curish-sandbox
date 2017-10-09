@@ -14,7 +14,7 @@ const STATES = {
   [EXITED]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' }
 };
 
-const COLOR = '#ccc';
+const COLOR = '#b9b9b9';
 // const COLOR_ACTIVE = THEME[PRIMARY_KEY];
 
 const NavAction = styled(NavLink)`
