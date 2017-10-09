@@ -63,11 +63,7 @@ class Modal extends Component {
                 <Slide key="slide" status={status} duration={SLIDE_DURATION}>
                   <SlideContent innerRef={node => this.setRef(node)} tabIndex={0}>
                     <div style={{ textAlign: 'right' }}>
-                      <Button
-                        style={{ marginBottom: '.5rem' }}
-                        theme="tertiary"
-                        onClick={this.onCloseModal}
-                      >
+                      <Button style={{ marginBottom: '.5rem' }} onClick={this.onCloseModal}>
                         close
                       </Button>
                     </div>
