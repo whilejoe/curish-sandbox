@@ -35,13 +35,13 @@ const NavAction = styled(NavLink)`
   &:after {
     position: absolute;
     content: '';
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     height: 2px;
     width: 100%;
     background-color: currentColor;
     opacity: 0;
-    transition: opacity 150ms linear, background-color 150ms linear;
+    transition: opacity 150ms linear;
   }
 
   &:hover,

@@ -23,14 +23,13 @@ const HeaderLink = styled(NavLink)`
   &:after {
     position: absolute;
     content: '';
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     height: 2px;
     width: 100%;
     background-color: currentColor;
     opacity: 0;
-    transform: translateY(5px);
-    transition: opacity 150ms ease, transform 150ms ease;
+    transition: opacity 150ms ease;
   }
 
   &:hover,
@@ -40,7 +39,6 @@ const HeaderLink = styled(NavLink)`
 
     &:after {
       opacity: 1;
-      transform: translateY(0px);
     }
   }
 `;
@@ -53,9 +51,8 @@ const HeaderLink = styled(NavLink)`
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
-  padding-top: 0.95rem;
-  padding-bottom: 0.95rem;
-  vertical-align: middle;
+  padding-top: 1.05rem;
+  padding-bottom: 0.85rem;
 
   &:hover,
   &:focus,
@@ -66,10 +63,10 @@ const HeaderAvatar = styled(Avatar)`
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding-top: 1.05rem;
-  padding-bottom: 1.05rem;
+  padding-top: 1.15rem;
+  padding-bottom: 0.95rem;
   font-family: 'Merriweather', serif;
-  font-size: 1.11em;
+  font-size: 1.1em;
   font-weight: 700;
   line-height: 1;
 
