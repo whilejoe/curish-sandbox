@@ -210,30 +210,35 @@ class QuillEditor extends Component {
                 Edit
               </Button>
             )}
-            <Modal
-              key="modal"
-              trigger={<Button theme="tertiary">Publish</Button>}
-              title="Publish Story"
-            >
-              <p>
-                Kayla always thought this day would end up being the worst day of her life. Her
-                mother finally kicked her out of their trailer, this time for good, after getting
-                into a heated fight with one of her drunk boyfriends. She was in such a hurry to get
-                out of there that she hardly had time to grab any of her things. All she had in the
-                world were the clothes on her back and a backpack full of underwear, t-shirts, and
-                make-up. She had almost no money either, just a few crumpled one dollar bills in the
-                back pocket of her jean shorts. That is why she was hitchhiking along the interstate
-                that afternoon, praying to God that someone would stop before it got dark. She had
-                no idea where she wanted to go, just that she needed to get far away from the life
-                she was leaving behind. Just when she was beginning to think no one would stop for
-                her, an old Jeep slowed to a stop just a few yards ahead of her. Thinking it could
-                take off at any moment, Kay ran toward it with her tired legs.
-              </p>
-            </Modal>
+            {match.params.id &&
+              storyData &&
+              storyData.Story && (
+                <Modal
+                  key="modal"
+                  trigger={<Button theme="tertiary">Publish</Button>}
+                  title="Publish Story"
+                >
+                  <p>
+                    Kayla always thought this day would end up being the worst day of her life. Her
+                    mother finally kicked her out of their trailer, this time for good, after
+                    getting into a heated fight with one of her drunk boyfriends. She was in such a
+                    hurry to get out of there that she hardly had time to grab any of her things.
+                    All she had in the world were the clothes on her back and a backpack full of
+                    underwear, t-shirts, and make-up. She had almost no money either, just a few
+                    crumpled one dollar bills in the back pocket of her jean shorts. That is why she
+                    was hitchhiking along the interstate that afternoon, praying to God that someone
+                    would stop before it got dark. She had no idea where she wanted to go, just that
+                    she needed to get far away from the life she was leaving behind. Just when she
+                    was beginning to think no one would stop for her, an old Jeep slowed to a stop
+                    just a few yards ahead of her. Thinking it could take off at any moment, Kay ran
+                    toward it with her tired legs.
+                  </p>
+                </Modal>
+              )}
           </FlexContent>
         ) : null}
       </StoryHeader>,
-      <StoryContainer key="storyContainer" style={{ position: 'relative' }}>
+      <StoryContainer key="storyContainer">
         {storyData && storyData.loading && !storyData.Story ? (
           <span>loading...</span>
         ) : noMatch ? (
