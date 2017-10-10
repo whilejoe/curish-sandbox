@@ -21,7 +21,6 @@ const PublishStory = ({ publishForm: { description } }) => {
       <InputTitle>Add a description (the best are 160 characters or less)</InputTitle>
       <PublishInputGroup
         inputType="textArea"
-        autoFocus
         id="description"
         label="Add a description"
         model="publishForm.description"
