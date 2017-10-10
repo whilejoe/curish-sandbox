@@ -7,22 +7,20 @@ import Button from 'components/Button';
 import { Flex, FlexContent } from 'components/Flex';
 import { SLIDE_DURATION } from 'constants/animation';
 
-const PADDING_TB = '1rem';
-const PADDING_LR = '1.25rem';
-
 const Header = styled.div`
-  padding-top: ${PADDING_TB};
-  padding-right: ${PADDING_LR};
-  padding-left: ${PADDING_LR};
+  padding: 0.95rem 1rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #f3f3f3;
 `;
 
 const Heading = styled.h1`
   margin: 0;
-  font-size: 1.35em;
+  font-size: 1.28em;
+  line-height: 1;
 `;
 
 const Body = styled.div`
-  padding: ${PADDING_TB} ${PADDING_LR};
+  padding: 1.6rem 1rem 0.8rem;
 `;
 
 class Modal extends Component {
@@ -31,9 +29,9 @@ class Modal extends Component {
     isModalOpen: false
   };
 
-  componentWillMount() {
-    this.onPortalOpen();
-  }
+  // componentWillMount() {
+  //   this.onPortalOpen();
+  // }
 
   onPortalOpen = () => {
     document.addEventListener('keydown', this.handleKeyDown, false);
@@ -101,7 +99,7 @@ class Modal extends Component {
                         <Heading>{title}</Heading>
                       </FlexContent>
                       <FlexContent space="self">
-                        <Button style={{ marginBottom: '.5rem' }} onClick={this.onCloseModal}>
+                        <Button theme="secondary" onClick={this.onCloseModal}>
                           close
                         </Button>
                       </FlexContent>

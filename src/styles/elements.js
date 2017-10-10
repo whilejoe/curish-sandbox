@@ -67,6 +67,11 @@ injectGlobal`
     text-rendering: optimizeLegibility;
   }
 
+  p {
+    font-size: 1.15em;
+    line-height: 1.5;
+  }
+
   h1 {
     font-size: ${modularScale(3, BASE, RATIO)};
     margin: ${stripUnit(modularScale(3, BASE, RATIO)) * 0.45}em 0;
@@ -133,11 +138,6 @@ injectGlobal`
   img {
     max-width: 100%;
     height: auto;
-  }
-  
-  p {
-    font-size: 1.15em;
-    line-height: 1.5;
   }
 
   p,

@@ -1,4 +1,4 @@
-import CreateUser from 'components/CreateUser';
+import PublishStory from 'components/PublishStory';
 import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 import { getIdToken } from 'utils/AuthService';
@@ -7,7 +7,7 @@ import store from 'state/store';
 import { push } from 'react-router-redux';
 
 const mapStateToProps = state => ({
-  profileForm: state.forms.profile.model
+  publishForm: state.forms.publish.model
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -53,4 +53,4 @@ const CREATE_USER_MUTATION = gql`
 export default compose(
   graphql(CREATE_USER_MUTATION, { name: 'createUserMutation' }),
   connect(mapStateToProps, mapDispatchToProps)
-)(CreateUser);
+)(PublishStory);

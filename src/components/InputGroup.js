@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
+import TextArea from 'abyss-form/lib/TextArea';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 import SrOnly from 'components/SrOnly';
 import { THEME, PRIMARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
@@ -32,52 +33,35 @@ export const Label = styled.label`
   pointer-events: none;
 `;
 
-export const Input = styled(TextInput)`
+const inputMixin = css`
   background-color: transparent;
   color: ${COLOR};
   border: none;
   border-bottom: 1px solid ${PLACEHOLDER_COLOR};
   border-radius: 0;
   outline: none;
-  height: 2.5rem;
   width: 100%;
   font-size: inherit;
-  padding: 0;
   box-shadow: none;
-  box-sizing: content-box;
 
   &:focus,
   &.active {
     ${activeState};
   }
 
-  &:focus,
-  &.active,
-  &[placeholder] {
-    & + ${Label} {
-      color: ${ACTIVE_COLOR};
-      transform: translateY(-14px) scale(0.9);
-      transform-origin: 0 0;
-    }
-  }
-
   &.abyss-form-invalid {
     color: ${ERROR_COLOR};
     border-bottom: 1px solid red;
     box-shadow: 0 1px 0 0 red;
+  }
 
-    & + ${Label} {
-      color: ${ERROR_COLOR};
-    }
+  &:-webkit-autofill {
+    ${activeState};
   }
 
   &::placeholder {
     font-size: inherit;
     color: ${PLACEHOLDER_COLOR};
-  }
-
-  &:-webkit-autofill {
-    ${activeState};
   }
 
   &:-webkit-autofill {
@@ -88,6 +72,28 @@ export const Input = styled(TextInput)`
     &:focus {
       -webkit-text-fill-color: inherit;
       box-shadow: 0 0 0px 100px white inset;
+    }
+  }
+`;
+
+export const InputText = styled(TextInput)`
+  ${inputMixin};
+  padding: 0;
+  height: 2.5rem;
+
+  &:focus,
+  &.active,
+  &[placeholder] {
+    & + ${Label} {
+      color: ${ACTIVE_COLOR};
+      transform: translateY(-22px) scale(0.9);
+      transform-origin: 0 0;
+    }
+  }
+
+  &.abyss-form-invalid {
+    & + ${Label} {
+      color: ${ERROR_COLOR};
     }
   }
 `;
@@ -104,6 +110,22 @@ const Container = styled.div`
   margin-top: 1.2rem;
   margin-bottom: 1.2rem;
 `;
+
+const InputArea = styled(TextArea)`
+  ${inputMixin};
+  padding: 0.8rem;
+  max-width: 100%;
+  min-height: 3.1rem;
+  background-color: #f8f8f8;
+  border-bottom: 2px solid #f3f3f3;
+  border-radius: 2px;
+  resize: none !important;
+`;
+
+const INPUT_TYPES = {
+  text: InputText,
+  textArea: InputArea
+};
 
 class InputGroup extends Component {
   state = {
@@ -129,17 +151,27 @@ class InputGroup extends Component {
   };
 
   render() {
-    const { hideLabel, label, children, errorMessages, hasValue, onChange, ...rest } = this.props;
+    const {
+      children,
+      inputType = 'text',
+      hideLabel,
+      label,
+      errorMessages,
+      hasValue,
+      onChange,
+      className,
+      ...rest
+    } = this.props;
     const { isActive } = this.state;
-    console.log('hasValue', hasValue);
+    const Input = INPUT_TYPES[inputType];
     return (
-      <Container>
+      <Container className={className}>
         <Input
           {...rest}
           onChange={e => this.handleOnChange(e, onChange)}
           className={isActive ? 'active' : ''}
         />
-        {hideLabel ? (
+        {hideLabel || inputType !== 'text' ? (
           <SrOnly>
             <label htmlFor={this.props.id}>{label}</label>
           </SrOnly>
