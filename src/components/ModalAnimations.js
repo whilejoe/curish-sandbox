@@ -57,9 +57,4 @@ export const Slide = styled.div`
     opacity ${SLIDE_DURATION * 0.75}ms linear;
 `;
 
-export const SlideContent = styled.div`
-  padding: 1rem;
-  background-color: white;
-`;
-
 export default Slide;

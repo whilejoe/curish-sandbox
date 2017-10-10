@@ -210,7 +210,11 @@ class QuillEditor extends Component {
                 Edit
               </Button>
             )}
-            <Modal key="modal" trigger={<Button theme="tertiary">Publish</Button>}>
+            <Modal
+              key="modal"
+              trigger={<Button theme="tertiary">Publish</Button>}
+              title="Publish Story"
+            >
               <p>
                 Kayla always thought this day would end up being the worst day of her life. Her
                 mother finally kicked her out of their trailer, this time for good, after getting
