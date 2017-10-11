@@ -7,7 +7,7 @@
     "auth0-js": "^8.10.1",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
-    "localforage": "^1.5.1",
+    "localforage": "^1.5.2",
     "lodash": "^4.17.4",
     "material-design-icons-svg": "^1.1.2",
     "polished": "^1.8.0",
