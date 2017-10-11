@@ -3,7 +3,6 @@ import Container from 'components/Container';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
 import { Redirect } from 'react-router-dom';
-import { isAuthed } from 'utils/AuthService';
 
 const CreateUser = ({
   userResult: { loading, user },
@@ -15,7 +14,7 @@ const CreateUser = ({
     console.warn('Already Registered');
     // decide if Redirect is the best way to go
     return <Redirect to="/" />;
-  } else if (!isAuthed()) return <Redirect to="/login" />;
+  }
 
   const validators = { required: value => !value };
   return (

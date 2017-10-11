@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
-// import { isAuthed } from 'utils/AuthService';
 
 const PublishInputGroup = styled(InputGroup)`
   margin-top: 0.9rem;

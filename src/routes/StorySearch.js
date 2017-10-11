@@ -116,10 +116,11 @@ class StorySearch extends Component {
       <PageContainer>
         <SearchContainer>
           <InputGroup
-            autoFocus={!hasValue}
+            autoFocus
             id="search"
             label="Search Curish"
             hasValue={hasValue}
+            placeholder=""
             type="text"
             model="storySearch.search"
             // onKeyDown={this.handleKeyDown}

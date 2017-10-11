@@ -29,9 +29,9 @@ class Modal extends Component {
     isModalOpen: false
   };
 
-  componentWillMount() {
-    this.onPortalOpen();
-  }
+  // componentWillMount() {
+  //   this.onPortalOpen();
+  // }
 
   onPortalOpen = () => {
     document.addEventListener('keydown', this.handleKeyDown, false);

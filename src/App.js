@@ -59,7 +59,12 @@ const App = ({ userData: user }) => {
                     requireAuth
                     component={CreateStoryContainer}
                   />
-                  <FadeRoute path="/join" userResult={user} component={CreateUserContainer} />
+                  <FadeRoute
+                    path="/join"
+                    userResult={user}
+                    requireAuth
+                    component={CreateUserContainer}
+                  />
                   <FadeRoute path="/login" component={LoginContainer} />
                   <FadeRoute path="/verify" component={VerifyContainer} />
                   <FadeRoute path="/callback" userResult={user} component={Callback} />

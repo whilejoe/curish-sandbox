@@ -3,9 +3,9 @@
 import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
 import store from 'state/store';
-import { push, replace } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import { apolloClient } from 'index';
-import { isEnvBrowser } from './env';
+// import { isEnvBrowser } from './env';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
@@ -33,10 +33,6 @@ const webAuth = new auth0.WebAuth({
   responseType: 'id_token token',
   scope: 'openid'
 });
-
-// export const authorize = () => {
-//   webAuth.authorize();
-// };
 
 export const startPasswordless = phone => {
   return new Promise((resolve, reject) => {
@@ -70,35 +66,25 @@ export const verifyCode = (phone, code) => {
   });
 };
 
-export const parseHash = () => {
-  webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
-    if (err) {
-      store.dispatch(replace('/login'));
-      console.log('parseHash error', err);
-      return;
-    }
-    console.log('parseHash authResult', authResult);
-    const { accessToken, idToken } = authResult;
-    setAccessToken(accessToken);
-    setIdToken(idToken);
-    store.dispatch(replace('/'));
-    // webAuth.client.userInfo(authResult.accessToken, (err, user) => {
-    //   if (err) return console.log('err', err);
-    //   // Now you have the user's information
-    //   console.log('user', user);
-    //   store.dispatch(replace('/'));
-    // });
-  });
-};
-
-// export const logout = () => {
-//   webAuth.logout({
-//     // returnTo: 'some url here',
-//     clientID: 'some client ID here'
+// export const parseHash = () => {
+//   webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
+//     if (err) {
+//       store.dispatch(replace('/login'));
+//       console.log('parseHash error', err);
+//       return;
+//     }
+//     console.log('parseHash authResult', authResult);
+//     const { accessToken, idToken } = authResult;
+//     setAccessToken(accessToken);
+//     setIdToken(idToken);
+//     store.dispatch(replace('/'));
+//     // webAuth.client.userInfo(authResult.accessToken, (err, user) => {
+//     //   if (err) return console.log('err', err);
+//     //   // Now you have the user's information
+//     //   console.log('user', user);
+//     //   store.dispatch(replace('/'));
+//     // });
 //   });
-//   clearIdToken();
-//   clearAccessToken();
-//   store.dispatch(replace('/'));
 // };
 
 export const logout = () => {
@@ -106,27 +92,17 @@ export const logout = () => {
   window.localStorage.removeItem(ACCESS_TOKEN_KEY);
   apolloClient.resetStore();
   store.dispatch(push('/login'));
-  // window.location.reload();
 };
 
-// export function requireAuth() {
-//   if (!isLoggedIn()) {
-//     store.dispatch(replace('/'));
-//   }
-// }
+export const getIdToken = () => window.localStorage.getItem(ID_TOKEN_KEY);
 
-export const getIdToken = () => (isEnvBrowser ? window.localStorage.getItem(ID_TOKEN_KEY) : null);
-
-export const getAccessToken = () =>
-  isEnvBrowser ? window.localStorage.getItem(ACCESS_TOKEN_KEY) : null;
+export const getAccessToken = () => window.localStorage.getItem(ACCESS_TOKEN_KEY);
 
 // Get and store access_token in local storage
-export const setAccessToken = accessToken =>
-  isEnvBrowser && window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+const setAccessToken = accessToken => window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 
 // Get and store id_token in local storage
-export const setIdToken = idToken =>
-  isEnvBrowser && window.localStorage.setItem(ID_TOKEN_KEY, idToken);
+const setIdToken = idToken => window.localStorage.setItem(ID_TOKEN_KEY, idToken);
 
 export const isAuthed = () => {
   const idToken = getIdToken();
@@ -158,7 +134,7 @@ export const parseURL = hash => {
   // In case callback url is hit directly and not from Auth0
   // Return t or f to redirect in component
   if (!hash || isAuthed()) return false;
-  setAccessToken(getParameterByName('access_token', hash));
-  setIdToken(getParameterByName('id_token', hash));
+  setAccessToken(getParameterByName(ACCESS_TOKEN_KEY, hash));
+  setIdToken(getParameterByName(ID_TOKEN_KEY, hash));
   return true;
 };
