@@ -23,7 +23,7 @@ const PublishStory = ({ publishForm: { description } }) => {
         inputType="textArea"
         id="description"
         label="Add a description"
-        model="publishForm.description"
+        model="publish.description"
         validators={validators}
         errorMessages={{ required: 'A description is required' }}
       />
