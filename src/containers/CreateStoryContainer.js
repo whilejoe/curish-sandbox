@@ -8,6 +8,8 @@ export const STORY_QUERY = gql`
       titleText
       titleDelta
       bodyDelta
+      description
+      tags
       author {
         id
         userName
@@ -37,6 +39,8 @@ const UPDATE_STORY_MUTATION = gql`
     $titleDelta: String
     $bodyMarkup: String
     $bodyDelta: String
+    $description: String
+    $tags: [String!]
   ) {
     updateStory(
       id: $storyId
@@ -44,11 +48,15 @@ const UPDATE_STORY_MUTATION = gql`
       titleDelta: $titleDelta
       bodyMarkup: $bodyMarkup
       bodyDelta: $bodyDelta
+      description: $description
+      tags: $tags
     ) {
       id
       titleText
       titleDelta
       bodyDelta
+      description
+      tags
       author {
         id
         userName

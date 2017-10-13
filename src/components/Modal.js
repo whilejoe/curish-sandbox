@@ -15,8 +15,8 @@ const Header = styled.div`
 
 const Heading = styled.h1`
   margin: 0;
-  font-size: 1.28em;
-  line-height: 1;
+  font-size: 1.1em;
+  line-height: 1.56;
 `;
 
 const Body = styled.div`
@@ -94,7 +94,7 @@ class Modal extends Component {
                   tabIndex={0}
                 >
                   <Header>
-                    <Flex gutters align="center">
+                    <Flex gutters align={{ md: 'center' }}>
                       <FlexContent>
                         <Heading>{title}</Heading>
                       </FlexContent>

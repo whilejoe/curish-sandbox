@@ -20,7 +20,6 @@ import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
 import FadeRoute from 'components/FadeRoute';
-// import SlideRoute from 'components/SlideRoute';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 const App = ({ userData: user }) => {

@@ -1,56 +1,32 @@
 import PublishStory from 'components/PublishStory';
-import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
-import { getIdToken } from 'utils/AuthService';
 import { submit } from 'abyss-form/lib/actions';
-import store from 'state/store';
-import { push } from 'react-router-redux';
 
 const mapStateToProps = state => ({
   publishForm: state.forms.publish.model
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  createUser: (email, fullName, userName) => {
-    const { createUserMutation, userResult } = ownProps;
-    dispatch(
-      submit('profile', async () => {
-        const idToken = getIdToken();
-        await createUserMutation({
-          variables: {
-            idToken,
-            fullName,
-            userName,
-            email
-          }
-        });
-        // Refetch user query after create
-        await userResult.refetch();
-        store.dispatch(push('/'));
-      })
-    );
+  updatePublishStory: (description = null, tags = null) => {
+    const { updateStoryMutation, storyData } = ownProps;
+    const { Story, variables } = storyData;
+    const dataToUpdate = description && !tags ? { description } : { tags };
+    console.log('ownProps', ownProps);
+    if (Story.description !== description || Story.tags !== tags) {
+      dispatch(
+        submit('publish', async () => {
+          const result = await updateStoryMutation({
+            variables: {
+              storyId: variables.storyId,
+              ...dataToUpdate
+            }
+          });
+          console.log('result', result);
+          return result;
+        })
+      );
+    } else console.log('no need to update');
   }
 });
 
-const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation(
-    $idToken: String!
-    $fullName: String!
-    $userName: String!
-    $email: String!
-  ) {
-    createUser(
-      authProvider: { auth0: { idToken: $idToken } }
-      fullName: $fullName
-      userName: $userName
-      email: $email
-    ) {
-      id
-    }
-  }
-`;
-
-export default compose(
-  graphql(CREATE_USER_MUTATION, { name: 'createUserMutation' }),
-  connect(mapStateToProps, mapDispatchToProps)
-)(PublishStory);
+export default connect(mapStateToProps, mapDispatchToProps)(PublishStory);

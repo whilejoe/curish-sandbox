@@ -192,7 +192,7 @@ class QuillEditor extends Component {
   };
 
   render() {
-    const { userResult: { user }, match, storyData, location } = this.props;
+    const { userResult: { user }, match, storyData, updateStoryMutation, location } = this.props;
     const { storyTitle, storyBody, isEditMode, editModeState } = this.state;
     const noMatch =
       (match.params.id && !storyData.Story) ||
@@ -217,9 +217,12 @@ class QuillEditor extends Component {
                 <Modal
                   key="modal"
                   trigger={<Button theme="tertiary">Publish</Button>}
-                  title="Publish Story"
+                  title={`Publish: ${storyData.Story.titleText}`}
                 >
-                  <PublishStoryContainer />
+                  <PublishStoryContainer
+                    storyData={storyData}
+                    updateStoryMutation={updateStoryMutation}
+                  />
                 </Modal>
               )}
           </FlexContent>
