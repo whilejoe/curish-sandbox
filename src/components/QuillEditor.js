@@ -10,7 +10,7 @@ import Modal from 'components/Modal';
 import StoryContainer from 'components/StoryContainer';
 import TitleEditor from 'components/TitleEditor';
 import StoryHeader from 'components/StoryHeader';
-import PublishStoryContainer from 'containers/PublishStoryContainer';
+import PublishStory from 'components/PublishStory/PublishStory';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
@@ -64,7 +64,7 @@ class QuillEditor extends Component {
     if (nextProps.match.params.id) {
       if (!this.props.storyData.Story && nextProps.storyData.Story) {
         const { storyData } = nextProps;
-        console.log('nextProps.storyData.Story', storyData.Story);
+        // console.log('nextProps.storyData.Story', storyData.Story);
         this.setState({
           storyTitle: JSON.parse(storyData.Story.titleDelta),
           editModeState: EDIT_MODE_SAVED
@@ -219,10 +219,7 @@ class QuillEditor extends Component {
                   trigger={<Button theme="tertiary">Publish</Button>}
                   title={`Publish: ${storyData.Story.titleText}`}
                 >
-                  <PublishStoryContainer
-                    storyData={storyData}
-                    updateStoryMutation={updateStoryMutation}
-                  />
+                  <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
                 </Modal>
               )}
           </FlexContent>

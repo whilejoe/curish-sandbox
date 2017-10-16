@@ -12,13 +12,13 @@ export const THEME = {
   [PRIMARY_KEY]: 'coral',
   [SECONDARY_KEY]: 'lightseagreen',
   [TERTIARY_KEY]: 'RoyalBlue',
-  [ERROR_KEY]: 'IndianRed'
+  [ERROR_KEY]: 'FireBrick'
 };
 
 export const PALETTE = {
   GRAY: {
-    LIGHT: '#F5F5F5',
-    MEDIUM: '#CCC',
+    LIGHT: '#f8f8f8',
+    MEDIUM: '#f1f1f1',
     DARK: '#333'
   },
   HEADER: 'mistyrose'

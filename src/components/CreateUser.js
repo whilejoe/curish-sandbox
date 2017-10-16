@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'components/Container';
+import PageContainer from 'components/PageContainer';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
 import { Redirect } from 'react-router-dom';
@@ -18,7 +18,7 @@ const CreateUser = ({
 
   const validators = { required: value => !value };
   return (
-    <Container narrow>
+    <PageContainer narrow>
       <h1>Join</h1>
       <InputGroup
         autoFocus
@@ -49,7 +49,7 @@ const CreateUser = ({
         errorMessages={{ required: 'Username is required' }}
       />
       <Button onClick={() => createUser(email, fullName, userName)}>Join Curish</Button>
-    </Container>
+    </PageContainer>
   );
 };
 

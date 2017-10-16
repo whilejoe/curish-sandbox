@@ -23,7 +23,7 @@ import qs from 'qs';
 const SearchContainer = styled.div`
   max-width: 44rem;
   margin: 0 auto;
-  padding-top: 0.6rem;
+  padding-top: 0.9rem;
 `;
 
 class StorySearch extends Component {
@@ -90,7 +90,7 @@ class StorySearch extends Component {
 
   executeSearch = async queryString => {
     const query = qs.parse(queryString, { ignoreQueryPrefix: true });
-    if (query.q !== 'undefined') {
+    if (query.q !== undefined) {
       if (query.q.length) {
         this.props.setSearchForm(query.q);
         const result = await this.props.client.query({
@@ -109,9 +109,8 @@ class StorySearch extends Component {
   };
 
   render() {
-    const { storySearchForm: { model }, location } = this.props;
+    const { location } = this.props;
     const { stories, users } = this.state;
-    const hasValue = model.search && model.search.length > 0;
     return (
       <PageContainer>
         <SearchContainer>
@@ -119,14 +118,12 @@ class StorySearch extends Component {
             autoFocus
             id="search"
             label="Search Curish"
-            hasValue={hasValue}
-            placeholder=""
             type="text"
             model="storySearch.search"
             // onKeyDown={this.handleKeyDown}
             onChange={this.debouncedOnChange}
           />
-          <Flex gutters guttersVertical align="center">
+          <Flex gutters guttersVertical>
             {stories.length > 0 && (
               <FlexContent space={[100, { sm: 'reset' }]}>
                 {stories.map(story => (
@@ -159,14 +156,17 @@ const ALL_STORIES_SEARCH_QUERY = gql`
       createdAt
       titleText
       description
-      tags
+      tags {
+        id
+        key
+      }
       author {
         id
         userName
       }
     }
     allUsers(
-      filter: { OR: [{ userName_contains: $searchText }, { fullName_contains: $searchText }] }
+      filter: { OR: [{ userName_starts_with: $searchText }, { fullName_starts_with: $searchText }] }
       first: 10
       orderBy: userName_ASC
     ) {

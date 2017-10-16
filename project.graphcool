@@ -1,7 +1,7 @@
 # project: cj6l71pg81npn0191lrufaos5
-# version: 41
+# version: 55
 
-type File implements Node {
+type File @model {
   contentType: String!
   createdAt: DateTime!
   id: ID! @isUnique
@@ -12,7 +12,7 @@ type File implements Node {
   url: String! @isUnique
 }
 
-type User implements Node {
+type User @model {
   createdAt: DateTime!
   id: ID! @isUnique
   updatedAt: DateTime!
@@ -24,7 +24,7 @@ type User implements Node {
   stories: [Story!]! @relation(name: "StoryAuthor")
 }
 
-type Story implements Node {
+type Story @model {
   createdAt: DateTime!
   id: ID! @isUnique
   updatedAt: DateTime!
@@ -34,6 +34,12 @@ type Story implements Node {
   bodyMarkup: String
   bodyDelta: String
   description: String
-  tags: [String!]
-  publishedAt: DateTime
+  published: Boolean @defaultValue(value: false)
+  tags: [Tag!]! @relation(name: "TagOnStory")
+}
+
+type Tag @model {
+  id: ID! @isUnique
+  key: String! @isUnique
+  stories: [Story!]! @relation(name: "TagOnStory")
 }

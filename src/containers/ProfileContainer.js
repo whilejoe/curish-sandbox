@@ -12,7 +12,8 @@ export const PROFILE_QUERY = gql`
       stories(orderBy: updatedAt_DESC) {
         id
         titleText
-        publishedAt
+        description
+        published
       }
     }
   }
