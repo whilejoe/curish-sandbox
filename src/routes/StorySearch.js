@@ -118,7 +118,9 @@ class StorySearch extends Component {
             autoFocus
             id="search"
             label="Search Curish"
+            hideLabel
             type="text"
+            placeholder="search curish"
             model="storySearch.search"
             // onKeyDown={this.handleKeyDown}
             onChange={this.debouncedOnChange}

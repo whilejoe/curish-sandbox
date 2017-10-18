@@ -17,17 +17,19 @@ const ERROR_COLOR = THEME[ERROR_KEY];
 
 const activeState = css`
   outline: none;
-  border-bottom-color: ${ACTIVE_COLOR};
+  border-top-color: #f5f5f5;
+  border-right-color: #f5f5f5;
+  border-left-color: #f5f5f5;
 `;
 
 const inputMixin = css`
   padding: 0.5rem 0.6rem;
   color: ${COLOR};
-  background-color: ${PALETTE.GRAY.LIGHT};
-  border-top: none;
-  border-right: none;
-  border-bottom: 2px solid ${PALETTE.GRAY.MEDIUM};
-  border-left: none;
+  background-color: #fbfbfb;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-bottom: 2px solid ${ACTIVE_COLOR};
   border-radius: 3px;
   outline: none;
   width: 100%;
@@ -50,7 +52,6 @@ const inputMixin = css`
   }
 
   &::placeholder {
-    font-size: 1em;
     color: #ccc;
   }
 
@@ -67,7 +68,7 @@ const inputMixin = css`
 `;
 
 const FlexLabelGroup = styled(Flex)`
-  padding-bottom: ${props => (props.labelLarge ? 0.9 : 0.5)}rem;
+  padding-bottom: ${props => (props.hideLabel ? 0 : 0.5)}rem;
 `;
 
 export const Label = styled.label`
@@ -176,7 +177,7 @@ class InputGroup extends Component {
     const Input = INPUT_TYPES[inputType];
     return (
       <Container className={className}>
-        <FlexLabelGroup gutters align="center" justify="space-between" labelLarge={labelLarge}>
+        <FlexLabelGroup gutters align="center" justify="space-between" hideLabel={hideLabel}>
           {hideLabel ? (
             <SrOnly>
               <label htmlFor={this.props.id}>{label}</label>

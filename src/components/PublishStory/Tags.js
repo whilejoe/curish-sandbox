@@ -51,7 +51,9 @@ class Tags extends React.Component {
             length: 'Too many tags :('
           }}
         />
-        <Button type="button">Back</Button>
+        <Button type="button" theme="secondary">
+          Back
+        </Button>
         <Button type="submit">Next</Button>
       </form>
     );

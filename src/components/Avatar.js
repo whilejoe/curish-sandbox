@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'components/Link';
+import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 

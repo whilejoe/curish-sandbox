@@ -16,13 +16,6 @@ const Header = styled.div`
   z-index: 2;
 `;
 
-// const HeaderBackButton = styled(BackButton)`
-//   position: relative;
-//   padding: 0;
-//   top: auto;
-//   left: auto;
-// `;
-
 class StoryHeader extends Component {
   render() {
     const { location: { state }, children } = this.props;

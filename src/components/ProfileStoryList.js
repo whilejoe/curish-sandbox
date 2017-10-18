@@ -10,11 +10,13 @@ const StoryItemContainer = styled.div`
 const StoryItemTitle = styled.h2`
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 1em;
+  font-size: 1.05em;
 `;
 
 const StoryItemLink = styled(Link)`
   font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
 `;
 
 const StoryDescription = styled.p`

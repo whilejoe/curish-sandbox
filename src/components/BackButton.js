@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-import Link from 'components/Link';
+import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
 
 // import { THEME, PRIMARY_KEY } from 'constants/theme';
