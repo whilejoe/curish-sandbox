@@ -6,7 +6,7 @@ import AppHeader from 'components/AppHeader';
 import SubHeader from 'components/SubHeader';
 import LoginContainer from 'containers/LoginContainer';
 import VerifyContainer from 'containers/VerifyContainer';
-import CreateUserContainer from 'containers/CreateUserContainer';
+import JoinContainer from 'containers/JoinContainer';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import Home from 'routes/Home';
@@ -58,12 +58,7 @@ const App = ({ userData: user }) => {
                     requireAuth
                     component={CreateStoryContainer}
                   />
-                  <FadeRoute
-                    path="/join"
-                    userResult={user}
-                    requireAuth
-                    component={CreateUserContainer}
-                  />
+                  <FadeRoute path="/join" userResult={user} requireAuth component={JoinContainer} />
                   <FadeRoute path="/login" component={LoginContainer} />
                   <FadeRoute path="/verify" component={VerifyContainer} />
                   <FadeRoute path="/callback" userResult={user} component={Callback} />

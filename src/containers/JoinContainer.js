@@ -1,4 +1,4 @@
-import CreateUser from 'components/CreateUser';
+import Join from 'routes/Join';
 import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 import { getIdToken } from 'utils/AuthService';
@@ -53,4 +53,4 @@ const CREATE_USER_MUTATION = gql`
 export default compose(
   graphql(CREATE_USER_MUTATION, { name: 'createUserMutation' }),
   connect(mapStateToProps, mapDispatchToProps)
-)(CreateUser);
+)(Join);
