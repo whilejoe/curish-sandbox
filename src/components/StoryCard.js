@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Avatar from 'components/Avatar';
 import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';
+import orderBy from 'lodash/orderBy';
 
 const StoryItemContainer = styled.div`
   margin-bottom: 1rem;
@@ -61,14 +62,29 @@ const Tag = styled.span`
   padding: 0.1rem 0.35rem;
   vertical-align: bottom;
   font-size: 0.75em;
-  background-color: #eee;
+  background-color: ${props => (props.match ? 'aquamarine' : '#eee')};
   font-weight: 600;
   border-radius: 2px;
 `;
 
+const matchTags = (matchVal = '', tags = []) => {
+  // TODO: Move ordering to mutation
+  const ordered = orderBy(tags, 'key', 'asc');
+  const matched = ordered.map(tag => {
+    const match = matchVal ? tag.key.toLowerCase().includes(matchVal.toLowerCase()) : false;
+    return (
+      <Tag key={tag.id} match={match}>
+        #{tag.key}
+      </Tag>
+    );
+  });
+  return matched;
+};
+
 const StoryCard = ({
-  story: { id, published, updatedAt, titleText, author, tags, description },
-  referrer
+  story: { id, published, updatedAt, titleText, author, tags = [], description },
+  referrer,
+  searchValue = ''
 }) => {
   return (
     <StoryItemContainer>
@@ -84,8 +100,7 @@ const StoryCard = ({
         </FlexContent>
         <FlexContent space={[100, { sm: 'self' }]}>
           {published && <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>}
-          {tags &&
-            tags.length > 0 && <Tags>{tags.map(tag => <Tag key={tag.id}>#{tag.key}</Tag>)}</Tags>}
+          {tags.length > 0 && <Tags>{matchTags(searchValue, tags)}</Tags>}
         </FlexContent>
       </Flex>
     </StoryItemContainer>

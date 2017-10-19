@@ -32,7 +32,7 @@ class Search extends Component {
   }
 
   prepareQueryAndRoute() {
-    const q = this.props.searchForm.model.search;
+    const q = this.props.searchForm.search;
     const query = { q };
     const str = qs.stringify(query);
     return this.props.history.push({
@@ -85,18 +85,18 @@ class Search extends Component {
   };
 
   render() {
-    const { location } = this.props;
+    const { location, searchForm } = this.props;
     const { stories, users } = this.state;
     return (
       <StoryContainer>
         <SearchInput>
           <InputGroup
-            autoFocus={!this.props.location.search}
+            autoFocus={!searchForm.search}
             id="search-curish"
             label="Search Curish"
             hideLabel
             type="text"
-            placeholder="search titles, tags, and users"
+            placeholder="search story titles and tags, users"
             model="search.search"
             onChange={this.debouncedOnChange}
           />
@@ -104,7 +104,14 @@ class Search extends Component {
         <Flex gutters guttersVertical>
           {stories.length > 0 && (
             <FlexContent space={[100, { sm: 'reset' }]}>
-              {stories.map(story => <StoryCard key={story.id} story={story} referrer={location} />)}
+              {stories.map(story => (
+                <StoryCard
+                  key={story.id}
+                  story={story}
+                  referrer={location}
+                  searchValue={searchForm.search}
+                />
+              ))}
             </FlexContent>
           )}
           {users.length > 0 && (

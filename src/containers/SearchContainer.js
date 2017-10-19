@@ -4,7 +4,7 @@ import { gql, withApollo } from 'react-apollo';
 import { set } from 'abyss-form/lib/actions';
 
 const mapStateToProps = state => ({
-  searchForm: state.forms.search
+  searchForm: state.forms.search.model
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,8 +27,6 @@ export const ALL_STORIES_SEARCH_QUERY = gql`
       updatedAt
       published
       titleText
-      titleDelta
-      bodyDelta
       description
       tags {
         id
