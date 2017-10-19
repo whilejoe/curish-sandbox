@@ -1,14 +1,15 @@
 import Search from 'routes/Search';
 import { connect } from 'react-redux';
 import { gql, withApollo } from 'react-apollo';
-import { set } from 'abyss-form/lib/actions';
+import { set, reset } from 'abyss-form/lib/actions';
 
 const mapStateToProps = state => ({
   searchForm: state.forms.search.model
 });
 
 const mapDispatchToProps = dispatch => ({
-  setSearchForm: val => dispatch(set('search.search', val))
+  setSearchForm: val => dispatch(set('search.search', val)),
+  clearSearchForm: dispatch(reset('search'))
 });
 
 export const ALL_STORIES_SEARCH_QUERY = gql`

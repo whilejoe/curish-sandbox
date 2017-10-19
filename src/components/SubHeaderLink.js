@@ -5,6 +5,7 @@ import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition
 // import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import { darken } from 'polished';
 
+// #636363
 const DURATION = 160;
 
 const STATES = {
@@ -14,15 +15,14 @@ const STATES = {
   [EXITED]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' }
 };
 
-const COLOR = '#b9b9b9';
 // const COLOR_ACTIVE = THEME[PRIMARY_KEY];
 
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.85rem 0.9rem;
-  font-size: 1.13em;
-  color: ${COLOR};
+  padding: 0.85rem 1rem;
+  font-size: 1.1em;
+  color: #636363;
   line-height: 1;
   text-align: center;
   transform: ${props => STATES[props.status].transform};

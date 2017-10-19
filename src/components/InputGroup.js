@@ -28,7 +28,6 @@ const activeState = css`
 const inputMixin = css`
   padding: 0.5rem 0.6rem;
   color: ${COLOR};
-  background-color: #fbfbfb;
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-left: 1px solid transparent;

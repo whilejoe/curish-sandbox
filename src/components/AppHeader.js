@@ -9,9 +9,12 @@ import Avatar from 'components/Avatar';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
+// #6e698e
+// #5b4f9c
 const Header = styled.header`
   background-color: #f8f8f8;
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 1px solid #eaeaea;
+  color: #2b2b2b;
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -52,6 +55,7 @@ const HeaderLink = styled(NavLink)`
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
   vertical-align: middle;
+  font-size: 0.95em;
   line-height: 1;
 
   &:hover,
@@ -63,10 +67,10 @@ const HeaderAvatar = styled(Avatar)`
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding-top: 1.15rem;
-  padding-bottom: 0.95rem;
+  padding-top: 1.05rem;
+  padding-bottom: 0.9rem;
   font-family: 'Merriweather', serif;
-  font-size: 1.1em;
+  font-size: 1.08em;
   font-weight: 700;
   line-height: 1;
 

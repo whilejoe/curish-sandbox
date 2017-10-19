@@ -10,7 +10,7 @@ import debounce from 'lodash/debounce';
 import qs from 'qs';
 
 const SearchInput = styled.div`
-  padding-top: 0.8rem;
+  padding-top: 1.4rem;
 `;
 
 class Search extends Component {
@@ -29,6 +29,10 @@ class Search extends Component {
     if (this.props.location.search !== nextProps.location.search && nextProps.location.search) {
       this.executeSearch(nextProps.location.search);
     }
+  }
+
+  componentWillUnMount() {
+    if (this.props.searchForm.search) this.props.clearSearchForm();
   }
 
   prepareQueryAndRoute() {
