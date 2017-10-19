@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
-import { ButtonLink } from 'components/Button';
+import { Link } from 'react-router-dom';
 import Avatar from 'components/Avatar';
-// import { THEME, SECONDARY_KEY } from 'constants/theme';
+import { getMonthDayYear } from 'utils/date';
 
 const StoryItemContainer = styled.div`
   margin-bottom: 1rem;
@@ -18,6 +18,11 @@ const StoryItemTitle = styled.h2`
   margin-top: 0;
   margin-bottom: 0.12em;
   font-size: 1.18em;
+`;
+
+const StoryLink = styled(Link)`
+  font-family: inherit;
+  font-weight: inherit;
 `;
 
 const StoryItemAvatar = styled(Avatar)`
@@ -37,6 +42,7 @@ const PublishedAt = styled.p`
   margin-bottom: 0.3rem;
   font-size: 0.82em;
   color: #555;
+  text-align: right;
 `;
 
 const Tags = styled.div`
@@ -50,9 +56,9 @@ const Tag = styled.span`
   margin-right: 0.2rem;
   margin-left: 0.2rem;
   padding: 0.1rem 0.35rem;
-  font-size: 0.82em;
-  background-color: #695dca;
-  color: white;
+  vertical-align: bottom;
+  font-size: 0.75em;
+  background-color: #eee;
   font-weight: 600;
   border-radius: 2px;
 `;
@@ -65,15 +71,18 @@ const ListStory = ({
     <StoryItemContainer>
       <Flex gutters guttersVertical>
         <FlexContent space={[100, { sm: 'reset' }]}>
-          <StoryItemTitle>{titleText}</StoryItemTitle>
+          <StoryItemTitle>
+            <StoryLink to={{ pathname: `/write/${id}`, state: { referrer } }}>
+              {titleText}
+            </StoryLink>
+          </StoryItemTitle>
           {author && <StoryItemAvatar user={author} to={{ state: { referrer } }} />}
           <StoryDescription>{description ? description : 'No description'} </StoryDescription>
-          <ButtonLink to={{ pathname: `/write/${id}`, state: { referrer } }}>read</ButtonLink>
         </FlexContent>
         <FlexContent space={[100, { sm: 'self' }]}>
-          {published && <PublishedAt>published: {new Date(updatedAt).toDateString()}</PublishedAt>}
+          {published && <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>}
           {tags &&
-            tags.length > 0 && <Tags>{tags.map(tag => <Tag key={tag.id}>{tag.key}</Tag>)}</Tags>}
+            tags.length > 0 && <Tags>{tags.map(tag => <Tag key={tag.id}>#{tag.key}</Tag>)}</Tags>}
         </FlexContent>
       </Flex>
     </StoryItemContainer>

@@ -9,8 +9,8 @@ const UserProfile = ({ userResult: { loading, user }, ...props }) => {
   if (loading) return <PageContainer>Loading...</PageContainer>;
   const { email } = user;
   return [
-    <ProfileHeader user={user} />,
-    <Container>
+    <ProfileHeader key="header" user={user} />,
+    <Container key="container">
       <p>Email: {email}</p>
       <ButtonLink to="/login" replace onClick={logout}>
         Logout
