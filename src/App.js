@@ -10,9 +10,9 @@ import JoinContainer from 'containers/JoinContainer';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import UserStoriesContainer from 'containers/UserStoriesContainer';
+import SearchContainer from 'containers/SearchContainer';
 import Home from 'routes/Home';
 import About from 'routes/About';
-import StorySearch from 'routes/StorySearch';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
 import Messages from 'routes/Messages';
@@ -37,7 +37,7 @@ const App = ({ userData: user }) => {
                 <Switch key={props.location.pathname} location={props.location}>
                   <FadeRoute exact path="/" userResult={user} component={Home} />
                   <FadeRoute path="/101" component={About} />
-                  <FadeRoute path="/search" requireAuth component={StorySearch} />
+                  <FadeRoute path="/search" requireAuth component={SearchContainer} />
                   <FadeRoute
                     path="/profile"
                     userResult={user}

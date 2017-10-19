@@ -63,7 +63,7 @@ const Tag = styled.span`
   border-radius: 2px;
 `;
 
-const ListStory = ({
+const StoryCard = ({
   story: { id, published, updatedAt, titleText, author, tags, description },
   referrer
 }) => {
@@ -89,4 +89,4 @@ const ListStory = ({
   );
 };
 
-export default ListStory;
+export default StoryCard;

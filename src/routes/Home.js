@@ -23,7 +23,7 @@ const Home = ({ userResult }) => {
               type="text"
               placeholder="search story titles or tags"
               autoFocus
-              model="storySearch.search"
+              model="search.search"
             />
           </FlexContent>
           <FlexContent space="self">
