@@ -16,7 +16,10 @@ export const ALL_STORIES_SEARCH_QUERY = gql`
     allStories(
       filter: {
         published: true
-        OR: [{ titleText_contains: $searchText }, { description_contains: $searchText }]
+        OR: [
+          { titleText_contains: $searchText }
+          { tags_some: { OR: [{ key_contains: $searchText }] } }
+        ]
       }
       orderBy: titleText_ASC
     ) {

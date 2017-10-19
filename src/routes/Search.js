@@ -96,7 +96,7 @@ class Search extends Component {
             label="Search Curish"
             hideLabel
             type="text"
-            placeholder="search curish"
+            placeholder="search titles, tags, and users"
             model="search.search"
             onChange={this.debouncedOnChange}
           />
