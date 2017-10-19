@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
 import { Link } from 'react-router-dom';
 import Avatar from 'components/Avatar';
+import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';
 
 const StoryItemContainer = styled.div`
   margin-bottom: 1rem;
-  padding: 1.1rem 1rem 0.6rem;
+  padding: 1.1rem 1rem;
   background: #fdfdfd;
   border: 1px solid #efefef;
   border-radius: 2px;
@@ -33,7 +34,7 @@ const StoryItemAvatar = styled(Avatar)`
 `;
 
 const StoryDescription = styled.p`
-  margin-bottom: 0.6rem;
+  margin-bottom: 0;
   font-size: 0.9em;
   color: #777;
 `;
@@ -42,13 +43,15 @@ const PublishedAt = styled.p`
   margin-bottom: 0.3rem;
   font-size: 0.82em;
   color: #555;
-  text-align: right;
+  text-align: left;
+  ${media.sm`text-align: right;`};
 `;
 
 const Tags = styled.div`
   margin-left: -0.2rem;
   margin-right: -0.2rem;
-  text-align: right;
+  text-align: left;
+  ${media.sm`text-align: right;`};
 `;
 
 const Tag = styled.span`
