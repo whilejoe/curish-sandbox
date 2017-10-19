@@ -9,17 +9,16 @@ import orderBy from 'lodash/orderBy';
 
 const StoryItemContainer = styled.div`
   margin-bottom: 1rem;
-  padding: 1.1rem 1rem;
-  background: #fdfdfd;
-  border: 1px solid #efefef;
+  padding: 0.95rem 1rem 0.9rem;
+  border: 1px solid #eaeaea;
   border-radius: 2px;
-  box-shadow: 0px 0px 18px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
 `;
 
 const StoryItemTitle = styled.h2`
   margin-top: 0;
-  margin-bottom: 0.12em;
-  font-size: 1.18em;
+  margin-bottom: 0.1em;
+  font-size: 1.1em;
 `;
 
 const StoryLink = styled(Link)`
@@ -30,20 +29,22 @@ const StoryLink = styled(Link)`
 const StoryItemAvatar = styled(Avatar)`
   margin-bottom: 0.55rem;
   display: inline-block;
+  font-size: 0.9em;
   line-height: inherit;
   font-weight: 400;
 `;
 
 const StoryDescription = styled.p`
   margin-bottom: 0;
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: #777;
 `;
 
 const PublishedAt = styled.p`
   margin-bottom: 0.3rem;
-  font-size: 0.82em;
-  color: #555;
+  font-size: 0.75em;
+  color: #666;
+  line-height: 1.2;
   text-align: left;
   ${media.sm`text-align: right;`};
 `;

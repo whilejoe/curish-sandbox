@@ -36,7 +36,7 @@ const inputMixin = css`
   border-radius: 3px;
   outline: none;
   width: 100%;
-  font-size: 1.05em;
+  font-size: 1em;
   font-family: inherit;
   line-height: inherit;
 
@@ -55,7 +55,7 @@ const inputMixin = css`
   }
 
   &::placeholder {
-    color: #ccc;
+    color: #bbb;
   }
 
   &:-webkit-autofill {
@@ -89,8 +89,26 @@ export const Container = styled.div`
 `;
 
 export const InputText = styled(TextInput)`
+  position: relative;
+
   & input {
     ${inputMixin};
+  }
+
+  & .abyss-textinput__clear {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 1rem;
+    font-size: 1.45em;
+    color: #666;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    &:hover {
+      color: ${ACTIVE_COLOR};
+    }
   }
 `;
 

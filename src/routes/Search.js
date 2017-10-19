@@ -99,6 +99,7 @@ class Search extends Component {
             placeholder="search story titles and tags, users"
             model="search.search"
             onChange={this.debouncedOnChange}
+            clearable
           />
         </SearchInput>
         <Flex gutters guttersVertical>
