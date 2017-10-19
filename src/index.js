@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import 'styles/index.css';
 import 'styles/elements.js';
 import App from './App';
-// import { render } from 'react-snapshot';
-import { ConnectedRouter } from 'react-router-redux';
-import store, { history } from 'state/store';
+import { BrowserRouter as Router } from 'react-router-dom';
+import store from 'state/store';
 import { ApolloProvider, createBatchingNetworkInterface, ApolloClient } from 'react-apollo';
 // import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 // import { isEnvBrowser } from 'utils/env';
@@ -100,9 +99,9 @@ export const apolloClient = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient} store={store}>
-    <ConnectedRouter history={history}>
+    <Router>
       <App />
-    </ConnectedRouter>
+    </Router>
   </ApolloProvider>,
   document.getElementById('root')
 );

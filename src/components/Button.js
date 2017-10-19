@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const Button = styled.button`
@@ -26,6 +26,6 @@ const Button = styled.button`
   }
 `;
 
-export const ButtonLink = Button.withComponent(NavLink);
+export const ButtonLink = Button.withComponent(Link);
 
 export default Button;

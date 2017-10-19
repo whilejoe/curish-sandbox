@@ -17,7 +17,7 @@ const Home = ({ userResult }) => {
     return (
       <PageContainer>
         <Title>Curious?</Title>
-        <Flex gutters guttersVertical align="flex-end" justify="center">
+        <Flex gutters guttersVertical align="center" justify="center">
           <FlexContent space={[100, { sm: 45, md: 40, lg: 30 }]}>
             <InputText
               type="text"

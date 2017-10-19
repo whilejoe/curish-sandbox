@@ -52,6 +52,6 @@ export const USER_STORIES_QUERY = gql`
 // `;
 
 export default graphql(USER_STORIES_QUERY, {
-  name: 'userData',
-  options: { fetchPolicy: 'cache-and-network' }
+  name: 'userData'
+  // options: { fetchPolicy: 'cache-and-network' }
 })(UserStories);
