@@ -1,9 +1,12 @@
+// TODO: Separate components
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import TextArea from 'abyss-form/lib/TextArea';
 import SelectList from 'abyss-form/lib/SelectList';
+import Checkbox from 'abyss-form/lib/Checkbox';
 import 'abyss-form/lib/SelectList/SelectList.css';
+import 'abyss-form/lib/Checkbox/Checkbox.css';
 // import Select from 'react-select';
 // import 'react-select/dist/react-select.css';
 import { Flex, FlexContent } from 'components/Flex';
@@ -76,12 +79,12 @@ export const Label = styled.label`
   color: inherit;
 `;
 
-const FormError = styled(ErrorMessage)`
+export const FormError = styled(ErrorMessage)`
   font-size: 0.75em;
   color: ${ERROR_COLOR};
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   padding-bottom: 1.4rem;
 `;
 
@@ -99,7 +102,7 @@ export const InputArea = styled(TextArea)`
   resize: none !important;
 `;
 
-export const SelectInput = styled(SelectList)`
+export const InputSelect = styled(SelectList)`
   border-bottom-color: ${PALETTE.GRAY.MEDIUM};
   border-radius: 3px;
 
@@ -127,7 +130,7 @@ export const SelectInput = styled(SelectList)`
 
   &.Select--multi {
     & .Select-value {
-      background-color: ${THEME[SECONDARY_KEY]};
+      background-color: #695dca;
       border-radius: 2px;
       color: white;
       padding: 0.1rem 0.35rem !important;
@@ -136,6 +139,10 @@ export const SelectInput = styled(SelectList)`
     }
   }
 `;
+
+// export const InputCheckbox = styled(Checkbox)`
+//   position: relative;
+// `;
 
 const InputCounter = styled.div`
   position: relative;
@@ -158,7 +165,8 @@ const InputCounter = styled.div`
 const INPUT_TYPES = {
   text: InputText,
   textArea: InputArea,
-  select: SelectInput
+  select: InputSelect,
+  checkbox: Checkbox
 };
 
 class InputGroup extends Component {
@@ -200,7 +208,7 @@ class InputGroup extends Component {
             <Input {...rest} />
           </InputCounter>
         ) : (
-          <Input {...rest} />
+          <Input {...rest} label={inputType === 'checkbox' ? label : null} />
         )}
       </Container>
     );

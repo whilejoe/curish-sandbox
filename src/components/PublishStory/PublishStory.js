@@ -2,11 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Description from './Description';
 import Tags from './Tags';
+import Terms from './Terms';
 import { submit, set, reset } from 'abyss-form/lib/actions';
+
+const DESCRIPTION_KEY = 'descriptionForm';
+const TAGS_KEY = 'tagsForm';
+const TERMS_KEY = 'termsForm';
 
 class PublishStory extends React.Component {
   state = {
-    activeForm: 'descriptionForm'
+    activeForm: DESCRIPTION_KEY
   };
 
   componentWillMount() {
@@ -39,48 +44,43 @@ class PublishStory extends React.Component {
             }
           });
           console.log('result', result);
-          if (result.data) this.setState({ activeForm: 'tagsForm' });
+          if (result.data) this.setState({ activeForm: TAGS_KEY });
           // dispatch(reset('publish.description'));
-        } else this.setState({ activeForm: 'tagsForm' });
+        } else this.setState({ activeForm: TAGS_KEY });
       })
     );
   };
 
   onTagsFormSubmit = async () => {
-    const { dispatch, updateStoryMutation, storyData, publishForm } = this.props;
-    const { variables } = storyData;
+    const { dispatch, updateStoryMutation, storyData: { variables }, publishForm } = this.props;
     const { tags } = publishForm;
     console.log('tags onSubmit', tags);
     dispatch(
       submit('publish', async () => {
-        if (tags && tags.length > 0) {
-          const result = await updateStoryMutation({
-            variables: {
-              storyId: variables.storyId,
-              tagsIds: tags
-            }
-          });
-          console.log('tags result', result);
-          if (result.data) this.setState({ activeForm: 'attestForm' });
-          // dispatch(reset('publish.tags'));
-        } else this.setState({ activeForm: 'attestForm' });
+        const tagsResult = await updateStoryMutation({
+          variables: {
+            storyId: variables.storyId,
+            tagsIds: tags
+          }
+        });
+        console.log('tags result', tagsResult);
+        if (tagsResult.data) {
+          this.publishStory();
+        }
       })
     );
-    // if (Story.tags !== tags) {
-    //   const result = await updateStoryMutation({
-    //     variables: {
-    //       storyId: variables.storyId,
-    //       tags
-    //     }
-    //   });
-    //   if (result.data) console.log('result', result);
-    // } else console.log('no need to update');
   };
 
-  // handleChangeSelect = vals => {
-  //   console.log('vals', vals);
-  //   this.setState({ selectedTags: vals });
-  // };
+  async publishStory() {
+    const { updateStoryMutation, storyData: { variables } } = this.props;
+    const result = await updateStoryMutation({
+      variables: {
+        storyId: variables.storyId,
+        published: true
+      }
+    });
+    if (result.data) console.log('Story Published!!!!', result);
+  }
 
   render() {
     const { publishForm: { description, tags }, storyData: { Story } } = this.props;
@@ -88,7 +88,7 @@ class PublishStory extends React.Component {
     // console.log('story.tags', Story.tags);
     // console.log('this.props', this.props);
 
-    if (activeForm === 'descriptionForm') {
+    if (activeForm === DESCRIPTION_KEY) {
       return (
         <Description
           formDescription={description}
@@ -96,12 +96,12 @@ class PublishStory extends React.Component {
           onSubmitCallback={this.onDescriptionFormSubmit}
         />
       );
-    } else if (activeForm === 'tagsForm') {
+    } else if (activeForm === TAGS_KEY) {
       return (
         <Tags formTags={tags} storyTags={Story.tags} onSubmitCallback={this.onTagsFormSubmit} />
       );
-    } else if (activeForm === 'attestForm') {
-      return <p>Attest Form!!</p>;
+    } else if (activeForm === TERMS_KEY) {
+      return <Terms />;
     }
     return null;
   }

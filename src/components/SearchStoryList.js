@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
-import Link from 'components/Link';
+import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
-import { THEME, SECONDARY_KEY } from 'constants/theme';
+// import { THEME, SECONDARY_KEY } from 'constants/theme';
 
 const StoryItemContainer = styled.div`
   margin-bottom: 1rem;
@@ -14,10 +14,6 @@ const StoryItemContainer = styled.div`
   box-shadow: 0px 0px 18px -6px rgba(0, 0, 0, 0.1);
 `;
 
-const StoryItemHeader = styled.div`
-  margin-bottom: 0.4rem;
-`;
-
 const StoryItemTitle = styled.h2`
   margin-top: 0;
   margin-bottom: 0.12em;
@@ -25,7 +21,7 @@ const StoryItemTitle = styled.h2`
 `;
 
 const StoryItemAvatar = styled(Avatar)`
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.55rem;
   display: inline-block;
   line-height: inherit;
   font-weight: 400;
@@ -37,9 +33,16 @@ const StoryDescription = styled.p`
   color: #777;
 `;
 
+const PublishedAt = styled.p`
+  margin-bottom: 0.3rem;
+  font-size: 0.82em;
+  color: #555;
+`;
+
 const Tags = styled.div`
   margin-left: -0.2rem;
   margin-right: -0.2rem;
+  text-align: right;
 `;
 
 const Tag = styled.span`
@@ -48,30 +51,31 @@ const Tag = styled.span`
   margin-left: 0.2rem;
   padding: 0.1rem 0.35rem;
   font-size: 0.82em;
-  background-color: ${THEME[SECONDARY_KEY]};
+  background-color: #695dca;
   color: white;
   font-weight: 600;
   border-radius: 2px;
 `;
 
-const ListStory = ({ story: { id, titleText, author, tags, description }, referrer }) => {
+const ListStory = ({
+  story: { id, published, updatedAt, titleText, author, tags, description },
+  referrer
+}) => {
   return (
     <StoryItemContainer>
-      <StoryItemHeader>
-        <Flex gutters justify="space-between">
-          <FlexContent space="self">
-            <StoryItemTitle>{titleText}</StoryItemTitle>
-            <StoryItemAvatar user={author} to={{ state: { referrer } }} />
-          </FlexContent>
-          <FlexContent space="self">
-            {tags ? <Tags>{tags.map(tag => <Tag key={tag.id}>{tag.key}</Tag>)}</Tags> : null}
-          </FlexContent>
-        </Flex>
-      </StoryItemHeader>
-      <StoryDescription>
-        {description ? description : 'No description'}{' '}
-        <Link to={{ pathname: `/write/${id}`, state: { referrer } }}>read</Link>
-      </StoryDescription>
+      <Flex gutters guttersVertical>
+        <FlexContent space={[100, { sm: 'reset' }]}>
+          <StoryItemTitle>{titleText}</StoryItemTitle>
+          {author && <StoryItemAvatar user={author} to={{ state: { referrer } }} />}
+          <StoryDescription>{description ? description : 'No description'} </StoryDescription>
+          <ButtonLink to={{ pathname: `/write/${id}`, state: { referrer } }}>read</ButtonLink>
+        </FlexContent>
+        <FlexContent space={[100, { sm: 'self' }]}>
+          {published && <PublishedAt>published: {new Date(updatedAt).toDateString()}</PublishedAt>}
+          {tags &&
+            tags.length > 0 && <Tags>{tags.map(tag => <Tag key={tag.id}>{tag.key}</Tag>)}</Tags>}
+        </FlexContent>
+      </Flex>
     </StoryItemContainer>
   );
 };

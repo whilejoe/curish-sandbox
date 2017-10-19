@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { gql, withApollo } from 'react-apollo';
 import { Flex, FlexContent } from 'components/Flex';
-import PageContainer from 'components/PageContainer';
+// import PageContainer from 'components/PageContainer';
+import StoryContainer from 'components/StoryContainer';
 import InputGroup from 'components/InputGroup';
 import SearchStoryList from 'components/SearchStoryList';
 import Avatar from 'components/Avatar';
@@ -20,10 +21,8 @@ import qs from 'qs';
 //   color: #868686;
 // `;
 
-const SearchContainer = styled.div`
-  max-width: 44rem;
-  margin: 0 auto;
-  padding-top: 0.9rem;
+const SearchInput = styled.div`
+  padding-top: 0.8rem;
 `;
 
 class StorySearch extends Component {
@@ -112,10 +111,10 @@ class StorySearch extends Component {
     const { location } = this.props;
     const { stories, users } = this.state;
     return (
-      <PageContainer>
-        <SearchContainer>
+      <StoryContainer>
+        <SearchInput>
           <InputGroup
-            autoFocus
+            autoFocus={!this.props.location.search}
             id="search"
             label="Search Curish"
             hideLabel
@@ -125,24 +124,24 @@ class StorySearch extends Component {
             // onKeyDown={this.handleKeyDown}
             onChange={this.debouncedOnChange}
           />
-          <Flex gutters guttersVertical>
-            {stories.length > 0 && (
-              <FlexContent space={[100, { sm: 'reset' }]}>
-                {stories.map(story => (
-                  <SearchStoryList key={story.id} story={story} referrer={location} />
-                ))}
-              </FlexContent>
-            )}
-            {users.length > 0 && (
-              <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
-                {users.map(user => (
-                  <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
-                ))}
-              </FlexContent>
-            )}
-          </Flex>
-        </SearchContainer>
-      </PageContainer>
+        </SearchInput>
+        <Flex gutters guttersVertical>
+          {stories.length > 0 && (
+            <FlexContent space={[100, { sm: 'reset' }]}>
+              {stories.map(story => (
+                <SearchStoryList key={story.id} story={story} referrer={location} />
+              ))}
+            </FlexContent>
+          )}
+          {users.length > 0 && (
+            <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
+              {users.map(user => (
+                <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
+              ))}
+            </FlexContent>
+          )}
+        </Flex>
+      </StoryContainer>
     );
   }
 }
@@ -150,13 +149,20 @@ class StorySearch extends Component {
 const ALL_STORIES_SEARCH_QUERY = gql`
   query AllStoriesSearchQuery($searchText: String!) {
     allStories(
-      filter: { OR: [{ titleText_contains: $searchText }, { description_contains: $searchText }] }
+      filter: {
+        published: true
+        OR: [{ titleText_contains: $searchText }, { description_contains: $searchText }]
+      }
       first: 10
       orderBy: titleText_ASC
     ) {
       id
       createdAt
+      updatedAt
+      published
       titleText
+      titleDelta
+      bodyDelta
       description
       tags {
         id

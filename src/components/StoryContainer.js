@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StoryContainer = styled.div`
+  position: relative;
   max-width: 44rem;
   margin-right: auto;
   margin-left: auto;

@@ -1,5 +1,5 @@
 # project: cj6l71pg81npn0191lrufaos5
-# version: 55
+# version: 60
 
 type File @model {
   contentType: String!
@@ -22,6 +22,7 @@ type User @model {
   email: String! @isUnique
   photoURL: String
   stories: [Story!]! @relation(name: "StoryAuthor")
+  termsAgreedVersion: Float
 }
 
 type Story @model {
@@ -42,4 +43,10 @@ type Tag @model {
   id: ID! @isUnique
   key: String! @isUnique
   stories: [Story!]! @relation(name: "TagOnStory")
+}
+
+type Terms @model {
+  id: ID! @isUnique
+  version: Float!
+  copy: String!
 }

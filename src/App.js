@@ -9,12 +9,12 @@ import VerifyContainer from 'containers/VerifyContainer';
 import JoinContainer from 'containers/JoinContainer';
 import CreateStoryContainer from 'containers/CreateStoryContainer';
 import ProfileContainer from 'containers/ProfileContainer';
+import UserStoriesContainer from 'containers/UserStoriesContainer';
 import Home from 'routes/Home';
 import About from 'routes/About';
 import StorySearch from 'routes/StorySearch';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
-import UserStories from 'routes/UserStories';
 import Messages from 'routes/Messages';
 import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
@@ -48,7 +48,7 @@ const App = ({ userData: user }) => {
                     path="/stories"
                     userResult={user}
                     requireAuth
-                    component={UserStories}
+                    component={UserStoriesContainer}
                   />
                   <FadeRoute path="/messages" userResult={user} requireAuth component={Messages} />
                   <FadeRoute path="/notifications" userResult={user} component={Notifications} />

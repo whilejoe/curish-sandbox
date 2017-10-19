@@ -202,7 +202,7 @@ class QuillEditor extends Component {
         <FlexContent>
           <HeaderTitle>{storyData && storyData.Story && storyData.Story.titleText}</HeaderTitle>
         </FlexContent>
-        {!noMatch && isAuthed() ? (
+        {!noMatch && isAuthed() && (storyData && storyData.Story && !storyData.Story.published) ? (
           <FlexContent space="self">
             {isEditMode ? (
               <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>

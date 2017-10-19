@@ -15,7 +15,7 @@ import registerServiceWorker from './registerServiceWorker';
 // Batching. Testing
 const networkInterface = createBatchingNetworkInterface({
   uri: 'https://api.graph.cool/simple/v1/cj6l71pg81npn0191lrufaos5',
-  batchInterval: 10, // MS
+  batchInterval: 5, // MS
   batchMax: 10
 });
 
