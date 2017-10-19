@@ -63,8 +63,8 @@ const HeaderAvatar = styled(Avatar)`
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding-top: 1.2rem;
-  padding-bottom: 1.05rem;
+  padding-top: 1.15rem;
+  padding-bottom: 0.95rem;
   font-family: 'Merriweather', serif;
   font-size: 1.1em;
   font-weight: 700;
