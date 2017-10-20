@@ -18,9 +18,9 @@ export const copyFontWeight = 400;
 export const copyFontColor = '#222';
 
 export const linkFont = sanserifFont;
-export const linkFontWeight = 600;
+export const linkFontWeight = 400;
 
-const BASE = 0.9;
+const BASE = 0.79;
 const RATIO = 1.25;
 // const LINE_HEIGHT = 1.2;
 // line-height: ${stripUnit(modularScale(3, BASE, RATIO)) * LINE_HEIGHT};
@@ -60,6 +60,7 @@ injectGlobal`
     font-family: ${copyFont};
     font-weight: ${copyFontWeight};
     font-size: 1rem;
+    background-color: #fffefe;
     line-height: 1.4;
     color: ${copyFontColor};
     -webkit-font-smoothing: antialiased;

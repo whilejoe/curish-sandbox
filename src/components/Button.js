@@ -9,6 +9,7 @@ const Button = styled.button`
   color: ${props => THEME[props.theme] || THEME[PRIMARY_KEY]};
   font-family: inherit;
   font-size: 0.9em;
+  font-weight: 600;
   line-height: 0.9em;
   vertical-align: middle;
   text-transform: uppercase;

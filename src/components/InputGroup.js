@@ -12,10 +12,10 @@ import 'abyss-form/lib/Checkbox/Checkbox.css';
 import { Flex, FlexContent } from 'components/Flex';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 import SrOnly from 'components/SrOnly';
-import { THEME, TERTIARY_KEY, SECONDARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
+import { THEME, SECONDARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
 
 const COLOR = 'inherit';
-const ACTIVE_COLOR = THEME[TERTIARY_KEY];
+const ACTIVE_COLOR = THEME[SECONDARY_KEY];
 const ERROR_COLOR = THEME[ERROR_KEY];
 
 const activeState = css`
@@ -27,6 +27,7 @@ const activeState = css`
 
 const inputMixin = css`
   padding: 0.5rem 0.6rem;
+  background-color: transparent;
   color: ${COLOR};
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;

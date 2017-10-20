@@ -36,8 +36,8 @@ class Modal extends Component {
   onPortalOpen = () => {
     document.addEventListener('keydown', this.handleKeyDown, false);
     document.addEventListener('click', this.handleWindowClick, false);
-    document.body.style.overflow = 'hidden';
-    document.body.setAttribute('aria-hidden', 'true');
+    // document.body.style.overflow = 'hidden';
+    // document.body.setAttribute('aria-hidden', 'true');
     this.setState({ isPortalOpen: true, isModalOpen: true });
   };
 
@@ -55,8 +55,8 @@ class Modal extends Component {
     this.setState({ isPortalOpen: false });
     document.removeEventListener('keydown', this.handleKeyDown, false);
     document.removeEventListener('click', this.handleWindowClick, false);
-    document.body.removeAttribute('style');
-    document.body.removeAttribute('aria-hidden');
+    // document.body.removeAttribute('style');
+    // document.body.removeAttribute('aria-hidden');
   };
 
   onCloseModal = () => {

@@ -22,8 +22,8 @@ import { isAuthed } from 'utils/AuthService';
 // `;
 
 const Header = styled.div`
-  border-bottom: 1px solid #eaeaea;
   overflow: hidden;
+  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
 `;
 
 class SubHeader extends Component {

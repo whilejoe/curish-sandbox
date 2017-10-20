@@ -4,10 +4,6 @@ import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
 
 class Tags extends React.Component {
-  componentWillMount() {
-    // if (this.props.storyTags) this.setState({ selectedTags: this.props.storyTags });
-  }
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmitCallback();
@@ -24,7 +20,7 @@ class Tags extends React.Component {
 
   render() {
     const { storyTags, data } = this.props;
-    console.log('this.props', this.props);
+    console.log('tags this.props', this.props);
     console.log('storyTags', storyTags);
     // const { selectedTags } = this.state;
     if (data.loading) return <p>loading...</p>;

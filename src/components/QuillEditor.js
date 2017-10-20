@@ -13,7 +13,7 @@ import StoryHeader from 'components/StoryHeader';
 import PublishStory from 'components/PublishStory/PublishStory';
 import debounce from 'lodash/debounce';
 import { isAuthed } from 'utils/AuthService';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { THEME, SECONDARY_KEY } from 'constants/theme';
 
 const EDIT_MODE_UNSAVED = 'Unsaved Changes';
 const EDIT_MODE_SAVING = 'Saving...';
@@ -22,7 +22,7 @@ const EDIT_MODE_SAVED = 'Saved';
 const EditModeStatus = styled.span`
   display: inline-block;
   margin-right: 0.5rem;
-  color: ${props => (props.mode === EDIT_MODE_SAVING ? THEME[PRIMARY_KEY] : '#b4b4b4')};
+  color: ${props => (props.mode === EDIT_MODE_SAVING ? THEME[SECONDARY_KEY] : '#b4b4b4')};
   font-size: 0.8em;
   vertical-align: middle;
 `;

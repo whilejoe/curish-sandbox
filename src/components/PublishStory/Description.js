@@ -32,7 +32,7 @@ class Description extends React.Component {
             length: 'Too many characters :('
           }}
         />
-        <Button>Next</Button>
+        <Button type="submit">Next</Button>
       </form>
     );
   }

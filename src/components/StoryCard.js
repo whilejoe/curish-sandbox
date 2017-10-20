@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Avatar from 'components/Avatar';
 import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';
+import { THEME, SECONDARY_KEY } from 'constants/theme';
 import orderBy from 'lodash/orderBy';
 
 const StoryItemContainer = styled.div`
@@ -63,7 +64,8 @@ const Tag = styled.span`
   padding: 0.1rem 0.35rem;
   vertical-align: bottom;
   font-size: 0.75em;
-  background-color: ${props => (props.match ? 'aquamarine' : '#eee')};
+  background-color: ${props => (props.match ? THEME[SECONDARY_KEY] : '#eee')};
+  color: ${props => (props.match ? 'white' : 'inherit')};
   font-weight: 600;
   border-radius: 2px;
 `;

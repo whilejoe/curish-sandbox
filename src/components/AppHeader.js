@@ -11,10 +11,13 @@ import { isAuthed } from 'utils/AuthService';
 
 // #6e698e
 // #5b4f9c
+// #2862b9
+// #31435f
+// #647690
+// #3c2242
 const Header = styled.header`
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #eaeaea;
-  color: #2b2b2b;
+  background-color: #5b4661;
+  color: white;
 `;
 
 const HeaderLink = styled(NavLink)`

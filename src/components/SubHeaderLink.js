@@ -20,9 +20,9 @@ const STATES = {
 const NavAction = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 0.9rem;
   font-size: 1.1em;
-  color: #636363;
+  color: #3c2242;
   line-height: 1;
   text-align: center;
   transform: ${props => STATES[props.status].transform};
@@ -48,7 +48,6 @@ const NavAction = styled(NavLink)`
   &:focus,
   &.active {
     text-decoration: none;
-    color: #333;
 
     &:after {
       opacity: 1;

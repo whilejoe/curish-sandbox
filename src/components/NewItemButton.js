@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { THEME, SECONDARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 import { rgba } from 'polished';
 import Icon from 'components/Icon';
 
-const COLOR = THEME[SECONDARY_KEY];
+const COLOR = THEME[PRIMARY_KEY];
 
 const PlusIcon = styled(Icon)`
   width: 62%;
@@ -16,7 +16,7 @@ const PlusIcon = styled(Icon)`
 
 const HeaderButton = styled(Link)`
   position: absolute;
-  top: 2rem;
+  top: 1.35rem;
   right: 0.8rem;
   display: flex;
   flex: 1 1 0%;

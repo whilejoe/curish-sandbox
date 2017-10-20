@@ -51,10 +51,9 @@ class PublishStory extends React.Component {
     );
   };
 
-  onTagsFormSubmit = async () => {
+  onTagsFormSubmit = () => {
     const { dispatch, updateStoryMutation, storyData: { variables }, publishForm } = this.props;
     const { tags } = publishForm;
-    console.log('tags onSubmit', tags);
     dispatch(
       submit('publish', async () => {
         const tagsResult = await updateStoryMutation({
@@ -63,15 +62,15 @@ class PublishStory extends React.Component {
             tagsIds: tags
           }
         });
-        console.log('tags result', tagsResult);
         if (tagsResult.data) {
+          console.log('tagsResult.data', tagsResult.data);
           this.publishStory();
         }
       })
     );
   };
 
-  async publishStory() {
+  publishStory = async () => {
     const { updateStoryMutation, storyData: { variables } } = this.props;
     const result = await updateStoryMutation({
       variables: {
@@ -80,7 +79,7 @@ class PublishStory extends React.Component {
       }
     });
     if (result.data) console.log('Story Published!!!!', result);
-  }
+  };
 
   render() {
     const { publishForm: { description, tags }, storyData: { Story } } = this.props;

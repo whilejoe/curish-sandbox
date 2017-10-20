@@ -8,11 +8,10 @@ import { isAuthed } from 'utils/AuthService';
 
 const Header = styled.div`
   position: absolute;
-  top: -3.2rem;
-  height: 3.2rem;
+  top: -56px;
+  height: 56px;
   width: 100%;
-  background-color: white;
-  border-bottom: 1px solid #f3f3f3;
+  background-color: #fffefe;
   z-index: 2;
 `;
 

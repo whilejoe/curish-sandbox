@@ -5,7 +5,7 @@ const StoryContainer = styled.div`
   max-width: 44rem;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 0.5rem;
+  padding-top: 0.8rem;
   padding-right: 1rem;
   padding-left: 1rem;
 `;
