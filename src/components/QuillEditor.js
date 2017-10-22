@@ -218,12 +218,10 @@ class QuillEditor extends Component {
               storyData.Story && (
                 <Modal
                   key="modal"
-                  trigger={<Button theme="tertiary">Publish</Button>}
+                  trigger={!storyData.Story.published && <Button theme="tertiary">Publish</Button>}
                   title={`Publish: ${storyData.Story.titleText}`}
                 >
-                  {!storyData.Story.published && (
-                    <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
-                  )}
+                  <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
                 </Modal>
               )}
           </FlexContent>
