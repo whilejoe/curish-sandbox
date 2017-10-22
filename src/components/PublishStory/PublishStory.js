@@ -64,6 +64,7 @@ class PublishStory extends React.Component {
         });
         if (tagsResult.data) {
           console.log('tagsResult.data', tagsResult.data);
+          this.setState({ activeForm: TERMS_KEY });
           this.publishStory();
         }
       })

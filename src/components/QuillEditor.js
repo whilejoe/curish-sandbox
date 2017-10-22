@@ -202,15 +202,17 @@ class QuillEditor extends Component {
         <FlexContent>
           <HeaderTitle>{storyData && storyData.Story && storyData.Story.titleText}</HeaderTitle>
         </FlexContent>
-        {!noMatch && isAuthed() && (storyData && storyData.Story && !storyData.Story.published) ? (
+        {!noMatch && isAuthed() ? (
           <FlexContent space="self">
-            {isEditMode ? (
-              <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
-            ) : (
-              <Button key="modalTrigger" onClick={this.handleEditModeButton}>
-                Edit
-              </Button>
-            )}
+            {!storyData.Story.published ? (
+              isEditMode ? (
+                <EditModeStatus mode={editModeState}>{editModeState}</EditModeStatus>
+              ) : (
+                <Button key="modalTrigger" onClick={this.handleEditModeButton}>
+                  Edit
+                </Button>
+              )
+            ) : null}
             {match.params.id &&
               storyData &&
               storyData.Story && (
@@ -219,7 +221,9 @@ class QuillEditor extends Component {
                   trigger={<Button theme="tertiary">Publish</Button>}
                   title={`Publish: ${storyData.Story.titleText}`}
                 >
-                  <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
+                  {!storyData.Story.published && (
+                    <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
+                  )}
                 </Modal>
               )}
           </FlexContent>

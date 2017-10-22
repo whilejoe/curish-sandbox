@@ -41,9 +41,9 @@ abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
 
-abyss-form@0.4.15:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.15.tgz#ae312666965191bd6a02da655f3c914201a12b29"
+abyss-form@0.4.17:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.17.tgz#bb5ff4b7df68aef9e8c20b0b49df616ead30f9ce"
   dependencies:
     abyss-react "^0.2.0"
     autosize "^3.0.0"
@@ -51,7 +51,6 @@ abyss-form@0.4.15:
     moment "^2.0.0"
     prop-types "^15.0.0"
     rc-calendar "^8.0.0"
-    react-dropzone "^3.6.0"
     react-select "^1.0.0-rc.5"
 
 abyss-react@^0.2.0:
@@ -399,10 +398,6 @@ async@^2.1.2, async@^2.1.4, async@^2.4.1:
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
-
-attr-accept@^1.0.3:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-1.1.0.tgz#b5cd35227f163935a8f1de10ed3eba16941f6be6"
 
 auth0-js@^8.10.1:
   version "8.10.1"
@@ -5923,7 +5918,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.x, prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8:
+prop-types@15.x, prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -6186,13 +6181,6 @@ react-dom@^16.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
-
-react-dropzone@^3.6.0:
-  version "3.13.4"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.13.4.tgz#84da26815c40339691c49b4544c2ef7a16912ccc"
-  dependencies:
-    attr-accept "^1.0.3"
-    prop-types "^15.5.7"
 
 react-error-overlay@^2.0.2:
   version "2.0.2"

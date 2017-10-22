@@ -12,7 +12,7 @@ import 'abyss-form/lib/Checkbox/Checkbox.css';
 import { Flex, FlexContent } from 'components/Flex';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 import SrOnly from 'components/SrOnly';
-import { THEME, SECONDARY_KEY, ERROR_KEY, PALETTE } from 'constants/theme';
+import { THEME, SECONDARY_KEY, ERROR_KEY } from 'constants/theme';
 
 const COLOR = 'inherit';
 const ACTIVE_COLOR = THEME[SECONDARY_KEY];
@@ -121,13 +121,13 @@ export const InputArea = styled(TextArea)`
 `;
 
 export const InputSelect = styled(SelectList)`
-  border-bottom-color: ${PALETTE.GRAY.MEDIUM};
-  border-radius: 3px;
+  border-color: transparent;
+  border-bottom-color: ${ACTIVE_COLOR};
+  border-radius: 2px;
 
   & .Select-control {
     ${inputMixin};
-    padding: 0.5rem 0.6rem !important;
-    height: 2.5rem;
+    padding: 0.5rem !important;
   }
 
   &.is-focused {
@@ -136,7 +136,6 @@ export const InputSelect = styled(SelectList)`
 
   &.isOpen {
     & .Select-control {
-      background: #f8f8f8;
       border-color: inherit;
     }
   }
@@ -148,12 +147,10 @@ export const InputSelect = styled(SelectList)`
 
   &.Select--multi {
     & .Select-value {
-      background-color: #695dca;
+      background-color: ${ACTIVE_COLOR};
       border-radius: 2px;
       color: white;
       padding: 0.1rem 0.35rem !important;
-      font-size: 0.82em;
-      line-height: normal !important;
     }
   }
 `;
@@ -172,7 +169,7 @@ const InputCounter = styled.div`
     width: ${props => props.currentCount / props.countMax * 100}%;
     max-width: 100%;
     background-color: ${props =>
-      props.currentCount > props.countMax ? THEME[ERROR_KEY] : THEME[SECONDARY_KEY]};
+      props.currentCount > props.countMax ? THEME[ERROR_KEY] : 'royalBlue'};
     bottom: 6px;
     left: 0;
     border-radius: 2px;

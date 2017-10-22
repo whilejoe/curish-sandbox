@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "abyss-form": "0.4.15",
+    "abyss-form": "0.4.17",
     "auth0-js": "^8.10.1",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
