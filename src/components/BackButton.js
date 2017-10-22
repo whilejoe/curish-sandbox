@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
 import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
-
-// import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 // color: ${THEME[PRIMARY_KEY]};
 
 const DURATION = 160;
@@ -26,6 +25,11 @@ const BackLink = styled(Link)`
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
   transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out`};
+
+  &:hover,
+  &:focus {
+    color: ${THEME[PRIMARY_KEY]};
+  }
 `;
 
 const BackButton = ({ referrer, show, ...props }) => {

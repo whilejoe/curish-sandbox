@@ -8,6 +8,7 @@ const Link = styled(RouterLink)`
   &:hover,
   &:focus {
     color: ${THEME[PRIMARY_KEY]};
+    text-decoration: none;
   }
 `;
 
