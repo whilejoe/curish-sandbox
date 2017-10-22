@@ -8,6 +8,7 @@ export const ERROR_KEY = 'error';
 // lightcoral
 // mediumseagreen
 // #528de6
+// #5b4661
 
 export const THEME = {
   [PRIMARY_KEY]: 'lightcoral',
@@ -22,5 +23,6 @@ export const PALETTE = {
     MEDIUM: '#f1f1f1',
     DARK: '#333'
   },
-  HEADER: 'mistyrose'
+  HEADER: '#393c56',
+  BODY: '#fffefe'
 };

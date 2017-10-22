@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SLIDE_DURATION } from 'constants/animation';
 import { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
+import { PALETTE } from 'constants/theme';
 import media from 'utils/media';
 
 const SLIDE_STATES = {
@@ -49,8 +50,9 @@ export const Slide = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   opacity: ${props => OPACITY_STATES[props.status]};
-  background-color: white;
+  background-color: ${PALETTE.BODY};
   border-radius: 2px;
+  outline: none;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.3);
   transform: ${props => SLIDE_STATES[props.status]};
   transition: transform ${SLIDE_DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1),

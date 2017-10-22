@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-// import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { PALETTE } from 'constants/theme';
 // import { darken } from 'polished';
 
 // #636363
@@ -22,14 +22,14 @@ const NavAction = styled(NavLink)`
   position: relative;
   padding: 0.85rem 0.9rem;
   font-size: 1.1em;
-  color: #3c2242;
+  color: ${PALETTE.HEADER};
   line-height: 1;
   text-align: center;
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
   transition: ${`
     transform ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1),
-    opacity ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1), color 150ms linear
+    opacity ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1)
   `};
 
   &:after {
@@ -41,7 +41,6 @@ const NavAction = styled(NavLink)`
     width: 100%;
     background-color: currentColor;
     opacity: 0;
-    transition: opacity 150ms linear;
   }
 
   &:hover,

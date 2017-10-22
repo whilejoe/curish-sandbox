@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
-import { Link } from 'react-router-dom';
+import Link from 'components/Link';
 import Avatar from 'components/Avatar';
 import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';

@@ -6,7 +6,7 @@ import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
 // import Icon from 'components/Icon';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
 // #6e698e
@@ -16,8 +16,8 @@ import { isAuthed } from 'utils/AuthService';
 // #647690
 // #3c2242
 const Header = styled.header`
-  background-color: #5b4661;
-  color: white;
+  background-color: ${PALETTE.HEADER};
+  color: ${PALETTE.BODY};
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -91,8 +91,8 @@ const LoginButton = ButtonLink.extend`
   &:hover,
   &:focus,
   &.active {
-    background-color: white;
-    color: ${THEME[PRIMARY_KEY]};
+    background-color: ${THEME[PRIMARY_KEY]};
+    color: currentColor;
   }
 `;
 

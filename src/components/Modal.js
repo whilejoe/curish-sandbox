@@ -8,15 +8,14 @@ import { Flex, FlexContent } from 'components/Flex';
 import { SLIDE_DURATION } from 'constants/animation';
 
 const Header = styled.div`
-  padding: 0.95rem 1rem;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #f3f3f3;
+  padding: 0.8rem 1rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eee;
 `;
 
 const Heading = styled.h1`
   margin: 0;
-  font-size: 1.1em;
-  line-height: 1.56;
+  font-size: 1em;
 `;
 
 const Body = styled.div`
@@ -95,7 +94,7 @@ class Modal extends Component {
                   tabIndex={0}
                 >
                   <Header>
-                    <Flex gutters align={{ md: 'center' }}>
+                    <Flex gutters align="center">
                       <FlexContent>
                         <Heading>{title}</Heading>
                       </FlexContent>

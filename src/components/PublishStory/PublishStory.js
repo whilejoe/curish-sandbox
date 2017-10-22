@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Description from './Description';
 import Tags from './Tags';
-import Terms from './Terms';
+// import Terms from './Terms';
+import Confirmation from './Confirmation';
 import { submit, set, reset } from 'abyss-form/lib/actions';
 
 const DESCRIPTION_KEY = 'descriptionForm';
 const TAGS_KEY = 'tagsForm';
-const TERMS_KEY = 'termsForm';
+// const TERMS_KEY = 'termsForm';
+const CONFIRM_KEY = 'confirm';
 
 class PublishStory extends React.Component {
   state = {
@@ -64,7 +66,6 @@ class PublishStory extends React.Component {
         });
         if (tagsResult.data) {
           console.log('tagsResult.data', tagsResult.data);
-          this.setState({ activeForm: TERMS_KEY });
           this.publishStory();
         }
       })
@@ -79,7 +80,7 @@ class PublishStory extends React.Component {
         published: true
       }
     });
-    if (result.data) console.log('Story Published!!!!', result);
+    if (result.data) this.setState({ activeForm: CONFIRM_KEY });
   };
 
   render() {
@@ -100,8 +101,8 @@ class PublishStory extends React.Component {
       return (
         <Tags formTags={tags} storyTags={Story.tags} onSubmitCallback={this.onTagsFormSubmit} />
       );
-    } else if (activeForm === TERMS_KEY) {
-      return <Terms />;
+    } else if (activeForm === CONFIRM_KEY) {
+      return <Confirmation story={Story} />;
     }
     return null;
   }

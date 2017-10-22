@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
 
 const Button = styled.button`
   display: inline-block;
@@ -22,7 +22,7 @@ const Button = styled.button`
   &:focus,
   &.active {
     background-color: ${props => THEME[props.theme] || THEME[PRIMARY_KEY]};
-    color: white;
+    color: ${PALETTE.BODY};
     text-decoration: none;
   }
 `;
