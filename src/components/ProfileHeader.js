@@ -4,18 +4,14 @@ import { Flex, FlexContent } from 'components/Flex';
 import Avatar from 'components/Avatar';
 import Container from 'components/Container';
 import { THEME, SECONDARY_KEY } from 'constants/theme';
-import { lighten } from 'polished';
 import media from 'utils/media';
 import { getMonthYear } from 'utils/date';
 
-const COLOR = THEME[SECONDARY_KEY];
-
 const Header = styled.div`
-  padding-top: 1.5rem;
-  padding-bottom: 1.6rem;
-  margin-bottom: 1.5rem;
-  background-color: ${COLOR};
-  color: ${lighten(0.71, COLOR)};
+  padding-top: 1.4rem;
+  padding-bottom: 1.3rem;
+  background-color: ${THEME[SECONDARY_KEY]};
+  color: white;
 
   ${media.sm`
     padding-top: 1.7rem;

@@ -11,9 +11,14 @@ export const PROFILE_QUERY = gql`
       photoURL
       stories(filter: { published: true }, orderBy: updatedAt_DESC) {
         id
+        updatedAt
+        published
         titleText
         description
-        published
+        tags {
+          id
+          key
+        }
       }
     }
   }

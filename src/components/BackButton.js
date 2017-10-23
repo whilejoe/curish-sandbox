@@ -4,7 +4,6 @@ import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition
 import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
-// color: ${THEME[PRIMARY_KEY]};
 
 const DURATION = 160;
 

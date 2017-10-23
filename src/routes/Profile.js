@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'components/Container';
 import PageContainer from 'components/PageContainer';
 import ProfileHeader from 'components/ProfileHeader';
 import ProfileStoryList from 'components/ProfileStoryList';
@@ -11,17 +10,10 @@ const Profile = ({ profile: { loading, User }, location }) => {
   // catch the no match here.
   if (!User) return <NoMatch location={location} />;
   const { stories } = User;
-  return (
-    <div>
-      <ProfileHeader user={User} />
-      <Container>
-        <h2>Stories</h2>
-        {stories.map(story => (
-          <ProfileStoryList key={story.id} story={story} referrer={location} />
-        ))}
-      </Container>
-    </div>
-  );
+  return [
+    <ProfileHeader key="profileHeader" user={User} />,
+    <ProfileStoryList key="storyList" stories={stories} referrer={location} />
+  ];
 };
 
 export default Profile;
