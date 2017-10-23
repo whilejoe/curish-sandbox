@@ -77,11 +77,8 @@ const Brand = styled(NavLink)`
   font-weight: 700;
   line-height: 1;
 
-  &:hover,
-  &:focus,
   &.active {
-    color: ${THEME[PRIMARY_KEY]};
-    text-decoration: none;
+    text-decoration: underline;
   }
 `;
 
