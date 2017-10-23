@@ -1,21 +1,16 @@
 import React from 'react';
 // import styled from 'styled-components';
-import Button from 'components/Button';
+import { ButtonLink } from 'components/Button';
 
-class Confirmation extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmitCallback();
-  };
-
-  render() {
-    return (
-      <div>
-        <h1>Congrats, you've earned a badge!</h1>
-        <Button>Take me to my story</Button>
-      </div>
-    );
-  }
-}
+const Confirmation = ({ story: { id } }) => {
+  return (
+    <div>
+      <h1>Congrats! You've published a story!</h1>
+      <ButtonLink replace to={`/story/${id}`}>
+        Let's see it
+      </ButtonLink>
+    </div>
+  );
+};
 
 export default Confirmation;
