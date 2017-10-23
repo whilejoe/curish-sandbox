@@ -6202,9 +6202,9 @@ react-input-autosize@^2.0.1:
     create-react-class "^15.5.2"
     prop-types "^15.5.8"
 
-react-portal@^v4.0.0-beta.3:
-  version "4.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.0.0-beta.3.tgz#91425524d3e7b4858e382b8fc661e1f03ff3747d"
+react-portal@^v4.0.0-rc.0:
+  version "4.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.0.0-rc.0.tgz#1f511ed06a765def09492a9a4d0237f66ab633a4"
   dependencies:
     prop-types "^15.5.8"
 
