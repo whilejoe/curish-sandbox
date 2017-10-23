@@ -23,11 +23,22 @@ export const STORY_QUERY = gql`
 `;
 
 const CREATE_STORY_MUTATION = gql`
-  mutation CreateStoryMutation($userId: ID!, $titleText: String!, $titleDelta: String!) {
-    createStory(authorId: $userId, titleText: $titleText, titleDelta: $titleDelta) {
+  mutation CreateStoryMutation(
+    $userId: ID!
+    $titleText: String
+    $titleDelta: String
+    $bodyDelta: String
+  ) {
+    createStory(
+      authorId: $userId
+      titleText: $titleText
+      titleDelta: $titleDelta
+      bodyDelta: $bodyDelta
+    ) {
       id
       titleText
       titleDelta
+      bodyDelta
       author {
         id
         userName

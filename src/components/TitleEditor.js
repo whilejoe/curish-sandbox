@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
+// import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import Avatar from 'components/Avatar';
 
