@@ -5,13 +5,19 @@ import BackButton from 'components/BackButton';
 import { Flex } from 'components/Flex';
 import Container from 'components/Container';
 import { isAuthed } from 'utils/AuthService';
+import { PALETTE } from 'constants/theme';
+
+export const HeaderTitle = styled.div`
+  font-size: 0.9em;
+  color: #666;
+`;
 
 const Header = styled.div`
   position: absolute;
   top: -56px;
   height: 56px;
   width: 100%;
-  background-color: #fffefe;
+  background-color: ${PALETTE.BODY};
   z-index: 2;
 `;
 

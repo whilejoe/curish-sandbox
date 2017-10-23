@@ -7,7 +7,9 @@ import SubHeader from 'components/SubHeader';
 import LoginContainer from 'containers/LoginContainer';
 import VerifyContainer from 'containers/VerifyContainer';
 import JoinContainer from 'containers/JoinContainer';
-import CreateStoryContainer from 'containers/CreateStoryContainer';
+import StoryNewContainer from 'containers/StoryNewContainer';
+import StoryEditContainer from 'containers/StoryEditContainer';
+import StoryPublishedContainer from 'containers/StoryPublishedContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import UserStoriesContainer from 'containers/UserStoriesContainer';
 import SearchContainer from 'containers/SearchContainer';
@@ -53,11 +55,18 @@ const App = ({ userData: user }) => {
                   <FadeRoute path="/messages" userResult={user} requireAuth component={Messages} />
                   <FadeRoute path="/notifications" userResult={user} component={Notifications} />
                   <FadeRoute
-                    path="/write/:id?"
+                    path="/write"
                     userResult={user}
                     requireAuth
-                    component={CreateStoryContainer}
+                    component={StoryNewContainer}
                   />
+                  <FadeRoute
+                    path="/edit/:id"
+                    userResult={user}
+                    requireAuth
+                    component={StoryEditContainer}
+                  />
+                  <FadeRoute path="/story/:id" component={StoryPublishedContainer} />
                   <FadeRoute path="/join" userResult={user} requireAuth component={JoinContainer} />
                   <FadeRoute path="/login" component={LoginContainer} />
                   <FadeRoute path="/verify" component={VerifyContainer} />

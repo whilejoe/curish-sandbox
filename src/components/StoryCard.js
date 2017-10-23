@@ -71,13 +71,13 @@ const Tag = styled.span`
 `;
 
 const matchTags = (matchVal = '', tags = []) => {
-  // TODO: Move ordering to mutation
+  // TODO: Move ordering to apollo
   const ordered = orderBy(tags, 'key', 'asc');
   const matched = ordered.map(tag => {
     const match = matchVal ? tag.key.toLowerCase().includes(matchVal.toLowerCase()) : false;
     return (
       <Tag key={tag.id} match={match}>
-        #{tag.key}
+        {tag.key}
       </Tag>
     );
   });
@@ -94,8 +94,10 @@ const StoryCard = ({
       <Flex gutters guttersVertical>
         <FlexContent space={[100, { sm: 'reset' }]}>
           <StoryItemTitle>
-            <StoryLink to={{ pathname: `/write/${id}`, state: { referrer } }}>
-              {titleText}
+            <StoryLink
+              to={{ pathname: `/${published ? 'story' : 'edit'}/${id}`, state: { referrer } }}
+            >
+              {titleText || 'Untitled'}
             </StoryLink>
           </StoryItemTitle>
           {author && <StoryItemAvatar user={author} to={{ state: { referrer } }} />}

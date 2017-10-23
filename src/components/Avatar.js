@@ -22,22 +22,23 @@ const AvatarLink = styled(Link)`
   }
 `;
 
-const Avatar = ({ user, showImage = false, to, className }) => {
+const renderInner = ({ user: { userName, profileURL }, showImage }) => {
+  if (showImage) {
+    if (profileURL) return <AvatarImage src={profileURL} alt={`${userName} profile photo`} />;
+    return <Icon type="user" title="profile link" />;
+  }
+  return <span>@{userName}</span>;
+};
+
+const Avatar = ({ user, showImage = false, to = '', className }) => {
   if (!user) return null;
-  const { userName, profileURL } = user;
-  const location = to ? { pathname: `/${userName}`, ...to } : `/${userName}`;
-  return (
-    <AvatarLink to={location} className={className}>
-      {showImage ? (
-        profileURL ? (
-          <AvatarImage src={profileURL} alt={`${userName} profile photo`} />
-        ) : (
-          <Icon type="user" title="profile link" />
-        )
-      ) : (
-        <span>@{userName}</span>
-      )}
+
+  return to ? (
+    <AvatarLink to={{ pathname: `/${user.userName}`, ...to }} className={className}>
+      {renderInner({ user, showImage })}
     </AvatarLink>
+  ) : (
+    <div className={className}>{renderInner({ user, showImage })}</div>
   );
 };
 

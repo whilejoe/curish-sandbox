@@ -9,7 +9,7 @@ class Editor extends Component {
   };
 
   componentWillMount() {
-    if (this.props.delta) this.setState({ delta: this.props.delta });
+    if (this.props.defaultDelta) this.setState({ delta: JSON.parse(this.props.defaultDelta) });
   }
 
   componentDidMount() {
@@ -23,10 +23,10 @@ class Editor extends Component {
   }
 
   handleChange = (content, delta, source, editor) => {
-    if (!editor) return;
+    if (!editor || this.props.readOnly) return; // Need to test if I need this
     const contents = editor.getContents();
     this.setState({ delta: contents });
-    this.props.onChangeCallback(contents);
+    this.props.onChangeCallback(contents, editor);
   };
 
   setRef = node => {
@@ -40,7 +40,7 @@ class Editor extends Component {
       <ReactQuill
         theme={theme || 'bubble'}
         readOnly={readOnly}
-        placeholder={placeholder}
+        placeholder={placeholder || 'It all started this one day...'}
         value={delta}
         onChange={this.handleChange}
         modules={modules || Editor.modules}

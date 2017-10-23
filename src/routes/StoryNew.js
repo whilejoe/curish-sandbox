@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Editor from 'components/Editor';
+import EditorTitle from 'components/EditorTitle';
 import StoryContainer from 'components/StoryContainer';
-import TitleEditor from 'components/TitleEditor';
 import debounce from 'lodash/debounce';
 
 class StoryNew extends Component {
@@ -15,9 +15,7 @@ class StoryNew extends Component {
       }
     });
     // Push to edit route with id
-    if (result.data) {
-      history.push(`/edit/${result.data.createStory.id}`);
-    }
+    if (result.data) history.push(`/edit/${result.data.createStory.id}`);
   };
 
   debouncedCreateStory = debounce(variables => {
@@ -25,18 +23,17 @@ class StoryNew extends Component {
   }, 1600);
 
   render() {
-    const { userResult: { user }, location } = this.props;
+    const { userResult: { user } } = this.props;
     return (
       <StoryContainer>
-        <TitleEditor
-          author={user}
-          onChangeTitle={(delta, titleText) =>
+        <EditorTitle
+          readOnly={false}
+          onChangeCallback={(delta, titleText) =>
             this.debouncedCreateStory({ titleDelta: JSON.stringify(delta), titleText })}
-          referrer={location}
-        />,
+          author={user}
+        />
         <Editor
           readOnly={false}
-          placeholder="It all started this one day..."
           onChangeCallback={delta =>
             this.debouncedCreateStory({ storyBody: JSON.stringify(delta) })}
         />
