@@ -7,6 +7,7 @@ import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
 import StoryHeader, { HeaderTitle } from 'components/StoryHeader';
 import PublishStory from 'components/PublishStory/PublishStory';
+import { Redirect } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import StoryEditStatus, { UNSAVED, SAVING, SAVED } from 'components/StoryEditStatus';
 
@@ -53,7 +54,10 @@ class StoryEdit extends Component {
   render() {
     const { storyData, updateStoryMutation } = this.props;
     const { editModeState } = this.state;
+
     if (!storyData.Story) return null;
+    else if (storyData.Story.published) return <Redirect to={`/story/${storyData.Story.id}`} />;
+
     const { titleText = '', titleDelta, bodyDelta, author } = storyData.Story;
     return [
       <StoryHeader key="storyHeader">
