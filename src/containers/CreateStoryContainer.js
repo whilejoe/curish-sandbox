@@ -5,8 +5,15 @@ export const STORY_QUERY = gql`
   query getStoryById($storyId: ID!) {
     Story(id: $storyId) {
       id
-      title
-      quillContent
+      published
+      titleText
+      titleDelta
+      bodyDelta
+      description
+      tags {
+        id
+        key
+      }
       author {
         id
         userName
@@ -16,10 +23,22 @@ export const STORY_QUERY = gql`
 `;
 
 const CREATE_STORY_MUTATION = gql`
-  mutation CreateStoryMutation($userId: ID!, $title: String!) {
-    createStory(authorId: $userId, title: $title) {
+  mutation CreateStoryMutation(
+    $userId: ID!
+    $titleText: String
+    $titleDelta: String
+    $bodyDelta: String
+  ) {
+    createStory(
+      authorId: $userId
+      titleText: $titleText
+      titleDelta: $titleDelta
+      bodyDelta: $bodyDelta
+    ) {
       id
-      title
+      titleText
+      titleDelta
+      bodyDelta
       author {
         id
         userName
@@ -29,11 +48,36 @@ const CREATE_STORY_MUTATION = gql`
 `;
 
 const UPDATE_STORY_MUTATION = gql`
-  mutation UpdateStoryMutation($storyId: ID!, $title: String, $quillContent: String) {
-    updateStory(id: $storyId, title: $title, quillContent: $quillContent) {
+  mutation UpdateStoryMutation(
+    $storyId: ID!
+    $published: Boolean
+    $titleText: String
+    $titleDelta: String
+    $bodyMarkup: String
+    $bodyDelta: String
+    $description: String
+    $tagsIds: [ID!]
+  ) {
+    updateStory(
+      id: $storyId
+      published: $published
+      titleText: $titleText
+      titleDelta: $titleDelta
+      bodyMarkup: $bodyMarkup
+      bodyDelta: $bodyDelta
+      description: $description
+      tagsIds: $tagsIds
+    ) {
       id
-      title
-      quillContent
+      published
+      titleText
+      titleDelta
+      bodyDelta
+      description
+      tags {
+        id
+        key
+      }
       author {
         id
         userName

@@ -12,9 +12,15 @@
   padding: 0;
 }
 
+.ql-editor h1,
+.ql-bubble .ql-editor h1 {
+  margin-top: 0.87890625em;
+  font-size: 1.54296875em;
+}
+
 .ql-bubble .ql-editor h2 {
-  font-size: 1.6111111rem;
-  margin-bottom: 0.8rem;
+  margin: 0.49375em 0;
+  font-size: 1.234375em;
 }
 
 .ql-bubble .ql-editor h3 {
@@ -23,7 +29,7 @@
 }
 
 .ql-editor p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.2em;
 }
 
 .ql-editor.ql-blank::before {

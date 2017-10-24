@@ -6,19 +6,32 @@ const DEFAULT_FLEX = '1 1 0%';
 const BREAK_POINTS = {
   sm: '478px',
   md: '780px',
-  lg: '1080px'
+  lg: '1080px',
+  xlg: '1200px'
 };
 
 // requires method and prop name to match
 // to generically know which props should be parsed when building media queries
 const methods = {
   space: val => setSpace(val),
-  justify: val => css`justify-content: ${val};`,
-  align: val => css`align-items: ${val};`,
+  justify: val =>
+    css`
+      justify-content: ${val};
+    `,
+  align: val =>
+    css`
+      align-items: ${val};
+    `,
   gutters: hasGutters => setGutters(hasGutters),
   guttersVertical: hasGutters => setGuttersVertical(hasGutters),
   hide: shouldHide =>
-    shouldHide ? css`display: none;` : css`display: ${DEFAULT_DISPLAY} !important;`,
+    shouldHide
+      ? css`
+          display: none;
+        `
+      : css`
+          display: ${DEFAULT_DISPLAY} !important;
+        `,
   offset: val => setOffset(val)
 };
 
@@ -67,8 +80,7 @@ const setGutters = hasGutters => {
     margin-right: ${hasGutters ? `-${GUTTER}` : 0};
     margin-left: ${hasGutters ? `-${GUTTER}` : 0};
 
-    & > ${Flex},
-    & > ${FlexContent} {
+    & > ${Flex}, & > ${FlexContent} {
       padding-right: ${hasGutters ? GUTTER : 0};
       padding-left: ${hasGutters ? GUTTER : 0};
     }
@@ -81,8 +93,7 @@ const setGuttersVertical = hasGutters => {
     margin-top: ${hasGutters ? `-${GUTTER}` : 0};
     margin-bottom: ${hasGutters ? `-${GUTTER}` : 0};
 
-    & > ${Flex},
-    & > ${FlexContent} {
+    & > ${Flex}, & > ${FlexContent} {
       padding-top: ${hasGutters ? GUTTER : 0};
       padding-bottom: ${hasGutters ? GUTTER : 0};
     }
@@ -122,8 +133,7 @@ export const FlexColumn = styled.div`
   box-sizing: border-box;
 
   /* fixes inconsistent browser rendering of column children */
-  & > ${Flex},
-  & > ${FlexContent} {
+  & > ${Flex}, & > ${FlexContent} {
     flex: 0 0 auto;
     max-width: none;
   }
@@ -147,7 +157,7 @@ const parseBreakSet = (breakKey, set) => {
       ${Object.keys(set).map(key => {
         const method = methods[key];
         return method(set[key]);
-      })}
+      })};
     }
   `;
 };
@@ -156,10 +166,12 @@ const buildMedias = props => {
   const medias = {};
 
   // requires a matched method name to generically know which props should be parsed
-  const matched = Object.keys(props).filter(prop => methods[prop]).reduce((acc, key) => {
-    acc[key] = props[key];
-    return acc;
-  }, {});
+  const matched = Object.keys(props)
+    .filter(prop => methods[prop])
+    .reduce((acc, key) => {
+      acc[key] = props[key];
+      return acc;
+    }, {});
 
   // consolidate props breakpoint values
   const buildMediaSet = (key, val) =>
@@ -189,5 +201,7 @@ const buildMedias = props => {
     else return methods[key](val);
   });
 
-  return css`${breakSets}`;
+  return css`
+    ${breakSets};
+  `;
 };

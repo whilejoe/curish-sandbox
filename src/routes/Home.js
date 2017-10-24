@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import { Flex, FlexContent } from 'components/Flex';
-import { Input } from 'components/InputGroup';
+import { InputText } from 'components/InputGroup';
 import PageContainer from 'components/PageContainer';
 import UserHome from 'routes/UserHome';
 import { isAuthed } from 'utils/AuthService';
@@ -17,13 +17,13 @@ const Home = ({ userResult }) => {
     return (
       <PageContainer>
         <Title>Curious?</Title>
-        <Flex gutters guttersVertical align="flex-end" justify="center">
+        <Flex gutters guttersVertical align="center" justify="center">
           <FlexContent space={[100, { sm: 45, md: 40, lg: 30 }]}>
-            <Input
+            <InputText
               type="text"
               placeholder="search story titles or tags"
               autoFocus
-              model="storySearch.search"
+              model="search.search"
             />
           </FlexContent>
           <FlexContent space="self">

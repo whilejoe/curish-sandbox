@@ -1,14 +1,12 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { THEME, PRIMARY_KEY } from 'constants/theme';
 
-const Link = styled(NavLink)`
+const Link = styled(RouterLink)`
   color: currentColor;
-  transition: color 100ms ease-out;
 
   &:hover,
-  &:focus,
-  &.active {
+  &:focus {
     color: ${THEME[PRIMARY_KEY]};
     text-decoration: none;
   }

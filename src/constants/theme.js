@@ -4,20 +4,25 @@ export const TERTIARY_KEY = 'tertiary';
 export const ERROR_KEY = 'error';
 
 // #695dca
-// #5548a4
+// #5f55b1
+// lightcoral
+// mediumseagreen
+// #528de6
+// #5b4661
 
 export const THEME = {
-  [PRIMARY_KEY]: '#695dca',
+  [PRIMARY_KEY]: 'lightcoral',
   [SECONDARY_KEY]: 'lightseagreen',
-  [TERTIARY_KEY]: 'RoyalBlue',
-  [ERROR_KEY]: 'IndianRed'
+  [TERTIARY_KEY]: 'teal',
+  [ERROR_KEY]: 'FireBrick'
 };
 
 export const PALETTE = {
   GRAY: {
-    LIGHT: '#F5F5F5',
-    MEDIUM: '#CCC',
+    LIGHT: '#f8f8f8',
+    MEDIUM: '#f1f1f1',
     DARK: '#333'
   },
-  HEADER: '#695dca'
+  HEADER: '#393c56',
+  BODY: '#fffefe'
 };

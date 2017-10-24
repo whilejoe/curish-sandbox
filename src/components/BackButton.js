@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-import Link from 'components/Link';
+import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 const DURATION = 160;
 
 const STATES = {
-  [ENTERING]: { opacity: 1, transform: 'translate3d(0, -50%, 0)' },
-  [ENTERED]: { opacity: 1, transform: 'translate3d(0, -50%, 0)' },
+  [ENTERING]: { opacity: 1, transform: 'translate3d(0%, -50%, 0)' },
+  [ENTERED]: { opacity: 1, transform: 'translate3d(0%, -50%, 0)' },
   [EXITING]: { opacity: 0, transform: 'translate3d(-200%, -50%, 0)' },
   [EXITED]: { opacity: 0, transform: 'translate3d(-200%, -50%, 0)' }
 };
@@ -23,14 +24,20 @@ const BackLink = styled(Link)`
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
   transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out`};
+
+  &:hover,
+  &:focus {
+    color: ${THEME[PRIMARY_KEY]};
+  }
 `;
 
-const BackButton = ({ referrer, show }) => {
+const BackButton = ({ referrer, show, ...props }) => {
   return (
     <Transition in={show} timeout={DURATION}>
       {status => {
         return (
           <BackLink
+            {...props}
             to={referrer ? referrer : ''}
             status={status}
             tabIndex={!show ? -1 : 0}

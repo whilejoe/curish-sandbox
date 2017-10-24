@@ -6,29 +6,37 @@ import SubHeaderLink from 'components/SubHeaderLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
-import { PALETTE } from 'constants/theme';
-import { lighten } from 'polished';
+// import { THEME, PRIMARY_KEY } from 'constants/theme';
+// import { lighten, darken } from 'polished';
 import { isAuthed } from 'utils/AuthService';
 
 // box-shadow: 0px -2px 8px -1px;
-const COLOR = PALETTE.HEADER;
+// box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.07);
+// const COLOR = THEME[PRIMARY_KEY];
+
+// const Header = styled.div`
+//   background-color: ${lighten(0.41, COLOR)};
+//   color: ${COLOR};
+//   border-bottom: 1px solid ${lighten(0.38, COLOR)};
+//   overflow: hidden;
+// `;
 
 const Header = styled.div`
-  background-color: ${lighten(0.41, COLOR)};
-  color: ${COLOR};
-  border-bottom: 1px solid ${lighten(0.38, COLOR)};
   overflow: hidden;
+  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
 `;
 
 class SubHeader extends Component {
   state = {
     showBack: false
   };
+
   componentWillMount() {
     if (this.props.location.state && this.props.location.state.referrer) {
       this.setState({ showBack: true });
     }
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.state !== this.props.location.state) {
       if (nextProps.location.state && nextProps.location.state.referrer) {
@@ -46,7 +54,7 @@ class SubHeader extends Component {
       <Header>
         <Container style={{ position: 'relative' }}>
           <BackButton referrer={state && state.referrer} show={showBack} />
-          <Flex align="center" justify="space-around">
+          <Flex align="center" justify={['space-between', { md: 'space-around' }]}>
             <FlexContent space="self">
               <SubHeaderLink to="/stories" show={!showBack}>
                 <Icon type="story" title="stories link" />

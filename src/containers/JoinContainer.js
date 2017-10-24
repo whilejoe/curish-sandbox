@@ -1,10 +1,8 @@
-import CreateUser from 'components/CreateUser';
+import Join from 'routes/Join';
 import { gql, graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 import { getIdToken } from 'utils/AuthService';
 import { submit } from 'abyss-form/lib/actions';
-import store from 'state/store';
-import { push } from 'react-router-redux';
 
 const mapStateToProps = state => ({
   profileForm: state.forms.profile.model
@@ -12,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   createUser: (email, fullName, userName) => {
-    const { createUserMutation, userResult } = ownProps;
+    const { createUserMutation, userResult, history } = ownProps;
     dispatch(
       submit('profile', async () => {
         const idToken = getIdToken();
@@ -26,7 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         });
         // Refetch user query after create
         await userResult.refetch();
-        store.dispatch(push('/'));
+        history.push('/');
       })
     );
   }
@@ -53,4 +51,4 @@ const CREATE_USER_MUTATION = gql`
 export default compose(
   graphql(CREATE_USER_MUTATION, { name: 'createUserMutation' }),
   connect(mapStateToProps, mapDispatchToProps)
-)(CreateUser);
+)(Join);

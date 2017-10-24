@@ -1,62 +1,135 @@
 import React, { Component } from 'react';
-import { gql, withApollo } from 'react-apollo';
-import Container from 'components/Container';
-import StatelessInput from 'components/StatelessInput';
-import Button from 'components/Button';
-import Link from 'components/Link';
-import { SECONDARY_KEY } from 'constants/theme';
+import styled from 'styled-components';
+import { ALL_STORIES_SEARCH_QUERY } from 'containers/SearchContainer';
+import { Flex, FlexContent } from 'components/Flex';
+import InputGroup from 'components/InputGroup';
+import StoryContainer from 'components/StoryContainer';
+import StoryCard from 'components/StoryCard';
+import Avatar from 'components/Avatar';
+import debounce from 'lodash/debounce';
+import qs from 'qs';
+
+const SearchInput = styled.div`
+  padding-top: 1.4rem;
+`;
 
 class Search extends Component {
   state = {
-    links: [],
-    searchText: ''
+    stories: [],
+    users: [],
+    isLoading: false
+  };
+
+  componentWillMount() {
+    const { location } = this.props;
+    if (location.search) this.executeSearch(location.search);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.location.search !== nextProps.location.search && nextProps.location.search) {
+      this.executeSearch(nextProps.location.search);
+    }
+  }
+
+  componentWillUnMount() {
+    if (this.props.searchForm.search) this.props.clearSearchForm();
+  }
+
+  prepareQueryAndRoute() {
+    const q = this.props.searchForm.search;
+    const query = { q };
+    const str = qs.stringify(query);
+    return this.props.history.push({
+      pathname: '/search',
+      search: str
+    });
+  }
+
+  debouncedOnChange = debounce(() => this.prepareQueryAndRoute(), 350);
+
+  executeSearch = async queryString => {
+    const query = qs.parse(queryString, { ignoreQueryPrefix: true });
+    if (query.q !== undefined) {
+      if (query.q.length) {
+        const { setSearchForm, client } = this.props;
+        const { stories, users } = this.state;
+
+        // Only set loading when data is empty
+        if (stories.length === 0 && users.length === 0) this.setState({ isLoading: true });
+
+        // Set search form and input
+        setSearchForm(query.q);
+
+        const result = await client.query({
+          query: ALL_STORIES_SEARCH_QUERY,
+          variables: { searchText: query.q }
+        });
+        const { allStories, allUsers } = result.data;
+
+        // Set results and only set loading to false when it was true
+        this.setState(prevState => {
+          if (prevState.isLoading) {
+            return {
+              isLoading: false,
+              stories: allStories,
+              users: allUsers
+            };
+          } else
+            return {
+              stories: allStories,
+              users: allUsers
+            };
+        });
+      } else {
+        // Reset state and remove search query when input is emptied
+        this.setState({ stories: [], users: [] });
+        this.props.history.push({ pathname: '/search' });
+      }
+    }
   };
 
   render() {
+    const { location, searchForm } = this.props;
+    const { stories, users } = this.state;
     return (
-      <Container>
-        <h1>Search</h1>
-        <StatelessInput type="text" onChange={e => this.setState({ searchText: e.target.value })} />
-        <Button theme={SECONDARY_KEY} onClick={() => this._executeSearch()}>
-          Search
-        </Button>
-        {this.state.links.map((link, index) => <Link key={link.id} link={link} index={index} />)}
-      </Container>
+      <StoryContainer>
+        <SearchInput>
+          <InputGroup
+            autoFocus={!searchForm.search}
+            id="search-curish"
+            label="Search Curish"
+            hideLabel
+            type="text"
+            placeholder="search story titles and tags, users"
+            model="search.search"
+            onChange={this.debouncedOnChange}
+            clearable
+          />
+        </SearchInput>
+        <Flex gutters guttersVertical>
+          {stories.length > 0 && (
+            <FlexContent space={[100, { sm: 'reset' }]}>
+              {stories.map(story => (
+                <StoryCard
+                  key={story.id}
+                  story={story}
+                  referrer={location}
+                  searchValue={searchForm.search}
+                />
+              ))}
+            </FlexContent>
+          )}
+          {users.length > 0 && (
+            <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
+              {users.map(user => (
+                <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
+              ))}
+            </FlexContent>
+          )}
+        </Flex>
+      </StoryContainer>
     );
   }
-
-  _executeSearch = async () => {
-    const { searchText } = this.state;
-    const result = await this.props.client.query({
-      query: ALL_LINKS_SEARCH_QUERY,
-      variables: { searchText }
-    });
-    const links = result.data.allLinks;
-    this.setState({ links });
-  };
 }
 
-const ALL_LINKS_SEARCH_QUERY = gql`
-  query AllLinksSearchQuery($searchText: String!) {
-    allLinks(
-      filter: { OR: [{ url_contains: $searchText }, { description_contains: $searchText }] }
-    ) {
-      id
-      url
-      description
-      createdAt
-      postedBy {
-        id
-        name
-      }
-      votes {
-        id
-        user {
-          id
-        }
-      }
-    }
-  }
-`;
-
-export default withApollo(Search);
+export default Search;

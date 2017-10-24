@@ -6,9 +6,15 @@ import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
 // import Icon from 'components/Icon';
-import { PALETTE } from 'constants/theme';
+import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
+// #6e698e
+// #5b4f9c
+// #2862b9
+// #31435f
+// #647690
+// #3c2242
 const Header = styled.header`
   background-color: ${PALETTE.HEADER};
   color: white;
@@ -23,14 +29,13 @@ const HeaderLink = styled(NavLink)`
   &:after {
     position: absolute;
     content: '';
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     height: 2px;
     width: 100%;
     background-color: currentColor;
     opacity: 0;
-    transform: translateY(5px);
-    transition: opacity 150ms ease, transform 150ms ease;
+    transition: opacity 150ms ease;
   }
 
   &:hover,
@@ -40,7 +45,6 @@ const HeaderLink = styled(NavLink)`
 
     &:after {
       opacity: 1;
-      transform: translateY(0px);
     }
   }
 `;
@@ -53,26 +57,28 @@ const HeaderLink = styled(NavLink)`
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
-  padding: 1rem 0;
   vertical-align: middle;
+  font-size: 0.95em;
+  line-height: 1;
 
   &:hover,
   &:focus,
   &.active {
-    color: white;
+    color: ${THEME[PRIMARY_KEY]};
   }
 `;
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding: 1rem 0;
+  padding-top: 1.05rem;
+  padding-bottom: 0.9rem;
   font-family: 'Merriweather', serif;
-  font-size: 1.15em;
+  font-size: 1.08em;
+  font-weight: 700;
   line-height: 1;
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
+  &.active {
+    text-decoration: underline;
   }
 `;
 
@@ -82,8 +88,8 @@ const LoginButton = ButtonLink.extend`
   &:hover,
   &:focus,
   &.active {
-    background-color: white;
-    color: ${PALETTE.HEADER};
+    background-color: ${THEME[PRIMARY_KEY]};
+    color: currentColor;
   }
 `;
 

@@ -6,21 +6,22 @@ import AppHeader from 'components/AppHeader';
 import SubHeader from 'components/SubHeader';
 import LoginContainer from 'containers/LoginContainer';
 import VerifyContainer from 'containers/VerifyContainer';
-import CreateUserContainer from 'containers/CreateUserContainer';
-import CreateStoryContainer from 'containers/CreateStoryContainer';
+import JoinContainer from 'containers/JoinContainer';
+import StoryNewContainer from 'containers/StoryNewContainer';
+import StoryEditContainer from 'containers/StoryEditContainer';
+import StoryPublishedContainer from 'containers/StoryPublishedContainer';
 import ProfileContainer from 'containers/ProfileContainer';
+import UserStoriesContainer from 'containers/UserStoriesContainer';
+import SearchContainer from 'containers/SearchContainer';
 import Home from 'routes/Home';
 import About from 'routes/About';
-import StorySearch from 'routes/StorySearch';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
-import UserStories from 'routes/UserStories';
 import Messages from 'routes/Messages';
 import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
 import FadeRoute from 'components/FadeRoute';
-// import SlideRoute from 'components/SlideRoute';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 const App = ({ userData: user }) => {
@@ -38,17 +39,35 @@ const App = ({ userData: user }) => {
                 <Switch key={props.location.pathname} location={props.location}>
                   <FadeRoute exact path="/" userResult={user} component={Home} />
                   <FadeRoute path="/101" component={About} />
-                  <FadeRoute path="/search" component={StorySearch} />
-                  <FadeRoute path="/profile" userResult={user} component={UserProfile} />
-                  <FadeRoute path="/stories" userResult={user} component={UserStories} />
-                  <FadeRoute path="/messages" userResult={user} component={Messages} />
+                  <FadeRoute path="/search" requireAuth component={SearchContainer} />
+                  <FadeRoute
+                    path="/profile"
+                    userResult={user}
+                    requireAuth
+                    component={UserProfile}
+                  />
+                  <FadeRoute
+                    path="/stories"
+                    userResult={user}
+                    requireAuth
+                    component={UserStoriesContainer}
+                  />
+                  <FadeRoute path="/messages" userResult={user} requireAuth component={Messages} />
                   <FadeRoute path="/notifications" userResult={user} component={Notifications} />
                   <FadeRoute
-                    path="/write/:id?"
+                    path="/write"
                     userResult={user}
-                    component={CreateStoryContainer}
+                    requireAuth
+                    component={StoryNewContainer}
                   />
-                  <FadeRoute path="/join" userResult={user} component={CreateUserContainer} />
+                  <FadeRoute
+                    path="/edit/:id"
+                    userResult={user}
+                    requireAuth
+                    component={StoryEditContainer}
+                  />
+                  <FadeRoute path="/story/:id" component={StoryPublishedContainer} />
+                  <FadeRoute path="/join" userResult={user} requireAuth component={JoinContainer} />
                   <FadeRoute path="/login" component={LoginContainer} />
                   <FadeRoute path="/verify" component={VerifyContainer} />
                   <FadeRoute path="/callback" userResult={user} component={Callback} />

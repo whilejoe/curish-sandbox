@@ -9,11 +9,16 @@ export const PROFILE_QUERY = gql`
       userName
       fullName
       photoURL
-      stories(orderBy: createdAt_DESC) {
+      stories(filter: { published: true }, orderBy: updatedAt_DESC) {
         id
-        createdAt
-        title
-        publishedAt
+        updatedAt
+        published
+        titleText
+        description
+        tags {
+          id
+          key
+        }
       }
     }
   }
