@@ -18,14 +18,11 @@ class PublishStory extends React.Component {
 
   componentWillMount() {
     const { dispatch, storyData: { Story: { description, tags } } } = this.props;
-    console.log('willMount', this.props);
     if (description) dispatch(set('publish.description', description));
-    // dispatch(set('publish.tags', tags && tags.length ? tags : undefined));
     if (tags && tags.length) {
       console.log('******tags && tags.length*****', tags);
       dispatch(set('publish.tags', tags));
     }
-    // dispatch(set('publish.tags', options));
   }
 
   componentWillUnmount() {
@@ -47,7 +44,6 @@ class PublishStory extends React.Component {
           });
           console.log('result', result);
           if (result.data) this.setState({ activeForm: TAGS_KEY });
-          // dispatch(reset('publish.description'));
         } else this.setState({ activeForm: TAGS_KEY });
       })
     );
@@ -86,8 +82,6 @@ class PublishStory extends React.Component {
   render() {
     const { publishForm: { description, tags }, storyData: { Story } } = this.props;
     const { activeForm } = this.state;
-    // console.log('story.tags', Story.tags);
-    // console.log('this.props', this.props);
 
     if (activeForm === DESCRIPTION_KEY) {
       return (

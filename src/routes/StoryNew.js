@@ -35,7 +35,7 @@ class StoryNew extends Component {
         <Editor
           readOnly={false}
           onChangeCallback={delta =>
-            this.debouncedCreateStory({ storyBody: JSON.stringify(delta) })}
+            this.debouncedCreateStory({ bodyDelta: JSON.stringify(delta) })}
         />
       </StoryContainer>
     );

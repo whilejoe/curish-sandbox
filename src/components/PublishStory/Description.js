@@ -11,19 +11,16 @@ class Description extends React.Component {
   };
 
   render() {
-    const { storyDescription = '', formDescription = '' } = this.props;
-    // console.log('this.props', this.props);
+    const { formDescription = '' } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <InputGroup
           inputType="textArea"
+          id="description"
           currentCount={formDescription ? formDescription.length : 0}
           countMax={MAX_COUNT}
           labelLarge
-          id="description"
-          label={`${storyDescription
-            ? 'Update'
-            : 'Add a'} description (${MAX_COUNT} characters or less)`}
+          label={`Describe your story in ${MAX_COUNT} characters or less`}
           model="publish.description"
           // defaultValue={storyDescription}
           validators={{ required: val => !val, length: val => val.length > MAX_COUNT }}

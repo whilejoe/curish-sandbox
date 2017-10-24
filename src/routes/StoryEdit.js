@@ -62,13 +62,15 @@ class StoryEdit extends Component {
         </FlexContent>
         <FlexContent space="self">
           <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
-          <Modal
-            key="modal"
-            trigger={<Button theme="secondary">Publish</Button>}
-            title={`Publish: ${titleText || 'Untitled'}`}
-          >
-            <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
-          </Modal>
+          {bodyDelta && (
+            <Modal
+              key="modal"
+              trigger={<Button theme="secondary">Publish</Button>}
+              title={`Publish: ${titleText || 'Untitled'}`}
+            >
+              <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
+            </Modal>
+          )}
         </FlexContent>
       </StoryHeader>,
       <StoryContainer key="storyContainer">

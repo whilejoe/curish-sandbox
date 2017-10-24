@@ -13,6 +13,7 @@ import { Flex, FlexContent } from 'components/Flex';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 import SrOnly from 'components/SrOnly';
 import { THEME, SECONDARY_KEY, ERROR_KEY } from 'constants/theme';
+import { rgba, darken } from 'polished';
 
 const COLOR = 'inherit';
 const ACTIVE_COLOR = THEME[SECONDARY_KEY];
@@ -20,35 +21,39 @@ const ERROR_COLOR = THEME[ERROR_KEY];
 
 const activeState = css`
   outline: none;
-  border-top-color: #f5f5f5;
-  border-right-color: #f5f5f5;
-  border-left-color: #f5f5f5;
+  box-shadow: 0px 2px 15px -3px ${rgba(ACTIVE_COLOR, 0.5)} !important;
 `;
 
 const inputMixin = css`
   padding: 0.5rem 0.6rem;
-  background-color: transparent;
+  background-color: white;
   color: ${COLOR};
-  border-top: 1px solid transparent;
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
+  border: 1px solid #eaeaea;
   border-bottom: 2px solid ${ACTIVE_COLOR};
-  border-radius: 3px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
   outline: none;
   width: 100%;
   font-size: 1em;
   font-family: inherit;
   line-height: inherit;
-  box-shadow: none;
 
-  &:focus,
-  &.active {
+  .abyss-form--focused&,
+  &.abyss-form--focused {
     ${activeState};
+
+    &.abyss-form--invalid {
+      box-shadow: 0px 2px 15px -3px ${rgba(ERROR_COLOR, 0.5)} !important;
+    }
   }
 
-  &.abyss-form-invalid {
+  .abyss-form--invalid& {
     color: ${ERROR_COLOR};
-    border-bottom-color: ${ERROR_COLOR};
+    border-bottom-color: ${ERROR_COLOR} !important;
+
+    .abyss-form--focused& {
+      box-shadow: 0px 2px 15px -3px ${rgba(ERROR_COLOR, 0.5)} !important;
+    }
   }
 
   &:-webkit-autofill {
@@ -57,6 +62,7 @@ const inputMixin = css`
 
   &::placeholder {
     color: #bbb;
+    font-size: 0.95em;
   }
 
   &:-webkit-autofill {
@@ -76,6 +82,8 @@ const FlexLabelGroup = styled(Flex)`
 `;
 
 export const Label = styled.label`
+  display: block;
+  margin-bottom: 0.2em;
   font-size: ${props => (props.labelLarge ? 1.05 : 0.95)}em;
   color: inherit;
 `;
@@ -115,6 +123,7 @@ export const InputText = styled(TextInput)`
 
 export const InputArea = styled(TextArea)`
   ${inputMixin};
+  display: block;
   max-width: 100%;
   min-height: 3.1rem;
   padding: 0.8rem;
@@ -122,17 +131,15 @@ export const InputArea = styled(TextArea)`
 `;
 
 export const InputSelect = styled(SelectList)`
-  border-color: transparent;
+  border-color: #eaeaea;
   border-bottom-color: ${ACTIVE_COLOR};
   border-radius: 2px;
 
   & .Select-control {
     ${inputMixin};
-    padding: 0.5rem !important;
-  }
-
-  &.is-focused {
-    ${activeState};
+    height: 2.5rem !important;
+    padding: 0 !important;
+    line-height: 2.38rem !important;
   }
 
   &.isOpen {
@@ -142,23 +149,56 @@ export const InputSelect = styled(SelectList)`
   }
 
   & .Select-placeholder {
-    padding: 0 0.6rem !important;
-    line-height: 2.5rem !important;
+    left: 0.18rem;
+    padding: 0 0 0 0.4rem !important;
+    color: #bbb !important;
+    font-size: 0.95em;
   }
 
   &.Select--multi {
     & .Select-value {
+      margin: -0.15rem 0 0 0.4rem;
+      padding: 0 !important;
       background-color: ${ACTIVE_COLOR};
-      border-radius: 2px;
       color: white;
-      padding: 0.1rem 0.35rem !important;
+      line-height: 1.3 !important;
+      vertical-align: middle;
+      border: none;
+    }
+  }
+
+  & .Select--multi,
+  & .Select-multi-value-wrapper {
+    height: 100%;
+  }
+
+  &.Select--multi .Select-value-icon {
+    border-right: 1px solid ${darken(0.02, ACTIVE_COLOR)};
+    padding: 0 8px;
+    font-size: 1.3em;
+  }
+
+  &.Select--multi .Select-value-label {
+    padding: 4px 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+
+  &.Select--multi .Select-clear-zone {
+    line-height: 0;
+  }
+
+  & .Select-clear {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    font-size: 1.45em;
+    color: #666;
+
+    &:hover {
+      color: ${ERROR_COLOR};
     }
   }
 `;
-
-// export const InputCheckbox = styled(Checkbox)`
-//   position: relative;
-// `;
 
 const InputCounter = styled.div`
   position: relative;
@@ -171,7 +211,7 @@ const InputCounter = styled.div`
     max-width: 100%;
     background-color: ${props =>
       props.currentCount > props.countMax ? THEME[ERROR_KEY] : 'royalBlue'};
-    bottom: 6px;
+    bottom: 0px;
     left: 0;
     border-radius: 2px;
     transition: width 200ms ease-out;

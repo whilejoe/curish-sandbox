@@ -41,9 +41,9 @@ abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
 
-abyss-form@0.4.17:
-  version "0.4.17"
-  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.17.tgz#bb5ff4b7df68aef9e8c20b0b49df616ead30f9ce"
+abyss-form@0.4.19:
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.19.tgz#be948f4242823779212267c04a812f26085e3ecf"
   dependencies:
     abyss-react "^0.2.0"
     autosize "^3.0.0"

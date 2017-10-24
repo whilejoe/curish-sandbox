@@ -3,6 +3,8 @@ import { gql, graphql } from 'react-apollo';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
 
+const MAX_COUNT = 5;
+
 class Tags extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -19,29 +21,27 @@ class Tags extends React.Component {
   // };
 
   render() {
-    const { storyTags, data } = this.props;
-    console.log('tags this.props', this.props);
-    console.log('storyTags', storyTags);
-    // const { selectedTags } = this.state;
-    if (data.loading) return <p>loading...</p>;
+    const { data, formTags } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <InputGroup
           inputType="select"
-          // currentCount={formTags ? formTags.length : 0}
-          // countMax={5}
+          currentCount={formTags ? formTags.length : 0}
+          countMax={MAX_COUNT}
           id="tags"
-          label="Add tags (up to 5)"
+          placeholder="Search and Select Tags"
+          label={`Categorize your story in ${MAX_COUNT} tags or less`}
+          labelLarge
           model="publish.tags"
           multi
           valueKey="id"
           labelKey="key"
-          // loading={data.loading}
+          loading={data.loading}
           // defaultValue={storyTags && storyTags.length > 0 ? storyTags : null}
           options={data.allTags}
           clearable
           searchable
-          validators={{ required: val => !val.length, length: val => val.length > 5 }}
+          validators={{ required: val => !val.length, length: val => val.length > MAX_COUNT }}
           errorMessages={{
             required: 'Tags are required',
             length: 'Too many tags :('
