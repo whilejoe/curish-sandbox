@@ -7,7 +7,6 @@ import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
 import StoryHeader, { HeaderTitle } from 'components/StoryHeader';
 import PublishStory from 'components/PublishStory/PublishStory';
-import { Redirect } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import StoryEditStatus, { UNSAVED, SAVING, SAVED } from 'components/StoryEditStatus';
 
@@ -15,6 +14,18 @@ class StoryEdit extends Component {
   state = {
     editModeState: SAVED
   };
+
+  componentWillMount() {
+    const { storyData, history } = this.props;
+    if (storyData.Story && storyData.Story.published) history.push(`/story/${storyData.Story.id}`);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.storyData.Story && nextProps.storyData.Story) {
+      const { published, id } = nextProps.storyData.Story;
+      if (published) nextProps.history.push(`/story/${id}`);
+    }
+  }
 
   updateStory = async variables => {
     const { updateStoryMutation, storyData } = this.props;
@@ -56,7 +67,6 @@ class StoryEdit extends Component {
     const { editModeState } = this.state;
 
     if (!storyData.Story) return null;
-    else if (storyData.Story.published) return <Redirect to={`/story/${storyData.Story.id}`} />;
 
     const { titleText = '', titleDelta, bodyDelta, author } = storyData.Story;
     return [

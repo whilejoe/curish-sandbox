@@ -22,6 +22,7 @@ class Tags extends React.Component {
 
   render() {
     const { data, formTags } = this.props;
+    if (data.loading) return <p>loading...</p>;
     return (
       <form onSubmit={this.handleSubmit}>
         <InputGroup
@@ -36,7 +37,7 @@ class Tags extends React.Component {
           multi
           valueKey="id"
           labelKey="key"
-          loading={data.loading}
+          // loading={data.loading}
           // defaultValue={storyTags && storyTags.length > 0 ? storyTags : null}
           options={data.allTags}
           clearable
