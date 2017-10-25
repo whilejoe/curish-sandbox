@@ -10,7 +10,7 @@ import debounce from 'lodash/debounce';
 import qs from 'qs';
 
 const SearchInput = styled.div`
-  padding-top: 1.4rem;
+  padding-top: 0.6rem;
 `;
 
 class Search extends Component {

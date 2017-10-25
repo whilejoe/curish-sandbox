@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { graphql, gql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Link from 'components/Link';
 
 class LinkList extends Component {
@@ -21,14 +22,14 @@ class LinkList extends Component {
 
     return (
       <div>
-        {linksToRender.map((link, index) =>
+        {linksToRender.map((link, index) => (
           <Link
             key={link.id}
             updateStoreAfterVote={this._updateCacheAfterVote}
             index={index}
             link={link}
           />
-        )}
+        ))}
       </div>
     );
   }

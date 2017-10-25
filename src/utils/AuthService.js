@@ -1,27 +1,24 @@
 // TODO: Cleanup
-
 import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
-import { apolloClient } from 'index';
+// import { client } from 'index'; Revisit
+import history from 'utils/history';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
-const CALLBACK_PATH = '/callback';
+const CALLBACK_PATH = 'callback';
+
+// can't get netlify env var to work so hardcoding
 
 // const CALLBACK_URL =
 //   process.env.NODE_ENV === 'production'
 //     ? `${process.env.URL}${CALLBACK_PATH}`
 //     : `http://localhost:3000${CALLBACK_PATH}`;
 
-// can't get netlify env var to work so hardcoding
 const CALLBACK_URL =
   process.env.NODE_ENV === 'production'
-    ? `https://www.curish.com${CALLBACK_PATH}`
-    : `http://localhost:3000${CALLBACK_PATH}`;
-console.log('callback URL', CALLBACK_URL);
-// const REDIRECT = 'http://localhost:3000/callback';
-// const SCOPE = 'YOUR_SCOPE';
-// const AUDIENCE = 'AUDIENCE_ATTRIBUTE';
+    ? `https://www.curish.com/${CALLBACK_PATH}`
+    : `http://localhost:3000/${CALLBACK_PATH}`;
 
 const webAuth = new auth0.WebAuth({
   clientID: process.env.REACT_APP_AUTH_0_CLIENT_ID,
@@ -85,9 +82,10 @@ export const verifyCode = (phone, code) => {
 // };
 
 export const logout = () => {
+  // client.resetStore(); Revisit
   window.localStorage.removeItem(ID_TOKEN_KEY);
   window.localStorage.removeItem(ACCESS_TOKEN_KEY);
-  apolloClient.resetStore();
+  history.replace('/login');
 };
 
 export const getIdToken = () => window.localStorage.getItem(ID_TOKEN_KEY);

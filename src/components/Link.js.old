@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag'
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import { USER_ID } from 'constants/tuts';

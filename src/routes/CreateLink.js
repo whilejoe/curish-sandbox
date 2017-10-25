@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { graphql, gql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import StatelessInput from 'components/StatelessInput';
 import Container from 'components/Container';
 import Button from 'components/Button';

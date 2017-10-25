@@ -4,7 +4,7 @@ import NewItemButton from 'components/NewItemButton';
 import StoryCard from 'components/StoryCard';
 
 const UserStories = ({ userData: { loading, user }, location, ...props }) => {
-  if (loading) return <StoryContainer />;
+  if (loading || !user) return <StoryContainer />;
   return (
     <StoryContainer>
       <h1>Your Stories</h1>

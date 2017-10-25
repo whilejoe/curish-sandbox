@@ -1,5 +1,6 @@
 import Join from 'routes/Join';
-import { gql, graphql, compose } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
+import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { getIdToken } from 'utils/AuthService';
 import { submit } from 'abyss-form/lib/actions';

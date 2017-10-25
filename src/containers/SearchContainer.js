@@ -1,6 +1,7 @@
 import Search from 'routes/Search';
 import { connect } from 'react-redux';
-import { gql, withApollo } from 'react-apollo';
+import { withApollo } from 'react-apollo';
+import gql from 'graphql-tag';
 import { set, reset } from 'abyss-form/lib/actions';
 
 const mapStateToProps = state => ({

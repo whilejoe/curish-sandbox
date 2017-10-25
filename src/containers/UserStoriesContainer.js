@@ -1,5 +1,6 @@
 import UserStories from 'routes/UserStories';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 export const USER_STORIES_QUERY = gql`
   query getAllUserStories {

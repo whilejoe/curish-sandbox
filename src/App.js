@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import AppHeader from 'components/AppHeader';
 import SubHeader from 'components/SubHeader';

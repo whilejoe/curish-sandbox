@@ -1,5 +1,6 @@
 import StoryNew from 'routes/StoryNew';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 const CREATE_STORY_MUTATION = gql`
   mutation CreateStoryMutation(

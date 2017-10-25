@@ -1,5 +1,6 @@
 import QuillEditor from 'components/QuillEditor';
-import { gql, graphql, compose } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
+import gql from 'graphql-tag';
 
 export const STORY_QUERY = gql`
   query getStoryById($storyId: ID!) {

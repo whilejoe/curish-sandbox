@@ -1,5 +1,6 @@
 import Profile from 'routes/Profile';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 export const PROFILE_QUERY = gql`
   query getProfileByUserName($userName: String!) {
