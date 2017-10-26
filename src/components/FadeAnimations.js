@@ -9,7 +9,7 @@ const STATES = {
   [EXITED]: 0
 };
 
-export const FadeIn = styled.div`
+const FadeIn = styled.div`
   opacity: ${props => STATES[props.status]};
   transition-property: opacity;
   transition-duration: ${props => props.duration || FADE_IN_DURATION}ms;

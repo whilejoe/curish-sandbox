@@ -38,40 +38,43 @@ const App = ({ userData: user }) => {
             return (
               <TransitionGroup component={FlexMain}>
                 <Switch key={props.location.pathname} location={props.location}>
-                  <FadeRoute exact path="/" userResult={user} component={Home} />
+                  <FadeRoute exact path="/" component={Home} userResult={user} />
                   <FadeRoute path="/101" component={About} />
-                  <FadeRoute path="/search" requireAuth component={SearchContainer} />
+                  <FadeRoute path="/search" component={SearchContainer} requireAuth />
                   <FadeRoute
                     path="/profile"
+                    component={UserProfile}
                     userResult={user}
                     requireAuth
-                    component={UserProfile}
+                    scrollToTop
                   />
                   <FadeRoute
                     path="/stories"
+                    component={UserStoriesContainer}
                     userResult={user}
                     requireAuth
-                    component={UserStoriesContainer}
                   />
-                  <FadeRoute path="/messages" userResult={user} requireAuth component={Messages} />
-                  <FadeRoute path="/notifications" userResult={user} component={Notifications} />
+                  <FadeRoute path="/messages" component={Messages} userResult={user} requireAuth />
+                  <FadeRoute path="/notifications" component={Notifications} userResult={user} />
                   <FadeRoute
                     path="/write"
+                    component={StoryNewContainer}
                     userResult={user}
                     requireAuth
-                    component={StoryNewContainer}
+                    scrollToTop
                   />
                   <FadeRoute
                     path="/edit/:id"
+                    component={StoryEditContainer}
                     userResult={user}
                     requireAuth
-                    component={StoryEditContainer}
+                    scrollToTop
                   />
-                  <FadeRoute path="/story/:id" component={StoryPublishedContainer} />
-                  <FadeRoute path="/join" userResult={user} requireAuth component={JoinContainer} />
+                  <FadeRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
+                  <FadeRoute path="/join" component={JoinContainer} userResult={user} requireAuth />
                   <FadeRoute path="/login" component={LoginContainer} />
                   <FadeRoute path="/verify" component={VerifyContainer} />
-                  <FadeRoute path="/callback" userResult={user} component={Callback} />
+                  <FadeRoute path="/callback" component={Callback} userResult={user} />
                   <FadeRoute path="/:userName?" component={ProfileContainer} />
                   <FadeRoute component={NoMatch} />
                 </Switch>

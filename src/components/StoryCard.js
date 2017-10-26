@@ -87,7 +87,8 @@ const matchTags = (matchVal = '', tags = []) => {
 const StoryCard = ({
   story: { id, published, updatedAt, titleText, author, tags = [], description },
   referrer,
-  searchValue = ''
+  searchValue = '',
+  onMouseOverCallback
 }) => {
   return (
     <StoryItemContainer>
@@ -96,6 +97,7 @@ const StoryCard = ({
           <StoryItemTitle>
             <StoryLink
               to={{ pathname: `/${published ? 'story' : 'edit'}/${id}`, state: { referrer } }}
+              onMouseOver={onMouseOverCallback}
             >
               {titleText || 'Untitled'}
             </StoryLink>

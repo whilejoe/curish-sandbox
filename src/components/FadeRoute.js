@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import ScrollToTopOnMount from 'components/ScrollToTopOnMount';
 import Transition from 'react-transition-group/Transition';
 import { CrossFade } from 'components/FadeAnimations';
 import { CROSS_FADE_DURATION } from 'constants/animation';
 import { isAuthed } from 'utils/AuthService';
 
-const FadeRoute = ({ component: Component, requireAuth, ...rest }) => {
+const FadeRoute = ({ component: Component, requireAuth, scrollToTop, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -23,6 +24,7 @@ const FadeRoute = ({ component: Component, requireAuth, ...rest }) => {
             {status => (
               <CrossFade status={status} duration={CROSS_FADE_DURATION}>
                 {requireAuth && !isAuthed() ? <Redirect to="/login" /> : <Component {...merged} />}
+                {scrollToTop && <ScrollToTopOnMount />}
               </CrossFade>
             )}
           </Transition>

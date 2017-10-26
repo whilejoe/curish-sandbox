@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { withApollo } from 'react-apollo';
 import styled from 'styled-components';
 import { ALL_STORIES_SEARCH_QUERY } from 'containers/SearchContainer';
+import { STORY_QUERY } from 'containers/StoryEditContainer';
 import { Flex, FlexContent } from 'components/Flex';
 import InputGroup from 'components/InputGroup';
 import StoryContainer from 'components/StoryContainer';
@@ -88,6 +90,18 @@ class Search extends Component {
     }
   };
 
+  onTitleMouseOver = async story => {
+    if (story) {
+      const { client } = this.props;
+      const { id } = story;
+      const result = await client.query({
+        query: STORY_QUERY,
+        variables: { storyId: id }
+      });
+      console.log('result from mouseOver', result);
+    }
+  };
+
   render() {
     const { location, searchForm } = this.props;
     const { stories, users } = this.state;
@@ -115,6 +129,7 @@ class Search extends Component {
                   story={story}
                   referrer={location}
                   searchValue={searchForm.search}
+                  onMouseOverCallback={() => this.onTitleMouseOver(story)}
                 />
               ))}
             </FlexContent>
@@ -132,4 +147,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default withApollo(Search);
