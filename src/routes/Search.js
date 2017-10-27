@@ -7,6 +7,7 @@ import { Flex, FlexContent } from 'components/Flex';
 import InputGroup from 'components/InputGroup';
 import StoryContainer from 'components/StoryContainer';
 import StoryCard from 'components/StoryCard';
+import StoryCardLoading from 'components/StoryCardLoading';
 import Avatar from 'components/Avatar';
 import debounce from 'lodash/debounce';
 import qs from 'qs';
@@ -68,23 +69,15 @@ class Search extends Component {
         });
         const { allStories, allUsers } = result.data;
 
-        // Set results and only set loading to false when it was true
-        this.setState(prevState => {
-          if (prevState.isLoading) {
-            return {
-              isLoading: false,
-              stories: allStories,
-              users: allUsers
-            };
-          } else
-            return {
-              stories: allStories,
-              users: allUsers
-            };
+        // Set results and loading
+        this.setState({
+          isLoading: false,
+          stories: allStories,
+          users: allUsers
         });
       } else {
         // Reset state and remove search query when input is emptied
-        this.setState({ stories: [], users: [] });
+        this.setState({ stories: [], users: [], isLoading: false });
         this.props.history.push({ pathname: '/search' });
       }
     }
@@ -104,7 +97,7 @@ class Search extends Component {
 
   render() {
     const { location, searchForm } = this.props;
-    const { stories, users } = this.state;
+    const { stories, users, isLoading } = this.state;
     return (
       <StoryContainer>
         <SearchInput>
@@ -120,28 +113,32 @@ class Search extends Component {
             clearable
           />
         </SearchInput>
-        <Flex gutters guttersVertical>
-          {stories.length > 0 && (
-            <FlexContent space={[100, { sm: 'reset' }]}>
-              {stories.map(story => (
-                <StoryCard
-                  key={story.id}
-                  story={story}
-                  referrer={location}
-                  searchValue={searchForm.search}
-                  onMouseOverCallback={() => this.onTitleMouseOver(story)}
-                />
-              ))}
-            </FlexContent>
-          )}
-          {users.length > 0 && (
-            <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
-              {users.map(user => (
-                <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
-              ))}
-            </FlexContent>
-          )}
-        </Flex>
+        {isLoading ? (
+          [<StoryCardLoading key="1" />, <StoryCardLoading key="2" />, <StoryCardLoading key="3" />]
+        ) : (
+          <Flex gutters guttersVertical>
+            {stories.length > 0 && (
+              <FlexContent space={[100, { sm: 'reset' }]}>
+                {stories.map(story => (
+                  <StoryCard
+                    key={story.id}
+                    story={story}
+                    referrer={location}
+                    searchValue={searchForm.search}
+                    onMouseOverCallback={() => this.onTitleMouseOver(story)}
+                  />
+                ))}
+              </FlexContent>
+            )}
+            {users.length > 0 && (
+              <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
+                {users.map(user => (
+                  <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
+                ))}
+              </FlexContent>
+            )}
+          </Flex>
+        )}
       </StoryContainer>
     );
   }

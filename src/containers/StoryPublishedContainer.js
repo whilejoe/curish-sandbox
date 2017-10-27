@@ -1,6 +1,6 @@
 import StoryPublished from 'routes/StoryPublished';
 import { graphql } from 'react-apollo';
-import { STORY_QUERY } from './StoryEditContainer';
+import { STORY_QUERY } from 'containers/StoryEditContainer';
 
 export default graphql(STORY_QUERY, {
   name: 'storyData',

@@ -51,16 +51,14 @@ const PublishedAt = styled.p`
 `;
 
 const Tags = styled.div`
-  margin-left: -0.2rem;
-  margin-right: -0.2rem;
+  margin: -0.2rem;
   text-align: left;
   ${media.sm`text-align: right;`};
 `;
 
 const Tag = styled.span`
   display: inline-block;
-  margin-right: 0.2rem;
-  margin-left: 0.2rem;
+  margin: 0.2rem;
   padding: 0.1rem 0.35rem;
   vertical-align: bottom;
   font-size: 0.75em;
@@ -105,7 +103,7 @@ const StoryCard = ({
           {author && <StoryItemAvatar user={author} to={{ state: { referrer } }} />}
           <StoryDescription>{description ? description : 'No description'} </StoryDescription>
         </FlexContent>
-        <FlexContent space={[100, { sm: 'self' }]}>
+        <FlexContent space={[100, { sm: 30, md: 25 }]}>
           {published && <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>}
           {tags.length > 0 && <Tags>{matchTags(searchValue, tags)}</Tags>}
         </FlexContent>
