@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
+import { Flex, FlexContent } from 'components/Flex';
 
 const MAX_COUNT = 5;
 
@@ -49,10 +50,16 @@ class Tags extends React.Component {
             length: 'Too many tags :('
           }}
         />
-        <Button type="button" theme="secondary">
-          Back
-        </Button>
-        <Button type="submit">Next</Button>
+        <Flex gutters justify={['space-between', { sm: 'flex-start' }]}>
+          <FlexContent space="self">
+            <Button type="button" theme="secondary">
+              Back
+            </Button>
+          </FlexContent>
+          <FlexContent space="self">
+            <Button type="submit">Publish Story</Button>
+          </FlexContent>
+        </Flex>
       </form>
     );
   }

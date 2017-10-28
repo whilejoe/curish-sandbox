@@ -1,6 +1,9 @@
 import React from 'react';
 import 'styles/StoryCardLoading.css';
 
+// TODO: Revisit
+// Copied and modified from codepen
+// Not happy with it
 const StoryCardLoading = () => {
   return (
     <div className="timeline-item">

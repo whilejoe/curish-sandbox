@@ -124,7 +124,7 @@ class Search extends Component {
                     key={story.id}
                     story={story}
                     referrer={location}
-                    searchValue={searchForm.search}
+                    matchValue={searchForm.search}
                     onMouseOverCallback={() => this.onTitleMouseOver(story)}
                   />
                 ))}

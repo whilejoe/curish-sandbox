@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
 import Link from 'components/Link';
 import Avatar from 'components/Avatar';
+import TagLink, { TagsContainer } from 'components/Tag';
 import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
 import orderBy from 'lodash/orderBy';
 
 const StoryItemContainer = styled.div`
@@ -50,34 +50,17 @@ const PublishedAt = styled.p`
   ${media.sm`text-align: right;`};
 `;
 
-const Tags = styled.div`
-  margin: -0.2rem;
+const StoryTags = TagsContainer.extend`
   text-align: left;
   ${media.sm`text-align: right;`};
 `;
 
-const Tag = styled.span`
-  display: inline-block;
-  margin: 0.2rem;
-  padding: 0.1rem 0.35rem;
-  vertical-align: bottom;
-  font-size: 0.75em;
-  background-color: ${props => (props.match ? THEME[PRIMARY_KEY] : '#eee')};
-  color: ${props => (props.match ? 'white' : 'inherit')};
-  font-weight: 600;
-  border-radius: 2px;
-`;
-
-const matchTags = (matchVal = '', tags = []) => {
+const matchTags = (matchVal = '', tags = [], referrer) => {
   // TODO: Move ordering to apollo
   const ordered = orderBy(tags, 'key', 'asc');
   const matched = ordered.map(tag => {
-    const match = matchVal ? tag.key.toLowerCase().includes(matchVal.toLowerCase()) : false;
-    return (
-      <Tag key={tag.id} match={match}>
-        {tag.key}
-      </Tag>
-    );
+    const matches = matchVal ? tag.key.toLowerCase().includes(matchVal.toLowerCase()) : false;
+    return <TagLink key={tag.id} matches={matches} tagName={tag.key} referrer={referrer} />;
   });
   return matched;
 };
@@ -85,7 +68,7 @@ const matchTags = (matchVal = '', tags = []) => {
 const StoryCard = ({
   story: { id, published, updatedAt, titleText, author, tags = [], description },
   referrer,
-  searchValue = '',
+  matchValue = '',
   onMouseOverCallback
 }) => {
   return (
@@ -105,7 +88,7 @@ const StoryCard = ({
         </FlexContent>
         <FlexContent space={[100, { sm: 30, md: 25 }]}>
           {published && <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>}
-          {tags.length > 0 && <Tags>{matchTags(searchValue, tags)}</Tags>}
+          {tags.length > 0 && <StoryTags>{matchTags(matchValue, tags, referrer)}</StoryTags>}
         </FlexContent>
       </Flex>
     </StoryItemContainer>

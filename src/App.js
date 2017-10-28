@@ -14,6 +14,7 @@ import StoryPublishedContainer from 'containers/StoryPublishedContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import UserStoriesContainer from 'containers/UserStoriesContainer';
 import SearchContainer from 'containers/SearchContainer';
+import TagsContainer from 'containers/TagsContainer';
 import Home from 'routes/Home';
 import About from 'routes/About';
 import Callback from 'routes/Callback';
@@ -70,6 +71,13 @@ const App = ({ userData: user }) => {
                     requireAuth
                     scrollToTop
                   />
+                  <FadeRoute
+                    path="/tags/:key?"
+                    component={TagsContainer}
+                    userResult={user}
+                    requireAuth
+                    scrollToTop
+                  />
                   <FadeRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
                   <FadeRoute path="/join" component={JoinContainer} userResult={user} requireAuth />
                   <FadeRoute path="/login" component={LoginContainer} />
@@ -101,6 +109,6 @@ const USER_PROFILE_QUERY = gql`
 `;
 
 export default graphql(USER_PROFILE_QUERY, {
-  name: 'userData',
-  options: { fetchPolicy: 'network-only' } // Do we need this fetchPolicy?
+  name: 'userData'
+  // options: { fetchPolicy: 'network-only' } // Do we need this fetchPolicy?
 })(App);

@@ -43,8 +43,8 @@ export const Slide = styled.div`
   max-width: 100%;
   ${media.sm`max-width: 90%;`};
   ${media.md`max-width: 80%;`};
-  ${media.lg`max-width: 70%;`};
-  ${media.xlg`max-width: 60%;`};
+  ${media.lg`max-width: 60%;`};
+  ${media.xlg`max-width: 55%;`};
   margin-right: auto;
   margin-left: auto;
   overflow-x: hidden;

@@ -41,9 +41,9 @@ abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
 
-abyss-form@0.4.19:
-  version "0.4.19"
-  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.19.tgz#be948f4242823779212267c04a812f26085e3ecf"
+abyss-form@0.4.20:
+  version "0.4.20"
+  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.20.tgz#329a823a4ab6954b6d1839a6a942c6f65dd8c6cd"
   dependencies:
     abyss-react "^0.2.0"
     autosize "^3.0.0"
@@ -51,7 +51,7 @@ abyss-form@0.4.19:
     moment "^2.0.0"
     prop-types "^15.0.0"
     rc-calendar "^8.0.0"
-    react-select "^1.0.0-rc.5"
+    react-select "^1.0.0-rc.10"
 
 abyss-react@^0.2.0:
   version "0.2.9"
@@ -6324,7 +6324,7 @@ react-scripts@^1.0.14:
   optionalDependencies:
     fsevents "1.1.2"
 
-react-select@^1.0.0-rc.10, react-select@^1.0.0-rc.5:
+react-select@^1.0.0-rc.10:
   version "1.0.0-rc.10"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.0.0-rc.10.tgz#f137346250f9255c979fbfa21860899928772350"
   dependencies:

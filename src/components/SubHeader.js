@@ -8,7 +8,6 @@ import Container from 'components/Container';
 import Icon from 'components/Icon';
 // import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import { lighten, darken } from 'polished';
-import { isAuthed } from 'utils/AuthService';
 
 // box-shadow: 0px -2px 8px -1px;
 // box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.07);
@@ -46,10 +45,8 @@ class SubHeader extends Component {
   }
 
   render() {
-    const isUserAuthed = isAuthed();
-    const { userResult: { user }, location: { state } } = this.props;
+    const { location: { state } } = this.props;
     const { showBack } = this.state;
-    if (!isUserAuthed || !user) return null;
     return (
       <Header>
         <Container style={{ position: 'relative' }}>
