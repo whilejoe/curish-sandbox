@@ -16,18 +16,12 @@ const StoryItemContainer = styled.div`
   box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
 `;
 
-const StoryItemTitle = styled.h2`
-  margin-top: 0;
-  margin-bottom: 0.1em;
-  font-size: 1.1em;
-`;
-
 const StoryLink = styled(Link)`
   font-family: inherit;
   font-weight: inherit;
 `;
 
-const StoryItemAvatar = styled(Avatar)`
+const StoryAvatar = styled(Avatar)`
   margin-bottom: 0.55rem;
   display: inline-block;
   font-size: 0.9em;
@@ -35,14 +29,20 @@ const StoryItemAvatar = styled(Avatar)`
   font-weight: 400;
 `;
 
-const StoryDescription = styled.p`
+const Title = styled.h2`
+  margin-top: 0;
+  margin-bottom: 0.1em;
+  font-size: 1.1em;
+`;
+
+const Description = styled.p`
   margin-bottom: 0;
   font-size: 0.85em;
   color: #777;
 `;
 
 const PublishedAt = styled.p`
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.6rem;
   font-size: 0.75em;
   color: #666;
   line-height: 1.2;
@@ -75,16 +75,16 @@ const StoryCard = ({
     <StoryItemContainer>
       <Flex gutters guttersVertical>
         <FlexContent space={[100, { sm: 'reset' }]}>
-          <StoryItemTitle>
+          <Title>
             <StoryLink
               to={{ pathname: `/${published ? 'story' : 'edit'}/${id}`, state: { referrer } }}
               onMouseOver={onMouseOverCallback}
             >
               {titleText || 'Untitled'}
             </StoryLink>
-          </StoryItemTitle>
-          {author && <StoryItemAvatar user={author} to={{ state: { referrer } }} />}
-          <StoryDescription>{description ? description : 'No description'} </StoryDescription>
+          </Title>
+          {author && <StoryAvatar user={author} to={{ state: { referrer } }} />}
+          <Description>{description ? description : 'No description'} </Description>
         </FlexContent>
         <FlexContent space={[100, { sm: 30, md: 25 }]}>
           {published && <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>}

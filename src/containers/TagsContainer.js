@@ -17,6 +17,10 @@ export const TAG_QUERY = gql`
           id
           key
         }
+        author {
+          id
+          userName
+        }
       }
     }
   }
