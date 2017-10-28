@@ -6,6 +6,7 @@ import SubHeaderLink from 'components/SubHeaderLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
+import { isAuthed } from 'utils/AuthService';
 // import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import { lighten, darken } from 'polished';
 
@@ -47,6 +48,7 @@ class SubHeader extends Component {
   render() {
     const { location: { state } } = this.props;
     const { showBack } = this.state;
+    if (!isAuthed()) return null;
     return (
       <Header>
         <Container style={{ position: 'relative' }}>
