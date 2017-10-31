@@ -25,7 +25,6 @@ class EditorTitle extends Component {
     return (
       <StoryHeader>
         <Editor
-          theme={null}
           readOnly={readOnly}
           placeholder="Untitled"
           defaultDelta={defaultDelta || DEFAULT_DELTA}

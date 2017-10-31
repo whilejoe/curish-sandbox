@@ -125,7 +125,7 @@ class Search extends Component {
                     story={story}
                     referrer={location}
                     matchValue={searchForm.search}
-                    onMouseOverCallback={() => this.onTitleMouseOver(story)}
+                    // onMouseOverCallback={() => this.onTitleMouseOver(story)}
                   />
                 ))}
               </FlexContent>

@@ -29,6 +29,8 @@ export const ALL_STORIES_SEARCH_QUERY = gql`
       updatedAt
       published
       titleText
+      titleDelta
+      bodyDelta
       description
       tags {
         id

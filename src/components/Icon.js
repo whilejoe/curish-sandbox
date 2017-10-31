@@ -12,7 +12,10 @@ const ICONS = {
   alert: require('material-design-icons-svg/paths/bell-outline'),
   // trending: require('material-design-icons-svg/paths/pulse'),
   back: require('material-design-icons-svg/paths/arrow-left'),
-  plus: require('material-design-icons-svg/paths/plus')
+  plus: require('material-design-icons-svg/paths/plus'),
+  formatHeader: require('material-design-icons-svg/paths/format-size'),
+  formatQuote: require('material-design-icons-svg/paths/format-quote-close'),
+  formatClean: require('material-design-icons-svg/paths/format-clear')
 };
 
 const SvgIcon = styled.svg`
