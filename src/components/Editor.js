@@ -18,7 +18,7 @@ class Editor extends Component {
   };
 
   componentWillMount() {
-    if (this.props.defaultDelta) this.setState({ delta: JSON.parse(this.props.defaultDelta) });
+    if (this.props.defaultDelta) this.setDefaultDelta(this.props.defaultDelta);
   }
 
   componentDidMount() {
@@ -28,6 +28,9 @@ class Editor extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.focus !== nextProps.focus && nextProps.focus) {
       if (this.quillRef) this.quillRef.focus();
+    }
+    if (this.props.defaultDelta !== nextProps.defaultDelta) {
+      this.setDefaultDelta(nextProps.defaultDelta);
     }
   }
 
@@ -46,6 +49,10 @@ class Editor extends Component {
   setRef = node => {
     this.quillRef = node;
   };
+
+  setDefaultDelta(delta) {
+    this.setState({ delta: JSON.parse(delta) });
+  }
 
   render() {
     const { readOnly = true, placeholder = '', modules, formats } = this.props;

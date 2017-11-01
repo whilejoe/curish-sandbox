@@ -5,9 +5,7 @@ import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
 import StoryHeader, { HeaderTitle } from 'components/StoryHeader';
 
-const StoryPublished = ({ storyData, location }) => {
-  if (!storyData.Story) return null;
-  const { titleText, titleDelta, bodyDelta, author } = storyData.Story;
+const StoryPublished = ({ titleText, titleDelta, bodyDelta, author, loading, location }) => {
   return [
     <StoryHeader key="storyHeader">
       <FlexContent>

@@ -96,7 +96,7 @@ const App = ({ userData: user }) => {
 };
 
 const USER_PROFILE_QUERY = gql`
-  query {
+  query getUser {
     user {
       id
       fullName

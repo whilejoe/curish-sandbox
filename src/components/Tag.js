@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'components/Link';
-import { THEME, SECONDARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY, SECONDARY_KEY } from 'constants/theme';
 
 export const TagsContainer = styled.div`
   margin: -0.2rem;
@@ -18,6 +18,14 @@ export const Tag = styled.span`
   font-weight: 600;
   vertical-align: text-bottom;
   border-radius: 2px;
+
+  a & {
+    &:hover,
+    &:focus {
+      background-color: ${THEME[PRIMARY_KEY]};
+      color: white;
+    }
+  }
 `;
 
 const TagLink = ({ matches, tagName, referrer, ...props }) => {

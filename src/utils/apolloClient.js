@@ -20,20 +20,33 @@ const batchedHTTPLink = new BatchHttpLink({
   uri: 'https://api.graph.cool/simple/v1/cj6l71pg81npn0191lrufaos5'
 });
 
-// Add Authorization
+// Add Middleware
 const middlewareLink = new ApolloLink((operation, forward) => {
+  // Log request name
+  console.log(`%c${operation.operationName} STARTED`, 'color: dodgerblue; font-weight: bold;');
+
+  // Get token from local storage and pass with each request
   const token = getIdToken();
   operation.setContext({
     headers: { authorization: token ? `Bearer ${token}` : null }
   });
-  return forward(operation);
+
+  // Log and return data response
+  return forward(operation).map(response => {
+    console.log(
+      `%c${operation.operationName} SUCCESS`,
+      'color: seagreen; font-weight: bold;',
+      response.data
+    );
+    return response;
+  });
 });
 
 // Log Errors and Redirect
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     for (let { code, message, locations, path } of graphQLErrors) {
-      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`);
+      console.error(`[GraphQL error]: Message: ${message}, Locations: ${locations}, Path: ${path}`);
       if (code === 3008) {
         logout();
         break;
