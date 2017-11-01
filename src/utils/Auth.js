@@ -29,7 +29,7 @@ export default class Auth {
         store.dispatch(replace('/'));
       } else if (err) {
         store.dispatch(replace('/'));
-        console.log(err);
+        console.error(err);
       }
     });
   };

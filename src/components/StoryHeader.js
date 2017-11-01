@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import BackButton from 'components/BackButton';
@@ -21,29 +21,26 @@ const Header = styled.div`
   z-index: 2;
 `;
 
-class StoryHeader extends Component {
-  render() {
-    const { location: { state }, children } = this.props;
-    return (
-      <Header>
-        <Container style={{ height: '100%' }}>
-          <BackButton
-            referrer={state && state.referrer ? state.referrer : isAuthed() ? '/stories' : '/'}
-            show
-          />
-          <Flex
-            gutters
-            align="center"
-            justify="space-between"
-            offset={[8, { sm: 6, md: 4 }]}
-            style={{ height: '100%' }}
-          >
-            {children}
-          </Flex>
-        </Container>
-      </Header>
-    );
-  }
-}
+const StoryHeader = ({ location: { state }, children }) => {
+  return (
+    <Header>
+      <Container style={{ height: '100%' }}>
+        <BackButton
+          referrer={state && state.referrer ? state.referrer : isAuthed() ? '/stories' : '/'}
+          show
+        />
+        <Flex
+          gutters
+          align="center"
+          justify="space-between"
+          offset={[8, { sm: 6, md: 4 }]}
+          style={{ height: '100%' }}
+        >
+          {children}
+        </Flex>
+      </Container>
+    </Header>
+  );
+};
 
 export default withRouter(StoryHeader);

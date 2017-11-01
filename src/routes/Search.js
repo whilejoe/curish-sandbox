@@ -87,11 +87,10 @@ class Search extends Component {
     if (story) {
       const { client } = this.props;
       const { id } = story;
-      const result = await client.query({
+      await client.query({
         query: STORY_QUERY,
         variables: { storyId: id }
       });
-      console.log('result from mouseOver', result);
     }
   };
 
@@ -125,7 +124,7 @@ class Search extends Component {
                     story={story}
                     referrer={location}
                     matchValue={searchForm.search}
-                    // onMouseOverCallback={() => this.onTitleMouseOver(story)}
+                    onMouseOverCallback={() => this.onTitleMouseOver(story)}
                   />
                 ))}
               </FlexContent>
