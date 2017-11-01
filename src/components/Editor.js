@@ -52,7 +52,7 @@ class Editor extends Component {
     const { delta, showToolbar } = this.state;
     return (
       <div>
-        {!modules && <EditToolbar id="toolbar" show={showToolbar} />}
+        {!modules && <EditToolbar id="toolbar" show={showToolbar && !readOnly} />}
         <ReactQuill
           theme={null}
           readOnly={readOnly}
