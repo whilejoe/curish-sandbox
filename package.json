@@ -23,7 +23,6 @@
     "qs": "^6.5.1",
     "react": "^16.0.0",
     "react-apollo": "^2.0.0",
-    "react-app-rewire-appcache-plugin": "^1.0.5",
     "react-app-rewire-styled-components": "^3.0.0",
     "react-dom": "^16.0.0",
     "react-portal": "^4.0.0",

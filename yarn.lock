@@ -280,10 +280,6 @@ apollo-utilities@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.0.tgz#01b1a6aa60272a7d7cec18186ea379fe88156737"
 
-appcache-webpack-plugin-plus@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/appcache-webpack-plugin-plus/-/appcache-webpack-plugin-plus-2.0.3.tgz#0bd3aa4f2e51ce78808b9d50e1863c0ec9eefffb"
-
 append-transform@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/append-transform/-/append-transform-0.4.0.tgz#d76ebf8ca94d276e247a36bad44a4b74ab611991"
@@ -6111,13 +6107,6 @@ react-apollo@^2.0.0:
     lodash.pick "^4.4.0"
     prop-types "^15.5.8"
 
-react-app-rewire-appcache-plugin@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-app-rewire-appcache-plugin/-/react-app-rewire-appcache-plugin-1.0.5.tgz#e4597cfb820645c5d7fd24bd5c36a47b1581346e"
-  dependencies:
-    appcache-webpack-plugin-plus "^2.0.3"
-    webpack "^3.6.0"
-
 react-app-rewire-lodash@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-app-rewire-lodash/-/react-app-rewire-lodash-2.0.0.tgz#853ac405bf90f2409eec812a19015d7446cc5ddb"
@@ -7792,7 +7781,7 @@ webpack-sources@^1.0.1:
     source-list-map "^2.0.0"
     source-map "~0.5.3"
 
-webpack@3.8.1, webpack@^3.6.0:
+webpack@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.8.1.tgz#b16968a81100abe61608b0153c9159ef8bb2bd83"
   dependencies:
