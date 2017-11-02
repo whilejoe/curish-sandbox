@@ -13,6 +13,7 @@
     "apollo-link-http": "^1.1.0",
     "auth0-js": "^8.10.1",
     "graphql": "^0.11.7",
+    "graphql-tag": "^2.5.0",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "localforage": "^1.5.2",
