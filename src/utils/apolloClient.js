@@ -57,11 +57,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 // Chain links
-const linkWithMiddleware = middlewareLink.concat(batchedHTTPLink);
-const linkWithMiddlewareAndError = errorLink.concat(linkWithMiddleware);
+const link = ApolloLink.from([middlewareLink, errorLink, batchedHTTPLink]);
 
 const apolloClient = new ApolloClient({
-  link: linkWithMiddlewareAndError,
+  link,
   cache: cache.restore(window.__APOLLO_STATE__ || {})
 });
 
