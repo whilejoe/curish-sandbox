@@ -17,7 +17,7 @@ const cache = new InMemoryCache({
 
 // Batch Requests
 const batchedHTTPLink = new BatchHttpLink({
-  uri: 'https://api.graph.cool/simple/v1/cj6l71pg81npn0191lrufaos5'
+  uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
 });
 
 // Add Middleware
