@@ -10,7 +10,7 @@ query AllUsersStoriesQuery {
       titleDelta
       bodyDelta
       description
-      tags {
+      tags(orderBy: key_ASC) {
         id
         key
       }

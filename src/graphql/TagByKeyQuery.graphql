@@ -8,7 +8,7 @@ query TagByKeyQuery($key: String!) {
       published
       titleText
       description
-      tags {
+      tags(orderBy: key_ASC) {
         id
         key
       }
