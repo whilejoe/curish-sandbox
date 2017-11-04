@@ -6,7 +6,7 @@ import SubHeaderLink from 'components/SubHeaderLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Icon from 'components/Icon';
-import { isAuthed } from 'utils/AuthService';
+import { isAuthed } from 'utils/authService';
 // import { THEME, PRIMARY_KEY } from 'constants/theme';
 // import { lighten, darken } from 'polished';
 

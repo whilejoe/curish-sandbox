@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { submit } from 'abyss-form/lib/actions';
 import { formatNumber } from 'utils/phoneNumber';
-import { startPasswordless } from 'utils/AuthService';
+import { startPasswordless } from 'utils/authService';
 import Login from 'routes/Login';
 
 const mapStateToProps = state => ({
