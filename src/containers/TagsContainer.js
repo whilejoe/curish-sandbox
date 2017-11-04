@@ -1,47 +1,15 @@
 import Tags from 'routes/Tags';
 import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
-
-export const TAG_QUERY = gql`
-  query getTagById($key: String!) {
-    Tag(key: $key) {
-      id
-      key
-      stories(filter: { published: true }, orderBy: updatedAt_DESC) {
-        id
-        updatedAt
-        published
-        titleText
-        description
-        tags {
-          id
-          key
-        }
-        author {
-          id
-          userName
-        }
-      }
-    }
-  }
-`;
-
-export const ALL_TAGS_QUERY = gql`
-  query getAllTags {
-    allTags(orderBy: key_ASC) {
-      id
-      key
-    }
-  }
-`;
+import AllTagsOrderedQuery from 'graphql/AllTagsOrderedQuery.graphql';
+import TagByKeyQuery from 'graphql/TagByKeyQuery.graphql';
 
 export default compose(
-  graphql(TAG_QUERY, {
+  graphql(TagByKeyQuery, {
     name: 'tagQuery',
     skip: ({ match }) => !match.params.key,
     options: ({ match }) => ({ variables: { key: match.params.key } })
   }),
-  graphql(ALL_TAGS_QUERY, {
+  graphql(AllTagsOrderedQuery, {
     name: 'allTagsQuery',
     skip: ({ match }) => match.params.key
   })

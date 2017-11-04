@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import UserProfileQuery from 'graphql/UserProfileQuery.graphql';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import AppHeader from 'components/AppHeader';
 import SubHeader from 'components/SubHeader';
@@ -95,20 +95,7 @@ const App = ({ userData: user }) => {
   );
 };
 
-const USER_PROFILE_QUERY = gql`
-  query getUser {
-    user {
-      id
-      fullName
-      userName
-      email
-      photoURL
-      createdAt
-    }
-  }
-`;
-
-export default graphql(USER_PROFILE_QUERY, {
+export default graphql(UserProfileQuery, {
   name: 'userData'
   // options: { fetchPolicy: 'network-only' } // Do we need this fetchPolicy?
 })(App);

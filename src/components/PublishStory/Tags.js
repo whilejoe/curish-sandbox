@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import AllTagsOrderedQuery from 'graphql/AllTagsOrderedQuery.graphql';
 import InputGroup from 'components/InputGroup';
 import Button from 'components/Button';
 import { Flex, FlexContent } from 'components/Flex';
@@ -12,15 +12,6 @@ class Tags extends React.Component {
     e.preventDefault();
     this.props.onSubmitCallback();
   };
-
-  // executeSearch = async queryString => {
-  //   // this.props.setSearchForm(queryString);
-  //   const result = await this.props.client.query({
-  //     query: ALL_TAGS_SEARCH_QUERY,
-  //     variables: { tags: queryString }
-  //   });
-  //   console.log('tags search result', result);
-  // };
 
   render() {
     const { data, formTags } = this.props;
@@ -65,25 +56,4 @@ class Tags extends React.Component {
   }
 }
 
-// const ALL_TAGS_SEARCH_QUERY = gql`
-// query AllTagsSearchQuery($searchText: String!) {
-//   allTags(
-//     filter: { key_starts_with: $searchText }}
-//   ) {
-//     id
-//     key
-//   }
-// }
-// `;
-
-const ALL_TAGS_QUERY = gql`
-  query AllTagsQuery {
-    allTags {
-      id
-      key
-    }
-  }
-`;
-
-export default graphql(ALL_TAGS_QUERY)(Tags);
-// export default withApollo(Tags);
+export default graphql(AllTagsOrderedQuery)(Tags);

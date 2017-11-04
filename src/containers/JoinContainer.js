@@ -1,6 +1,6 @@
 import Join from 'routes/Join';
 import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
+import CreateUserMutation from 'graphql/CreateUserMutation.graphql';
 import { connect } from 'react-redux';
 import { getIdToken } from 'utils/AuthService';
 import { submit } from 'abyss-form/lib/actions';
@@ -31,25 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 });
 
-const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation(
-    $idToken: String!
-    $fullName: String!
-    $userName: String!
-    $email: String!
-  ) {
-    createUser(
-      authProvider: { auth0: { idToken: $idToken } }
-      fullName: $fullName
-      userName: $userName
-      email: $email
-    ) {
-      id
-    }
-  }
-`;
-
 export default compose(
-  graphql(CREATE_USER_MUTATION, { name: 'createUserMutation' }),
+  graphql(CreateUserMutation, { name: 'createUserMutation' }),
   connect(mapStateToProps, mapDispatchToProps)
 )(Join);

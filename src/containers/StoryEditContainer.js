@@ -1,70 +1,11 @@
 import StoryEdit from 'routes/StoryEdit';
 import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
-
-export const STORY_QUERY = gql`
-  query getStoryById($storyId: ID!) {
-    Story(id: $storyId) {
-      id
-      published
-      titleText
-      titleDelta
-      bodyDelta
-      description
-      tags {
-        id
-        key
-      }
-      author {
-        id
-        userName
-      }
-    }
-  }
-`;
-
-const UPDATE_STORY_MUTATION = gql`
-  mutation UpdateStoryMutation(
-    $storyId: ID!
-    $published: Boolean
-    $titleText: String
-    $titleDelta: String
-    $bodyMarkup: String
-    $bodyDelta: String
-    $description: String
-    $tagsIds: [ID!]
-  ) {
-    updateStory(
-      id: $storyId
-      published: $published
-      titleText: $titleText
-      titleDelta: $titleDelta
-      bodyMarkup: $bodyMarkup
-      bodyDelta: $bodyDelta
-      description: $description
-      tagsIds: $tagsIds
-    ) {
-      id
-      published
-      titleText
-      titleDelta
-      bodyDelta
-      description
-      tags {
-        id
-        key
-      }
-      author {
-        id
-        userName
-      }
-    }
-  }
-`;
+import StoryByIdQuery from 'graphql/StoryByIdQuery.graphql';
+import UpdateStoryMutation from 'graphql/UpdateStoryMutation.graphql';
 
 export default compose(
-  graphql(UPDATE_STORY_MUTATION, { name: 'updateStoryMutation' }),
-  graphql(STORY_QUERY, {
+  graphql(UpdateStoryMutation, { name: 'updateStoryMutation' }),
+  graphql(StoryByIdQuery, {
     name: 'storyData',
     options: ({ match }) => ({ variables: { storyId: match.params.id } })
   })

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withApollo } from 'react-apollo';
 import styled from 'styled-components';
-import { ALL_STORIES_SEARCH_QUERY } from 'containers/SearchContainer';
-import { STORY_QUERY } from 'containers/StoryEditContainer';
+import AllStoriesSearchQuery from 'graphql/AllStoriesSearchQuery.graphql';
+import StoryByIdQuery from 'graphql/StoryByIdQuery.graphql';
 import { Flex, FlexContent } from 'components/Flex';
 import InputGroup from 'components/InputGroup';
 import StoryContainer from 'components/StoryContainer';
@@ -64,7 +64,7 @@ class Search extends Component {
         setSearchForm(query.q);
 
         const result = await client.query({
-          query: ALL_STORIES_SEARCH_QUERY,
+          query: AllStoriesSearchQuery,
           variables: { searchText: query.q }
         });
         const { allStories, allUsers } = result.data;
@@ -88,7 +88,7 @@ class Search extends Component {
       const { client } = this.props;
       const { id } = story;
       await client.query({
-        query: STORY_QUERY,
+        query: StoryByIdQuery,
         variables: { storyId: id }
       });
     }

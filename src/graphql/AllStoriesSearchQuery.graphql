@@ -1,0 +1,38 @@
+query AllStoriesSearchQuery($searchText: String!) {
+  allStories(
+    filter: {
+      published: true
+      OR: [
+        { titleText_contains: $searchText }
+        { tags_some: { OR: [{ key_contains: $searchText }] } }
+      ]
+    }
+    orderBy: titleText_ASC
+  ) {
+    id
+    updatedAt
+    published
+    titleText
+    titleDelta
+    bodyDelta
+    description
+    tags(orderBy: key_ASC) {
+      id
+      key
+    }
+    author {
+      id
+      userName
+    }
+  }
+  allUsers(
+    filter: { OR: [{ userName_starts_with: $searchText }, { fullName_starts_with: $searchText }] }
+    first: 10
+    orderBy: userName_ASC
+  ) {
+    id
+    userName
+    fullName
+    photoURL
+  }
+}

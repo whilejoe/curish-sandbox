@@ -1,8 +1,8 @@
 import StoryPublished from 'routes/StoryPublished';
 import { graphql } from 'react-apollo';
-import { STORY_QUERY } from 'containers/StoryEditContainer';
+import StoryByIdQuery from 'graphql/StoryByIdQuery.graphql';
 
-export default graphql(STORY_QUERY, {
+export default graphql(StoryByIdQuery, {
   name: 'storyData',
   skip: ({ storyData }) => storyData && storyData.loading,
   options: ({ match }) => ({ variables: { storyId: match.params.id } }),

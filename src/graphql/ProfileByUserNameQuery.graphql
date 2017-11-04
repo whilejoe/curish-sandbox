@@ -1,0 +1,20 @@
+query ProfileByUserNameQuery($userName: String!) {
+  User(userName: $userName) {
+    id
+    createdAt
+    userName
+    fullName
+    photoURL
+    stories(filter: { published: true }, orderBy: updatedAt_DESC) {
+      id
+      updatedAt
+      published
+      titleText
+      description
+      tags {
+        id
+        key
+      }
+    }
+  }
+}

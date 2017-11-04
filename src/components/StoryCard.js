@@ -6,7 +6,6 @@ import Avatar from 'components/Avatar';
 import TagLink, { TagsContainer } from 'components/Tag';
 import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';
-import orderBy from 'lodash/orderBy';
 
 const StoryItemContainer = styled.div`
   margin-bottom: 1rem;
@@ -56,9 +55,7 @@ const StoryTags = TagsContainer.extend`
 `;
 
 const matchTags = (matchVal = '', tags = [], referrer) => {
-  // TODO: Move ordering to apollo
-  const ordered = orderBy(tags, 'key', 'asc');
-  const matched = ordered.map(tag => {
+  const matched = tags.map(tag => {
     const matches = matchVal ? tag.key.toLowerCase().includes(matchVal.toLowerCase()) : false;
     return <TagLink key={tag.id} matches={matches} tagName={tag.key} referrer={referrer} />;
   });

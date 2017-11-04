@@ -1,0 +1,21 @@
+query TagByKeyQuery($key: String!) {
+  Tag(key: $key) {
+    id
+    key
+    stories(filter: { published: true }, orderBy: updatedAt_DESC) {
+      id
+      updatedAt
+      published
+      titleText
+      description
+      tags {
+        id
+        key
+      }
+      author {
+        id
+        userName
+      }
+    }
+  }
+}

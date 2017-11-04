@@ -1,31 +1,8 @@
 import Profile from 'routes/Profile';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import ProfileByUserNameQuery from 'graphql/ProfileByUserNameQuery.graphql';
 
-export const PROFILE_QUERY = gql`
-  query getProfileByUserName($userName: String!) {
-    User(userName: $userName) {
-      id
-      createdAt
-      userName
-      fullName
-      photoURL
-      stories(filter: { published: true }, orderBy: updatedAt_DESC) {
-        id
-        updatedAt
-        published
-        titleText
-        description
-        tags {
-          id
-          key
-        }
-      }
-    }
-  }
-`;
-
-export default graphql(PROFILE_QUERY, {
+export default graphql(ProfileByUserNameQuery, {
   name: 'profile',
   skip: ({ match }) => !match.params.userName,
   options: ({ match }) => ({ variables: { userName: match.params.userName } })

@@ -118,23 +118,5 @@ class OmniSearch extends Component {
   };
 }
 
-// const ALL_STORIES_SEARCH_QUERY = gql`
-//   query AllStoriesSearchQuery($searchText: String!) {
-//     allStories(
-//       filter: { OR: [{ title_contains: $searchText }, { description_contains: $searchText }] }
-//       first: 10
-//       orderBy: title_ASC
-//     ) {
-//       id
-//       title
-//       description
-//       tags
-//       author {
-//         id
-//         userName
-//       }
-//     }
-//   }
-// `;
 const OmniWithRouter = withRouter(OmniSearch);
 export default withApollo(OmniWithRouter);
