@@ -1,8 +1,7 @@
 // TODO: Cleanup
 import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
-// import { client } from 'index'; Revisit
-import history from 'utils/history';
+import history from './history';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
