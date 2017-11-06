@@ -4,7 +4,7 @@ import ScrollToTopOnMount from 'components/ScrollToTopOnMount';
 import Transition from 'react-transition-group/Transition';
 import { CrossFade } from 'components/FadeAnimations';
 import { CROSS_FADE_DURATION } from 'constants/animation';
-import { isAuthed } from 'utils/auth';
+import { isAuthed } from 'utils/AuthService';
 
 const FadeRoute = ({ component: Component, requireAuth, scrollToTop, ...rest }) => {
   return (

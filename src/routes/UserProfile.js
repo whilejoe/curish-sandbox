@@ -3,7 +3,7 @@ import Container from 'components/Container';
 import PageContainer from 'components/PageContainer';
 import { ButtonLink } from 'components/Button';
 import ProfileHeader from 'components/ProfileHeader';
-import { logout } from 'utils/auth';
+import { logout } from 'utils/AuthService';
 
 const UserProfile = ({ userResult: { loading, user }, ...props }) => {
   if (loading) return <PageContainer>Loading...</PageContainer>;

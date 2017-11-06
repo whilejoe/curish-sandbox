@@ -3,7 +3,7 @@ import Button from 'components/Button';
 import PageContainer from 'components/PageContainer';
 import InputGroup from 'components/InputGroup';
 import { Redirect } from 'react-router-dom';
-import { isAuthed } from 'utils/auth';
+import { isAuthed } from 'utils/AuthService';
 
 const Verify = ({ loginForm, verifyForm, verifyLoginCode }) => {
   if (isAuthed()) return <Redirect to="/" />;

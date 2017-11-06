@@ -8,7 +8,7 @@ import NavIconLink from 'components/NavIconLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-import { isAuthed } from 'utils/auth';
+import { isAuthed } from 'utils/AuthService';
 import { PALETTE } from 'constants/theme';
 import { SUBNAV_PORTAL_ID } from 'constants/portals';
 
