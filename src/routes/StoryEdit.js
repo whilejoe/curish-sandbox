@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { FlexContent } from 'components/Flex';
+import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import Modal from 'components/Modal';
 import StoryContainer from 'components/StoryContainer';
 import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
-import StoryHeader, { HeaderTitle } from 'components/StoryHeader';
+import StoryHeaderTitle from 'components/StoryHeaderTitle';
+import SubHeaderPortal from 'components/SubHeaderPortal';
 import PublishStory from 'components/PublishStory/PublishStory';
 import debounce from 'lodash/debounce';
 import StoryEditStatus, { UNSAVED, SAVING, SAVED } from 'components/StoryEditStatus';
@@ -69,25 +70,27 @@ class StoryEdit extends Component {
     if (!storyData.Story) return null;
 
     const { titleText = '', titleDelta, bodyDelta, author } = storyData.Story;
-    return [
-      <StoryHeader key="storyHeader">
-        <FlexContent>
-          <HeaderTitle>{titleText || 'Untitled'}</HeaderTitle>
-        </FlexContent>
-        <FlexContent space="self">
-          <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
-          {bodyDelta && (
-            <Modal
-              key="modal"
-              trigger={<Button theme="secondary">Publish</Button>}
-              title={`Publish: ${titleText || 'Untitled'}`}
-            >
-              <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
-            </Modal>
-          )}
-        </FlexContent>
-      </StoryHeader>,
-      <StoryContainer key="storyContainer">
+    return (
+      <StoryContainer>
+        <SubHeaderPortal>
+          <Flex gutters align="center" justify="space-between">
+            <FlexContent>
+              <StoryHeaderTitle>{titleText || 'Untitled'}</StoryHeaderTitle>
+            </FlexContent>
+            <FlexContent space="self">
+              <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
+              {bodyDelta && (
+                <Modal
+                  key="modal"
+                  trigger={<Button theme="secondary">Publish</Button>}
+                  title={`Publish: ${titleText || 'Untitled'}`}
+                >
+                  <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
+                </Modal>
+              )}
+            </FlexContent>
+          </Flex>
+        </SubHeaderPortal>
         <EditorTitle
           defaultDelta={titleDelta}
           readOnly={false}
@@ -96,7 +99,7 @@ class StoryEdit extends Component {
         />
         <Editor readOnly={false} defaultDelta={bodyDelta} onChangeCallback={this.onBodyChange} />
       </StoryContainer>
-    ];
+    );
   }
 }
 

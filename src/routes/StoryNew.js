@@ -23,10 +23,11 @@ class StoryNew extends Component {
       }
     });
 
-    // Push to edit route with id
     if (result.data) {
       this.setState({ dataIsSaving: false }, () =>
-        history.push(`/edit/${result.data.createStory.id}`)
+        // Route to Story Edit
+        // Pass stories route as referrer so back button has somewhere to go
+        history.replace(`/edit/${result.data.createStory.id}`, { referrer: '/stories' })
       );
     }
   };

@@ -1,29 +1,37 @@
+// TODO: Make transitioning smarter
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import BackButton from 'components/BackButton';
-import SubHeaderLink from 'components/SubHeaderLink';
+import NavIconLink from 'components/NavIconLink';
 import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
-import Icon from 'components/Icon';
+import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
 import { isAuthed } from 'utils/authService';
-// import { THEME, PRIMARY_KEY } from 'constants/theme';
-// import { lighten, darken } from 'polished';
+import { SUBNAV_PORTAL_ID } from 'constants/portals';
 
-// box-shadow: 0px -2px 8px -1px;
-// box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.07);
-// const COLOR = THEME[PRIMARY_KEY];
+const DURATION = 160;
 
-// const Header = styled.div`
-//   background-color: ${lighten(0.41, COLOR)};
-//   color: ${COLOR};
-//   border-bottom: 1px solid ${lighten(0.38, COLOR)};
-//   overflow: hidden;
-// `;
+const STATES = {
+  [ENTERING]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' },
+  [ENTERED]: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
+  [EXITING]: { opacity: 0, transform: 'translate3d(0, 70%, 0)' },
+  [EXITED]: { opacity: 0, transform: 'translate3d(0, 70%, 0)' }
+};
 
 const Header = styled.div`
+  height: 55.58px;
   overflow: hidden;
   box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
+`;
+
+const NavTransitioner = styled(Flex)`
+  transform: ${props => STATES[props.status].transform};
+  opacity: ${props => STATES[props.status].opacity};
+  transition: ${`
+    transform ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1),
+    opacity ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1)
+  `};
 `;
 
 class SubHeader extends Component {
@@ -51,30 +59,48 @@ class SubHeader extends Component {
     if (!isAuthed()) return null;
     return (
       <Header>
-        <Container style={{ position: 'relative' }}>
-          <BackButton referrer={state && state.referrer} show={showBack} />
-          <Flex align="center" justify={['space-between', { md: 'space-around' }]}>
-            <FlexContent space="self">
-              <SubHeaderLink to="/stories" show={!showBack}>
-                <Icon type="story" title="stories link" />
-              </SubHeaderLink>
-            </FlexContent>
-            <FlexContent space="self">
-              <SubHeaderLink to="/messages" show={!showBack}>
-                <Icon type="message" title="messages link" />
-              </SubHeaderLink>
-            </FlexContent>
-            <FlexContent space="self">
-              <SubHeaderLink to="/notifications" show={!showBack}>
-                <Icon type="alert" title="notifications link" />
-              </SubHeaderLink>
-            </FlexContent>
-            <FlexContent space="self">
-              <SubHeaderLink to="/search" show={!showBack}>
-                <Icon type="search" title="search link" />
-              </SubHeaderLink>
-            </FlexContent>
-          </Flex>
+        <Container style={{ height: '100%' }}>
+          <div style={{ height: '100%', position: 'relative' }}>
+            <Transition in={!showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              {status => {
+                return (
+                  <NavTransitioner
+                    status={status}
+                    align="center"
+                    justify={['space-between', { md: 'space-around' }]}
+                    style={{ position: 'absolute', width: '100%' }}
+                  >
+                    <FlexContent space="self">
+                      <NavIconLink to="/stories" type="story" title="stories link" />
+                    </FlexContent>
+                    <FlexContent space="self">
+                      <NavIconLink to="/messages" type="message" title="messages link" />
+                    </FlexContent>
+                    <FlexContent space="self">
+                      <NavIconLink to="/notifications" type="alert" title="notifications link" />
+                    </FlexContent>
+                    <FlexContent space="self">
+                      <NavIconLink to="/search" type="search" title="search link" />
+                    </FlexContent>
+                  </NavTransitioner>
+                );
+              }}
+            </Transition>
+            <Transition in={showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              {status => {
+                return (
+                  <Flex style={{ position: 'absolute', width: '100%' }}>
+                    <BackButton
+                      referrer={state && state.referrer}
+                      status={status}
+                      duration={DURATION}
+                    />
+                    <NavTransitioner status={status} id={SUBNAV_PORTAL_ID} />
+                  </Flex>
+                );
+              }}
+            </Transition>
+          </div>
         </Container>
       </Header>
     );

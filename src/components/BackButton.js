@@ -1,53 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
-import { Link } from 'react-router-dom';
-import Icon from 'components/Icon';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
-
-const DURATION = 160;
+import { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition-group/Transition';
+import NavIconLink from 'components/NavIconLink';
+import { FlexContent } from 'components/Flex';
 
 const STATES = {
-  [ENTERING]: { opacity: 1, transform: 'translate3d(0%, -50%, 0)' },
-  [ENTERED]: { opacity: 1, transform: 'translate3d(0%, -50%, 0)' },
-  [EXITING]: { opacity: 0, transform: 'translate3d(-200%, -50%, 0)' },
-  [EXITED]: { opacity: 0, transform: 'translate3d(-200%, -50%, 0)' }
+  [ENTERING]: { opacity: 0, transform: 'translate3d(-100%, 0, 0)' },
+  [ENTERED]: { opacity: 1, transform: 'translate3d(0%, 0, 0)' },
+  [EXITING]: { opacity: 0, transform: 'translate3d(-200%, 0, 0)' },
+  [EXITED]: { opacity: 0, transform: 'translate3d(-200%, 0, 0)' }
 };
 
-const BackLink = styled(Link)`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  padding: 0.85rem;
-  font-size: 1.15em;
-  line-height: 1;
+const BackTransitioner = styled(FlexContent)`
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
-  transition: ${`transform ${DURATION}ms ease-out, opacity ${DURATION}ms ease-out`};
-
-  &:hover,
-  &:focus {
-    color: ${THEME[PRIMARY_KEY]};
-  }
+  transition: ${props =>
+    `transform ${props.duration}ms ease-out, opacity ${props.duration}ms ease-out`};
 `;
 
-const BackButton = ({ referrer, show, ...props }) => {
+const BackButton = ({ referrer, status, duration, ...props }) => {
   return (
-    <Transition in={show} timeout={DURATION}>
-      {status => {
-        return (
-          <BackLink
-            {...props}
-            to={referrer ? referrer : ''}
-            status={status}
-            tabIndex={!show ? -1 : 0}
-            aria-hidden={!show}
-          >
-            <Icon type="back" title="go back" />
-          </BackLink>
-        );
-      }}
-    </Transition>
+    <BackTransitioner space="self" status={status} duration={duration}>
+      <NavIconLink to={referrer ? referrer : ''} type="back" title="go back" />
+    </BackTransitioner>
   );
 };
 

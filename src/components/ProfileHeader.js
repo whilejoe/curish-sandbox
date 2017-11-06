@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
 import Avatar from 'components/Avatar';
 import Container from 'components/Container';
-import { THEME, SECONDARY_KEY } from 'constants/theme';
+// import { THEME, SECONDARY_KEY } from 'constants/theme';
 import media from 'utils/media';
 import { getMonthYear } from 'utils/date';
 
 const Header = styled.div`
   padding-top: 1.4rem;
   padding-bottom: 1.3rem;
-  background-color: ${THEME[SECONDARY_KEY]};
-  color: white;
+  background-color: #f3f3f3;
 
   ${media.sm`
     padding-top: 1.7rem;
