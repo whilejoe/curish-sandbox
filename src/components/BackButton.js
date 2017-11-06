@@ -18,10 +18,18 @@ const BackTransitioner = styled(FlexContent)`
     `transform ${props.duration}ms ease-out, opacity ${props.duration}ms ease-out`};
 `;
 
+const BackLink = styled(NavIconLink)`
+  padding-left: 0;
+
+  &:after {
+    display: none;
+  }
+`;
+
 const BackButton = ({ referrer, status, duration, ...props }) => {
   return (
     <BackTransitioner space="self" status={status} duration={duration}>
-      <NavIconLink to={referrer ? referrer : ''} type="back" title="go back" />
+      <BackLink to={referrer ? referrer : ''} type="back" title="go back" />
     </BackTransitioner>
   );
 };
