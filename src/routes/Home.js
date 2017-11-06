@@ -5,7 +5,7 @@ import { Flex, FlexContent } from 'components/Flex';
 import { InputText } from 'components/InputGroup';
 import PageContainer from 'components/PageContainer';
 import UserHome from 'routes/UserHome';
-import { isAuthed } from 'utils/authService';
+import { isAuthed } from 'utils/auth';
 
 const Title = styled.h1`
   margin-top: 25vh;

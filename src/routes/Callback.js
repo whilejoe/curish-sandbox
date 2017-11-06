@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageContainer from 'components/PageContainer';
-import { parseURL } from 'utils/authService';
+import { parseURL } from 'utils/auth';
 
 class Callback extends Component {
   componentWillMount() {

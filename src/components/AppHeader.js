@@ -7,7 +7,7 @@ import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
 // import Icon from 'components/Icon';
 import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
-import { isAuthed } from 'utils/authService';
+import { isAuthed } from 'utils/auth';
 
 // #6e698e
 // #5b4f9c

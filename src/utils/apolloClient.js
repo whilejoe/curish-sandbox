@@ -5,7 +5,7 @@ import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { BatchHttpLink } from 'apollo-link-batch-http';
-import { getIdToken, logout } from './authService';
+import { getIdToken, logout } from 'utils/auth';
 
 // Create Cache
 const cache = new InMemoryCache({

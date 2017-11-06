@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { submit } from 'abyss-form/lib/actions';
 import { formatNumber } from 'utils/phoneNumber';
-import { verifyCode } from 'utils/authService';
+import { verifyCode } from 'utils/auth';
 import Verify from 'routes/Verify';
 
 const mapStateToProps = state => ({

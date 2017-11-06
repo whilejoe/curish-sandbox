@@ -2,7 +2,7 @@ import Join from 'routes/Join';
 import { graphql, compose } from 'react-apollo';
 import CreateUserMutation from 'graphql/CreateUserMutation.graphql';
 import { connect } from 'react-redux';
-import { getIdToken } from 'utils/authService';
+import { getIdToken } from 'utils/auth';
 import { submit } from 'abyss-form/lib/actions';
 
 const mapStateToProps = state => ({
