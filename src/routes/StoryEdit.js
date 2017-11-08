@@ -5,7 +5,6 @@ import Modal from 'components/Modal';
 import StoryContainer from 'components/StoryContainer';
 import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
-import StoryHeaderTitle from 'components/StoryHeaderTitle';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import PublishStory from 'components/PublishStory/PublishStory';
 import debounce from 'lodash/debounce';
@@ -73,12 +72,11 @@ class StoryEdit extends Component {
     return (
       <StoryContainer>
         <SubHeaderPortal>
-          <Flex gutters align="center" justify="space-between">
-            <FlexContent>
-              <StoryHeaderTitle>{titleText || 'Untitled'}</StoryHeaderTitle>
+          <Flex gutters align="center" justify="flex-end">
+            <FlexContent style={{ position: 'relative' }}>
+              <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
             </FlexContent>
             <FlexContent space="self">
-              <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
               {bodyDelta && (
                 <Modal
                   key="modal"
