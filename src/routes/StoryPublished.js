@@ -3,8 +3,8 @@ import { Flex, FlexContent } from 'components/Flex';
 import StoryContainer from 'components/StoryContainer';
 import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
-import StoryHeaderTitle from 'components/StoryHeaderTitle';
 import SubHeaderPortal from 'components/SubHeaderPortal';
+import SubHeaderTitle from 'components/SubHeaderTitle';
 
 const StoryPublished = ({ titleText, titleDelta, bodyDelta, author, loading, location }) => {
   // TODO: Handle loading state
@@ -14,7 +14,7 @@ const StoryPublished = ({ titleText, titleDelta, bodyDelta, author, loading, loc
       <SubHeaderPortal>
         <Flex align="center">
           <FlexContent space="self">
-            <StoryHeaderTitle>{titleText}</StoryHeaderTitle>
+            <SubHeaderTitle>{titleText}</SubHeaderTitle>
           </FlexContent>
         </Flex>
       </SubHeaderPortal>
