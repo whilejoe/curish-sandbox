@@ -7,8 +7,7 @@ import Icon from 'components/Icon';
 const IconLink = styled(NavLink)`
   display: block;
   position: relative;
-  padding: 0.85rem 0.9rem;
-  font-size: 1.1em;
+  padding: 0.75rem 0.85rem;
   color: ${PALETTE.HEADER};
   line-height: 1;
   text-align: center;

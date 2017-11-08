@@ -81,7 +81,7 @@ class StoryEdit extends Component {
       <StoryContainer>
         <SubHeaderPortal>
           <Flex noWrap align="center" justify="flex-end">
-            <FlexContent hide={!showToolbar} offset={{ sm: 5, lg: 12 }}>
+            <FlexContent hide={!showToolbar} offset={{ sm: 5, lg: 16 }}>
               <EditToolbar id={TOOLBAR_ID} />
             </FlexContent>
             <FlexContent space="self">

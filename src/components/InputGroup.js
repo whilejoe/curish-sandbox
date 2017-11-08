@@ -25,7 +25,7 @@ const activeState = css`
 `;
 
 const inputMixin = css`
-  padding: 0.5rem 0.6rem;
+  padding: 0.4rem 0.6rem;
   background-color: white;
   color: ${COLOR};
   border: 1px solid #eaeaea;

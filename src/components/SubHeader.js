@@ -28,7 +28,7 @@ const STATES = {
 };
 
 const Header = styled.div`
-  height: 55.58px;
+  height: 50px;
   background-color: ${PALETTE.BODY};
   overflow: hidden;
   box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
