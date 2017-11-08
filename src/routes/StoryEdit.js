@@ -11,6 +11,8 @@ import PublishStory from 'components/PublishStory/PublishStory';
 import debounce from 'lodash/debounce';
 import StoryEditStatus, { UNSAVED, SAVING, SAVED } from 'components/StoryEditStatus';
 
+const TOOLBAR_ID = 'toolbar';
+
 class StoryEdit extends Component {
   state = {
     editModeState: SAVED,
@@ -80,7 +82,7 @@ class StoryEdit extends Component {
         <SubHeaderPortal>
           <Flex noWrap align="center" justify="flex-end">
             <FlexContent hide={!showToolbar} offset={{ sm: 5, lg: 12 }}>
-              <EditToolbar id="toolbar" />
+              <EditToolbar id={TOOLBAR_ID} />
             </FlexContent>
             <FlexContent space="self">
               <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
@@ -107,6 +109,9 @@ class StoryEdit extends Component {
         <Editor
           readOnly={false}
           defaultDelta={bodyDelta}
+          modules={{
+            toolbar: { container: `#${TOOLBAR_ID}` }
+          }}
           onChangeCallback={this.onBodyChange}
           onSelectionCallback={this.setShowToolbar}
         />

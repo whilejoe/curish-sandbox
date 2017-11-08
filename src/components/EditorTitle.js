@@ -15,7 +15,6 @@ const DEFAULT_DELTA = JSON.stringify({
 
 class EditorTitle extends Component {
   handleChange = (delta, editor) => {
-    if (this.props.readonly) return; // Need to test if I need this
     const titleText = editor.getText(0, 100);
     this.props.onChangeCallback(delta, titleText);
   };
@@ -29,8 +28,7 @@ class EditorTitle extends Component {
           placeholder="Untitled"
           defaultDelta={defaultDelta || DEFAULT_DELTA}
           onChangeCallback={this.handleChange}
-          modules={EditorTitle.modules}
-          formats={EditorTitle.formats}
+          formats={['header']}
           focus={focus}
         />
         <Avatar user={author} to={referrer && { state: { referrer } }} />
@@ -38,11 +36,5 @@ class EditorTitle extends Component {
     );
   }
 }
-
-EditorTitle.modules = {
-  toolbar: false
-};
-
-EditorTitle.formats = ['header'];
 
 export default EditorTitle;

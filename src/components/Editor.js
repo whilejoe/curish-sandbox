@@ -3,13 +3,6 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.core.css';
 import 'styles/QuillEditor.css';
 
-// keeping as an example
-function insertStar() {
-  const cursorPosition = this.quill.getSelection().index;
-  this.quill.insertText(cursorPosition, '★');
-  this.quill.setSelection(cursorPosition + 1);
-}
-
 class Editor extends Component {
   state = {
     delta: { ops: [{ insert: '\n' }] } // Init with a blank Delta
@@ -72,18 +65,8 @@ class Editor extends Component {
   }
 }
 
-// Editor.modules = {
-//   toolbar: [[{ header: [2, false] }], ['blockquote'], ['clean']],
-//   clipboard: { matchVisual: false }
-// };
-
 Editor.modules = {
-  toolbar: {
-    container: '#toolbar',
-    handlers: {
-      insertStar: insertStar
-    }
-  }
+  toolbar: false
 };
 
 Editor.formats = ['header', 'blockquote'];
