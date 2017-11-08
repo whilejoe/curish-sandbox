@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 let DEFAULT_DISPLAY = 'flex';
+
 const GUTTER = '0.5rem';
 const DEFAULT_FLEX = '1 1 0%';
 const BREAK_POINTS = {
@@ -10,7 +11,7 @@ const BREAK_POINTS = {
   xlg: '1200px'
 };
 
-// requires method and prop name to match
+// Requires method and prop name to match
 // to generically know which props should be parsed when building media queries
 const methods = {
   space: val => setSpace(val),
@@ -59,10 +60,10 @@ const setSpace = val => {
   return null;
 };
 
-// offset
+// Offset
 const setOffset = val => {
   const parsedVal = parseInt(val, 10);
-  if (parsedVal) {
+  if (parsedVal || parsedVal === 0) {
     return css`
       margin-left: ${parsedVal}%;
     `;
@@ -74,7 +75,7 @@ const setOffset = val => {
   return null;
 };
 
-// horizontal gutters
+// Horizontal Gutters
 const setGutters = hasGutters => {
   return css`
     margin-right: ${hasGutters ? `-${GUTTER}` : 0};
@@ -87,7 +88,7 @@ const setGutters = hasGutters => {
   `;
 };
 
-// vertical gutters
+// Vertical Gutters
 const setGuttersVertical = hasGutters => {
   return css`
     margin-top: ${hasGutters ? `-${GUTTER}` : 0};
@@ -100,7 +101,7 @@ const setGuttersVertical = hasGutters => {
   `;
 };
 
-// sets flex container
+// Sets flex container
 export const Flex = styled.div`
   display: flex;
   flex: ${DEFAULT_FLEX};
@@ -114,7 +115,7 @@ export const Flex = styled.div`
   }};
 `;
 
-// allows flex item modifiers but contains flow content
+// Allows flex item modifiers but contains flow content
 export const FlexContent = styled.div`
   display: block;
   flex: ${DEFAULT_FLEX};
@@ -150,7 +151,7 @@ function* entries(obj) {
   }
 }
 
-// builds media queries
+// Builds media queries
 const parseBreakSet = (breakKey, set) => {
   return css`
     @media (min-width: ${BREAK_POINTS[breakKey]}) {
@@ -165,7 +166,7 @@ const parseBreakSet = (breakKey, set) => {
 const buildMedias = props => {
   const medias = {};
 
-  // requires a matched method name to generically know which props should be parsed
+  // Requires a matched method name to generically know which props should be parsed
   const matched = Object.keys(props)
     .filter(prop => methods[prop])
     .reduce((acc, key) => {
@@ -173,7 +174,7 @@ const buildMedias = props => {
       return acc;
     }, {});
 
-  // consolidate props breakpoint values
+  // Consolidate props breakpoint values
   const buildMediaSet = (key, val) =>
     Object.keys(val).map(breakPoint => {
       const breakVal = { [key]: val[breakPoint] };
@@ -182,7 +183,7 @@ const buildMedias = props => {
       return null;
     });
 
-  // handles single val, obj of breakpoints, or array with default val and object of breakpoints
+  // Handles single val, obj of breakpoints, or array with default val and object of breakpoints
   for (let [key, value] of entries(matched)) {
     if (Array.isArray(value)) {
       value.map(val => {
@@ -194,7 +195,7 @@ const buildMedias = props => {
     else medias[key] = value;
   }
 
-  // returns media queries of method parsed props
+  // Returns media queries of method parsed props
   const breakSets = Object.keys(medias).map(key => {
     const val = medias[key];
     if (typeof val === 'object') return parseBreakSet(key, val);

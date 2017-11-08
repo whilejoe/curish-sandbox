@@ -14,6 +14,12 @@ import { SUBNAV_PORTAL_ID } from 'constants/portals';
 
 const DURATION = 160;
 
+const STYLE = {
+  position: 'absolute',
+  right: 0,
+  left: 0
+};
+
 const STATES = {
   [ENTERING]: { opacity: 0, transform: 'translate3d(0, 100%, 0)' },
   [ENTERED]: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
@@ -72,7 +78,7 @@ class SubHeader extends Component {
                       status={status}
                       align="center"
                       justify={['space-between', { md: 'space-around' }]}
-                      style={{ position: 'absolute', width: '100%' }}
+                      style={STYLE}
                     >
                       <FlexContent space="self">
                         <NavIconLink to="/stories" type="story" title="stories link" />
@@ -93,7 +99,7 @@ class SubHeader extends Component {
               <Transition in={showBack} mountOnEnter unmountOnExit timeout={DURATION}>
                 {status => {
                   return (
-                    <Flex style={{ position: 'absolute', width: '100%' }}>
+                    <Flex style={STYLE}>
                       <BackButton
                         referrer={state && state.referrer}
                         status={status}

@@ -5,6 +5,7 @@ import Modal from 'components/Modal';
 import StoryContainer from 'components/StoryContainer';
 import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
+import EditToolbar from 'components/EditToolbar';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import PublishStory from 'components/PublishStory/PublishStory';
 import debounce from 'lodash/debounce';
@@ -12,7 +13,8 @@ import StoryEditStatus, { UNSAVED, SAVING, SAVED } from 'components/StoryEditSta
 
 class StoryEdit extends Component {
   state = {
-    editModeState: SAVED
+    editModeState: SAVED,
+    showToolbar: false
   };
 
   componentWillMount() {
@@ -62,9 +64,13 @@ class StoryEdit extends Component {
     this.updateStory({ titleDelta: stringifiedDelta, titleText: content });
   }, 1200);
 
+  setShowToolbar = showToolbar => {
+    this.setState({ showToolbar });
+  };
+
   render() {
     const { storyData, updateStoryMutation } = this.props;
-    const { editModeState } = this.state;
+    const { editModeState, showToolbar } = this.state;
 
     if (!storyData.Story) return null;
 
@@ -72,8 +78,11 @@ class StoryEdit extends Component {
     return (
       <StoryContainer>
         <SubHeaderPortal>
-          <Flex gutters align="center" justify="flex-end">
-            <FlexContent style={{ position: 'relative' }}>
+          <Flex noWrap align="center" justify="flex-end">
+            <FlexContent hide={!showToolbar} offset={{ sm: 5, lg: 12 }}>
+              <EditToolbar id="toolbar" />
+            </FlexContent>
+            <FlexContent space="self">
               <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
             </FlexContent>
             <FlexContent space="self">
@@ -95,7 +104,12 @@ class StoryEdit extends Component {
           onChangeCallback={this.onTitleChange}
           author={author}
         />
-        <Editor readOnly={false} defaultDelta={bodyDelta} onChangeCallback={this.onBodyChange} />
+        <Editor
+          readOnly={false}
+          defaultDelta={bodyDelta}
+          onChangeCallback={this.onBodyChange}
+          onSelectionCallback={this.setShowToolbar}
+        />
       </StoryContainer>
     );
   }

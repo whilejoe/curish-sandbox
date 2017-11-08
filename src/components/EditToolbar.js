@@ -1,37 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import Icon from 'components/Icon';
-import { rgba, darken, lighten } from 'polished';
-// import { THEME, PRIMARY_KEY } from 'constants/theme';
 
 // const CustomButton = () => <span className="octicon octicon-star">*</span>;
-
-const COLOR = 'royalBlue';
+const SPACING = '0.4rem';
 
 const ToolBar = styled.div`
-  position: fixed;
-  right: 0.8rem;
-  top: 8rem;
-  opacity: ${props => (props.show ? '1' : '0')};
-  border-radius: 2px;
-  border: 1px solid ${lighten(0.05, COLOR)};
-  box-shadow: -1px 1px 8px 0px ${rgba(COLOR, 0.2)};
-  transition: opacity 80ms linear;
-  z-index: 2;
+  margin-right: -${SPACING};
+  margin-left: -${SPACING};
+  white-space: nowrap;
 `;
 
 const FormatButton = styled.button`
-  display: block;
-  padding: 0.5rem 0.35rem;
-  background-color: ${rgba(COLOR, 0.95)};
-  color: white;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid ${lighten(0.05, COLOR)};
-  }
+  display: inline-block;
+  padding: 0.15rem ${SPACING};
+  color: inherit;
+  border-radius: 4px;
 
   &:hover {
-    background-color: ${darken(0.1, COLOR)};
+    background-color: #f1f1f1;
   }
 `;
 

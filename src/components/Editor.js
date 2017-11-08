@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
-import EditToolbar from 'components/EditToolbar';
 import 'react-quill/dist/quill.core.css';
 import 'styles/QuillEditor.css';
 
@@ -13,8 +12,7 @@ function insertStar() {
 
 class Editor extends Component {
   state = {
-    delta: { ops: [{ insert: '\n' }] }, // Init with a blank Delta
-    showToolbar: false
+    delta: { ops: [{ insert: '\n' }] } // Init with a blank Delta
   };
 
   componentWillMount() {
@@ -37,13 +35,14 @@ class Editor extends Component {
   handleChange = (content, delta, source, editor) => {
     if (!editor || this.props.readOnly) return; // Need to test if I need this
     const contents = editor.getContents();
-    this.setState({ delta: contents, showToolbar: false });
+    this.setState({ delta: contents });
+    this.props.onSelectionCallback && this.props.onSelectionCallback(false);
     this.props.onChangeCallback(contents, editor);
   };
 
   handleChangeSelection = (range, source, editor) => {
-    if (range && range.length) this.setState({ showToolbar: true });
-    else this.setState({ showToolbar: false });
+    const showToolbar = range && range.length;
+    this.props.onSelectionCallback(showToolbar);
   };
 
   setRef = node => {
@@ -55,23 +54,20 @@ class Editor extends Component {
   }
 
   render() {
-    const { readOnly = true, placeholder = '', modules, formats } = this.props;
-    const { delta, showToolbar } = this.state;
+    const { readOnly = true, placeholder = '', modules, formats, onSelectionCallback } = this.props;
+    const { delta } = this.state;
     return (
-      <div>
-        {!modules && <EditToolbar id="toolbar" show={showToolbar && !readOnly} />}
-        <ReactQuill
-          theme={null}
-          readOnly={readOnly}
-          placeholder={placeholder || 'Tell your story...'}
-          value={delta}
-          onChange={this.handleChange}
-          onChangeSelection={!modules ? this.handleChangeSelection : null}
-          modules={modules || Editor.modules}
-          formats={formats || Editor.formats}
-          ref={node => this.setRef(node)}
-        />
-      </div>
+      <ReactQuill
+        theme={null}
+        readOnly={readOnly}
+        placeholder={placeholder || 'Tell your story...'}
+        value={delta}
+        onChange={this.handleChange}
+        onChangeSelection={onSelectionCallback ? this.handleChangeSelection : null}
+        modules={modules || Editor.modules}
+        formats={formats || Editor.formats}
+        ref={this.setRef}
+      />
     );
   }
 }
