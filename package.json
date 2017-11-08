@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "abyss-form": "0.4.22",
+    "abyss-form": "0.4.23",
     "apollo-cache-inmemory": "^1.1.0",
     "apollo-client": "^2.0.2",
     "apollo-link": "^1.0.0",
@@ -21,7 +21,7 @@
     "lodash": "^4.17.4",
     "material-design-icons-svg": "^1.1.2",
     "moment": "^2.19.1",
-    "polished": "^1.8.1",
+    "polished": "^1.8.2",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
     "qs": "^6.5.1",

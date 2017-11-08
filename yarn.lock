@@ -41,9 +41,9 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
-abyss-form@0.4.22:
-  version "0.4.22"
-  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.22.tgz#f6d4b7971c9dbeeeb5d0f0a7f67e936e6ab0143a"
+abyss-form@0.4.23:
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.23.tgz#942b675abb0f0723f7510ca25c4cbc8ac6ce16bf"
   dependencies:
     abyss-react "^0.2.0"
     autosize "^3.0.0"
@@ -5469,9 +5469,9 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-polished@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-1.8.1.tgz#e50b9f789d37d98da64912f1be2bf759d8bfae6c"
+polished@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-1.8.2.tgz#b73c16f7ae4e531a459e9de5dc2416d97e1df4e9"
 
 portfinder@^1.0.9:
   version "1.0.13"
