@@ -440,9 +440,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-auth0-js@^8.11.0:
-  version "8.11.0"
-  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.11.0.tgz#86d459c771518d3f869a821b39cc6e38d4e1080a"
+auth0-js@^8.11.1:
+  version "8.11.1"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.11.1.tgz#a389032b9e7f33bf66ab63a7758446e342512a7d"
   dependencies:
     base64-js "^1.2.0"
     idtoken-verifier "^1.1.0"
@@ -3009,9 +3009,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.58.0:
-  version "0.58.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.58.0.tgz#62d5a776589419e5656800a0e5230a5e585ca65e"
+flow-bin@^0.59.0:
+  version "0.59.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.59.0.tgz#8c151ee7f09f1deed9bf0b9d1f2e8ab9d470f1bb"
 
 flow-runtime@0.14.0:
   version "0.14.0"
@@ -5493,9 +5493,9 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-polished@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-1.8.2.tgz#b73c16f7ae4e531a459e9de5dc2416d97e1df4e9"
+polished@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-1.9.0.tgz#76d277d6610dbcb85477dbba1bd1aa8e642741b6"
 
 portfinder@^1.0.9:
   version "1.0.13"
@@ -6454,9 +6454,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.2.2.tgz#bf932164008e275d9e1fec38909a94168761e818"
+redux-persist@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.3.3.tgz#64fa57361ecef85981df7a8e9b07395edeabbcab"
 
 redux-thunk@^2.2.0:
   version "2.2.0"
