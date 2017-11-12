@@ -440,9 +440,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-auth0-js@^8.11.1:
-  version "8.11.1"
-  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.11.1.tgz#a389032b9e7f33bf66ab63a7758446e342512a7d"
+auth0-js@^8.11.2:
+  version "8.11.2"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.11.2.tgz#e86c402a7f0d787f7b38a2067aab3577adb6788e"
   dependencies:
     base64-js "^1.2.0"
     idtoken-verifier "^1.1.0"
@@ -4896,9 +4896,13 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
-moment@2.x, moment@^2.0.0, moment@^2.19.1:
+moment@2.x, moment@^2.0.0:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
+
+moment@^2.19.2:
+  version "2.19.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.2.tgz#8a7f774c95a64550b4c7ebd496683908f9419dbe"
 
 ms@2.0.0:
   version "2.0.0"
@@ -5845,9 +5849,9 @@ prettier@^1.7.1:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.7.4.tgz#5e8624ae9363c80f95ec644584ecdf55d74f93fa"
 
-prettier@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.8.1.tgz#91064d778c08c85ac1cbe6b23195c34310d039f9"
+prettier@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.8.2.tgz#bff83e7fd573933c607875e5ba3abbdffb96aeb8"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -6096,9 +6100,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-apollo@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.0.0.tgz#c9cbda2956585d422800f1686d870258637170f8"
+react-apollo@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.0.1.tgz#43997db9f294d81bd229eb705944fb36d5164607"
   dependencies:
     apollo-link "^1.0.0"
     hoist-non-react-statics "^2.2.0"
@@ -6168,9 +6172,9 @@ react-dom-factories@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-dom-factories/-/react-dom-factories-1.0.2.tgz#eb7705c4db36fb501b3aa38ff759616aa0ff96e0"
 
-react-dom@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
+react-dom@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.0.tgz#ab6fd2a285096f388aeba51919a573d06c9bdde4"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6320,9 +6324,9 @@ react-transition-group@^2.2.1:
     prop-types "^15.5.8"
     warning "^3.0.0"
 
-react@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
+react@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.1.0.tgz#1c2bdac3c17fe7ee9282fa35aca6cc36387903e1"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6454,9 +6458,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.3.3:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.3.3.tgz#64fa57361ecef85981df7a8e9b07395edeabbcab"
+redux-persist@^5.3.4:
+  version "5.3.4"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.3.4.tgz#7d021714e0cbf1835c2c27f2f7e1d19e61e3fd4e"
 
 redux-thunk@^2.2.0:
   version "2.2.0"
