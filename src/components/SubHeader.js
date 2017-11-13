@@ -12,7 +12,7 @@ import { isAuthed } from 'utils/AuthService';
 import { PALETTE } from 'constants/theme';
 import { SUBNAV_PORTAL_ID } from 'constants/portals';
 
-const DURATION = 160;
+const DURATION = 140;
 
 const STYLE = {
   position: 'absolute',

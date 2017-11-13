@@ -7,6 +7,7 @@ export const FlexApp = styled.div`
 `;
 
 export const FlexMain = styled.div`
+  position: relative;
   flex: 1 0 auto;
   width: 100%;
 `;

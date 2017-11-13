@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+// import { Route, Switch } from 'react-router-dom';
+import { AnimatedSwitch, spring } from 'react-router-transition';
 import { graphql } from 'react-apollo';
 import UserProfileQuery from 'graphql/UserProfileQuery.graphql';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
@@ -24,7 +25,16 @@ import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
 import FadeRoute from 'components/FadeRoute';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+// import TransitionGroup from 'react-transition-group/TransitionGroup';
+
+function bounce(val) {
+  return spring(val, {
+    // stiffness: 134,
+    // damping: 15
+    stiffness: 330,
+    damping: 22
+  });
+}
 
 const App = ({ userData: user }) => {
   return (
@@ -34,62 +44,60 @@ const App = ({ userData: user }) => {
           <AppHeader userResult={user} />
           <SubHeader userResult={user} />
         </FlexHeader>
-        <Route
-          children={props => {
-            return (
-              <TransitionGroup component={FlexMain}>
-                <Switch key={props.location.pathname} location={props.location}>
-                  <FadeRoute exact path="/" component={Home} userResult={user} />
-                  <FadeRoute path="/101" component={About} />
-                  <FadeRoute path="/search" component={SearchContainer} requireAuth />
-                  <FadeRoute
-                    path="/profile"
-                    component={UserProfile}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/stories"
-                    component={UserStoriesContainer}
-                    userResult={user}
-                    requireAuth
-                  />
-                  <FadeRoute path="/messages" component={Messages} userResult={user} requireAuth />
-                  <FadeRoute path="/notifications" component={Notifications} userResult={user} />
-                  <FadeRoute
-                    path="/write"
-                    component={StoryNewContainer}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/edit/:id"
-                    component={StoryEditContainer}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/tags/:key?"
-                    component={TagsContainer}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
-                  <FadeRoute path="/join" component={JoinContainer} userResult={user} requireAuth />
-                  <FadeRoute path="/login" component={LoginContainer} />
-                  <FadeRoute path="/verify" component={VerifyContainer} />
-                  <FadeRoute path="/callback" component={Callback} userResult={user} />
-                  <FadeRoute path="/:userName?" component={ProfileContainer} />
-                  <FadeRoute component={NoMatch} />
-                </Switch>
-              </TransitionGroup>
-            );
-          }}
-        />
+        <FlexMain>
+          <AnimatedSwitch
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: bounce(0) }}
+            atActive={{ opacity: bounce(1) }}
+          >
+            <FadeRoute exact path="/" component={Home} userResult={user} />
+            <FadeRoute path="/101" component={About} />
+            <FadeRoute path="/search" component={SearchContainer} requireAuth />
+            <FadeRoute
+              path="/profile"
+              component={UserProfile}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <FadeRoute
+              path="/stories"
+              component={UserStoriesContainer}
+              userResult={user}
+              requireAuth
+            />
+            <FadeRoute path="/messages" component={Messages} userResult={user} requireAuth />
+            <FadeRoute path="/notifications" component={Notifications} userResult={user} />
+            <FadeRoute
+              path="/write"
+              component={StoryNewContainer}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <FadeRoute
+              path="/edit/:id"
+              component={StoryEditContainer}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <FadeRoute
+              path="/tags/:key?"
+              component={TagsContainer}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <FadeRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
+            <FadeRoute path="/join" component={JoinContainer} userResult={user} requireAuth />
+            <FadeRoute path="/login" component={LoginContainer} />
+            <FadeRoute path="/verify" component={VerifyContainer} />
+            <FadeRoute path="/callback" component={Callback} userResult={user} />
+            <FadeRoute path="/:userName?" component={ProfileContainer} />
+            <FadeRoute component={NoMatch} />
+          </AnimatedSwitch>
+        </FlexMain>
       </FlexApp>
     </AppFade>
   );
