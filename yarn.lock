@@ -41,9 +41,9 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
-abyss-form@0.4.23:
-  version "0.4.23"
-  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.23.tgz#942b675abb0f0723f7510ca25c4cbc8ac6ce16bf"
+abyss-form@0.4.24:
+  version "0.4.24"
+  resolved "https://registry.yarnpkg.com/abyss-form/-/abyss-form-0.4.24.tgz#2c2d3fd0445cceb624f2925fae555e56ce1d65a0"
   dependencies:
     abyss-react "^0.2.0"
     autosize "^3.0.0"
@@ -6172,9 +6172,9 @@ react-dom-factories@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-dom-factories/-/react-dom-factories-1.0.2.tgz#eb7705c4db36fb501b3aa38ff759616aa0ff96e0"
 
-react-dom@^16.1.0:
-  version "16.1.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.0.tgz#ab6fd2a285096f388aeba51919a573d06c9bdde4"
+react-dom@^16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.1.tgz#b2e331b6d752faf1a2d31399969399a41d8d45f8"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6324,9 +6324,9 @@ react-transition-group@^2.2.1:
     prop-types "^15.5.8"
     warning "^3.0.0"
 
-react@^16.1.0:
-  version "16.1.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.1.0.tgz#1c2bdac3c17fe7ee9282fa35aca6cc36387903e1"
+react@^16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6458,9 +6458,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.3.4:
-  version "5.3.4"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.3.4.tgz#7d021714e0cbf1835c2c27f2f7e1d19e61e3fd4e"
+redux-persist@^5.3.5:
+  version "5.3.5"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.3.5.tgz#e414086265a3dd0503dbd89678c1a4a6d55caa3e"
 
 redux-thunk@^2.2.0:
   version "2.2.0"
