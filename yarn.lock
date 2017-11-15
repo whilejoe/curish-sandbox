@@ -263,6 +263,10 @@ apollo-link-http@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.1.0.tgz#a85cc43d9a5286bb54ac32213f7a16bef3554ae4"
 
+apollo-link-retry@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/apollo-link-retry/-/apollo-link-retry-1.0.0.tgz#ffdca17989046ae009342718bb6831d48d91140d"
+
 apollo-link-ws@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.0.tgz#0d713c6663a1c6ad34aac54456f2a5cbff7e59b3"

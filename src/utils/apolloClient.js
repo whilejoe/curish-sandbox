@@ -1,6 +1,7 @@
 import ApolloClient from 'apollo-client';
 // import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
+import { RetryLink } from 'apollo-link-retry';
 // import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
@@ -19,6 +20,9 @@ const cache = new InMemoryCache({
 const batchedHTTPLink = new BatchHttpLink({
   uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
 });
+
+// Attempt Request Again on Error
+const retryLink = new RetryLink();
 
 // Add Middleware
 const middlewareLink = new ApolloLink((operation, forward) => {
@@ -57,7 +61,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 // Chain links
-const link = ApolloLink.from([middlewareLink, errorLink, batchedHTTPLink]);
+const link = ApolloLink.from([middlewareLink, errorLink, retryLink, batchedHTTPLink]);
 
 const apolloClient = new ApolloClient({
   link,
