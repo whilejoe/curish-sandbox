@@ -81,7 +81,7 @@ const setGutters = hasGutters => {
     margin-right: ${hasGutters ? `-${GUTTER}` : 0};
     margin-left: ${hasGutters ? `-${GUTTER}` : 0};
 
-    & > ${Flex}, & > ${FlexContent} {
+    & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
       padding-right: ${hasGutters ? GUTTER : 0};
       padding-left: ${hasGutters ? GUTTER : 0};
     }
@@ -94,7 +94,7 @@ const setGuttersVertical = hasGutters => {
     margin-top: ${hasGutters ? `-${GUTTER}` : 0};
     margin-bottom: ${hasGutters ? `-${GUTTER}` : 0};
 
-    & > ${Flex}, & > ${FlexContent} {
+    & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
       padding-top: ${hasGutters ? GUTTER : 0};
       padding-bottom: ${hasGutters ? GUTTER : 0};
     }

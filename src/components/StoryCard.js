@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, FlexContent } from 'components/Flex';
+import { Flex, FlexContent, FlexColumn } from 'components/Flex';
 import Link from 'components/Link';
 import Avatar from 'components/Avatar';
 import TagLink, { TagsContainer } from 'components/Tag';
@@ -72,21 +72,38 @@ const StoryCard = ({
     <StoryItemContainer>
       <Flex gutters guttersVertical>
         <FlexContent space={[100, { sm: 'reset' }]}>
-          <Title>
-            <StoryLink
-              to={{ pathname: `/${published ? 'story' : 'edit'}/${id}`, state: { referrer } }}
-              onMouseOver={onMouseOverCallback}
-            >
-              {titleText || 'Untitled'}
-            </StoryLink>
-          </Title>
+          <Flex noWrap align="center">
+            <FlexContent>
+              <Title>
+                <StoryLink
+                  to={{ pathname: `/${published ? 'story' : 'edit'}/${id}`, state: { referrer } }}
+                  onMouseOver={onMouseOverCallback}
+                >
+                  {titleText || 'Untitled'}
+                </StoryLink>
+              </Title>
+            </FlexContent>
+            {published && (
+              <FlexContent space="self" hide={{ sm: true }}>
+                <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>
+              </FlexContent>
+            )}
+          </Flex>
           {author && <StoryAvatar user={author} to={{ state: { referrer } }} />}
           <Description>{description ? description : 'No description'} </Description>
         </FlexContent>
-        <FlexContent space={[100, { sm: 30, md: 25 }]}>
-          {published && <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>}
-          {tags.length > 0 && <StoryTags>{matchTags(matchValue, tags, referrer)}</StoryTags>}
-        </FlexContent>
+        <FlexColumn space={[100, { sm: 30, md: 25 }]}>
+          {published && (
+            <FlexContent hide={[true, { sm: false }]}>
+              <PublishedAt>{getMonthDayYear(updatedAt)}</PublishedAt>
+            </FlexContent>
+          )}
+          {tags.length > 0 && (
+            <FlexContent>
+              <StoryTags>{matchTags(matchValue, tags, referrer)}</StoryTags>
+            </FlexContent>
+          )}
+        </FlexColumn>
       </Flex>
     </StoryItemContainer>
   );
