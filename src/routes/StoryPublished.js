@@ -6,13 +6,24 @@ import EditorTitle from 'components/EditorTitle';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 
-const StoryPublished = ({ titleText, titleDelta, bodyDelta, author, loading, location }) => {
+const StoryPublished = ({
+  titleText,
+  titleDelta,
+  bodyDelta,
+  author,
+  loading,
+  location,
+  navModel,
+  setNavContext,
+  ...props
+}) => {
   // TODO: Handle loading state
   if (loading) return null;
+  // setNavContext(navModel, { titleText });
   return (
     <StoryContainer>
       <SubHeaderPortal>
-        <Flex align="center">
+        <Flex align="center" className="thing">
           <FlexContent space="self">
             <SubHeaderTitle>{titleText}</SubHeaderTitle>
           </FlexContent>

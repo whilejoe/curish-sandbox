@@ -11,6 +11,8 @@ import Transition, { ENTERING, ENTERED, EXITING, EXITED } from 'react-transition
 import { isAuthed } from 'utils/AuthService';
 import { PALETTE } from 'constants/theme';
 import { SUBNAV_PORTAL_ID } from 'constants/portals';
+// import ContextNav from 'components/ContextNav';
+import { TransitionGroup } from 'react-transition-group';
 
 const DURATION = 160;
 
@@ -96,7 +98,7 @@ class SubHeader extends Component {
                   );
                 }}
               </Transition>
-              <Transition in={showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              <Transition in={showBack} timeout={DURATION}>
                 {status => {
                   return (
                     <Flex align="center" style={STYLE}>

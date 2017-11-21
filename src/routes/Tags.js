@@ -30,7 +30,7 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
       <StoryList>
         <StoryContainer>
           <SubHeaderPortal>
-            <Flex gutters align="center">
+            <Flex gutters align="center" className="thing">
               <FlexContent>
                 <SubHeaderTitle>{tagQuery.Tag.key}</SubHeaderTitle>
               </FlexContent>
@@ -59,7 +59,7 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
     <StoryList>
       <StoryContainer>
         <SubHeaderPortal>
-          <FlexContent space="self">
+          <FlexContent space="self" className="thing">
             <SubHeaderTitle>All Tags</SubHeaderTitle>
           </FlexContent>
         </SubHeaderPortal>

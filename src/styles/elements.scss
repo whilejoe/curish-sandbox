@@ -12,6 +12,29 @@ $copy-font-weight: 400;
 $link-font: $sanserif-font;
 $link-font-weight: 600;
 
+.thing {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 3000ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
 // *,
 // *:before,
 // *:after {
