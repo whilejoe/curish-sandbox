@@ -1,5 +1,5 @@
 # project: cj6l71pg81npn0191lrufaos5
-# version: 60
+# version: 74
 
 type File @model {
   contentType: String!
@@ -23,6 +23,7 @@ type User @model {
   photoURL: String
   stories: [Story!]! @relation(name: "StoryAuthor")
   termsAgreedVersion: Float
+  messages: [Message!]! @relation(name: "MessagesFromUser")
 }
 
 type Story @model {
@@ -49,4 +50,12 @@ type Terms @model {
   id: ID! @isUnique
   version: Float!
   copy: String!
+}
+
+type Message @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  text: String!
+  sentBy: User! @relation(name: "MessagesFromUser")
 }

@@ -1,0 +1,11 @@
+query AllUsersMessagesQuery {
+  allMessages {
+    id
+    text
+    createdAt
+    sentBy {
+      id
+      name
+    }
+  }
+}

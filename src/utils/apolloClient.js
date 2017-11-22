@@ -6,6 +6,7 @@ import { RetryLink } from 'apollo-link-retry';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { BatchHttpLink } from 'apollo-link-batch-http';
+import { WebSocketLink } from 'apollo-link-ws';
 import { getIdToken, logout } from 'utils/AuthService';
 
 // Create Cache
@@ -16,10 +17,26 @@ const cache = new InMemoryCache({
   // cacheResolvers: // cache resolvers
 });
 
+const hasSubscriptionOperation = ({ query: { definitions } }) =>
+  definitions.some(
+    ({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription'
+  );
+
+const batchedLinkWithSubscription = ApolloLink.split(
+  hasSubscriptionOperation,
+  new WebSocketLink({
+    uri: process.env.REACT_APP_GRAPHCOOL_SUBSCRIPTION_ENDPOINT,
+    options: { reconnect: true }
+  }),
+  new BatchHttpLink({
+    uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
+  })
+);
+
 // Batch Requests
-const batchedHTTPLink = new BatchHttpLink({
-  uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
-});
+// const batchedHTTPLink = new BatchHttpLink({
+//   uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
+// });
 
 // Attempt Request Again on Error
 const retryLink = new RetryLink();
@@ -61,7 +78,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 // Chain links
-const link = ApolloLink.from([middlewareLink, errorLink, retryLink, batchedHTTPLink]);
+const link = ApolloLink.from([middlewareLink, errorLink, retryLink, batchedLinkWithSubscription]);
 
 const apolloClient = new ApolloClient({
   link,

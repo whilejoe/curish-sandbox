@@ -1,0 +1,11 @@
+mutation CreateMessageMutation($text: String!, $sentById: ID!) {
+  createMessage(text: $text, sentById: $sentById) {
+    id
+    text
+    createdAt
+    sentBy {
+      id
+      name
+    }
+  }
+}
