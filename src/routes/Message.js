@@ -24,7 +24,7 @@ const Message = ({ userResult, chatQuery: { loading, Chat: chat }, ...props }) =
           </FlexContent>
         </Flex>
       </SubHeaderPortal>
-      <p>message placeholder</p>
+      {chat.messages.length === 0 ? <p>No Messages :(</p> : null}
     </PageContainer>
   );
 };

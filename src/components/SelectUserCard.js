@@ -1,15 +1,15 @@
 import React from 'react';
+import ChatCard from 'components/ChatCard';
 import { InputCheckbox } from 'components/InputGroup';
 import Avatar from 'components/Avatar';
-import ListCard from 'components/ListCard';
 
 const SelectUserCard = ({ user }) => {
   return (
-    <ListCard>
+    <ChatCard>
       <InputCheckbox id={user.userName} model={`newChatUsers.${user.id}`}>
         <Avatar user={user} />
       </InputCheckbox>
-    </ListCard>
+    </ChatCard>
   );
 };
 

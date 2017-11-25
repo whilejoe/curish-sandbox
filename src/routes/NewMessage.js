@@ -64,7 +64,9 @@ export default compose(
           });
           console.log('result', result);
           if (result.data) {
-            history.push(`/message/${result.data.createChat.id}`, { referrer: location });
+            history.push(`/message/${result.data.createChat.id}`, {
+              referrer: { pathname: '/messages' }
+            });
           }
         }
       };
