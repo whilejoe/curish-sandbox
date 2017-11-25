@@ -16,7 +16,6 @@ const Message = ({ userResult, chatQuery: { loading, Chat: chat }, ...props }) =
         <Flex align="center">
           <FlexContent space="self">
             <SubHeaderTitle>
-              You,{' '}
               {chat.users
                 .filter(user => userResult.user.id !== user.id)
                 .map(user => `@${user.userName}`)

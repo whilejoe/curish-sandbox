@@ -3,7 +3,7 @@ import { InputCheckbox } from 'components/InputGroup';
 import Avatar from 'components/Avatar';
 import ListCard from 'components/ListCard';
 
-const SelectUserCard = ({ user, referrer, onMouseOverCallback }) => {
+const SelectUserCard = ({ user }) => {
   return (
     <ListCard>
       <InputCheckbox id={user.userName} model={`newChatUsers.${user.id}`}>

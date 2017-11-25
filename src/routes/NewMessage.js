@@ -27,10 +27,10 @@ const NewMessage = ({
       <SubHeaderPortal>
         <Flex align="center" justify="space-between">
           <FlexContent space="self">
-            <SubHeaderTitle>New Message</SubHeaderTitle>
+            <SubHeaderTitle>To</SubHeaderTitle>
           </FlexContent>
           <FlexContent space="self" hide={!selectedUsersIds.length}>
-            <Button onClick={() => createChat(selectedUsersIds)}>Continue</Button>
+            <Button onClick={() => createChat(selectedUsersIds)}>New Chat</Button>
           </FlexContent>
         </Flex>
       </SubHeaderPortal>
