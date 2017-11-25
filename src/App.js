@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import FadeRoute from 'components/FadeRoute';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import { graphql } from 'react-apollo';
 import UserProfileQuery from 'graphql/UserProfileQuery.graphql';
-import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import AppHeader from 'components/AppHeader';
 import SubHeader from 'components/SubHeader';
 import LoginContainer from 'containers/LoginContainer';
@@ -20,11 +22,11 @@ import About from 'routes/About';
 import Callback from 'routes/Callback';
 import UserProfile from 'routes/UserProfile';
 import Messages from 'routes/Messages';
+import Message from 'routes/Message';
+import NewMessage from 'routes/NewMessage';
 import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
-import FadeRoute from 'components/FadeRoute';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 const App = ({ userData: user }) => {
   return (
@@ -55,7 +57,26 @@ const App = ({ userData: user }) => {
                     userResult={user}
                     requireAuth
                   />
+                  {/* <FadeRoute
+                    path="/messages/:id?"
+                    component={Messages}
+                    userResult={user}
+                    requireAuth
+                  /> */}
+                  {/* <MessagesSwitch userResult={user} parentLocation={props.location} /> */}
                   <FadeRoute path="/messages" component={Messages} userResult={user} requireAuth />
+                  <FadeRoute
+                    path="/new-message"
+                    component={NewMessage}
+                    userResult={user}
+                    requireAuth
+                  />
+                  <FadeRoute
+                    path="/message/:id"
+                    component={Message}
+                    userResult={user}
+                    requireAuth
+                  />
                   <FadeRoute path="/notifications" component={Notifications} userResult={user} />
                   <FadeRoute
                     path="/write"

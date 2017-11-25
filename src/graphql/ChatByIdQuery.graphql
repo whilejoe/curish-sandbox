@@ -1,0 +1,19 @@
+query ChatByIdQuery($id: ID!) {
+  Chat(id: $id) {
+    id
+    createdAt
+    updatedAt
+    users {
+      id
+      userName
+    }
+    messages {
+      createdAt
+      text
+      from {
+        id
+        userName
+      }
+    }
+  }
+}

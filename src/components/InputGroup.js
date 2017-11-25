@@ -200,6 +200,12 @@ export const InputSelect = styled(SelectList)`
   }
 `;
 
+export const InputCheckbox = styled(Checkbox)`
+  & .abyss-checkbox__icon {
+    border-radius: 50%;
+  }
+`;
+
 const InputCounter = styled.div`
   position: relative;
 
@@ -222,7 +228,7 @@ const INPUT_TYPES = {
   text: InputText,
   textArea: InputArea,
   select: InputSelect,
-  checkbox: Checkbox
+  checkbox: InputCheckbox
 };
 
 class InputGroup extends Component {

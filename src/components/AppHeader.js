@@ -60,12 +60,6 @@ const HeaderAvatar = styled(Avatar)`
   vertical-align: middle;
   font-size: 0.95em;
   line-height: 1;
-
-  &:hover,
-  &:focus,
-  &.active {
-    color: ${THEME[PRIMARY_KEY]};
-  }
 `;
 
 const Brand = styled(NavLink)`
@@ -133,7 +127,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
             </FlexContent>
             <FlexContent space="self">
               {isUserAuthed &&
-                !loading && <HeaderAvatar user={user} showImage to={{ pathname: '/profile' }} />}
+                !loading && <HeaderAvatar user={user} to={{ pathname: '/profile' }} imageOnly />}
             </FlexContent>
           </Flex>
         )}

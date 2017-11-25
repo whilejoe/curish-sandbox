@@ -1,0 +1,13 @@
+query AllUsersChatsQuery {
+  user {
+    id
+    chats {
+      id
+      createdAt
+      users {
+        id
+        userName
+      }
+    }
+  }
+}

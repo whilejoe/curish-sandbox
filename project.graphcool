@@ -1,5 +1,5 @@
 # project: cj6l71pg81npn0191lrufaos5
-# version: 74
+# version: 76
 
 type File @model {
   contentType: String!
@@ -24,6 +24,24 @@ type User @model {
   stories: [Story!]! @relation(name: "StoryAuthor")
   termsAgreedVersion: Float
   messages: [Message!]! @relation(name: "MessagesFromUser")
+  chats: [Chat!]! @relation(name: "ChatsFromUser")
+}
+
+type Message @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  text: String!
+  chat: Chat! @relation(name: "MessagesOnChat")
+  from: User! @relation(name: "MessagesFromUser")
+}
+
+type Chat @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  messages: [Message!]! @relation(name: "MessagesOnChat")
+  users: [User!]! @relation(name: "ChatsFromUser")
 }
 
 type Story @model {
@@ -50,12 +68,4 @@ type Terms @model {
   id: ID! @isUnique
   version: Float!
   copy: String!
-}
-
-type Message @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  text: String!
-  sentBy: User! @relation(name: "MessagesFromUser")
 }

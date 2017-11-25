@@ -3,17 +3,10 @@ import styled from 'styled-components';
 import { Flex, FlexContent, FlexColumn } from 'components/Flex';
 import Link from 'components/Link';
 import Avatar from 'components/Avatar';
+import ListCard from 'components/ListCard';
 import TagLink, { TagsContainer } from 'components/Tag';
 import media from 'utils/media';
 import { getMonthDayYear } from 'utils/date';
-
-const StoryItemContainer = styled.div`
-  margin-bottom: 1rem;
-  padding: 0.95rem 1rem 0.9rem;
-  border: 1px solid #eaeaea;
-  border-radius: 2px;
-  box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
-`;
 
 const StoryLink = styled(Link)`
   font-family: inherit;
@@ -69,7 +62,7 @@ const StoryCard = ({
   onMouseOverCallback
 }) => {
   return (
-    <StoryItemContainer>
+    <ListCard>
       <Flex gutters guttersVertical>
         <FlexContent space={[100, { sm: 'reset' }]}>
           <Flex noWrap align="center">
@@ -105,7 +98,7 @@ const StoryCard = ({
           )}
         </FlexColumn>
       </Flex>
-    </StoryItemContainer>
+    </ListCard>
   );
 };
 
