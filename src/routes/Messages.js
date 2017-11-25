@@ -1,15 +1,15 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import AllUsersChatsQuery from 'graphql/AllUsersChatsQuery.graphql';
-import PageContainer from 'components/PageContainer';
+import StoryContainer from 'components/StoryContainer';
 import NewItemButton from 'components/NewItemButton';
 import ChatCard from 'components/ChatCard';
 import Link from 'components/Link';
 
 const Messages = ({ allUserChats, location, ...props }) => {
-  if (allUserChats.loading) return <PageContainer>Loading...</PageContainer>;
+  if (allUserChats.loading) return <StoryContainer>Loading...</StoryContainer>;
   return (
-    <PageContainer>
+    <StoryContainer>
       <h1>Chats</h1>
       <NewItemButton
         to={{ pathname: '/new-message', state: { referrer: location } }}
@@ -24,7 +24,7 @@ const Messages = ({ allUserChats, location, ...props }) => {
           </ChatCard>
         );
       })}
-    </PageContainer>
+    </StoryContainer>
   );
 };
 

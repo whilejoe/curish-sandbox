@@ -1,17 +1,17 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import ChatByIdQuery from 'graphql/ChatByIdQuery.graphql';
-import PageContainer from 'components/PageContainer';
+import StoryContainer from 'components/StoryContainer';
 import { Flex, FlexContent } from 'components/Flex';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 
 const Message = ({ userResult, chatQuery: { loading, Chat: chat }, ...props }) => {
-  if (loading) return <PageContainer>Loading...</PageContainer>;
+  if (loading) return <StoryContainer>Loading...</StoryContainer>;
   else if (!userResult.user) return null;
   console.log('chat', chat);
   return (
-    <PageContainer>
+    <StoryContainer>
       <SubHeaderPortal>
         <Flex align="center">
           <FlexContent space="self">
@@ -25,7 +25,7 @@ const Message = ({ userResult, chatQuery: { loading, Chat: chat }, ...props }) =
         </Flex>
       </SubHeaderPortal>
       {chat.messages.length === 0 ? <p>No Messages :(</p> : null}
-    </PageContainer>
+    </StoryContainer>
   );
 };
 
