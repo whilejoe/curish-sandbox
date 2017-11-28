@@ -10,20 +10,21 @@ const Messages = ({ allUserChats, location, ...props }) => {
   if (allUserChats.loading) return <StoryContainer>Loading...</StoryContainer>;
   return (
     <StoryContainer>
-      <h1>Chats </h1>
+      <h1>Chats</h1>
       <NewItemButton
         to={{ pathname: '/new-message', state: { referrer: location } }}
         title="new message"
       />
-      {allUserChats.user.chats.map(chat => {
-        return (
-          <ChatCard key={chat.id}>
-            <Link to={{ pathname: `/message/${chat.id}`, state: { referrer: location } }}>
-              Chat ID: {chat.id}
-            </Link>
-          </ChatCard>
-        );
-      })}
+      {allUserChats.user &&
+        allUserChats.user.chats.map(chat => {
+          return (
+            <ChatCard key={chat.id}>
+              <Link to={{ pathname: `/message/${chat.id}`, state: { referrer: location } }}>
+                Chat ID: {chat.id}
+              </Link>
+            </ChatCard>
+          );
+        })}
     </StoryContainer>
   );
 };
