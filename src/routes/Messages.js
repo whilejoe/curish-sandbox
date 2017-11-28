@@ -10,7 +10,7 @@ const Messages = ({ allUserChats, location, ...props }) => {
   if (allUserChats.loading) return <StoryContainer>Loading...</StoryContainer>;
   return (
     <StoryContainer>
-      <h1>Chats</h1>
+      <h1>Chatz</h1>
       <NewItemButton
         to={{ pathname: '/new-message', state: { referrer: location } }}
         title="new message"
