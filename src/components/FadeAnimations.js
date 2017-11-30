@@ -18,7 +18,7 @@ const FadeIn = styled.div`
 
 export const CrossFade = FadeIn.extend`
   position: absolute;
-  height: calc(100% - 104px);
+  height: calc(100% - 105px);
   width: 100%;
   transition-duration: ${props => props.duration || CROSS_FADE_DURATION}ms;
 `;
