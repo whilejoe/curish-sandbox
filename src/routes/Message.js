@@ -172,7 +172,7 @@ class Message extends React.Component {
                 // label="Write Message"
                 // hideLabel
                 // type="text"
-                placeholder="write a message..."
+                placeholder="write a message"
                 // model="chat.message"
                 // validators={{ required: value => !value }}
                 // clearable
