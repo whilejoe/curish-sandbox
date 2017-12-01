@@ -24,19 +24,41 @@ const activeState = css`
   box-shadow: 0px 2px 15px -3px ${rgba(ACTIVE_COLOR, 0.5)} !important;
 `;
 
-const inputMixin = css`
-  padding: 0.4rem 0.6rem;
+export const baseInputMixin = css`
+  padding: 0.55rem 0.6rem;
   background-color: white;
   color: ${COLOR};
-  border: 1px solid #eaeaea;
-  border-bottom: 2px solid ${ACTIVE_COLOR};
-  border-radius: 2px;
-  box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
   outline: none;
   width: 100%;
   font-size: 1em;
   font-family: inherit;
-  line-height: inherit;
+  line-height: 1.15;
+  border: 1px solid #eaeaea;
+  border-radius: 3px;
+  box-shadow: none;
+
+  &::placeholder {
+    color: #bbb;
+    font-size: 0.95em;
+  }
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: inherit;
+    box-shadow: 0 0 0px 100px white inset;
+
+    &:hover,
+    &:focus {
+      -webkit-text-fill-color: inherit;
+      box-shadow: 0 0 0px 100px white inset;
+    }
+  }
+`;
+
+const inputMixin = css`
+  ${baseInputMixin};
+
+  border-bottom: 2px solid ${ACTIVE_COLOR};
+  box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
 
   .abyss-form--focused&,
   &.abyss-form--focused {
@@ -58,22 +80,6 @@ const inputMixin = css`
 
   &:-webkit-autofill {
     ${activeState};
-  }
-
-  &::placeholder {
-    color: #bbb;
-    font-size: 0.95em;
-  }
-
-  &:-webkit-autofill {
-    -webkit-text-fill-color: inherit;
-    box-shadow: 0 0 0px 100px white inset;
-
-    &:hover,
-    &:focus {
-      -webkit-text-fill-color: inherit;
-      box-shadow: 0 0 0px 100px white inset;
-    }
   }
 `;
 
@@ -123,6 +129,7 @@ export const InputText = styled(TextInput)`
 
 export const InputArea = styled(TextArea)`
   ${inputMixin};
+
   display: block;
   max-width: 100%;
   min-height: 3.1rem;
@@ -137,6 +144,7 @@ export const InputSelect = styled(SelectList)`
 
   & .Select-control {
     ${inputMixin};
+
     height: 2.5rem !important;
     padding: 0 !important;
     line-height: 2.38rem !important;

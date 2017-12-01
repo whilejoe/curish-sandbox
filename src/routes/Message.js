@@ -5,38 +5,41 @@ import ChatByIdQuery from 'graphql/ChatByIdQuery.graphql';
 import StoryContainer from 'components/StoryContainer';
 import Container from 'components/Container';
 import { Flex, FlexContent } from 'components/Flex';
-import { InputText } from 'components/InputGroup';
+import { baseInputMixin } from 'components/InputGroup';
 import Icon from 'components/Icon';
 // import { FlexHeight, FlexHeightMain, FlexFooter } from 'components/FlexApp';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
+import { THEME, SECONDARY_KEY } from 'constants/theme';
 
 const MessageFooter = styled.div`
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 61px;
-  background-color: #eee;
+  height: 50px;
+  background-color: ${THEME[SECONDARY_KEY]};
+  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const MessageContainer = styled.div`
   padding-top: 1rem;
-  padding-bottom: 61px;
+  padding-bottom: 50px;
+`;
+
+const MessageInput = styled.input`
+  ${baseInputMixin};
+  padding: 0.4rem 0.6rem;
+  border: none;
 `;
 
 const SendButton = styled.button`
-  color: #666;
-
-  &:hover {
-    color: inherit;
-  }
+  color: white;
 `;
 
 const Message = ({ userResult, chatQuery: { loading, Chat: chat }, ...props }) => {
   if (loading) return <StoryContainer>Loading...</StoryContainer>;
   else if (!userResult.user) return null;
-  console.log('chat', chat);
   return [
     <MessageContainer key="messageContainer">
       <SubHeaderPortal>
@@ -62,16 +65,16 @@ const Message = ({ userResult, chatQuery: { loading, Chat: chat }, ...props }) =
     </MessageContainer>,
     <MessageFooter key="messageFooter">
       <Container style={{ height: '100%' }}>
-        <Flex gutters align="center" style={{ height: '100%' }}>
-          <FlexContent>
-            <InputText
+        <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
+          <FlexContent space={{ md: 50 }}>
+            <MessageInput
               autoFocus
               id="write-message"
               // label="Write Message"
               // hideLabel
               // type="text"
               placeholder="write a message"
-              model="chat.message"
+              // model="chat.message"
               // validators={{ required: value => !value }}
               // clearable
             />
