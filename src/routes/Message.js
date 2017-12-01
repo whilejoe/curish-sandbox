@@ -12,7 +12,7 @@ import Icon from 'components/Icon';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 import SrOnly from 'components/SrOnly';
-import { THEME, SECONDARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY, SECONDARY_KEY } from 'constants/theme';
 import { darken } from 'polished';
 
 const MESSAGE_COLOR = THEME[SECONDARY_KEY];
@@ -48,6 +48,23 @@ const SendButton = styled.button`
   &:focus {
     color: ${ACTIVE_COLOR};
   }
+`;
+
+const BadgeContainer = styled.div`
+  margin-bottom: 0.55rem;
+  text-align: ${props => (props.you ? 'right' : 'left')};
+`;
+
+const Badge = styled.span`
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  color: ${props => (props.you ? 'white' : '#555')};
+  background-color: ${props => (props.you ? THEME[PRIMARY_KEY] : '#e6e6e6')};
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: 1.6;
+  vertical-align: text-top;
+  border-radius: 20px;
 `;
 
 class Message extends React.Component {
@@ -132,7 +149,12 @@ class Message extends React.Component {
         <Container>
           {messages.length > 0 &&
             messages.map(message => {
-              return <p key={message.id}>{message.text}</p>;
+              const you = message.from.id === userResult.user.id;
+              return (
+                <BadgeContainer key={message.id} you={you}>
+                  <Badge you={you}>{message.text}</Badge>
+                </BadgeContainer>
+              );
             })}
         </Container>
       </MessageContainer>,
