@@ -1,11 +1,11 @@
-mutation CreateMessageMutation($text: String!, $chatId: ID!, $fromId: ID!) {
-  createMessage(text: $text, fromId: $fromId) {
+mutation CreateMessageMutation($chatId: ID!, $fromId: ID!, $text: String!) {
+  createMessage(chatId: $chatId, fromId: $fromId, text: $text) {
     id
     text
     createdAt
     from {
       id
-      name
+      userName
     }
   }
 }
