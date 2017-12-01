@@ -64,12 +64,19 @@ const App = ({ userData: user }) => {
                     requireAuth
                   /> */}
                   {/* <MessagesSwitch userResult={user} parentLocation={props.location} /> */}
-                  <FadeRoute path="/messages" component={Messages} userResult={user} requireAuth />
+                  <FadeRoute
+                    path="/messages"
+                    component={Messages}
+                    userResult={user}
+                    requireAuth
+                    scrollToTop
+                  />
                   <FadeRoute
                     path="/new-message"
                     component={NewMessage}
                     userResult={user}
                     requireAuth
+                    scrollToTop
                   />
                   <FadeRoute
                     path="/message/:id"

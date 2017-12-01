@@ -16,7 +16,7 @@ import { THEME, SECONDARY_KEY } from 'constants/theme';
 import { darken } from 'polished';
 
 const MESSAGE_COLOR = THEME[SECONDARY_KEY];
-const ACTIVE_COLOR = darken(0.25, MESSAGE_COLOR);
+const ACTIVE_COLOR = darken(0.27, MESSAGE_COLOR);
 
 const MessageFooter = styled.div`
   position: fixed;
@@ -24,6 +24,8 @@ const MessageFooter = styled.div`
   bottom: 0;
   left: 0;
   height: 50px;
+  padding-right: 0.6rem;
+  padding-left: 0.6rem;
   background-color: ${MESSAGE_COLOR};
   box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
 `;
@@ -54,22 +56,20 @@ class Message extends React.Component {
   };
 
   componentDidMount() {
-    // console.log('containerRef', this.containerRef);
-    // document.body.scrollTop = document.body.scrollHeight;
-    if (this.containerRef) {
-      this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    if (!this.props.loading && this.props.messages.length > 0) {
+      this.scrollIntoView();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.loading && !this.props.loading && this.props.messages.length > 0) {
+      this.scrollIntoView();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.messages !== nextProps.messages && nextProps.messages.length) {
-      console.log('nextProps.messages', nextProps.messages);
-      console.log('containerRef will receive', this.containerRef);
-      // console.log(' document.body.scrollHeight', document.body.scrollHeight);
+    if (this.props.loading !== nextProps.loading && !nextProps.loading) {
       // window.scrollTo(0, document.body.scrollHeight);
-      if (this.containerRef) {
-        this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }
     }
   }
 
@@ -101,9 +101,13 @@ class Message extends React.Component {
   };
 
   onRef = node => {
-    console.log('onRef containerRef', this.containerRef);
+    // console.log('onRef containerRef', this.containerRef);
     this.containerRef = node;
   };
+
+  scrollIntoView() {
+    if (this.containerRef) this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
 
   render() {
     const { userResult, loading, messages, chatUsers } = this.props;
@@ -133,36 +137,34 @@ class Message extends React.Component {
         </Container>
       </MessageContainer>,
       <MessageFooter key="footer">
-        <Container style={{ height: '100%' }}>
-          <form onSubmit={this.handleSubmit} style={{ height: '100%' }}>
-            <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
-              <FlexContent space={{ md: 50 }}>
-                <SrOnly>
-                  <label htmlFor="write-message">write a message</label>
-                </SrOnly>
-                <MessageInput
-                  autoFocus
-                  autoComplete="off"
-                  id="write-message"
-                  // label="Write Message"
-                  // hideLabel
-                  // type="text"
-                  placeholder="write a message..."
-                  // model="chat.message"
-                  // validators={{ required: value => !value }}
-                  // clearable
-                  value={messageValue}
-                  onChange={this.handleChange}
-                />
-              </FlexContent>
-              <FlexContent space="self">
-                <SendButton type="submit" isActive={!!messageValue}>
-                  <Icon type="sendMessage" title="send message" />
-                </SendButton>
-              </FlexContent>
-            </Flex>
-          </form>
-        </Container>
+        <form onSubmit={this.handleSubmit} style={{ height: '100%' }}>
+          <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
+            <FlexContent space={{ md: 50 }}>
+              <SrOnly>
+                <label htmlFor="write-message">write a message</label>
+              </SrOnly>
+              <MessageInput
+                // autoFocus
+                autoComplete="off"
+                id="write-message"
+                // label="Write Message"
+                // hideLabel
+                // type="text"
+                placeholder="write a message..."
+                // model="chat.message"
+                // validators={{ required: value => !value }}
+                // clearable
+                value={messageValue}
+                onChange={this.handleChange}
+              />
+            </FlexContent>
+            <FlexContent space="self">
+              <SendButton type="submit" isActive={!!messageValue}>
+                <Icon type="sendMessage" title="send message" />
+              </SendButton>
+            </FlexContent>
+          </Flex>
+        </form>
       </MessageFooter>
     ];
   }
