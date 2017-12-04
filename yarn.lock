@@ -306,6 +306,14 @@ apollo-link@^1.0.4:
     apollo-utilities "^1.0.0"
     zen-observable "^0.6.0"
 
+apollo-link@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.0.5.tgz#7ce058b61cb2f5071496968ef82499c202211d10"
+  dependencies:
+    "@types/zen-observable" "0.5.3"
+    apollo-utilities "^1.0.0"
+    zen-observable "^0.6.0"
+
 apollo-utilities@^0.2.0-beta.0:
   version "0.2.0-rc.3"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-0.2.0-rc.3.tgz#7bd93be0f587f20c5b46e21880272e305759fdc2"
@@ -3043,9 +3051,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.59.0.tgz#8c151ee7f09f1deed9bf0b9d1f2e8ab9d470f1bb"
+flow-bin@^0.60.1:
+  version "0.60.1"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.60.1.tgz#0f4fa7b49be2a916f18cd946fc4a51e32ffe4b48"
 
 flow-runtime@0.14.0:
   version "0.14.0"
@@ -4595,9 +4603,9 @@ loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
-localforage@^1.5.2:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.5.3.tgz#698aa16af1022340b240be9d93192e8af022ff16"
+localforage@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.5.5.tgz#55fc1c3a88a47f67f5fac6f1231b25ff13556423"
   dependencies:
     lie "3.0.2"
 
@@ -7266,12 +7274,13 @@ stylis@^3.4.0:
   version "3.4.5"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.4.5.tgz#d7b9595fc18e7b9c8775eca8270a9a1d3e59806e"
 
-subscriptions-transport-ws@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.1.tgz#66488bd5997b6081277a25d6a3015a5aceffed63"
+subscriptions-transport-ws@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.4.tgz#2671c7339c17389c0ff47c73cd749949576d3dd5"
   dependencies:
     backo2 "^1.0.2"
     eventemitter3 "^2.0.3"
+    is-promise "^2.1.0"
     iterall "^1.1.1"
     lodash.assign "^4.2.0"
     lodash.isobject "^3.0.2"
