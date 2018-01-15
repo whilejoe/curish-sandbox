@@ -37,7 +37,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.0.17",
-    "react-select": "^1.2.0",
+    "react-select": "^1.2.1",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.0",
     "redux-action-buffer": "^1.2.0",
