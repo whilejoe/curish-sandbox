@@ -23,6 +23,6 @@ export const PALETTE = {
     MEDIUM: '#f1f1f1',
     DARK: '#333'
   },
-  HEADER: '#2d3048',
+  HEADER: '#eaeaea',
   BODY: '#fffefe'
 };

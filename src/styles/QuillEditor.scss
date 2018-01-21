@@ -6,10 +6,11 @@
 }
 
 .ql-editor {
+  padding: 0;
   font-family: $copy-font;
   font-weight: $copy-font-weight;
   line-height: inherit;
-  padding: 0;
+  text-align: justify;
 }
 
 .ql-editor h1,

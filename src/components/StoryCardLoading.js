@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from 'components/Card';
 import 'styles/StoryCardLoading.css';
 
 // TODO: Revisit
@@ -6,7 +7,7 @@ import 'styles/StoryCardLoading.css';
 // Not happy with it
 const StoryCardLoading = () => {
   return (
-    <div className="timeline-item">
+    <Card className="timeline-item">
       <div className="animated-background">
         <div className="background-masker header-right" />
         <div className="background-masker header-bottom" />
@@ -16,7 +17,7 @@ const StoryCardLoading = () => {
         <div className="background-masker content-second-line" />
         <div className="background-masker content-second-end" />
       </div>
-    </div>
+    </Card>
   );
 };
 

@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import AllUsersChatsQuery from 'graphql/AllUsersChatsQuery.graphql';
 import StoryContainer from 'components/StoryContainer';
 import NewItemButton from 'components/NewItemButton';
-import ChatCard from 'components/ChatCard';
+import Card from 'components/Card';
 import Link from 'components/Link';
 
 const Messages = ({ allUserChats, location, ...props }) => {
@@ -18,11 +18,11 @@ const Messages = ({ allUserChats, location, ...props }) => {
       {allUserChats.user &&
         allUserChats.user.chats.map(chat => {
           return (
-            <ChatCard key={chat.id}>
+            <Card key={chat.id}>
               <Link to={{ pathname: `/message/${chat.id}`, state: { referrer: location } }}>
                 Chat ID: {chat.id}
               </Link>
-            </ChatCard>
+            </Card>
           );
         })}
     </StoryContainer>

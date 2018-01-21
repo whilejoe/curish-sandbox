@@ -30,8 +30,8 @@ const STATES = {
 const Header = styled.div`
   height: 50px;
   background-color: ${PALETTE.BODY};
+  border-bottom: 1px solid #eaeaea;
   overflow: hidden;
-  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const NavTransitioner = styled(Flex)`
@@ -67,7 +67,7 @@ class SubHeader extends Component {
     const { showBack } = this.state;
     if (!isAuthed()) return null;
     return (
-      <Headroom pinStart={54}>
+      <Headroom pinStart={52}>
         <Header>
           <Container style={{ height: '100%' }}>
             <div style={{ height: '100%', position: 'relative' }}>

@@ -34,7 +34,7 @@ export const baseInputMixin = css`
   font-family: inherit;
   line-height: 1.15;
   border: 1px solid #eaeaea;
-  border-radius: 3px;
+  border-radius: 1px;
   box-shadow: none;
 
   &::placeholder {
@@ -58,7 +58,7 @@ const inputMixin = css`
   ${baseInputMixin};
 
   border-bottom: 2px solid ${ACTIVE_COLOR};
-  box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 
   .abyss-form--focused&,
   &.abyss-form--focused {

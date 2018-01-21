@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'components/Container';
+import StoryContainer from 'components/StoryContainer';
 import PageContainer from 'components/PageContainer';
 import { ButtonLink } from 'components/Button';
 import ProfileHeader from 'components/ProfileHeader';
@@ -10,12 +10,12 @@ const UserProfile = ({ userResult: { loading, user }, ...props }) => {
   const { email } = user;
   return [
     <ProfileHeader key="header" user={user} />,
-    <Container key="container">
+    <StoryContainer key="container">
       <p>Email: {email}</p>
       <ButtonLink to="/login" replace onClick={logout}>
         Logout
       </ButtonLink>
-    </Container>
+    </StoryContainer>
   ];
 };
 

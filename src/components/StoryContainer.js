@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StoryContainer = styled.div`
   position: relative;
-  max-width: 44rem;
+  max-width: 38rem;
   margin-right: auto;
   margin-left: auto;
   padding-top: 0.8rem;
