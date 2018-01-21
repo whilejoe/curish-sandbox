@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 import PageContainer from 'components/PageContainer';
+import { isEnvLocalhost } from 'utils/env';
 import { parseURL } from 'utils/AuthService';
 
 class Callback extends Component {
@@ -13,8 +15,13 @@ class Callback extends Component {
     // User will initially be undefined and query will either return user object or null
     if (this.props.userResult.user !== nextProps.userResult.user) {
       const { history } = nextProps;
-      if (nextProps.userResult.user) history.push('/');
-      else history.push('/join');
+      if (nextProps.userResult.user) {
+        // Send user id to Google Analytics
+        if (!isEnvLocalhost) ReactGA.set({ userId: nextProps.userResult.user.id });
+
+        // Reroute to root
+        history.push('/');
+      } else history.push('/join');
     }
   }
 

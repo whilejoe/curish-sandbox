@@ -31,6 +31,7 @@
     "react-app-rewire-preact": "^1.0.1",
     "react-app-rewire-styled-components": "^3.0.0",
     "react-dom": "^16.2.0",
+    "react-ga": "^2.4.1",
     "react-headroom": "^2.2.2",
     "react-portal": "^4.1.2",
     "react-quill": "1.2.3",
