@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ICONS = {
   story: require('material-design-icons-svg/paths/feather'),
-  message: require('material-design-icons-svg/paths/message-text-outline'),
+  message: require('material-design-icons-svg/paths/comment-multiple-outline'),
   sendMessage: require('material-design-icons-svg/paths/send'),
   user: require('material-design-icons-svg/paths/account'),
   // menu: require('material-design-icons-svg/paths/menu'),
