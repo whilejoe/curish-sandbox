@@ -22,21 +22,15 @@ class Analytics extends React.Component {
     const query = qs.parse(search, { ignoreQueryPrefix: true });
     if (query.q !== undefined && query.q.length) {
       this.trackPage(`${pathname}${search}`);
-    }
+    } else this.trackPage(`${pathname}`);
   }
 
   // Assume if user has stopped typing for 5 seconds we should register the url
   debouncedUpdateLocation = debounce(this.updateLocation, 5000);
 
   componentWillReceiveProps(nextProps) {
-    const { location, options } = this.props;
-    const nextLocation = nextProps.location;
-    const nextOptions = nextProps.options;
-
-    // Options Change
-    if (options !== nextOptions && Object.keys(nextOptions).length) {
-      GoogleAnalytics.set(nextOptions);
-    }
+    const { location } = this.props;
+    const { location: nextLocation } = nextProps;
 
     // Route Change
     if (location !== nextLocation) {
