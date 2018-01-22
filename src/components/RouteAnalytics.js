@@ -16,27 +16,27 @@ class Analytics extends React.Component {
     GoogleAnalytics.pageview(page);
   }
 
-  updateLocation() {
+  updateWithSearch() {
     const { pathname, search } = this.props.location;
     // TODO: Revisit to decide if we want to send search params to GA or let Algolia handle
     const query = qs.parse(search, { ignoreQueryPrefix: true });
     if (query.q !== undefined && query.q.length) {
       this.trackPage(`${pathname}${search}`);
-    } else this.trackPage(`${pathname}`);
+    }
   }
 
   // Assume if user has stopped typing for 5 seconds we should register the url
-  debouncedUpdateLocation = debounce(this.updateLocation, 5000);
+  debouncedUpdateWithSearch = debounce(this.updateWithSearch, 5000);
 
   componentWillReceiveProps(nextProps) {
     const { location } = this.props;
-    const { location: nextLocation } = nextProps;
+    const nextLocation = nextProps.location;
 
     // Route Change
     if (location !== nextLocation) {
       // Debounce update when search params changes
-      if (location.search !== nextLocation.search) this.debouncedUpdateLocation();
-      else this.updateLocation();
+      if (location.search !== nextLocation.search) this.debouncedUpdateWithSearch();
+      else this.trackPage(`${nextLocation.pathname}`);
     }
   }
 
