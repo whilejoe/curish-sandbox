@@ -38,7 +38,7 @@ class Search extends Component {
     if (this.props.searchForm.search) this.props.clearSearchForm();
   }
 
-  prepareQueryAndRoute() {
+  prepareQueryAndRoute = () => {
     const q = this.props.searchForm.search;
     const query = { q };
     const str = qs.stringify(query);
@@ -46,9 +46,9 @@ class Search extends Component {
       pathname: '/search',
       search: str
     });
-  }
+  };
 
-  debouncedOnChange = debounce(() => this.prepareQueryAndRoute(), 350);
+  debouncedOnChange = debounce(this.prepareQueryAndRoute, 350);
 
   executeSearch = async queryString => {
     const query = qs.parse(queryString, { ignoreQueryPrefix: true });

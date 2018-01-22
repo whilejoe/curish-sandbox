@@ -27,8 +27,13 @@ import NewMessage from 'routes/NewMessage';
 import Notifications from 'routes/Notifications';
 import NoMatch from 'routes/NoMatch';
 import AppFade from 'components/AppFade';
+import RouteAnalytics from 'components/RouteAnalytics';
+import { isEnvLocalhost } from 'utils/env';
+
+const TRACK_ANALYTICS = !isEnvLocalhost;
 
 const App = ({ userData: user }) => {
+  const analyticsOptions = user.user ? { userId: user.user.id } : {};
   return (
     <AppFade>
       <FlexApp>
@@ -119,6 +124,7 @@ const App = ({ userData: user }) => {
           }}
         />
       </FlexApp>
+      {TRACK_ANALYTICS && !user.loading && <RouteAnalytics options={analyticsOptions} />}
     </AppFade>
   );
 };
