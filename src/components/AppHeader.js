@@ -84,7 +84,6 @@ const LoginButton = ButtonLink.extend`
   &:focus,
   &.active {
     background-color: ${THEME[PRIMARY_KEY]};
-    color: currentColor;
   }
 `;
 
