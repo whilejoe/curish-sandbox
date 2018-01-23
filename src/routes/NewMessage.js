@@ -3,17 +3,13 @@ import { graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 import CreateChatMutation from 'graphql/CreateChatMutation.graphql';
 import AllUsersQuery from 'graphql/AllUsersQuery.graphql';
-import StoryContainer from 'components/StoryContainer';
+import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import SelectUserCard from 'components/SelectUserCard';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
-
-// const USERS_MOCK = [
-//   { id: 1, userName: 'aristippus', fullName: 'Joe Piemeisel', photoURL: '' },
-//   { id: 2, userName: 'jocelyn', fullName: 'Jocelyn', photoURL: '' }
-// ];
 
 const NewMessage = ({
   userResult,
@@ -23,23 +19,25 @@ const NewMessage = ({
   ...props
 }) => {
   return (
-    <StoryContainer>
-      <SubHeaderPortal>
-        <Flex align="center" justify="space-between">
-          <FlexContent space="self">
-            <SubHeaderTitle>To</SubHeaderTitle>
-          </FlexContent>
-          <FlexContent space="self" hide={!selectedUsersIds.length}>
-            <Button onClick={() => createChat(selectedUsersIds)}>New Chat</Button>
-          </FlexContent>
-        </Flex>
-      </SubHeaderPortal>
-      {!loading &&
-        userResult.user &&
-        allUsers.map(
-          user => user.id !== userResult.user.id && <SelectUserCard key={user.id} user={user} />
-        )}
-    </StoryContainer>
+    <PageContainer>
+      <Container>
+        <SubHeaderPortal>
+          <Flex align="center" justify="space-between">
+            <FlexContent space="self">
+              <SubHeaderTitle>To</SubHeaderTitle>
+            </FlexContent>
+            <FlexContent space="self" hide={!selectedUsersIds.length}>
+              <Button onClick={() => createChat(selectedUsersIds)}>New Chat</Button>
+            </FlexContent>
+          </Flex>
+        </SubHeaderPortal>
+        {!loading &&
+          userResult.user &&
+          allUsers.map(
+            user => user.id !== userResult.user.id && <SelectUserCard key={user.id} user={user} />
+          )}
+      </Container>
+    </PageContainer>
   );
 };
 

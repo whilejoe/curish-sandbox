@@ -3,12 +3,10 @@ import { graphql, compose } from 'react-apollo';
 import styled from 'styled-components';
 import ChatByIdQuery from 'graphql/ChatByIdQuery.graphql';
 import CreateMessageMutation from 'graphql/CreateMessageMutation.graphql';
-import StoryContainer from 'components/StoryContainer';
 import Container from 'components/Container';
 import { Flex, FlexContent } from 'components/Flex';
 import { baseInputMixin } from 'components/InputGroup';
 import Icon from 'components/Icon';
-// import { FlexHeight, FlexHeightMain, FlexFooter } from 'components/FlexApp';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 import SrOnly from 'components/SrOnly';
@@ -130,7 +128,7 @@ class Message extends React.Component {
     const { userResult, loading, messages, chatUsers } = this.props;
     const { messageValue } = this.state;
 
-    if (loading) return <StoryContainer>Loading...</StoryContainer>;
+    if (loading) return <Container>Loading...</Container>;
     else if (!userResult.user) return null;
     return [
       <SubHeaderPortal key="portal">
@@ -166,16 +164,9 @@ class Message extends React.Component {
                 <label htmlFor="write-message">write a message</label>
               </SrOnly>
               <MessageInput
-                // autoFocus
                 autoComplete="off"
                 id="write-message"
-                // label="Write Message"
-                // hideLabel
-                // type="text"
                 placeholder="write a message"
-                // model="chat.message"
-                // validators={{ required: value => !value }}
-                // clearable
                 value={messageValue}
                 onChange={this.handleChange}
               />

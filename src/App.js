@@ -48,7 +48,7 @@ const App = ({ userData: user }) => {
                 <Switch key={props.location.pathname} location={props.location}>
                   <FadeRoute exact path="/" component={Home} userResult={user} />
                   <FadeRoute path="/101" component={About} />
-                  <FadeRoute path="/search" component={SearchContainer} requireAuth />
+                  <FadeRoute path="/search" component={SearchContainer} />
                   <FadeRoute
                     path="/profile"
                     component={UserProfile}

@@ -1,18 +1,20 @@
 import React from 'react';
 import { Flex, FlexContent } from 'components/Flex';
 import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 
 const UserHome = ({ userResult }) => {
-  if (userResult.loading) return <PageContainer>Loading....</PageContainer>;
-  // add logic to redirect when user doesn't exist.
+  if (userResult.loading) return <Container>Loading....</Container>;
   return (
     <PageContainer>
-      <h1>Updates</h1>
-      <Flex gutters guttersVertical>
-        <FlexContent>
-          <p>placeholder</p>
-        </FlexContent>
-      </Flex>
+      <Container>
+        <h1>Updates</h1>
+        <Flex gutters guttersVertical>
+          <FlexContent>
+            <p>Is being built</p>
+          </FlexContent>
+        </Flex>
+      </Container>
     </PageContainer>
   );
 };

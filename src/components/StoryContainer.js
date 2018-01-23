@@ -6,9 +6,9 @@ const StoryContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
   padding-top: 0.8rem;
-  padding-right: 1rem;
+  padding-right: 0.8rem;
   padding-bottom: 1.25rem;
-  padding-left: 1rem;
+  padding-left: 0.8rem;
 `;
 
 export default StoryContainer;

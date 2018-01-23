@@ -104,7 +104,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
   return (
     <Header>
-      <Container>
+      <Container size="lg">
         {!isUserAuthed ? (
           <Flex gutters align="center">
             <FlexContent space="self">

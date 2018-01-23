@@ -69,7 +69,7 @@ class SubHeader extends Component {
     return (
       <Headroom pinStart={52}>
         <Header>
-          <Container style={{ height: '100%' }}>
+          <Container size="lg" style={{ height: '100%' }}>
             <div style={{ height: '100%', position: 'relative' }}>
               <Transition in={!showBack} mountOnEnter unmountOnExit timeout={DURATION}>
                 {status => {

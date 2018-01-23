@@ -5,7 +5,8 @@ import AllStoriesSearchQuery from 'graphql/AllStoriesSearchQuery.graphql';
 import StoryByIdQuery from 'graphql/StoryByIdQuery.graphql';
 import { Flex, FlexContent } from 'components/Flex';
 import InputGroup from 'components/InputGroup';
-import StoryContainer from 'components/StoryContainer';
+import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import StoryCard from 'components/StoryCard';
 import StoryCardLoading from 'components/StoryCardLoading';
 import Avatar from 'components/Avatar';
@@ -98,47 +99,53 @@ class Search extends Component {
     const { location, searchForm } = this.props;
     const { stories, users, isLoading } = this.state;
     return (
-      <StoryContainer>
-        <SearchInput>
-          <InputGroup
-            autoFocus={!searchForm.search}
-            id="search-curish"
-            label="Search Curish"
-            hideLabel
-            type="text"
-            placeholder="search story titles and tags, users"
-            model="search.search"
-            onChange={this.debouncedOnChange}
-            clearable
-          />
-        </SearchInput>
-        {isLoading ? (
-          [<StoryCardLoading key="1" />, <StoryCardLoading key="2" />, <StoryCardLoading key="3" />]
-        ) : (
-          <Flex gutters guttersVertical>
-            {stories.length > 0 && (
-              <FlexContent space={[100, { sm: 'reset' }]}>
-                {stories.map(story => (
-                  <StoryCard
-                    key={story.id}
-                    story={story}
-                    referrer={location}
-                    matchValue={searchForm.search}
-                    onMouseOverCallback={() => this.onTitleMouseOver(story)}
-                  />
-                ))}
-              </FlexContent>
-            )}
-            {users.length > 0 && (
-              <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
-                {users.map(user => (
-                  <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
-                ))}
-              </FlexContent>
-            )}
-          </Flex>
-        )}
-      </StoryContainer>
+      <PageContainer>
+        <Container>
+          <SearchInput>
+            <InputGroup
+              autoFocus={!searchForm.search}
+              id="search-curish"
+              label="Search Curish"
+              hideLabel
+              type="text"
+              placeholder="search story titles and tags, users"
+              model="search.search"
+              onChange={this.debouncedOnChange}
+              clearable
+            />
+          </SearchInput>
+          {isLoading ? (
+            [
+              <StoryCardLoading key="1" />,
+              <StoryCardLoading key="2" />,
+              <StoryCardLoading key="3" />
+            ]
+          ) : (
+            <Flex gutters guttersVertical>
+              {stories.length > 0 && (
+                <FlexContent space={[100, { sm: 'reset' }]}>
+                  {stories.map(story => (
+                    <StoryCard
+                      key={story.id}
+                      story={story}
+                      referrer={location}
+                      matchValue={searchForm.search}
+                      onMouseOverCallback={() => this.onTitleMouseOver(story)}
+                    />
+                  ))}
+                </FlexContent>
+              )}
+              {users.length > 0 && (
+                <FlexContent space={[100, { sm: 45, md: 30, lg: 25 }]}>
+                  {users.map(user => (
+                    <Avatar key={user.id} user={user} to={{ state: { referrer: location } }} />
+                  ))}
+                </FlexContent>
+              )}
+            </Flex>
+          )}
+        </Container>
+      </PageContainer>
     );
   }
 }

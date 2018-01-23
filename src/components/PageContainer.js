@@ -1,6 +1,7 @@
-import Container from 'components/Container';
+import styled from 'styled-components';
 
-const PageContainer = Container.extend`
+const PageContainer = styled.div`
+  position: relative;
   padding-top: 0.8rem;
   padding-bottom: 1.25rem;
 `;
