@@ -39,12 +39,7 @@ const Home = ({ userResult, searchModel, history }) => {
                 }
               }}
             >
-              <InputGroup
-                type="text"
-                placeholder="search story titles or tags"
-                autoFocus
-                model="search.param"
-              />
+              <InputGroup type="text" placeholder="search curish" autoFocus model="search.param" />
               <Button type="submit">Search</Button>
             </form>
           </SearchContainer>
