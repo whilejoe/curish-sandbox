@@ -14,7 +14,7 @@ const ProfileImage = styled.img`
 `;
 
 const ProfileIcon = styled(Icon)`
-  margin-right: ${props => (!props.imageOnly ? '.35rem' : 0)};
+  margin-right: ${props => (!props.imageOnly ? '.2rem' : 0)};
 `;
 
 // TODO: Decide if this should use Link of NavLink
@@ -23,7 +23,6 @@ const AvatarLink = styled(Link)`
   &:focus,
   &.active {
     & ${ProfileImage}, & ${ProfileIcon} {
-      color: ${THEME[PRIMARY_KEY]};
       border-color: ${THEME[PRIMARY_KEY]};
     }
   }
