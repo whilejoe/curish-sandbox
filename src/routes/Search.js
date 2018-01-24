@@ -21,7 +21,8 @@ class Search extends Component {
   state = {
     stories: [],
     users: [],
-    isLoading: false
+    isLoading: false,
+    noResults: false
   };
 
   componentWillMount() {
@@ -30,8 +31,12 @@ class Search extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.location.search !== nextProps.location.search && nextProps.location.search) {
-      this.executeSearch(nextProps.location.search);
+    if (this.props.location.search !== nextProps.location.search) {
+      if (nextProps.location.search) this.executeSearch(nextProps.location.search);
+      else if (nextProps.searchForm.search) {
+        this.props.clearSearchForm();
+        this.resetSearchState();
+      }
     }
   }
 
@@ -43,7 +48,7 @@ class Search extends Component {
     const q = this.props.searchForm.search;
     const query = { q };
     const str = qs.stringify(query);
-    return this.props.history.push({
+    this.props.history.replace({
       pathname: '/search',
       search: str
     });
@@ -74,12 +79,13 @@ class Search extends Component {
         this.setState({
           isLoading: false,
           stories: allStories,
-          users: allUsers
+          users: allUsers,
+          noResults: !allStories.length && !allUsers.length
         });
       } else {
         // Reset state and remove search query when input is emptied
-        this.setState({ stories: [], users: [], isLoading: false });
-        this.props.history.push({ pathname: '/search' });
+        this.resetSearchState();
+        this.props.history.replace({ pathname: '/search' });
       }
     }
   };
@@ -95,9 +101,18 @@ class Search extends Component {
     }
   };
 
+  resetSearchState() {
+    this.setState({
+      stories: [],
+      users: [],
+      isLoading: false,
+      noResults: false
+    });
+  }
+
   render() {
     const { location, searchForm } = this.props;
-    const { stories, users, isLoading } = this.state;
+    const { stories, users, isLoading, noResults } = this.state;
     return (
       <PageContainer>
         <Container>
@@ -120,6 +135,8 @@ class Search extends Component {
               <StoryCardLoading key="2" />,
               <StoryCardLoading key="3" />
             ]
+          ) : noResults ? (
+            <p>No Results for {searchForm.search}</p>
           ) : (
             <Flex gutters guttersVertical>
               {stories.length > 0 && (

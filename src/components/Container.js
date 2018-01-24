@@ -11,8 +11,8 @@ const Container = styled.div`
   max-width: ${props => THEME[props.size] || THEME['md']};
   margin-right: auto;
   margin-left: auto;
-  padding-right: 0.8rem;
-  padding-left: 0.8rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 `;
 
 export default Container;
