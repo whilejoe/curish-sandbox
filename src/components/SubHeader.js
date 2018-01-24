@@ -49,16 +49,17 @@ class SubHeader extends Component {
   };
 
   componentWillMount() {
-    if (this.props.location.state && this.props.location.state.referrer) {
+    const { location } = this.props;
+    if (location.state && location.state.referrer) {
       this.setState({ showBack: true });
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.state !== this.props.location.state) {
-      if (nextProps.location.state && nextProps.location.state.referrer) {
-        this.setState({ showBack: true });
-      } else this.setState({ showBack: false });
+      const { location } = nextProps;
+      const showBack = !!(location.state && location.state.referrer);
+      if (showBack !== this.state.showBack) this.setState({ showBack });
     }
   }
 

@@ -108,7 +108,6 @@ const App = ({ userData: user }) => {
                     path="/tags/:key?"
                     component={TagsContainer}
                     userResult={user}
-                    requireAuth
                     scrollToTop
                   />
                   <FadeRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
