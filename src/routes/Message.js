@@ -82,12 +82,6 @@ class Message extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.loading !== nextProps.loading && !nextProps.loading) {
-      // window.scrollTo(0, document.body.scrollHeight);
-    }
-  }
-
   handleChange = e => {
     this.setState({ messageValue: e.target.value });
   };
@@ -116,7 +110,6 @@ class Message extends React.Component {
   };
 
   onRef = node => {
-    // console.log('onRef containerRef', this.containerRef);
     this.containerRef = node;
   };
 
@@ -125,7 +118,7 @@ class Message extends React.Component {
   }
 
   render() {
-    const { userResult, loading, messages, chatUsers } = this.props;
+    const { userResult, loading, messages, chatUsers = [] } = this.props;
     const { messageValue } = this.state;
 
     if (loading) return <Container>Loading...</Container>;

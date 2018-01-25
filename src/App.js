@@ -58,13 +58,6 @@ const App = ({ userData: user }) => {
               userResult={user}
               requireAuth
             />
-            {/* <EnhancedRoute
-                    path="/messages/:id?"
-                    component={Messages}
-                    userResult={user}
-                    requireAuth
-                  /> */}
-            {/* <MessagesSwitch userResult={user} parentLocation={props.location} /> */}
             <EnhancedRoute
               path="/messages"
               component={Messages}

@@ -14,7 +14,7 @@ const EnhancedRoute = ({ component: Component, requireAuth, scrollToTop, ...rest
         return requireAuth && !isAuthed() ? (
           <Redirect to="/login" />
         ) : (
-          <Component {...merged}> {scrollToTop && <ScrollToTopOnMount />}</Component>
+          <Component {...merged}>{scrollToTop && <ScrollToTopOnMount />}</Component>
         );
       }}
     />
