@@ -14,6 +14,15 @@ import { SUBNAV_PORTAL_ID } from 'constants/portals';
 
 const DURATION = 160;
 
+const SHOW_ON_ROUTES = {
+  '/': true,
+  '/stories': true,
+  '/messages': true,
+  '/notifications': true,
+  '/search': true,
+  '/profile': true
+};
+
 const STYLE = {
   position: 'absolute',
   right: 0,
@@ -64,15 +73,15 @@ class SubHeader extends Component {
   }
 
   render() {
-    const { location: { state } } = this.props;
+    const { location: { state, pathname } } = this.props;
     const { showBack } = this.state;
-    if (!isAuthed()) return null;
+    const hide = !isAuthed() || !SHOW_ON_ROUTES[pathname];
     return (
       <Headroom pinStart={52}>
         <Header>
           <Container size="lg" style={{ height: '100%' }}>
             <div style={{ height: '100%', position: 'relative' }}>
-              <Transition in={!showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              <Transition in={!showBack && !hide} mountOnEnter unmountOnExit timeout={DURATION}>
                 {status => {
                   return (
                     <NavTransitioner

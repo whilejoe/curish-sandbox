@@ -1,7 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import FadeRoute from 'components/FadeRoute';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { Switch } from 'react-router-dom';
+import EnhancedRoute from 'components/EnhancedRoute';
 import { FlexApp, FlexMain, FlexHeader } from 'components/FlexApp';
 import { graphql } from 'react-apollo';
 import UserProfileQuery from 'graphql/UserProfileQuery.graphql';
@@ -41,87 +40,76 @@ const App = ({ userData: user }) => {
           <AppHeader userResult={user} />
           <SubHeader userResult={user} />
         </FlexHeader>
-        <Route
-          children={props => {
-            return (
-              <TransitionGroup component={FlexMain}>
-                <Switch key={props.location.pathname} location={props.location}>
-                  <FadeRoute exact path="/" component={Home} userResult={user} />
-                  <FadeRoute path="/101" component={About} />
-                  <FadeRoute path="/search" component={SearchContainer} />
-                  <FadeRoute
-                    path="/profile"
-                    component={UserProfile}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/stories"
-                    component={UserStoriesContainer}
-                    userResult={user}
-                    requireAuth
-                  />
-                  {/* <FadeRoute
+        <FlexMain>
+          <Switch>
+            <EnhancedRoute exact path="/" component={Home} userResult={user} />
+            <EnhancedRoute path="/101" component={About} />
+            <EnhancedRoute path="/search" component={SearchContainer} />
+            <EnhancedRoute
+              path="/profile"
+              component={UserProfile}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <EnhancedRoute
+              path="/stories"
+              component={UserStoriesContainer}
+              userResult={user}
+              requireAuth
+            />
+            {/* <EnhancedRoute
                     path="/messages/:id?"
                     component={Messages}
                     userResult={user}
                     requireAuth
                   /> */}
-                  {/* <MessagesSwitch userResult={user} parentLocation={props.location} /> */}
-                  <FadeRoute
-                    path="/messages"
-                    component={Messages}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/new-message"
-                    component={NewMessage}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/message/:id"
-                    component={Message}
-                    userResult={user}
-                    requireAuth
-                  />
-                  <FadeRoute path="/notifications" component={Notifications} userResult={user} />
-                  <FadeRoute
-                    path="/write"
-                    component={StoryNewContainer}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/edit/:id"
-                    component={StoryEditContainer}
-                    userResult={user}
-                    requireAuth
-                    scrollToTop
-                  />
-                  <FadeRoute
-                    path="/tags/:key?"
-                    component={TagsContainer}
-                    userResult={user}
-                    scrollToTop
-                  />
-                  <FadeRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
-                  <FadeRoute path="/join" component={JoinContainer} userResult={user} requireAuth />
-                  <FadeRoute path="/login" component={LoginContainer} />
-                  <FadeRoute path="/verify" component={VerifyContainer} />
-                  <FadeRoute path="/callback" component={Callback} userResult={user} />
-                  <FadeRoute path="/:userName?" component={ProfileContainer} />
-                  <FadeRoute component={NoMatch} />
-                </Switch>
-              </TransitionGroup>
-            );
-          }}
-        />
+            {/* <MessagesSwitch userResult={user} parentLocation={props.location} /> */}
+            <EnhancedRoute
+              path="/messages"
+              component={Messages}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <EnhancedRoute
+              path="/new-message"
+              component={NewMessage}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <EnhancedRoute path="/message/:id" component={Message} userResult={user} requireAuth />
+            <EnhancedRoute path="/notifications" component={Notifications} userResult={user} />
+            <EnhancedRoute
+              path="/write"
+              component={StoryNewContainer}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <EnhancedRoute
+              path="/edit/:id"
+              component={StoryEditContainer}
+              userResult={user}
+              requireAuth
+              scrollToTop
+            />
+            <EnhancedRoute
+              path="/tags/:key?"
+              component={TagsContainer}
+              userResult={user}
+              scrollToTop
+            />
+            <EnhancedRoute path="/story/:id" component={StoryPublishedContainer} scrollToTop />
+            <EnhancedRoute path="/join" component={JoinContainer} userResult={user} requireAuth />
+            <EnhancedRoute path="/login" component={LoginContainer} />
+            <EnhancedRoute path="/verify" component={VerifyContainer} />
+            <EnhancedRoute path="/callback" component={Callback} userResult={user} />
+            <EnhancedRoute path="/:userName?" component={ProfileContainer} />
+            <EnhancedRoute component={NoMatch} />
+          </Switch>
+        </FlexMain>
       </FlexApp>
       {TRACK_ANALYTICS && !user.loading && <RouteAnalytics options={analyticsOptions} />}
     </AppFade>
