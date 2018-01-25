@@ -26,32 +26,45 @@ class Search extends Component {
   };
 
   componentWillMount() {
-    const { location } = this.props;
+    const { location, searchForm, clearSearchForm } = this.props;
     if (location.search) this.executeSearch(location.search);
+    else if (searchForm.search) clearSearchForm(); // Component doesn't always unmount so clear form
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location.search !== nextProps.location.search) {
-      if (nextProps.location.search) this.executeSearch(nextProps.location.search);
-      else if (nextProps.searchForm.search) {
-        this.props.clearSearchForm();
-        this.resetSearchState();
+      if (nextProps.location.search) {
+        this.executeSearch(nextProps.location.search);
+      } else {
+        // Clear state if input is cleared
+        this.setState({
+          stories: [],
+          users: [],
+          isLoading: false,
+          noResults: false
+        });
       }
     }
   }
 
   componentWillUnMount() {
-    if (this.props.searchForm.search) this.props.clearSearchForm();
+    const { searchForm, clearSearchForm } = this.props;
+    if (searchForm.search) clearSearchForm();
   }
 
   prepareQueryAndRoute = () => {
-    const q = this.props.searchForm.search;
-    const query = { q };
-    const str = qs.stringify(query);
-    this.props.history.replace({
-      pathname: '/search',
-      search: str
-    });
+    const { searchForm, history } = this.props;
+    const q = searchForm.search;
+    if (q) {
+      const query = { q };
+      const str = qs.stringify(query);
+      history.replace({
+        pathname: '/search',
+        search: str
+      });
+    } else {
+      history.replace('/search'); // Remove query prefix
+    }
   };
 
   debouncedOnChange = debounce(this.prepareQueryAndRoute, 350);
@@ -82,15 +95,12 @@ class Search extends Component {
           users: allUsers,
           noResults: !allStories.length && !allUsers.length
         });
-      } else {
-        // Reset state and remove search query when input is emptied
-        this.resetSearchState();
-        this.props.history.replace({ pathname: '/search' });
       }
     }
   };
 
   onTitleMouseOver = async story => {
+    // Prefetch data
     if (story) {
       const { client } = this.props;
       const { id } = story;
@@ -100,15 +110,6 @@ class Search extends Component {
       });
     }
   };
-
-  resetSearchState() {
-    this.setState({
-      stories: [],
-      users: [],
-      isLoading: false,
-      noResults: false
-    });
-  }
 
   render() {
     const { location, searchForm } = this.props;
