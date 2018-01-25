@@ -106,10 +106,10 @@ class SubHeader extends Component {
                   );
                 }}
               </Transition>
-              <Transition in={showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              <Transition in={showBack} timeout={DURATION}>
                 {status => {
                   return (
-                    <Flex align="center" style={STYLE}>
+                    <Flex align="center">
                       <BackButton
                         referrer={state && state.referrer}
                         status={status}
