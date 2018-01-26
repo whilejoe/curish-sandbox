@@ -93,24 +93,12 @@ class Message extends React.Component {
     });
   }
 
-  componentDidMount() {
-    if (!this.props.loading && this.props.messages.length > 0) {
-      console.log('did mount');
-      this.scrollIntoView();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.messages && this.props.messages.length !== nextProps.messages.length) {
-      console.log('messages dont equal');
-      this.scrollIntoView();
-    }
-  }
-
   componentDidUpdate(prevProps) {
-    if (prevProps.loading && !this.props.loading && this.props.messages.length > 0) {
-      console.log('did update');
-      // this.scrollIntoView();
+    if (prevProps.messages.length !== this.props.messages.length && this.props.messages.length) {
+      // Timeout needed for browser to paint
+      setTimeout(() => {
+        this.scrollIntoView();
+      }, 0);
     }
   }
 
@@ -136,7 +124,6 @@ class Message extends React.Component {
 
       if (result.data) {
         console.log('result', result);
-        // this.scrollIntoView();
         this.setState({ messageValue: '' }); // Reset input
       }
     }
@@ -147,10 +134,7 @@ class Message extends React.Component {
   };
 
   scrollIntoView() {
-    if (this.containerRef) {
-      console.log('scroll called');
-      this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }
+    if (this.containerRef) this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
 
   render() {
@@ -222,29 +206,24 @@ export default compose(
       loading,
       chatId: Chat.id,
       chatUsers: Chat.users,
-      messages:
-        Chat.messages &&
-        Chat.messages.map(m => ({ ...m, dateFromNow: getTimeFromNow(m.createdAt) })),
+      messages: Chat.messages
+        ? Chat.messages.map(m => ({ ...m, dateFromNow: getTimeFromNow(m.createdAt) }))
+        : [],
       subscribeToNewMessages: params => {
         return subscribeToMore({
           document: OnMessageAdded,
           variables: { id: params.id },
           updateQuery: (prev, { subscriptionData }) => {
-            console.log('subscriptionData', subscriptionData);
-            console.log('prev', prev);
-            if (!subscriptionData.data.Message) {
-              return prev;
-            }
+            if (!subscriptionData.data.Message) return prev;
 
             const newMessage = subscriptionData.data.Message.node;
-            // return { messages: { createdAt, from, id, text, Chat } };
             const updatedChat = {
               Chat: {
                 ...prev.Chat,
                 messages: [...prev.Chat.messages, newMessage]
               }
             };
-            console.log('updatedChat', updatedChat);
+
             return updatedChat;
           }
         });

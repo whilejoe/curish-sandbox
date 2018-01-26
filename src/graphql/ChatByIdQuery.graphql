@@ -7,7 +7,7 @@ query ChatByIdQuery($id: ID!) {
       id
       userName
     }
-    messages(last: 40) {
+    messages(last: 20) {
       id
       createdAt
       text
