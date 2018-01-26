@@ -88,13 +88,19 @@ class Message extends React.Component {
   };
 
   componentWillMount() {
-    this.props.subscribeToNewMessages({
-      id: this.props.match.params.id
-    });
+    const { subscribeToNewMessages, match } = this.props;
+    subscribeToNewMessages({ id: match.params.id });
+  }
+
+  componentDidMount() {
+    if (!this.props.loading && this.props.messages.length > 0) {
+      this.scrollIntoView();
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.messages.length !== this.props.messages.length && this.props.messages.length) {
+    const { messages } = this.props;
+    if (prevProps.messages.length !== messages.length && messages.length) {
       // Timeout needed for browser to paint
       setTimeout(() => {
         this.scrollIntoView();

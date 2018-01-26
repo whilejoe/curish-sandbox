@@ -1,40 +1,40 @@
 import ApolloClient from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
+import { ApolloLink, split } from 'apollo-link';
 import { RetryLink } from 'apollo-link-retry';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { BatchHttpLink } from 'apollo-link-batch-http';
 import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
 import { getIdToken, logout } from 'utils/AuthService';
 
 // Create Cache
 const cache = new InMemoryCache({
   dataIdFromObject: o => o.id,
   addTypename: true
-  // fragmentMatcher: // matcher,
-  // cacheResolvers: // cache resolvers
 });
 
-const hasSubscriptionOperation = ({ query: { definitions } }) =>
-  definitions.some(
-    ({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription'
-  );
+// Batched HTTP Link
+const batchedHttpLink = new BatchHttpLink({
+  uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
+});
 
-const batchedLinkWithSubscription = ApolloLink.split(
-  hasSubscriptionOperation,
-  new WebSocketLink({
-    uri: process.env.REACT_APP_GRAPHCOOL_SUBSCRIPTION_ENDPOINT,
-    options: { reconnect: true }
-  }),
-  new BatchHttpLink({
-    uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
-  })
+// Subscription link
+const wsLink = new WebSocketLink({
+  uri: process.env.REACT_APP_GRAPHCOOL_SUBSCRIPTION_ENDPOINT,
+  options: { reconnect: true }
+});
+
+// Send data to each link depending on what kind of operation is being sent
+const batchedLinkWithSubscription = split(
+  // Split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  batchedHttpLink
 );
-
-// Batch Requests
-// const batchedHTTPLink = new BatchHttpLink({
-//   uri: process.env.REACT_APP_GRAPHCOOL_ENDPOINT
-// });
 
 // Attempt Request Again on Error
 const retryLink = new RetryLink();
