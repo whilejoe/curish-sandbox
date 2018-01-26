@@ -23,7 +23,7 @@ const batchedHttpLink = new BatchHttpLink({
 const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_GRAPHCOOL_SUBSCRIPTION_ENDPOINT,
   options: {
-    timeout: 10000,
+    timeout: 30000,
     reconnect: true,
     connectionParams: {
       authToken: getIdToken
