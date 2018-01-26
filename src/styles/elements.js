@@ -63,9 +63,6 @@ injectGlobal`
     background-color: #fffefe;
     line-height: 1.4;
     color: ${copyFontColor};
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: auto;
-    text-rendering: optimizeLegibility;
   }
 
   p {

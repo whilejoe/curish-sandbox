@@ -65,15 +65,13 @@ const BadgeContainer = styled.div`
 
 const Badge = styled.span`
   display: inline-block;
-  padding: 0.1rem 0.8rem;
-  color: ${props => (props.you ? 'white' : '#555')};
+  padding: 0.2rem 0.6rem;
+  color: ${props => (props.you ? PALETTE.BODY : 'inherit')};
   background-color: ${props => (props.you ? THEME[TERTIARY_KEY] : '#e6e6e6')};
-  font-size: 0.92em;
+  font-size: 0.9em;
   font-weight: 600;
-  line-height: 1.6;
-  vertical-align: text-top;
+  line-height: 1.2;
   border-radius: 24px;
-  text-align: justify;
 `;
 
 const TimeStamp = styled.span`
