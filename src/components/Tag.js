@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'components/Link';
-import { THEME, PRIMARY_KEY, SECONDARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY, PALETTE } from 'constants/theme';
 
 export const TagsContainer = styled.div`
   margin: -0.2rem;
@@ -13,7 +13,7 @@ export const Tag = styled.span`
   padding: 0.1rem 0.35rem;
   font-size: 0.7em;
   line-height: 1.2;
-  background-color: ${props => (props.matches ? THEME[SECONDARY_KEY] : '#eee')};
+  background-color: ${props => (props.matches ? PALETTE.SEARCH : '#eee')};
   color: ${props => (props.matches ? 'white' : 'inherit')};
   font-weight: 600;
   border-radius: 2px;

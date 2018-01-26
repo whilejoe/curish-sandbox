@@ -10,10 +10,10 @@ import Icon from 'components/Icon';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 import SrOnly from 'components/SrOnly';
-import { THEME, PRIMARY_KEY, SECONDARY_KEY } from 'constants/theme';
+import { THEME, PRIMARY_KEY, TERTIARY_KEY, PALETTE } from 'constants/theme';
 import { darken } from 'polished';
 
-const MESSAGE_COLOR = THEME[SECONDARY_KEY];
+const MESSAGE_COLOR = THEME[PRIMARY_KEY];
 const ACTIVE_COLOR = darken(0.27, MESSAGE_COLOR);
 
 const MessageFooter = styled.div`
@@ -24,8 +24,8 @@ const MessageFooter = styled.div`
   height: 50px;
   padding-right: 0.6rem;
   padding-left: 0.6rem;
-  background-color: ${MESSAGE_COLOR};
-  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
+  background-color: #eaeaea;
+  border-top: 1px solid;
 `;
 
 const MessageContainer = styled.div`
@@ -35,12 +35,20 @@ const MessageContainer = styled.div`
 
 const MessageInput = styled.input`
   ${baseInputMixin};
-  padding: 0.4rem 0.6rem;
-  border: none;
+  padding: 0.35rem 0.6rem;
+  background-color: inherit;
+  border-color: #b9b9b9;
+  border-radius: 2px;
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
+    background-color: ${PALETTE.BODY};
+  }
 `;
 
 const SendButton = styled.button`
-  color: ${props => (props.isActive ? ACTIVE_COLOR : 'white')};
+  color: ${props => (props.isActive ? ACTIVE_COLOR : '#b9b9b9')};
 
   &:hover,
   &:focus {
@@ -55,14 +63,15 @@ const BadgeContainer = styled.div`
 
 const Badge = styled.span`
   display: inline-block;
-  padding: 0.15rem 0.6rem;
+  padding: 0.1rem 0.8rem;
   color: ${props => (props.you ? 'white' : '#555')};
-  background-color: ${props => (props.you ? THEME[PRIMARY_KEY] : '#e6e6e6')};
-  font-size: 0.9em;
+  background-color: ${props => (props.you ? THEME[TERTIARY_KEY] : '#e6e6e6')};
+  font-size: 0.92em;
   font-weight: 600;
   line-height: 1.6;
   vertical-align: text-top;
-  border-radius: 20px;
+  border-radius: 24px;
+  text-align: justify;
 `;
 
 class Message extends React.Component {
@@ -158,6 +167,7 @@ class Message extends React.Component {
               </SrOnly>
               <MessageInput
                 autoComplete="off"
+                autoFocus
                 id="write-message"
                 placeholder="write a message"
                 value={messageValue}

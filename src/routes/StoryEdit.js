@@ -93,7 +93,7 @@ class StoryEdit extends Component {
                 {bodyDelta && (
                   <Modal
                     key="modal"
-                    trigger={<Button theme="secondary">Publish</Button>}
+                    trigger={<Button>Publish</Button>}
                     title={`Publish: ${titleText || 'Untitled'}`}
                   >
                     <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />

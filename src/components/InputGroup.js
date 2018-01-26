@@ -12,11 +12,11 @@ import 'abyss-form/lib/Checkbox/Checkbox.css';
 import { Flex, FlexContent } from 'components/Flex';
 import ErrorMessage from 'abyss-form/lib/ErrorMessage';
 import SrOnly from 'components/SrOnly';
-import { THEME, SECONDARY_KEY, ERROR_KEY } from 'constants/theme';
+import { THEME, ERROR_KEY, PALETTE } from 'constants/theme';
 import { rgba, darken } from 'polished';
 
 const COLOR = 'inherit';
-const ACTIVE_COLOR = THEME[SECONDARY_KEY];
+const ACTIVE_COLOR = PALETTE.SEARCH;
 const ERROR_COLOR = THEME[ERROR_KEY];
 
 const activeState = css`
@@ -184,6 +184,10 @@ export const InputSelect = styled(SelectList)`
     border-right: 1px solid ${darken(0.02, ACTIVE_COLOR)};
     padding: 0 8px;
     font-size: 1.3em;
+
+    &:hover {
+      color: currentColor;
+    }
   }
 
   &.Select--multi .Select-value-label {
