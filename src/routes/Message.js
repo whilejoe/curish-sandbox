@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import styled from 'styled-components';
 import ChatByIdQuery from 'graphql/ChatByIdQuery.graphql';
+import OnMessageAdded from 'graphql/OnMessageAdded.graphql';
 import CreateMessageMutation from 'graphql/CreateMessageMutation.graphql';
 import Container from 'components/Container';
 import { Flex, FlexContent } from 'components/Flex';
@@ -86,6 +87,12 @@ class Message extends React.Component {
     messageValue: ''
   };
 
+  componentWillMount() {
+    this.props.subscribeToNewMessages({
+      id: this.props.match.params.id
+    });
+  }
+
   componentDidMount() {
     if (!this.props.loading && this.props.messages.length > 0) {
       console.log('did mount');
@@ -93,10 +100,17 @@ class Message extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.messages && this.props.messages.length !== nextProps.messages.length) {
+      console.log('messages dont equal');
+      this.scrollIntoView();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.loading && !this.props.loading && this.props.messages.length > 0) {
       console.log('did update');
-      this.scrollIntoView();
+      // this.scrollIntoView();
     }
   }
 
@@ -122,7 +136,7 @@ class Message extends React.Component {
 
       if (result.data) {
         console.log('result', result);
-        this.scrollIntoView();
+        // this.scrollIntoView();
         this.setState({ messageValue: '' }); // Reset input
       }
     }
@@ -133,7 +147,10 @@ class Message extends React.Component {
   };
 
   scrollIntoView() {
-    if (this.containerRef) this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    if (this.containerRef) {
+      console.log('scroll called');
+      this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
   }
 
   render() {
@@ -201,13 +218,37 @@ export default compose(
   graphql(ChatByIdQuery, {
     name: 'chatQuery',
     options: ({ match }) => ({ variables: { id: match.params.id } }),
-    props: ({ chatQuery: { loading, Chat = {} } }) => ({
+    props: ({ chatQuery: { loading, Chat = {}, subscribeToMore } }) => ({
       loading,
       chatId: Chat.id,
       chatUsers: Chat.users,
       messages:
         Chat.messages &&
-        Chat.messages.map(m => ({ ...m, dateFromNow: getTimeFromNow(m.createdAt) }))
+        Chat.messages.map(m => ({ ...m, dateFromNow: getTimeFromNow(m.createdAt) })),
+      subscribeToNewMessages: params => {
+        return subscribeToMore({
+          document: OnMessageAdded,
+          variables: { id: params.id },
+          updateQuery: (prev, { subscriptionData }) => {
+            console.log('subscriptionData', subscriptionData);
+            console.log('prev', prev);
+            if (!subscriptionData.data.Message) {
+              return prev;
+            }
+
+            const newMessage = subscriptionData.data.Message.node;
+            // return { messages: { createdAt, from, id, text, Chat } };
+            const updatedChat = {
+              Chat: {
+                ...prev.Chat,
+                messages: [...prev.Chat.messages, newMessage]
+              }
+            };
+            console.log('updatedChat', updatedChat);
+            return updatedChat;
+          }
+        });
+      }
     })
   }),
   graphql(CreateMessageMutation, { name: 'createMessage' })

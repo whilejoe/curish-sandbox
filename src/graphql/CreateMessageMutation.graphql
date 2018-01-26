@@ -7,18 +7,6 @@ mutation CreateMessageMutation($chatId: ID!, $fromId: ID!, $text: String!) {
       id
       userName
     }
-    chat {
-      id
-      messages(last: 40) {
-        id
-        createdAt
-        text
-        from {
-          id
-          userName
-        }
-      }
-    }
   }
 }
 
