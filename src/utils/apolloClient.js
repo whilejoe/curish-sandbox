@@ -25,17 +25,17 @@ const wsLink = new WebSocketLink({
   options: {
     timeout: 30000,
     reconnect: true,
-    connectionParams: {
-      authToken: getIdToken
-    },
+    // reconnectionAttempts: 3,
+    // connectionParams: {
+    //   authorization: getIdToken
+    // },
     connectionCallback: error => {
       if (error) {
         console.error('SUBSCRIPTION CONNECTION ERRORED', error);
       } else {
         console.log('%cSUBSCRIPTION CONNECTION SUCCESS', 'color: seagreen; font-weight: bold;');
       }
-    },
-    reconnectionAttempts: 3
+    }
   }
 });
 
