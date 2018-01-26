@@ -12,6 +12,7 @@ import SubHeaderTitle from 'components/SubHeaderTitle';
 import SrOnly from 'components/SrOnly';
 import { THEME, PRIMARY_KEY, TERTIARY_KEY, PALETTE } from 'constants/theme';
 import { darken } from 'polished';
+import { getTimeFromNow } from 'utils/date';
 
 const MESSAGE_COLOR = THEME[PRIMARY_KEY];
 const ACTIVE_COLOR = darken(0.27, MESSAGE_COLOR);
@@ -40,6 +41,7 @@ const MessageInput = styled.input`
   border-color: #b9b9b9;
   border-radius: 2px;
   box-shadow: none;
+  transition: background-color 180ms ease-out;
 
   &:hover,
   &:focus {
@@ -57,7 +59,7 @@ const SendButton = styled.button`
 `;
 
 const BadgeContainer = styled.div`
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.65rem;
   text-align: ${props => (props.you ? 'right' : 'left')};
 `;
 
@@ -74,6 +76,13 @@ const Badge = styled.span`
   text-align: justify;
 `;
 
+const TimeStamp = styled.span`
+  display: block;
+  margin-top: 0.1em;
+  color: #a0a0a0;
+  font-size: 0.7em;
+`;
+
 class Message extends React.Component {
   state = {
     messageValue: ''
@@ -81,12 +90,14 @@ class Message extends React.Component {
 
   componentDidMount() {
     if (!this.props.loading && this.props.messages.length > 0) {
+      console.log('did mount');
       this.scrollIntoView();
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.loading && !this.props.loading && this.props.messages.length > 0) {
+      console.log('did update');
       this.scrollIntoView();
     }
   }
@@ -113,7 +124,8 @@ class Message extends React.Component {
 
       if (result.data) {
         console.log('result', result);
-        this.setState({ messageValue: '' });
+        this.scrollIntoView();
+        this.setState({ messageValue: '' }); // Reset input
       }
     }
   };
@@ -127,7 +139,7 @@ class Message extends React.Component {
   }
 
   render() {
-    const { userResult, loading, messages, chatUsers = [] } = this.props;
+    const { userResult, loading, messages = [], chatUsers = [] } = this.props;
     const { messageValue } = this.state;
 
     if (loading) return <Container>Loading...</Container>;
@@ -153,6 +165,7 @@ class Message extends React.Component {
               return (
                 <BadgeContainer key={message.id} you={you}>
                   <Badge you={you}>{message.text}</Badge>
+                  <TimeStamp>{message.dateFromNow}</TimeStamp>
                 </BadgeContainer>
               );
             })}
@@ -194,7 +207,9 @@ export default compose(
       loading,
       chatId: Chat.id,
       chatUsers: Chat.users,
-      messages: Chat.messages
+      messages:
+        Chat.messages &&
+        Chat.messages.map(m => ({ ...m, dateFromNow: getTimeFromNow(m.createdAt) }))
     })
   }),
   graphql(CreateMessageMutation, { name: 'createMessage' })

@@ -17,7 +17,7 @@ const Messages = ({ allUserChats, location, ...props }) => {
           to={{ pathname: '/new-message', state: { referrer: location } }}
           title="new message"
         />
-        {allUserChats.user &&
+        {allUserChats.user && allUserChats.user.chats.length ? (
           allUserChats.user.chats.map(chat => {
             return (
               <Card key={chat.id}>
@@ -26,7 +26,10 @@ const Messages = ({ allUserChats, location, ...props }) => {
                 </Link>
               </Card>
             );
-          })}
+          })
+        ) : (
+          <p>No chats yet :(</p>
+        )}
       </Container>
     </PageContainer>
   );
