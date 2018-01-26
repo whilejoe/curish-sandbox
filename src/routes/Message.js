@@ -38,10 +38,10 @@ const MessageContainer = styled.div`
 
 const MessageInput = styled.input`
   ${baseInputMixin};
-  padding: 0.35rem 0.6rem;
+  padding: 0.45rem 0.6rem;
   background-color: inherit;
   border-color: #cacaca;
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: none;
   transition: background-color 180ms ease-out, color 180ms ease-out;
 
@@ -95,7 +95,8 @@ const TimeStamp = styled.span`
 
 class Message extends React.Component {
   state = {
-    messageValue: ''
+    messageValue: '',
+    messageSubmitting: false
   };
 
   componentWillMount() {
@@ -121,22 +122,26 @@ class Message extends React.Component {
 
   async submitMessage() {
     const { createMessage, chatId, userResult } = this.props;
-    const { messageValue } = this.state;
+    const { messageValue, messageSubmitting } = this.state;
 
-    if (messageValue) {
-      // Add message
-      const result = await createMessage({
-        variables: {
-          chatId,
-          fromId: userResult.user.id,
-          text: messageValue
-        }
-      });
+    if (!messageValue || messageSubmitting) return;
 
-      if (result.data) {
-        console.log('result', result);
-        this.setState({ messageValue: '' }); // Reset input
+    this.setState({ messageSubmitting: true });
+
+    // Add message
+    const result = await createMessage({
+      variables: {
+        chatId,
+        fromId: userResult.user.id,
+        text: messageValue
       }
+    });
+
+    this.setState({ messageSubmitting: false });
+
+    if (result.data) {
+      console.log('result', result);
+      this.setState({ messageValue: '' }); // Reset input
     }
   }
 
@@ -148,30 +153,43 @@ class Message extends React.Component {
     if (e) this.scrollIntoView();
   };
 
+  handleSubmit = e => {
+    if (e) {
+      e.preventDefault();
+      this.submitMessage();
+    }
+  };
+
   handleClick = e => {
-    if (e) this.submitMessage();
+    if (e) {
+      this.submitMessage();
+      // Reset focus to input on button click only to prevent mobile keyboard from closing
+      if (this.inputRef) this.inputRef.focus();
+    }
   };
 
-  handleKeyDown = e => {
-    if (e && e.keyCode === 13) this.submitMessage();
-  };
-
-  onRef = node => {
+  onContainerRef = node => {
     this.containerRef = node;
   };
 
+  onInputRef = node => {
+    this.inputRef = node;
+  };
+
   scrollIntoView() {
-    if (this.containerRef) this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    if (this.containerRef) {
+      this.containerRef.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    }
   }
 
   render() {
     const { userResult, loading, messages = [], chatUsers = [] } = this.props;
-    const { messageValue } = this.state;
+    const { messageValue, messageSubmitting } = this.state;
 
     if (loading) return <Container>Loading...</Container>;
     else if (!userResult.user) return null;
     return [
-      <SubHeaderPortal key="portal">
+      <SubHeaderPortal key="message-portal">
         <Flex align="center">
           <FlexContent space="self">
             <SubHeaderTitle>
@@ -183,7 +201,7 @@ class Message extends React.Component {
           </FlexContent>
         </Flex>
       </SubHeaderPortal>,
-      <MessageContainer key="messages" innerRef={this.onRef}>
+      <MessageContainer key="messages" innerRef={this.onContainerRef}>
         <Container>
           {messages.length > 0 &&
             messages.map(message => {
@@ -200,24 +218,26 @@ class Message extends React.Component {
       <MessageFooter key="footer">
         <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
           <FlexContent space={{ md: 50 }}>
-            <SrOnly>
-              <label htmlFor="write-message">write a message</label>
-            </SrOnly>
-            <MessageInput
-              autoComplete="off"
-              id="write-message"
-              placeholder="write a message"
-              value={messageValue}
-              onChange={this.handleOnChange}
-              onFocus={this.handleOnFocus}
-            />
+            <form onSubmit={this.handleSubmit}>
+              <SrOnly>
+                <label htmlFor="write-message">write a message</label>
+              </SrOnly>
+              <MessageInput
+                autoComplete="off"
+                id="write-message"
+                placeholder="write a message"
+                value={messageValue}
+                onChange={this.handleOnChange}
+                onFocus={this.handleOnFocus}
+                innerRef={this.onInputRef}
+              />
+            </form>
           </FlexContent>
           <FlexContent space="self">
             <SendButton
               onClick={this.handleClick}
-              onKeyDown={this.handleKeyDown}
               isActive={!!messageValue}
-              disabled={!messageValue}
+              disabled={!messageValue || messageSubmitting}
             >
               <Icon type="sendMessage" title="send message" />
             </SendButton>

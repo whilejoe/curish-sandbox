@@ -23,8 +23,11 @@ const batchedHttpLink = new BatchHttpLink({
 const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_GRAPHCOOL_SUBSCRIPTION_ENDPOINT,
   options: {
-    timeout: 30000,
+    timeout: 10000,
     reconnect: true,
+    connectionParams: {
+      authToken: getIdToken
+    },
     connectionCallback: error => {
       if (error) {
         console.error('SUBSCRIPTION CONNECTION ERRORED', error);
@@ -33,10 +36,6 @@ const wsLink = new WebSocketLink({
       }
     },
     reconnectionAttempts: 3
-
-    // connectionParams: {
-    //   authorization: token
-    // }
   }
 });
 
