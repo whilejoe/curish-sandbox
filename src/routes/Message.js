@@ -18,12 +18,14 @@ import { getTimeFromNow } from 'utils/date';
 const MESSAGE_COLOR = THEME[PRIMARY_KEY];
 const ACTIVE_COLOR = darken(0.27, MESSAGE_COLOR);
 
+const FOOTER_HEIGHT = '55px';
+
 const MessageFooter = styled.div`
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 50px;
+  height: ${FOOTER_HEIGHT};
   padding-right: 0.6rem;
   padding-left: 0.6rem;
   background-color: #eaeaea;
@@ -31,22 +33,29 @@ const MessageFooter = styled.div`
 `;
 
 const MessageContainer = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 50px;
+  padding: 1rem 1rem ${FOOTER_HEIGHT};
 `;
 
 const MessageInput = styled.input`
   ${baseInputMixin};
   padding: 0.35rem 0.6rem;
   background-color: inherit;
-  border-color: #b9b9b9;
+  border-color: #cacaca;
   border-radius: 2px;
   box-shadow: none;
-  transition: background-color 180ms ease-out;
+  transition: background-color 180ms ease-out, color 180ms ease-out;
+
+  &::placeholder {
+    color: #6a6a6a;
+  }
 
   &:hover,
   &:focus {
     background-color: ${PALETTE.BODY};
+    border-color: #cacaca;
+    &::placeholder {
+      color: #bbb;
+    }
   }
 `;
 
@@ -55,7 +64,9 @@ const SendButton = styled.button`
 
   &:hover,
   &:focus {
-    color: ${ACTIVE_COLOR};
+    &:not(:disabled) {
+      color: ${ACTIVE_COLOR};
+    }
   }
 `;
 
@@ -66,12 +77,12 @@ const BadgeContainer = styled.div`
 
 const Badge = styled.span`
   display: inline-block;
-  padding: 0.2rem 0.6rem;
+  padding: 0.1rem 0.65rem;
   color: ${props => (props.you ? PALETTE.BODY : 'inherit')};
   background-color: ${props => (props.you ? THEME[TERTIARY_KEY] : '#e6e6e6')};
   font-size: 0.9em;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.7;
   border-radius: 24px;
 `;
 
@@ -108,13 +119,7 @@ class Message extends React.Component {
     }
   }
 
-  handleChange = e => {
-    this.setState({ messageValue: e.target.value });
-  };
-
-  handleSubmit = async e => {
-    e.preventDefault();
-
+  async submitMessage() {
     const { createMessage, chatId, userResult } = this.props;
     const { messageValue } = this.state;
 
@@ -133,6 +138,22 @@ class Message extends React.Component {
         this.setState({ messageValue: '' }); // Reset input
       }
     }
+  }
+
+  handleOnChange = e => {
+    if (e) this.setState({ messageValue: e.target.value });
+  };
+
+  handleOnFocus = e => {
+    if (e) this.scrollIntoView();
+  };
+
+  handleClick = e => {
+    if (e) this.submitMessage();
+  };
+
+  handleKeyDown = e => {
+    if (e && e.keyCode === 13) this.submitMessage();
   };
 
   onRef = node => {
@@ -177,28 +198,31 @@ class Message extends React.Component {
         </Container>
       </MessageContainer>,
       <MessageFooter key="footer">
-        <form onSubmit={this.handleSubmit} style={{ height: '100%' }}>
-          <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
-            <FlexContent space={{ md: 50 }}>
-              <SrOnly>
-                <label htmlFor="write-message">write a message</label>
-              </SrOnly>
-              <MessageInput
-                autoComplete="off"
-                autoFocus
-                id="write-message"
-                placeholder="write a message"
-                value={messageValue}
-                onChange={this.handleChange}
-              />
-            </FlexContent>
-            <FlexContent space="self">
-              <SendButton type="submit" isActive={!!messageValue}>
-                <Icon type="sendMessage" title="send message" />
-              </SendButton>
-            </FlexContent>
-          </Flex>
-        </form>
+        <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
+          <FlexContent space={{ md: 50 }}>
+            <SrOnly>
+              <label htmlFor="write-message">write a message</label>
+            </SrOnly>
+            <MessageInput
+              autoComplete="off"
+              id="write-message"
+              placeholder="write a message"
+              value={messageValue}
+              onChange={this.handleOnChange}
+              onFocus={this.handleOnFocus}
+            />
+          </FlexContent>
+          <FlexContent space="self">
+            <SendButton
+              onClick={this.handleClick}
+              onKeyDown={this.handleKeyDown}
+              isActive={!!messageValue}
+              disabled={!messageValue}
+            >
+              <Icon type="sendMessage" title="send message" />
+            </SendButton>
+          </FlexContent>
+        </Flex>
       </MessageFooter>
     ];
   }

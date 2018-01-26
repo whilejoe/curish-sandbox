@@ -22,7 +22,22 @@ const batchedHttpLink = new BatchHttpLink({
 // Subscription link
 const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_GRAPHCOOL_SUBSCRIPTION_ENDPOINT,
-  options: { reconnect: true }
+  options: {
+    timeout: 30000,
+    reconnect: true,
+    connectionCallback: error => {
+      if (error) {
+        console.error('SUBSCRIPTION CONNECTION ERRORED', error);
+      } else {
+        console.log('%cSUBSCRIPTION CONNECTION SUCCESS', 'color: seagreen; font-weight: bold;');
+      }
+    },
+    reconnectionAttempts: 3
+
+    // connectionParams: {
+    //   authorization: token
+    // }
+  }
 });
 
 // Send data to each link depending on what kind of operation is being sent
@@ -72,7 +87,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       }
     }
   }
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (networkError) console.error(`[Network error]: ${networkError}`);
 });
 
 // Chain links
