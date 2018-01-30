@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "abyss-form": "0.4.24",
-    "apollo-cache-inmemory": "^1.1.5",
-    "apollo-client": "^2.2.0",
+    "apollo-cache-inmemory": "^1.1.6",
+    "apollo-client": "^2.2.1",
     "apollo-link": "^1.0.7",
     "apollo-link-batch-http": "^1.0.4",
     "apollo-link-error": "^1.0.3",
