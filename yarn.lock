@@ -43,10 +43,6 @@
   version "2.0.47"
   resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.47.tgz#f49ba1dd1f189486beb6e1d070a850f6ab4bd521"
 
-"@types/graphql@>=0.8.6 <=0.11.7":
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.11.7.tgz#da39a2f7c74e793e32e2bb7b3b68da1691532dd5"
-
 "@types/quill@*":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@types/quill/-/quill-1.3.3.tgz#06e08fb017d9493e3708c5c13fbb8bf33ad03d9e"
@@ -240,9 +236,9 @@ apollo-cache@^1.1.2:
   dependencies:
     apollo-utilities "^1.0.6"
 
-apollo-client@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.2.tgz#55d7b7a85d28161a6ecddd86cde8180be52193f6"
+apollo-client@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.3.tgz#a8df51c9ff89acb0d98de81b911e56b1ce468ca3"
   dependencies:
     "@types/zen-observable" "^0.5.3"
     apollo-cache "^1.1.2"
@@ -274,43 +270,43 @@ apollo-fetch@^0.7.0:
   dependencies:
     cross-fetch "^1.0.0"
 
-apollo-link-batch-http@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/apollo-link-batch-http/-/apollo-link-batch-http-1.0.4.tgz#e958a418a40625943a6018df695cca0cf4527977"
+apollo-link-batch-http@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/apollo-link-batch-http/-/apollo-link-batch-http-1.0.5.tgz#525f202f5da0564759bf76f4b2b26e451bd5d422"
   dependencies:
     apollo-fetch "^0.7.0"
-    apollo-link "^1.0.7"
-    apollo-link-batch "^1.0.4"
-    graphql "^0.12.0"
+    apollo-link "^1.1.0"
+    apollo-link-batch "^1.0.5"
+    graphql "^0.13.0"
 
-apollo-link-batch@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/apollo-link-batch/-/apollo-link-batch-1.0.4.tgz#ce0c3820ebd72a153a951017f71c252df51178b4"
+apollo-link-batch@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/apollo-link-batch/-/apollo-link-batch-1.0.5.tgz#89893eb24cc8a7b610210fe7bf06a7bf37c7b9be"
   dependencies:
-    apollo-link "^1.0.7"
+    apollo-link "^1.1.0"
 
 apollo-link-dedup@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/apollo-link-dedup/-/apollo-link-dedup-1.0.2.tgz#bab659dde41f8dd627839142d4dad90e55251110"
 
-apollo-link-error@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.0.3.tgz#2c679d2e6a2df09a9ae3f70d23c64af922a801a2"
+apollo-link-error@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.0.5.tgz#e169705956522dccab1a876a54374855937cb083"
   dependencies:
-    apollo-link "^1.0.6"
+    apollo-link "^1.1.0"
 
-apollo-link-retry@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/apollo-link-retry/-/apollo-link-retry-2.1.1.tgz#3f537968465a6b772e2bf1b7c6d5af454b9e7eef"
+apollo-link-retry@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/apollo-link-retry/-/apollo-link-retry-2.1.2.tgz#ce054be5229247e1cf339f7ee4d141009745f5fc"
   dependencies:
     "@types/zen-observable" "0.5.3"
-    apollo-link "^1.0.7"
+    apollo-link "^1.1.0"
 
-apollo-link-ws@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.4.tgz#d0067aa0204470dbd3955aa5204f8dd72d389350"
+apollo-link-ws@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.5.tgz#e0f4633fcc9fef955ca0743a8b744197dbe3d1e1"
   dependencies:
-    apollo-link "^1.0.7"
+    apollo-link "^1.1.0"
 
 apollo-link@^1.0.0:
   version "1.0.0"
@@ -319,13 +315,13 @@ apollo-link@^1.0.0:
     apollo-utilities "^0.2.0-beta.0"
     zen-observable "^0.6.0"
 
-apollo-link@^1.0.6, apollo-link@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.0.7.tgz#42cd38a7378332fc3e41a214ff6a6e5e703a556f"
+apollo-link@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.1.0.tgz#9d573b16387ee0d8e147b1f319e42c8c562f18f7"
   dependencies:
     "@types/zen-observable" "0.5.3"
     apollo-utilities "^1.0.0"
-    zen-observable "^0.6.0"
+    zen-observable "^0.7.0"
 
 apollo-utilities@^0.2.0-beta.0:
   version "0.2.0-rc.3"
@@ -491,9 +487,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-auth0-js@^9.2.1:
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-9.2.1.tgz#1106d86eba2374ff4776a4137671f574faff6332"
+auth0-js@^9.2.2:
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-9.2.2.tgz#06930079c225e2ca9338308cbccbb04730f5155c"
   dependencies:
     base64-js "^1.2.0"
     idtoken-verifier "^1.1.1"
@@ -3397,11 +3393,9 @@ graphql-language-service-utils@0.0.10:
     graphql "^0.9.6"
     graphql-language-service-types "0.0.16"
 
-graphql-tag@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.7.0.tgz#3d4412b87a894f2c7ccd73b515f887dc67736203"
-  dependencies:
-    "@types/graphql" ">=0.8.6 <=0.11.7"
+graphql-tag@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.7.3.tgz#5040112a1b4623285ef017c252276f0dea37f03f"
 
 graphql@0.9.6, graphql@^0.9.5, graphql@^0.9.6:
   version "0.9.6"
@@ -3409,11 +3403,11 @@ graphql@0.9.6, graphql@^0.9.5, graphql@^0.9.6:
   dependencies:
     iterall "^1.0.0"
 
-graphql@^0.12.0, graphql@^0.12.3:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.12.3.tgz#11668458bbe28261c0dcb6e265f515ba79f6ce07"
+graphql@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.0.tgz#d1b44a282279a9ce0a6ec1037329332f4c1079b6"
   dependencies:
-    iterall "1.1.3"
+    iterall "1.1.x"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -4141,7 +4135,11 @@ istanbul-reports@^1.1.3:
   dependencies:
     handlebars "^4.0.3"
 
-iterall@1.1.3, iterall@^1.0.0, iterall@^1.1.1:
+iterall@1.1.x:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.4.tgz#0db40d38fdcf53ae14dc8ec674e62ab190d52cfc"
+
+iterall@^1.0.0, iterall@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
 
