@@ -222,29 +222,29 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-apollo-cache-inmemory@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.7.tgz#15e6200f70431414d29bd5f20e86d81739e26430"
+apollo-cache-inmemory@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.9.tgz#8bcd05e8ec4e7dc5ffda7f68252244cab3197b71"
   dependencies:
-    apollo-cache "^1.1.2"
-    apollo-utilities "^1.0.6"
-    graphql-anywhere "^4.1.3"
+    apollo-cache "^1.1.4"
+    apollo-utilities "^1.0.8"
+    graphql-anywhere "^4.1.5"
 
-apollo-cache@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.2.tgz#b1843a0e01d3837239e9925cfaa1d786599b77a9"
+apollo-cache@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.4.tgz#a06544fdf4d946114168660961cf7a1fd340d8d6"
   dependencies:
-    apollo-utilities "^1.0.6"
+    apollo-utilities "^1.0.8"
 
-apollo-client@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.3.tgz#a8df51c9ff89acb0d98de81b911e56b1ce468ca3"
+apollo-client@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.5.tgz#bc00704aa181d0ec299fd5bb2b72d0b44800f5d0"
   dependencies:
     "@types/zen-observable" "^0.5.3"
-    apollo-cache "^1.1.2"
+    apollo-cache "^1.1.4"
     apollo-link "^1.0.0"
     apollo-link-dedup "^1.0.0"
-    apollo-utilities "^1.0.6"
+    apollo-utilities "^1.0.8"
     symbol-observable "^1.0.2"
     zen-observable "^0.7.0"
   optionalDependencies:
@@ -331,9 +331,9 @@ apollo-utilities@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.1.tgz#34b4df0bd6ed71d0afaa7c62489173dca5d07e92"
 
-apollo-utilities@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.6.tgz#7bfd7a702b5225c9a4591fe28c5899d9b5f08889"
+apollo-utilities@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.8.tgz#74d797d38953d2ba35e16f880326e2abcbc8b016"
 
 append-transform@^0.4.0:
   version "0.4.0"
@@ -2372,9 +2372,9 @@ dot-prop@^3.0.0:
   dependencies:
     is-obj "^1.0.0"
 
-dotenv-expand@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.0.1.tgz#68fddc1561814e0a10964111057ff138ced7d7a8"
+dotenv-expand@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.2.0.tgz#def1f1ca5d6059d24a766e587942c21106ce1275"
 
 dotenv@4.0.0, dotenv@^4.0.0:
   version "4.0.0"
@@ -3180,12 +3180,19 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-fsevents@1.1.2, fsevents@^1.0.0:
+fsevents@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.1.2.tgz#3282b713fb3ad80ede0e9fcf4611b5aa6fc033f4"
   dependencies:
     nan "^2.3.0"
     node-pre-gyp "^0.6.36"
+
+fsevents@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.1.3.tgz#11f82318f5fe7bb2cd22965a108e9306208216d8"
+  dependencies:
+    nan "^2.3.0"
+    node-pre-gyp "^0.6.39"
 
 fstream-ignore@^1.0.5:
   version "1.0.5"
@@ -3352,11 +3359,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-anywhere@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.3.tgz#ddd857d45d1538f55e8364c6c7a9016817a5ea92"
+graphql-anywhere@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.5.tgz#552ccd27b79a13a899022e20f658a2c2cb75e251"
   dependencies:
-    apollo-utilities "^1.0.6"
+    apollo-utilities "^1.0.8"
 
 graphql-language-service-config@0.0.11:
   version "0.0.11"
@@ -3408,6 +3415,12 @@ graphql@^0.13.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.0.tgz#d1b44a282279a9ce0a6ec1037329332f4c1079b6"
   dependencies:
     iterall "1.1.x"
+
+graphql@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.1.tgz#9b3db3d8e40d1827e4172404bfdd2e4e17a58b55"
+  dependencies:
+    iterall "^1.2.0"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -4142,6 +4155,10 @@ iterall@1.1.x:
 iterall@^1.0.0, iterall@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
+
+iterall@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.0.tgz#434e9f41f0b99911ab9c3d49d95f0e079176a2a2"
 
 jest-changed-files@^20.0.3:
   version "20.0.3"
@@ -5078,7 +5095,7 @@ node-notifier@^5.0.2:
     shellwords "^0.1.0"
     which "^1.2.12"
 
-node-pre-gyp@^0.6.36:
+node-pre-gyp@^0.6.36, node-pre-gyp@^0.6.39:
   version "0.6.39"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.39.tgz#c00e96860b23c0e1420ac7befc5044e1d78d8649"
   dependencies:
@@ -6290,9 +6307,9 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-scripts@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.1.0.tgz#0c94b2b2e14cff2dad8919397901b5edebeba511"
+react-scripts@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.1.1.tgz#279d449f7311fed910506987a1ade014027788a8"
   dependencies:
     autoprefixer "7.1.6"
     babel-core "6.26.0"
@@ -6305,7 +6322,7 @@ react-scripts@^1.1.0:
     chalk "1.1.3"
     css-loader "0.28.7"
     dotenv "4.0.0"
-    dotenv-expand "4.0.1"
+    dotenv-expand "4.2.0"
     eslint "4.10.0"
     eslint-config-react-app "^2.1.0"
     eslint-loader "1.9.0"
@@ -6332,7 +6349,7 @@ react-scripts@^1.1.0:
     webpack-manifest-plugin "1.3.2"
     whatwg-fetch "2.0.3"
   optionalDependencies:
-    fsevents "1.1.2"
+    fsevents "^1.1.3"
 
 react-select@^1.0.0-rc.10:
   version "1.2.1"
