@@ -1,0 +1,85 @@
+// Quill Editor Overrides
+@import './elements.scss';
+
+.ql-container {
+  font-size: inherit;
+}
+
+.ql-editor {
+  padding: 0;
+  font-family: $copy-font;
+  font-weight: $copy-font-weight;
+  line-height: inherit;
+  text-align: justify;
+}
+
+.ql-editor h1,
+.ql-bubble .ql-editor h1 {
+  margin-top: 0.87890625em;
+  font-size: 1.54296875em;
+}
+
+.ql-editor h2,
+.ql-bubble .ql-editor h2 {
+  margin: 0.49375em 0;
+  font-size: 1.234375em;
+}
+
+.ql-editor h3,
+.ql-bubble .ql-editor h3 {
+  font-size: 1.36rem;
+  margin-bottom: 0.5rem;
+}
+
+.ql-editor p {
+  margin-bottom: 1.2em;
+}
+
+.ql-editor.ql-blank::before {
+  color: #ccc;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-style: normal;
+}
+
+.ql-editor blockquote,
+.ql-bubble .ql-editor blockquote {
+  max-width: 33rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-size: 1.1em;
+  color: #5f5f5f;
+  text-align: center;
+  line-height: 1.55em;
+  border-top: 2px solid #f3f3f3;
+  border-bottom: 2px solid #f3f3f3;
+
+  &:before,
+  &:after {
+    font-size: 1.62em;
+    vertical-align: -0.25em;
+  }
+
+  &:before {
+    content: '\201c';
+    margin-right: 0.17em;
+  }
+
+  &:after {
+    content: '\201d';
+    margin-left: 0.16em;
+  }
+}
+
+// was trying to use another editor for the title. not using atm but need to revisit
+// .title-editor {
+//   margin-top: 3rem;
+//   margin-bottom: 1.8rem;
+// }
+
+// .title-editor .ql-editor.ql-blank::before {
+//   color: #ccc;
+//   font-size: 2rem;
+//   font-family: 'Roboto Slab', serif;
+//   font-weight: 400;
+// }

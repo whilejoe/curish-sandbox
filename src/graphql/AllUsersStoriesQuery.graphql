@@ -1,0 +1,19 @@
+query AllUsersStoriesQuery {
+  user {
+    id
+    stories(orderBy: updatedAt_DESC) {
+      id
+      createdAt
+      updatedAt
+      published
+      titleText
+      titleDelta
+      bodyDelta
+      description
+      tags(orderBy: key_ASC) {
+        id
+        key
+      }
+    }
+  }
+}

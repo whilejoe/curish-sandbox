@@ -1,0 +1,94 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { THEME, PRIMARY_KEY } from 'constants/theme';
+import { rgba } from 'polished';
+import Icon from 'components/Icon';
+
+const COLOR = THEME[PRIMARY_KEY];
+
+const POSITIONS = {
+  story: { top: '0.1em', left: '0.15em', plusIcon: { top: '0.28em', left: '0.28em' } },
+  message: { top: '0.2em', left: '0.25em', plusIcon: { top: '0.1em', left: '0.1em' } }
+};
+
+const MainIcon = styled(Icon)`
+  position: relative;
+  top: 0.1em;
+  left: 0.15em;
+  opacity: 1;
+  transition: opacity 100ms linear;
+`;
+
+const PlusIcon = styled(Icon)`
+  position: absolute;
+  top: 0.28em;
+  left: 0.28em;
+  font-size: 0.78em;
+
+  transform: rotate(0) scale3d(1, 1, 1);
+  transition: transform 200ms ease-out, top 200ms ease-out, left 200ms ease-out;
+`;
+
+const HeaderButton = styled(Link)`
+  position: relative;
+  display: flex;
+  flex: 1 1 0%;
+  align-items: center;
+  justify-content: center;
+  height: 2.3rem;
+  width: 2.3rem;
+  padding: 0;
+  background-color: ${COLOR};
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
+
+  &:after {
+    position: absolute;
+    content: '+';
+    height: calc(2.3rem - 4px);
+    width: calc(2.3rem - 4px);
+    background-color: ${rgba('white', 0.95)};
+    color: ${COLOR};
+    border-radius: 50%;
+    font-size: 1.7em;
+    text-align: center;
+    line-height: calc(2.3rem - 4px);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: ${COLOR};
+    border-color: ${COLOR};
+
+    & ${PlusIcon} {
+      top: 0.7em;
+      left: 0.7em;
+      transform: rotate(180deg) scale3d(1.4, 1.4, 1);
+    }
+
+    & ${MainIcon} {
+      opacity: 0;
+    }
+
+    &:after {
+      opacity: 0;
+    }
+  }
+`;
+
+const NewItemButton = ({ to, type, title }) => {
+  return (
+    <HeaderButton to={to}>
+      <MainIcon type={type} title={title} />
+      <PlusIcon type="plus" />
+    </HeaderButton>
+  );
+};
+
+export default NewItemButton;

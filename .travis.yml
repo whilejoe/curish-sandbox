@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+   - 8
+cache: yarn
+script:
+  - yarn build
+before_deploy: "echo 'BEFORE FIREBASE DEPLOY'"
+deploy:
+  provider: firebase
+  skip_cleanup: true
+  token:
+    secure: $FIREBASE_TOKEN
+  on:
+    branch: develop

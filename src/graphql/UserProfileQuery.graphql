@@ -1,0 +1,10 @@
+query UserProfileQuery {
+  user {
+    id
+    fullName
+    userName
+    email
+    photoURL
+    createdAt
+  }
+}

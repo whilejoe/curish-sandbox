@@ -1,0 +1,6 @@
+query AllTagsOrderedQuery {
+  allTags(orderBy: key_ASC) {
+    id
+    key
+  }
+}
