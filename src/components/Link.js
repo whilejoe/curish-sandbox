@@ -1,15 +1,17 @@
-import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
-import { THEME, PRIMARY_KEY } from 'constants/theme';
+// TODO: Revisit if we want globally styled links
 
-const Link = styled(RouterLink)`
-  color: currentColor;
+// import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+// import { THEME, PRIMARY_KEY } from 'constants/theme';
 
-  &:hover,
-  &:focus {
-    color: ${THEME[PRIMARY_KEY]};
-    text-decoration: none;
-  }
-`;
+// const Link = styled(RouterLink)`
+//   color: currentColor;
+
+//   &:hover,
+//   &:focus {
+//     color: ${THEME[PRIMARY_KEY]};
+//     text-decoration: none;
+//   }
+// `;
 
 export default Link;

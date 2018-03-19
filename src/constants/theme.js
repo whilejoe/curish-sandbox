@@ -11,9 +11,9 @@ export const ERROR_KEY = 'error';
 // #5b4661
 // previous header purple #393c56
 export const THEME = {
-  [PRIMARY_KEY]: 'lightcoral',
-  [SECONDARY_KEY]: 'lightseagreen',
-  [TERTIARY_KEY]: 'teal',
+  [PRIMARY_KEY]: 'lightseagreen',
+  [SECONDARY_KEY]: 'lightcoral',
+  [TERTIARY_KEY]: 'royalBlue',
   [ERROR_KEY]: 'FireBrick'
 };
 
@@ -23,6 +23,7 @@ export const PALETTE = {
     MEDIUM: '#f1f1f1',
     DARK: '#333'
   },
-  HEADER: '#2d3048',
-  BODY: '#fffefe'
+  HEADER: '#eaeaea',
+  BODY: '#fffefe',
+  SEARCH: THEME[TERTIARY_KEY]
 };

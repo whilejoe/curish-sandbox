@@ -11,14 +11,14 @@ export const sanserifFont = '"Source Sans Pro", sans-serif';
 
 export const headingFont = serifFont;
 export const headingFontWeight = 400;
-export const headingFontColor = '#333';
+export const headingFontColor = '#1a1a1a';
 
 export const copyFont = sanserifFont;
 export const copyFontWeight = 400;
-export const copyFontColor = '#222';
+export const copyFontColor = '#1a1a1a';
 
 export const linkFont = sanserifFont;
-export const linkFontWeight = 400;
+export const linkFontWeight = 600;
 
 const BASE = 0.79;
 const RATIO = 1.25;
@@ -63,9 +63,6 @@ injectGlobal`
     background-color: #fffefe;
     line-height: 1.4;
     color: ${copyFontColor};
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: auto;
-    text-rendering: optimizeLegibility;
   }
 
   p {

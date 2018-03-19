@@ -1,21 +1,19 @@
 import styled from 'styled-components';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { PALETTE } from 'constants/theme';
 import Icon from 'components/Icon';
 
 const IconLink = styled(NavLink)`
   display: block;
   position: relative;
   padding: 0.75rem 0.85rem;
-  color: ${PALETTE.HEADER};
   line-height: 1;
   text-align: center;
 
   &:after {
     position: absolute;
     content: '';
-    bottom: 0;
+    bottom: 1px;
     left: 0;
     height: 2px;
     width: 100%;

@@ -8,9 +8,9 @@ import { Flex, FlexContent } from 'components/Flex';
 import { SLIDE_DURATION } from 'constants/animation';
 
 const Header = styled.div`
-  padding: 0.8rem 1rem;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #eee;
+  padding: 0.6rem 1rem;
+  background-color: #eaeaea;
+  border-bottom: 1px solid;
 `;
 
 const Heading = styled.h1`

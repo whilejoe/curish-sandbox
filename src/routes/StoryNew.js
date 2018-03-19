@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
-import StoryContainer from 'components/StoryContainer';
 import debounce from 'lodash/debounce';
 
 class StoryNew extends Component {
@@ -40,19 +41,23 @@ class StoryNew extends Component {
     const { userResult: { user } } = this.props;
     const { dataIsSaving } = this.state;
     return (
-      <StoryContainer>
-        <EditorTitle
-          readOnly={dataIsSaving}
-          onChangeCallback={(delta, titleText) =>
-            this.debouncedCreateStory({ titleDelta: JSON.stringify(delta), titleText })}
-          author={user}
-        />
-        <Editor
-          readOnly={dataIsSaving}
-          onChangeCallback={delta =>
-            this.debouncedCreateStory({ bodyDelta: JSON.stringify(delta) })}
-        />
-      </StoryContainer>
+      <PageContainer>
+        <Container>
+          <EditorTitle
+            readOnly={dataIsSaving}
+            onChangeCallback={(delta, titleText) =>
+              this.debouncedCreateStory({ titleDelta: JSON.stringify(delta), titleText })
+            }
+            author={user}
+          />
+          <Editor
+            readOnly={dataIsSaving}
+            onChangeCallback={delta =>
+              this.debouncedCreateStory({ bodyDelta: JSON.stringify(delta) })
+            }
+          />
+        </Container>
+      </PageContainer>
     );
   }
 }

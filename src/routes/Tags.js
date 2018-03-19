@@ -1,34 +1,19 @@
-// TODO: Handle loading states better
 import React from 'react';
-import styled from 'styled-components';
 import { Flex, FlexContent } from 'components/Flex';
+import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
-import StoryContainer from 'components/StoryContainer';
 import StoryCard from 'components/StoryCard';
 import TagLink, { TagsContainer } from 'components/Tag';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
-// import { copyFont } from 'styles/elements';
-
-// const HeaderTag = Tag.extend`
-//   margin: 0;
-//   padding: 0 0.3rem;
-//   font-size: inherit;
-//   font-family: ${copyFont};
-//   line-height: inherit;
-//   border-radius: 4px;
-// `;
-
-const StoryList = styled.div`
-  margin-top: 1rem;
-`;
 
 const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
   if (match.params.key) {
-    if (tagQuery.loading) return <StoryContainer>Tag Loading ...</StoryContainer>;
+    if (tagQuery.loading) return <Container>Tag Loading ...</Container>;
     return (
-      <StoryList>
-        <StoryContainer>
+      <PageContainer>
+        <Container>
           <SubHeaderPortal>
             <Flex gutters align="center">
               <FlexContent>
@@ -51,13 +36,13 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
                 />
               ))
             : null}
-        </StoryContainer>
-      </StoryList>
+        </Container>
+      </PageContainer>
     );
-  } else if (allTagsQuery.loading) return <StoryContainer>All Tags Loading ...</StoryContainer>;
+  } else if (allTagsQuery.loading) return <Container>All Tags Loading ...</Container>;
   return (
-    <StoryList>
-      <StoryContainer>
+    <PageContainer>
+      <Container>
         <SubHeaderPortal>
           <FlexContent space="self">
             <SubHeaderTitle>All Tags</SubHeaderTitle>
@@ -70,8 +55,8 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
             </div>
           ))}
         </TagsContainer>
-      </StoryContainer>
-    </StoryList>
+      </Container>
+    </PageContainer>
   );
 };
 

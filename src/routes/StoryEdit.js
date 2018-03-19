@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Flex, FlexContent } from 'components/Flex';
 import Button from 'components/Button';
 import Modal from 'components/Modal';
-import StoryContainer from 'components/StoryContainer';
+import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import Editor from 'components/Editor';
 import EditorTitle from 'components/EditorTitle';
 import EditToolbar from 'components/EditToolbar';
@@ -78,44 +79,46 @@ class StoryEdit extends Component {
 
     const { titleText = '', titleDelta, bodyDelta, author } = storyData.Story;
     return (
-      <StoryContainer>
-        <SubHeaderPortal>
-          <Flex noWrap align="center" justify="flex-end">
-            <FlexContent hide={!showToolbar} offset={{ sm: 5, lg: 16 }}>
-              <EditToolbar id={TOOLBAR_ID} />
-            </FlexContent>
-            <FlexContent space="self">
-              <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
-            </FlexContent>
-            <FlexContent space="self">
-              {bodyDelta && (
-                <Modal
-                  key="modal"
-                  trigger={<Button theme="secondary">Publish</Button>}
-                  title={`Publish: ${titleText || 'Untitled'}`}
-                >
-                  <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
-                </Modal>
-              )}
-            </FlexContent>
-          </Flex>
-        </SubHeaderPortal>
-        <EditorTitle
-          defaultDelta={titleDelta}
-          readOnly={false}
-          onChangeCallback={this.onTitleChange}
-          author={author}
-        />
-        <Editor
-          readOnly={false}
-          defaultDelta={bodyDelta}
-          modules={{
-            toolbar: { container: `#${TOOLBAR_ID}` }
-          }}
-          onChangeCallback={this.onBodyChange}
-          onSelectionCallback={this.setShowToolbar}
-        />
-      </StoryContainer>
+      <PageContainer>
+        <Container>
+          <SubHeaderPortal>
+            <Flex noWrap align="center" justify="flex-end">
+              <FlexContent hide={!showToolbar} offset={{ sm: 5, lg: 16 }}>
+                <EditToolbar id={TOOLBAR_ID} />
+              </FlexContent>
+              <FlexContent space="self">
+                <StoryEditStatus mode={editModeState}>{editModeState}</StoryEditStatus>
+              </FlexContent>
+              <FlexContent space="self">
+                {bodyDelta && (
+                  <Modal
+                    key="modal"
+                    trigger={<Button>Publish</Button>}
+                    title={`Publish: ${titleText || 'Untitled'}`}
+                  >
+                    <PublishStory storyData={storyData} updateStoryMutation={updateStoryMutation} />
+                  </Modal>
+                )}
+              </FlexContent>
+            </Flex>
+          </SubHeaderPortal>
+          <EditorTitle
+            defaultDelta={titleDelta}
+            readOnly={false}
+            onChangeCallback={this.onTitleChange}
+            author={author}
+          />
+          <Editor
+            readOnly={false}
+            defaultDelta={bodyDelta}
+            modules={{
+              toolbar: { container: `#${TOOLBAR_ID}` }
+            }}
+            onChangeCallback={this.onBodyChange}
+            onSelectionCallback={this.setShowToolbar}
+          />
+        </Container>
+      </PageContainer>
     );
   }
 }

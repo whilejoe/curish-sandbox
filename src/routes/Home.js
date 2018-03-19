@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Button from 'components/Button';
-import { Flex, FlexContent } from 'components/Flex';
-import { InputText } from 'components/InputGroup';
+import InputGroup from 'components/InputGroup';
 import PageContainer from 'components/PageContainer';
+import Container from 'components/Container';
 import UserHome from 'routes/UserHome';
 import { isAuthed } from 'utils/AuthService';
 
@@ -12,28 +13,45 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const Home = ({ userResult }) => {
+const SearchContainer = styled.div`
+  max-width: 30rem;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+`;
+
+const Home = ({ userResult, searchModel, history }) => {
   if (!isAuthed()) {
     return (
       <PageContainer>
-        <Title>Curious?</Title>
-        <Flex gutters guttersVertical align="center" justify="center">
-          <FlexContent space={[100, { sm: 45, md: 40, lg: 30 }]}>
-            <InputText
-              type="text"
-              placeholder="search story titles or tags"
-              autoFocus
-              model="search.search"
-            />
-          </FlexContent>
-          <FlexContent space="self">
-            <Button>Search</Button>
-          </FlexContent>
-        </Flex>
+        <Container>
+          <Title>Curious?</Title>
+          <SearchContainer>
+            <form
+              onSubmit={e => {
+                // temporary
+                e.preventDefault();
+                if (searchModel.param) {
+                  history.push({
+                    pathname: '/search',
+                    search: `q=${searchModel.param}`
+                  });
+                }
+              }}
+            >
+              <InputGroup type="text" placeholder="search curish" autoFocus model="search.param" />
+              <Button type="submit">Search</Button>
+            </form>
+          </SearchContainer>
+        </Container>
       </PageContainer>
     );
   }
   return <UserHome userResult={userResult} />;
 };
 
-export default Home;
+const mapStateToProps = state => ({
+  searchModel: state.forms.search.model
+});
+
+export default connect(mapStateToProps)(Home);

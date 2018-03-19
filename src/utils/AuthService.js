@@ -2,6 +2,7 @@
 import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
 import history from 'utils/history';
+import apolloClient from 'utils/apolloClient';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
@@ -81,7 +82,7 @@ export const verifyCode = (phone, code) => {
 // };
 
 export const logout = () => {
-  // client.resetStore(); Revisit
+  apolloClient.resetStore();
   window.localStorage.removeItem(ID_TOKEN_KEY);
   window.localStorage.removeItem(ACCESS_TOKEN_KEY);
   history.replace('/login');

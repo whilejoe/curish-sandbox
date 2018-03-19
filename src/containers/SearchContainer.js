@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setSearchForm: val => dispatch(set('search.search', val)),
-  clearSearchForm: dispatch(reset('search'))
+  clearSearchForm: () => dispatch(reset('search'))
 });
 
 const ConnectedSearch = connect(mapStateToProps, mapDispatchToProps)(Search);

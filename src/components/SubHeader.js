@@ -14,6 +14,15 @@ import { SUBNAV_PORTAL_ID } from 'constants/portals';
 
 const DURATION = 160;
 
+const SHOW_ON_ROUTES = {
+  '/': true,
+  '/stories': true,
+  '/messages': true,
+  '/notifications': true,
+  '/search': true,
+  '/profile': true
+};
+
 const STYLE = {
   position: 'absolute',
   right: 0,
@@ -30,8 +39,8 @@ const STATES = {
 const Header = styled.div`
   height: 50px;
   background-color: ${PALETTE.BODY};
+  border-bottom: 1px solid #eaeaea;
   overflow: hidden;
-  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const NavTransitioner = styled(Flex)`
@@ -49,29 +58,30 @@ class SubHeader extends Component {
   };
 
   componentWillMount() {
-    if (this.props.location.state && this.props.location.state.referrer) {
+    const { location } = this.props;
+    if (location.state && location.state.referrer) {
       this.setState({ showBack: true });
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.state !== this.props.location.state) {
-      if (nextProps.location.state && nextProps.location.state.referrer) {
-        this.setState({ showBack: true });
-      } else this.setState({ showBack: false });
+      const { location } = nextProps;
+      const showBack = !!(location.state && location.state.referrer);
+      if (showBack !== this.state.showBack) this.setState({ showBack });
     }
   }
 
   render() {
-    const { location: { state } } = this.props;
+    const { location: { state, pathname } } = this.props;
     const { showBack } = this.state;
-    if (!isAuthed()) return null;
+    const hide = !isAuthed() || !SHOW_ON_ROUTES[pathname];
     return (
-      <Headroom pinStart={54}>
+      <Headroom pinStart={52}>
         <Header>
-          <Container style={{ height: '100%' }}>
+          <Container size="lg" style={{ height: '100%' }}>
             <div style={{ height: '100%', position: 'relative' }}>
-              <Transition in={!showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              <Transition in={!showBack && !hide} mountOnEnter unmountOnExit timeout={DURATION}>
                 {status => {
                   return (
                     <NavTransitioner
@@ -96,10 +106,10 @@ class SubHeader extends Component {
                   );
                 }}
               </Transition>
-              <Transition in={showBack} mountOnEnter unmountOnExit timeout={DURATION}>
+              <Transition in={showBack} timeout={DURATION}>
                 {status => {
                   return (
-                    <Flex align="center" style={STYLE}>
+                    <Flex align="center">
                       <BackButton
                         referrer={state && state.referrer}
                         status={status}

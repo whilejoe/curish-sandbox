@@ -17,7 +17,7 @@ import { isAuthed } from 'utils/AuthService';
 // #3c2242
 const Header = styled.header`
   background-color: ${PALETTE.HEADER};
-  color: white;
+  border-bottom: 1px solid;
 `;
 
 const HeaderLink = styled(NavLink)`
@@ -60,20 +60,15 @@ const HeaderAvatar = styled(Avatar)`
   vertical-align: middle;
   font-size: 0.95em;
   line-height: 1;
-
-  &:hover,
-  &:focus,
-  &.active {
-    color: ${THEME[PRIMARY_KEY]};
-  }
 `;
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding-top: 1.05rem;
-  padding-bottom: 0.9rem;
+  padding-top: 0.95rem;
+  padding-bottom: 0.85rem;
   font-family: 'Merriweather', serif;
   font-size: 1.08em;
+  font-style: italic;
   font-weight: 700;
   line-height: 1;
 
@@ -89,7 +84,6 @@ const LoginButton = ButtonLink.extend`
   &:focus,
   &.active {
     background-color: ${THEME[PRIMARY_KEY]};
-    color: currentColor;
   }
 `;
 
@@ -109,7 +103,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();
   return (
     <Header>
-      <Container>
+      <Container size="lg">
         {!isUserAuthed ? (
           <Flex gutters align="center">
             <FlexContent space="self">
@@ -133,7 +127,7 @@ const AppHeader = ({ userResult: { loading, user } }) => {
             </FlexContent>
             <FlexContent space="self">
               {isUserAuthed &&
-                !loading && <HeaderAvatar user={user} showImage to={{ pathname: '/profile' }} />}
+                !loading && <HeaderAvatar user={user} to={{ pathname: '/profile' }} imageOnly />}
             </FlexContent>
           </Flex>
         )}

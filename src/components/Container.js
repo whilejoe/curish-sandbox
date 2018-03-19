@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-// const THEME = {
-//   sm: '22rem',
-//   md: '60rem',
-//   lg: '70rem'
-// }
+const THEME = {
+  sm: '22rem',
+  md: '38rem',
+  lg: '69rem'
+};
 
 const Container = styled.div`
   position: relative;
-  max-width: ${props => (props.narrow ? '22rem' : '70rem')};
+  max-width: ${props => THEME[props.size] || THEME['md']};
   margin-right: auto;
   margin-left: auto;
   padding-right: 1rem;

@@ -36,7 +36,7 @@ const transitionStyles = {
 };
 
 const TransitionWrapper = Component => {
-  const Transitioner = props =>
+  const Transitioner = props => (
     <Transition
       // unmountOnExit
       appear
@@ -44,7 +44,7 @@ const TransitionWrapper = Component => {
       // in={props.match.path === props.location.pathname}
       timeout={duration}
     >
-      {status =>
+      {status => (
         <div
           style={{
             ...defaultStyle,
@@ -52,8 +52,10 @@ const TransitionWrapper = Component => {
           }}
         >
           <Component {...props} />
-        </div>}
-    </Transition>;
+        </div>
+      )}
+    </Transition>
+  );
 
   return Transitioner;
 };
