@@ -6,10 +6,11 @@ import { Slide, Backdrop } from 'components/ModalAnimations';
 import Button from 'components/Button';
 import { Flex, FlexContent } from 'components/Flex';
 import { SLIDE_DURATION } from 'constants/animation';
+import { PALETTE } from 'constants/theme';
 
 const Header = styled.div`
   padding: 0.6rem 1rem;
-  background-color: #eaeaea;
+  background-color: ${PALETTE.HEADER};
   border-bottom: 1px solid;
 `;
 
@@ -28,9 +29,15 @@ class Modal extends Component {
     isModalOpen: false
   };
 
-  // componentWillMount() {
-  //   this.onPortalOpen();
-  // }
+  handleKeyDown = e => {
+    if (e && e.keyCode === 27) this.closeModal();
+  };
+
+  handleWindowClick = e => {
+    if (e && this.modalContentRef && !this.modalContentRef.contains(e.target)) {
+      this.closeModal();
+    }
+  };
 
   onPortalOpen = () => {
     document.addEventListener('keydown', this.handleKeyDown, false);
@@ -40,14 +47,8 @@ class Modal extends Component {
     this.setState({ isPortalOpen: true, isModalOpen: true });
   };
 
-  handleKeyDown = e => {
-    if (e && e.keyCode === 27) this.onCloseModal();
-  };
-
-  handleWindowClick = e => {
-    if (e && this.modalContentRef && !this.modalContentRef.contains(e.target)) {
-      this.onCloseModal();
-    }
+  onPortalEntered = () => {
+    if (this.modalContentRef) this.modalContentRef.focus();
   };
 
   onPortalClosed = () => {
@@ -58,7 +59,7 @@ class Modal extends Component {
     document.body.removeAttribute('aria-hidden');
   };
 
-  onCloseModal = () => {
+  closeModal = () => {
     this.setState({ isModalOpen: false });
   };
 
@@ -81,16 +82,15 @@ class Modal extends Component {
             in={isModalOpen}
             appear
             timeout={SLIDE_DURATION}
-            onEntered={() => this.modalContentRef && this.modalContentRef.focus()}
+            onEntered={this.onPortalEntered}
             onExited={this.onPortalClosed}
           >
             {status => (
-              <Backdrop key="backdrop" status={status}>
+              <Backdrop status={status}>
                 <Slide
-                  key="slide"
                   status={status}
                   duration={SLIDE_DURATION}
-                  innerRef={node => this.setRef(node)}
+                  innerRef={this.setRef}
                   tabIndex={0}
                 >
                   <Header>
@@ -99,7 +99,7 @@ class Modal extends Component {
                         <Heading>{title}</Heading>
                       </FlexContent>
                       <FlexContent space="self">
-                        <Button theme="secondary" onClick={this.onCloseModal}>
+                        <Button theme="secondary" onClick={this.closeModal}>
                           close
                         </Button>
                       </FlexContent>

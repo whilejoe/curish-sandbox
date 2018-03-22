@@ -3,13 +3,6 @@ export const SECONDARY_KEY = 'secondary';
 export const TERTIARY_KEY = 'tertiary';
 export const ERROR_KEY = 'error';
 
-// #695dca
-// #5f55b1
-// lightcoral
-// mediumseagreen
-// #528de6
-// #5b4661
-// previous header purple #393c56
 export const THEME = {
   [PRIMARY_KEY]: 'lightseagreen',
   [SECONDARY_KEY]: 'lightcoral',
