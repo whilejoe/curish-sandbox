@@ -1,0 +1,71 @@
+# project: cj6l71pg81npn0191lrufaos5
+# version: 76
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  userName: String! @isUnique
+  fullName: String!
+  auth0UserId: String @isUnique
+  email: String! @isUnique
+  photoURL: String
+  stories: [Story!]! @relation(name: "StoryAuthor")
+  termsAgreedVersion: Float
+  messages: [Message!]! @relation(name: "MessagesFromUser")
+  chats: [Chat!]! @relation(name: "ChatsFromUser")
+}
+
+type Message @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  text: String!
+  chat: Chat! @relation(name: "MessagesOnChat")
+  from: User! @relation(name: "MessagesFromUser")
+}
+
+type Chat @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  messages: [Message!]! @relation(name: "MessagesOnChat")
+  users: [User!]! @relation(name: "ChatsFromUser")
+}
+
+type Story @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  author: User @relation(name: "StoryAuthor")
+  titleText: String
+  titleDelta: String
+  bodyMarkup: String
+  bodyDelta: String
+  description: String
+  published: Boolean @defaultValue(value: false)
+  tags: [Tag!]! @relation(name: "TagOnStory")
+}
+
+type Tag @model {
+  id: ID! @isUnique
+  key: String! @isUnique
+  stories: [Story!]! @relation(name: "TagOnStory")
+}
+
+type Terms @model {
+  id: ID! @isUnique
+  version: Float!
+  copy: String!
+}

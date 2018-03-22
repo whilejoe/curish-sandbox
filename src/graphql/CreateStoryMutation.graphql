@@ -1,0 +1,22 @@
+mutation CreateStoryMutation(
+  $userId: ID!
+  $titleText: String
+  $titleDelta: String
+  $bodyDelta: String
+) {
+  createStory(
+    authorId: $userId
+    titleText: $titleText
+    titleDelta: $titleDelta
+    bodyDelta: $bodyDelta
+  ) {
+    id
+    titleText
+    titleDelta
+    bodyDelta
+    author {
+      id
+      userName
+    }
+  }
+}

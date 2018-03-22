@@ -1,0 +1,18 @@
+query StoryByIdQuery($storyId: ID!) {
+  Story(id: $storyId) {
+    id
+    published
+    titleText
+    titleDelta
+    bodyDelta
+    description
+    tags(orderBy: key_ASC) {
+      id
+      key
+    }
+    author {
+      id
+      userName
+    }
+  }
+}
