@@ -22,7 +22,6 @@ class Description extends React.Component {
           labelLarge
           label={`Describe your story in ${MAX_COUNT} characters or less`}
           model="publish.description"
-          // defaultValue={storyDescription}
           validators={{ required: val => !val, length: val => val.length > MAX_COUNT }}
           errorMessages={{
             required: 'A description is required',

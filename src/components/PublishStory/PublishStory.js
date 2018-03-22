@@ -2,13 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Description from './Description';
 import Tags from './Tags';
-// import Terms from './Terms';
 import Confirmation from './Confirmation';
 import { submit, set, reset } from 'abyss-form/lib/actions';
 
 const DESCRIPTION_KEY = 'descriptionForm';
 const TAGS_KEY = 'tagsForm';
-// const TERMS_KEY = 'termsForm';
 const CONFIRM_KEY = 'confirm';
 
 class PublishStory extends React.Component {

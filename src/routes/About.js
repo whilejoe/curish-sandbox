@@ -8,32 +8,44 @@ const About = () => {
       <Container>
         <h1>What's Curish?</h1>
         <p>
-          1.) Kay always thought this day would end up being the worst day of her life. Her mother
-          finally kicked her out of their trailer, this time for good, after getting into a heated
-          fight with one of her drunk boyfriends.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue nisi non tellus
+          cursus varius. Sed cursus, dolor eget gravida feugiat, magna quam aliquam lorem, vitae
+          imperdiet felis lorem ut elit. Nunc ligula felis, elementum sit amet nulla pellentesque,
+          tincidunt sodales nulla. Fusce fringilla justo vel nisi volutpat, at mollis magna
+          placerat. Donec justo sapien, tincidunt ac facilisis et, consequat eu nisl. Aenean sed
+          egestas mauris. Proin vitae nisl eget lorem dignissim venenatis facilisis nec dui. Ut
+          rhoncus orci ac nisi aliquet pharetra. Morbi vel lacus vel metus dictum facilisis. Ut at
+          nulla vehicula, suscipit arcu vel, rhoncus nisi. Praesent euismod cursus justo, quis
+          pretium sem euismod vitae.
         </p>
         <p>
-          2.) That is why she was hitchhiking along the interstate that afternoon, praying to God
-          that someone would stop before it got dark. She had no idea where she wanted to go, just
-          that she needed to get far away from the life she was leaving behind. Just when she was
-          beginning to think no one would stop for her, an old Jeep slowed to a stop just a few
-          yards ahead of her.
+          Nullam iaculis euismod libero, vel dictum massa hendrerit quis. Aenean efficitur, arcu vel
+          condimentum convallis, erat sapien commodo sapien, vel elementum mi magna laoreet ex.
+          Fusce ultricies accumsan sapien non gravida. Pellentesque ac tellus gravida magna pharetra
+          bibendum. In eu arcu nisl. Pellentesque nulla sapien, tincidunt sit amet mauris eu,
+          ultricies egestas eros. Proin blandit bibendum euismod.
         </p>
         <p>
-          3.) "Sweetie, what is a girl like you doing hitchhiking out in the middle of nowhere?"
-          said a middle aged woman seated in the passenger seat of the Jeep. She was in such a hurry
-          to get out of there that she hardly had time to grab any of her things. All she had in the
-          world were the clothes on her back and a backpack full of underwear, t-shirts, and
-          make-up.
+          Praesent sem sapien, tempor a tellus ut, rhoncus pretium metus. Maecenas ornare neque vel
+          erat blandit, ac hendrerit tortor elementum. Praesent aliquet rhoncus nulla, eu sodales
+          eros ornare eget. Sed ut consectetur lorem, euismod varius ipsum. Nullam feugiat fermentum
+          dui, id vestibulum augue elementum in. Quisque gravida hendrerit venenatis. Curabitur
+          malesuada dignissim convallis. Proin at vestibulum mauris, at ultricies elit.
         </p>
         <p>
-          "Sweetie, what is a girl like you doing hitchhiking out in the middle of nowhere?" said a
-          middle aged woman seated in the passenger seat of the Jeep.
+          Suspendisse venenatis convallis convallis. Phasellus placerat sem et lobortis commodo.
+          Cras lobortis, est sit amet finibus gravida, magna leo cursus ligula, nec iaculis nunc
+          enim at tellus. Cras a urna porta mi auctor efficitur vel hendrerit lacus. Cras in
+          volutpat velit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+          ridiculus mus. Sed quis ante et sem aliquet sodales. Vestibulum ante ipsum primis in
+          faucibus orci luctus et ultrices posuere cubilia Curae; Sed ut nisi maximus, bibendum enim
+          ut, elementum enim. Nunc in iaculis nunc.
         </p>
         <p>
-          4.) That is why she was hitchhiking along the interstate that afternoon, praying to God
-          that someone would stop before it got dark. She had no idea where she wanted to go, just
-          that she needed to get far away from the life she was leaving behind.
+          Vestibulum hendrerit lobortis malesuada. Curabitur ac pulvinar nibh, vel ullamcorper
+          ligula. Sed elit justo, viverra ut vehicula ut, malesuada gravida diam. Praesent justo
+          nulla, luctus et fringilla quis, vehicula eget ante. Nunc pellentesque ornare felis in
+          lacinia. Etiam ipsum nibh, pulvinar at nisi et, interdum congue ligula.
         </p>
       </Container>
     </PageContainer>

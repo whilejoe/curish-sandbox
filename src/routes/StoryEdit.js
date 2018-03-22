@@ -60,15 +60,15 @@ class StoryEdit extends Component {
   debouncedUpdateStory = debounce(delta => {
     const stringifiedDelta = JSON.stringify(delta);
     this.updateStory({ bodyDelta: stringifiedDelta });
-  }, 1200);
+  }, 1000);
 
   debouncedUpdateTitle = debounce((delta, content) => {
     const stringifiedDelta = JSON.stringify(delta);
     this.updateStory({ titleDelta: stringifiedDelta, titleText: content });
-  }, 1200);
+  }, 1000);
 
-  setShowToolbar = showToolbar => {
-    this.setState({ showToolbar });
+  onSelect = isSelected => {
+    this.setState({ showToolbar: isSelected });
   };
 
   render() {
@@ -92,7 +92,6 @@ class StoryEdit extends Component {
               <FlexContent space="self">
                 {bodyDelta && (
                   <Modal
-                    key="modal"
                     trigger={<Button>Publish</Button>}
                     title={`Publish: ${titleText || 'Untitled'}`}
                   >
@@ -115,7 +114,7 @@ class StoryEdit extends Component {
               toolbar: { container: `#${TOOLBAR_ID}` }
             }}
             onChangeCallback={this.onBodyChange}
-            onSelectionCallback={this.setShowToolbar}
+            onSelectionCallback={this.onSelect}
           />
         </Container>
       </PageContainer>
