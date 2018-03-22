@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
-// import 'styles/QuillEditor.css';
 import styled from 'styled-components';
 import Avatar from 'components/Avatar';
 
@@ -10,7 +9,7 @@ const StoryHeader = styled.div`
 
 class TitleEditor extends Component {
   componentDidMount() {
-    this.quillRef && this.quillRef.focus();
+    if (this.quillRef) this.quillRef.focus();
   }
 
   handleChange = (content, delta, source, editor) => {
@@ -36,7 +35,7 @@ class TitleEditor extends Component {
           onChange={this.handleChange}
           modules={TitleEditor.modules}
           formats={TitleEditor.formats}
-          ref={node => this.setRef(node)}
+          ref={this.setRef}
         />
         {author && <Avatar user={author} to={{ state: { referrer } }} />}
       </StoryHeader>

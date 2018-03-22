@@ -17,7 +17,7 @@ const ProfileIcon = styled(Icon)`
   margin-right: ${props => (!props.imageOnly ? '.2rem' : 0)};
 `;
 
-// TODO: Decide if this should use Link of NavLink
+// TODO: Decide if this should use Link or NavLink
 const AvatarLink = styled(Link)`
   &:hover,
   &:focus,

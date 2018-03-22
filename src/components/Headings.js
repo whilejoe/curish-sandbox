@@ -3,8 +3,6 @@ import { modularScale, stripUnit } from 'polished';
 
 const BASE = 0.9;
 const RATIO = 1.25;
-// const LINE_HEIGHT = 1.2;
-// line-height: ${stripUnit(modularScale(3, BASE, RATIO)) * LINE_HEIGHT};
 
 const headingMixin = css`
   margin: 0;
