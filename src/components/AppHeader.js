@@ -5,16 +5,9 @@ import { Flex, FlexContent } from 'components/Flex';
 import Container from 'components/Container';
 import { ButtonLink } from 'components/Button';
 import Avatar from 'components/Avatar';
-// import Icon from 'components/Icon';
 import { PALETTE, THEME, PRIMARY_KEY } from 'constants/theme';
 import { isAuthed } from 'utils/AuthService';
 
-// #6e698e
-// #5b4f9c
-// #2862b9
-// #31435f
-// #647690
-// #3c2242
 const Header = styled.header`
   background-color: ${PALETTE.HEADER};
   border-bottom: 1px solid;
@@ -49,12 +42,6 @@ const HeaderLink = styled(NavLink)`
   }
 `;
 
-// const IconLink = styled(NavLink)`
-//   display: inline-block;
-//   line-height: 1;
-//   vertical-align: middle;
-// `;
-
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
   vertical-align: middle;
@@ -86,18 +73,6 @@ const LoginButton = ButtonLink.extend`
     background-color: ${THEME[PRIMARY_KEY]};
   }
 `;
-
-// const SearchButton = styled(NavLink)`
-//   display: block;
-//   transition: color 200ms ease-out;
-
-//   &:hover,
-//   &:focus,
-//   &.active {
-//     color: ${THEME[PRIMARY_KEY]};
-//     text-decoration: none;
-//   }
-// `;
 
 const AppHeader = ({ userResult: { loading, user } }) => {
   const isUserAuthed = isAuthed();

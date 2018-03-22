@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Icon from 'components/Icon';
+import { PALETTE } from 'constants/theme';
 
-// const CustomButton = () => <span className="octicon octicon-star">*</span>;
 const SPACING = '0.4rem';
 
 const ToolBar = styled.div`
@@ -18,7 +18,7 @@ const FormatButton = styled.button`
   border-radius: 4px;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: ${PALETTE.GRAY.MEDIUM};
   }
 `;
 
@@ -33,9 +33,6 @@ const EditToolbar = ({ id, show }) => (
     <FormatButton className="ql-clean" type="button">
       <Icon type="formatClean" title="clean formatting" />
     </FormatButton>
-    {/* <button className="ql-insertStar">
-      <CustomButton />
-    </button> */}
   </ToolBar>
 );
 
