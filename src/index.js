@@ -1,25 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import 'styles/index.css';
-import 'styles/elements.js';
+import {render} from 'react-snapshot';
 import App from './App';
-import { Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ApolloProvider } from 'react-apollo';
-import store from 'state/store';
-import apolloClient from 'utils/apolloClient';
-import history from 'utils/history';
+import {BrowserRouter as Router} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ApolloProvider client={apolloClient}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </ApolloProvider>
-  </Provider>,
+render(
+  <Router><App /></Router>,
   document.getElementById('root')
 );
-
 registerServiceWorker();
