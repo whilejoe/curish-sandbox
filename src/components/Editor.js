@@ -5,32 +5,33 @@ import 'styles/QuillEditor.css';
 
 class Editor extends Component {
   state = {
-    delta: { ops: [{ insert: '\n' }] } // Init with a blank Delta
+    delta: null
   };
 
-  componentWillMount() {
-    if (this.props.defaultDelta) this.setDefaultDelta(this.props.defaultDelta);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!prevState.delta) {
+      const { defaultDelta } = nextProps;
+      // defaultDelta is passed for existing stories,
+      // otherwise init Editor with blank delta
+      const delta = defaultDelta ? JSON.parse(defaultDelta) : { ops: [{ insert: '\n' }] };
+      return {
+        delta
+      };
+    }
+
+    return null;
   }
 
   componentDidMount() {
     if (this.props.focus && this.quillRef) this.quillRef.focus();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.focus !== nextProps.focus && nextProps.focus) {
-      if (this.quillRef) this.quillRef.focus();
-    }
-    if (this.props.defaultDelta !== nextProps.defaultDelta) {
-      this.setDefaultDelta(nextProps.defaultDelta);
-    }
-  }
-
   handleChange = (content, delta, source, editor) => {
     if (!editor || this.props.readOnly) return; // Need to test if I need this
     const contents = editor.getContents();
-    this.setState({ delta: contents });
-    this.props.onSelectionCallback && this.props.onSelectionCallback(false);
-    this.props.onChangeCallback(contents, editor);
+    this.setState({ delta: contents }, () => {
+      this.props.onChangeCallback(contents, editor);
+    });
   };
 
   handleChangeSelection = (range, source, editor) => {
@@ -42,14 +43,11 @@ class Editor extends Component {
     this.quillRef = node;
   };
 
-  setDefaultDelta(delta) {
-    this.setState({ delta: JSON.parse(delta) });
-  }
-
   render() {
     const { readOnly = true, placeholder = '', modules, formats, onSelectionCallback } = this.props;
     const { delta } = this.state;
-    return (
+    // Return null to prevent onChange event from being fired when setting delta
+    return !delta ? null : (
       <ReactQuill
         theme={null}
         readOnly={readOnly}
