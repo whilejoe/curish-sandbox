@@ -8,6 +8,13 @@ query AllUsersChatsQuery {
         id
         userName
       }
+      messages(last: 1) {
+        text
+        from {
+          id
+          userName
+        }
+      }
     }
   }
 }

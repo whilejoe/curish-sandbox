@@ -65,13 +65,14 @@ const BadgeContainer = styled.div`
 
 const Badge = styled.span`
   display: inline-block;
-  padding: 0.1rem 0.65rem;
-  color: ${props => (props.you ? PALETTE.BODY : 'inherit')};
+  padding: 0.3em 0.9em;
   background-color: ${props => (props.you ? MESSAGE_COLOR : '#e6e6e6')};
+  color: ${props => (props.you ? PALETTE.BODY : 'inherit')};
   font-size: 0.9em;
-  font-weight: 600;
-  line-height: 1.7;
-  border-radius: 24px;
+  text-align: left;
+  line-height: 1.3;
+  vertical-align: middle;
+  border-radius: 1em;
 `;
 
 const TimeStamp = styled.span`
@@ -176,7 +177,7 @@ class Message extends React.Component {
             <SubHeaderTitle>
               {chatUsers
                 .filter(user => userResult.user.id !== user.id)
-                .map(user => `@${user.userName}`)
+                .map(user => user.userName)
                 .join(', ')}
             </SubHeaderTitle>
           </FlexContent>

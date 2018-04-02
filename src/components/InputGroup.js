@@ -1,5 +1,5 @@
 // TODO: Separate components
-import React, { Component } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import TextInput from 'abyss-form/lib/TextInput';
 import TextArea from 'abyss-form/lib/TextArea';
@@ -243,50 +243,47 @@ const INPUT_TYPES = {
   checkbox: InputCheckbox
 };
 
-class InputGroup extends Component {
-  render() {
-    const {
-      inputType = 'text',
-      hideLabel,
-      label,
-      errorMessages,
-      currentCount,
-      countMax,
-      className,
-      labelLarge,
-      ...rest
-    } = this.props;
-    const Input = INPUT_TYPES[inputType];
-    return (
-      <Container className={className}>
-        <FlexLabelGroup gutters align="center" justify="space-between" hideLabel={hideLabel}>
-          {hideLabel ? (
-            <SrOnly>
-              <label htmlFor={this.props.id}>{label}</label>
-            </SrOnly>
-          ) : (
-            <FlexContent space="self">
-              <Label htmlFor={this.props.id} labelLarge={labelLarge}>
-                {label}
-              </Label>
-            </FlexContent>
-          )}
-          {errorMessages && (
-            <FlexContent space="self">
-              <FormError model={rest.model} messages={errorMessages} />
-            </FlexContent>
-          )}
-        </FlexLabelGroup>
-        {currentCount !== undefined ? (
-          <InputCounter currentCount={currentCount} countMax={countMax}>
-            <Input {...rest} />
-          </InputCounter>
+const InputGroup = ({
+  inputType = 'text',
+  hideLabel,
+  label,
+  errorMessages,
+  currentCount,
+  countMax,
+  className,
+  labelLarge,
+  ...props
+}) => {
+  const Input = INPUT_TYPES[inputType];
+  return (
+    <Container className={className}>
+      <FlexLabelGroup gutters align="center" justify="space-between" hideLabel={hideLabel}>
+        {hideLabel ? (
+          <SrOnly>
+            <label htmlFor={props.id}>{label}</label>
+          </SrOnly>
         ) : (
-          <Input {...rest} label={inputType === 'checkbox' ? label : null} />
+          <FlexContent space="self">
+            <Label htmlFor={props.id} labelLarge={labelLarge}>
+              {label}
+            </Label>
+          </FlexContent>
         )}
-      </Container>
-    );
-  }
-}
+        {errorMessages && (
+          <FlexContent space="self">
+            <FormError model={props.model} messages={errorMessages} />
+          </FlexContent>
+        )}
+      </FlexLabelGroup>
+      {currentCount !== undefined ? (
+        <InputCounter currentCount={currentCount} countMax={countMax}>
+          <Input {...props} />
+        </InputCounter>
+      ) : (
+        <Input {...props} label={inputType === 'checkbox' ? label : null} />
+      )}
+    </Container>
+  );
+};
 
 export default InputGroup;

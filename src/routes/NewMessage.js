@@ -51,7 +51,6 @@ const mapStateToProps = state => {
 export default compose(
   graphql(CreateChatMutation, {
     props: ({ ownProps: { location, history, userResult }, mutate }) => {
-      console.log('ownProps.location', location);
       return {
         createChat: async selectedUsersIds => {
           // Current user may not exist until after components mounts
