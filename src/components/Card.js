@@ -20,16 +20,15 @@ export const LinkCard = styled(Link)`
   ${cardMixin};
   line-height: inherit;
   font-weight: inherit;
-  transition-property: background-color, box-shadow, border-color;
+  transition-property: box-shadow, border-color;
   transition-duration: 150ms;
   transition-timing-function: ease-out;
 
   &:hover,
   &:focus {
-    background-color: ${PALETTE.GRAY.LIGHT};
     text-decoration: none;
     border-color: inherit;
-    box-shadow: 0px 5px 13px 0px ${rgba('black', 0.15)} !important;
+    box-shadow: 0px 5px 13px 0px ${rgba('black', 0.15)};
   }
 `;
 
