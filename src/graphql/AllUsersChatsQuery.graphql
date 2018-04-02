@@ -10,6 +10,7 @@ query AllUsersChatsQuery {
       }
       messages(last: 1) {
         text
+        createdAt
         from {
           id
           userName
