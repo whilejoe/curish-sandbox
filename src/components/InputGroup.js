@@ -19,7 +19,7 @@ const COLOR = 'inherit';
 const ACTIVE_COLOR = PALETTE.SEARCH;
 const ERROR_COLOR = THEME[ERROR_KEY];
 
-const activeState = css`
+export const activeState = css`
   outline: none;
   box-shadow: 0px 2px 15px -3px ${rgba(ACTIVE_COLOR, 0.5)} !important;
 `;

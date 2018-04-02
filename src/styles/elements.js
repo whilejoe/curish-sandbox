@@ -110,7 +110,10 @@ injectGlobal`
     font-size: inherit;
     font-family: inherit;
     font-weight: ${linkFontWeight};
-    cursor: pointer;
+    
+    &:not(:disabled) {
+      cursor: pointer;
+    }
   
     &:focus {
       outline: none;

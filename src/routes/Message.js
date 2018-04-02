@@ -6,19 +6,18 @@ import OnMessageAdded from 'graphql/OnMessageAdded.graphql';
 import CreateMessageMutation from 'graphql/CreateMessageMutation.graphql';
 import Container from 'components/Container';
 import { Flex, FlexContent } from 'components/Flex';
-import { baseInputMixin } from 'components/InputGroup';
+import { baseInputMixin, activeState } from 'components/InputGroup';
 import Icon from 'components/Icon';
 import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 import SrOnly from 'components/SrOnly';
-import { THEME, PRIMARY_KEY, TERTIARY_KEY, PALETTE } from 'constants/theme';
+import { PALETTE } from 'constants/theme';
 import { darken } from 'polished';
 import { getTimeFromNow } from 'utils/date';
 
-const MESSAGE_COLOR = THEME[PRIMARY_KEY];
-const ACTIVE_COLOR = darken(0.27, MESSAGE_COLOR);
+const MESSAGE_COLOR = PALETTE.SEARCH;
 
-const FOOTER_HEIGHT = '55px';
+const FOOTER_HEIGHT = '60px';
 
 const MessageFooter = styled.div`
   position: fixed;
@@ -28,7 +27,7 @@ const MessageFooter = styled.div`
   height: ${FOOTER_HEIGHT};
   padding-right: 0.6rem;
   padding-left: 0.6rem;
-  background-color: #eaeaea;
+  background-color: ${PALETTE.HEADER};
   border-top: 1px solid;
 `;
 
@@ -38,34 +37,23 @@ const MessageContainer = styled.div`
 
 const MessageInput = styled.input`
   ${baseInputMixin};
-  padding: 0.45rem 0.6rem;
-  background-color: inherit;
   border-color: #cacaca;
-  border-radius: 3px;
-  box-shadow: none;
-  transition: background-color 180ms ease-out, color 180ms ease-out;
-
-  &::placeholder {
-    color: #6a6a6a;
-  }
+  transition: box-shadow 180ms ease-out;
 
   &:hover,
   &:focus {
-    background-color: ${PALETTE.BODY};
-    border-color: #cacaca;
-    &::placeholder {
-      color: #bbb;
-    }
+    ${activeState};
   }
 `;
 
 const SendButton = styled.button`
-  color: ${props => (props.isActive ? ACTIVE_COLOR : '#b9b9b9')};
+  color: ${props => (props.isActive ? MESSAGE_COLOR : '#b9b9b9')};
+  transition: color 180ms ease-out;
 
   &:hover,
   &:focus {
     &:not(:disabled) {
-      color: ${ACTIVE_COLOR};
+      color: ${darken(0.2, MESSAGE_COLOR)};
     }
   }
 `;
@@ -79,7 +67,7 @@ const Badge = styled.span`
   display: inline-block;
   padding: 0.1rem 0.65rem;
   color: ${props => (props.you ? PALETTE.BODY : 'inherit')};
-  background-color: ${props => (props.you ? THEME[TERTIARY_KEY] : '#e6e6e6')};
+  background-color: ${props => (props.you ? MESSAGE_COLOR : '#e6e6e6')};
   font-size: 0.9em;
   font-weight: 600;
   line-height: 1.7;
@@ -105,9 +93,8 @@ class Message extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.loading && this.props.messages.length > 0) {
-      this.scrollIntoView();
-    }
+    const { loading, messages } = this.props;
+    if (!loading && messages.length) this.scrollIntoView();
   }
 
   componentDidUpdate(prevProps) {
@@ -139,33 +126,27 @@ class Message extends React.Component {
 
     this.setState({ messageSubmitting: false });
 
-    if (result.data) {
-      console.log('result', result);
-      this.setState({ messageValue: '' }); // Reset input
-    }
+    // Reset input
+    if (result.data) this.setState({ messageValue: '' });
   }
 
   handleOnChange = e => {
-    if (e) this.setState({ messageValue: e.target.value });
+    this.setState({ messageValue: e.target.value });
   };
 
   handleOnFocus = e => {
-    if (e) this.scrollIntoView();
+    this.scrollIntoView();
   };
 
-  handleSubmit = e => {
-    if (e) {
-      e.preventDefault();
-      this.submitMessage();
-    }
+  handleSendSubmit = e => {
+    e.preventDefault();
+    this.submitMessage();
   };
 
-  handleClick = e => {
-    if (e) {
-      this.submitMessage();
-      // Reset focus to input on button click only to prevent mobile keyboard from closing
-      if (this.inputRef) this.inputRef.focus();
-    }
+  handleSendClick = e => {
+    this.submitMessage();
+    // Reset focus to input on button click only to prevent mobile keyboard from closing
+    if (this.inputRef) this.inputRef.focus();
   };
 
   onContainerRef = node => {
@@ -217,8 +198,8 @@ class Message extends React.Component {
       </MessageContainer>,
       <MessageFooter key="footer">
         <Flex gutters align="center" justify="center" style={{ height: '100%' }}>
-          <FlexContent space={{ md: 50 }}>
-            <form onSubmit={this.handleSubmit}>
+          <FlexContent space={{ md: 55, xlg: 50 }}>
+            <form onSubmit={this.handleSendSubmit}>
               <SrOnly>
                 <label htmlFor="write-message">write a message</label>
               </SrOnly>
@@ -235,7 +216,7 @@ class Message extends React.Component {
           </FlexContent>
           <FlexContent space="self">
             <SendButton
-              onClick={this.handleClick}
+              onClick={this.handleSendClick}
               isActive={!!messageValue}
               disabled={!messageValue || messageSubmitting}
             >
