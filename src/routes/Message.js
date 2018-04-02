@@ -115,7 +115,7 @@ class Message extends React.Component {
 
     this.setState({ messageSubmitting: true });
 
-    // Add message
+    // Add message to chat
     const result = await createMessage({
       variables: {
         chatId,
