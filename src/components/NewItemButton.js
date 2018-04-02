@@ -8,8 +8,8 @@ import Icon from 'components/Icon';
 const COLOR = THEME[SECONDARY_KEY];
 
 const PlusIcon = styled(Icon)`
-  width: 62%;
-  height: 62%;
+  width: 70%;
+  height: 70%;
   transform: rotate(0) scale3d(1, 1, 1);
   transition: transform 200ms ease-out;
 `;
@@ -22,9 +22,8 @@ const HeaderButton = styled(Link)`
   flex: 1 1 0%;
   align-items: center;
   justify-content: center;
-  height: 2.3rem;
-  width: 2.3rem;
-  padding: 0;
+  height: 2.1rem;
+  width: 2.1rem;
   background-color: ${COLOR};
   color: white;
   border: 2px solid transparent;
