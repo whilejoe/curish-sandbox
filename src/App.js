@@ -73,7 +73,12 @@ const App = ({ userData: user }) => {
               scrollToTop
             />
             <EnhancedRoute path="/message/:id" component={Message} userResult={user} requireAuth />
-            <EnhancedRoute path="/notifications" component={Notifications} userResult={user} requireAuth />
+            <EnhancedRoute
+              path="/notifications"
+              component={Notifications}
+              userResult={user}
+              requireAuth
+            />
             <EnhancedRoute
               path="/write"
               component={StoryNewContainer}
