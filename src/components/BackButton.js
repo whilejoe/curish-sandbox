@@ -27,10 +27,10 @@ const BackLink = styled(NavIconLink)`
   }
 `;
 
-const BackButton = ({ referrer, status, duration, ...props }) => {
+const BackButton = ({ fallbackPath, referrer, status, duration, ...props }) => {
   return (
     <BackTransitioner space="self" status={status} duration={duration}>
-      <BackLink to={referrer || ''} type="back" title="go back" />
+      <BackLink to={referrer || fallbackPath || '/'} type="back" title="go back" />
     </BackTransitioner>
   );
 };

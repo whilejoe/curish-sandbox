@@ -37,7 +37,6 @@ const MessageDate = styled.span`
 `;
 
 const Messages = ({ userResult, loading, chats, location, ...rest }) => {
-  console.log('chats', chats);
   if (loading || userResult.loading) return <Container>Loading...</Container>;
   return (
     <PageContainer>
@@ -72,7 +71,9 @@ const Messages = ({ userResult, loading, chats, location, ...rest }) => {
 export default graphql(AllUsersChatsQuery, {
   name: 'allUserChats',
   props: ({
-    ownProps: { userResult: { user = {} } },
+    ownProps: {
+      userResult: { user = {} }
+    },
     allUserChats: { loading, user: chatUser = {} }
   }) => ({
     loading: loading,
