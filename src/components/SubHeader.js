@@ -46,10 +46,10 @@ const Header = styled.div`
 const NavTransitioner = styled(Flex)`
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
-  transition: ${`
+  transition:
     transform ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1),
     opacity ${DURATION}ms cubic-bezier(0.2, 0.3, 0.3, 1)
-  `};
+  };
 `;
 
 class SubHeader extends Component {
@@ -73,7 +73,9 @@ class SubHeader extends Component {
   }
 
   render() {
-    const { location: { state, pathname } } = this.props;
+    const {
+      location: { state, pathname }
+    } = this.props;
     const { showBack } = this.state;
     const hide = !isAuthed() || !SHOW_ON_ROUTES[pathname];
     return (

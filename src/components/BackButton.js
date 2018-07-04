@@ -14,8 +14,9 @@ const STATES = {
 const BackTransitioner = styled(FlexContent)`
   transform: ${props => STATES[props.status].transform};
   opacity: ${props => STATES[props.status].opacity};
-  transition: ${props =>
-    `transform ${props.duration}ms ease-out, opacity ${props.duration}ms ease-out`};
+  transition-property: transform, opacity;
+  transition-duration: ${props => props.duration}ms;
+  transition-timing-function: ease-out;
 `;
 
 const BackLink = styled(NavIconLink)`
@@ -29,7 +30,7 @@ const BackLink = styled(NavIconLink)`
 const BackButton = ({ referrer, status, duration, ...props }) => {
   return (
     <BackTransitioner space="self" status={status} duration={duration}>
-      <BackLink to={referrer ? referrer : ''} type="back" title="go back" />
+      <BackLink to={referrer || ''} type="back" title="go back" />
     </BackTransitioner>
   );
 };
