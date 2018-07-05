@@ -20,7 +20,8 @@ const SHOW_ON_ROUTES = {
   '/messages': true,
   '/notifications': true,
   '/search': true,
-  '/profile': true
+  '/profile': true,
+  '/101': false
 };
 
 const FALLBACK_ROUTES = {
@@ -46,7 +47,7 @@ const STATES = {
 const Header = styled.div`
   height: 50px;
   background-color: ${PALETTE.BODY};
-  border-bottom: 1px solid ${PALETTE.HEADER};
+  border-bottom: 1px solid ${PALETTE.GRAY.MEDIUM};
   overflow: hidden;
 `;
 
@@ -79,8 +80,8 @@ class SubHeader extends Component {
     const { showBack } = this.state;
     const basePath = pathname.split('/')[1];
     const fallbackPath = FALLBACK_ROUTES[basePath];
-    const showMainNav = isAuthed() && SHOW_ON_ROUTES[pathname] && !showBack;
-    const showBackNav = showBack || fallbackPath !== undefined || !showMainNav;
+    const showMainNav = isAuthed() && SHOW_ON_ROUTES[pathname];
+    const showBackNav = showBack || fallbackPath !== undefined;
 
     return (
       <Headroom pinStart={52}>

@@ -12,11 +12,11 @@ export const THEME = {
 
 export const PALETTE = {
   GRAY: {
-    LIGHT: '#f8f8f8',
-    MEDIUM: '#f1f1f1',
+    LIGHT: '#f1f1f1',
+    MEDIUM: '#eaeaea',
     DARK: '#333'
   },
-  HEADER: '#eaeaea',
+  HEADER: '#383838',
   BODY: '#fffefe',
   SEARCH: THEME[TERTIARY_KEY]
 };

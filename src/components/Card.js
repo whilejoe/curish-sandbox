@@ -6,7 +6,7 @@ import { PALETTE } from 'constants/theme';
 const cardMixin = css`
   margin-bottom: 1rem;
   padding: 1rem;
-  border: 1px solid ${PALETTE.HEADER};
+  border: 1px solid ${PALETTE.GRAY.MEDIUM};
   border-top-color: inherit;
   border-radius: 2px;
 `;
