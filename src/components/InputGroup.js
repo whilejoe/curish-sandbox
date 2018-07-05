@@ -34,7 +34,7 @@ export const baseInputMixin = css`
   font-family: inherit;
   line-height: 1.15;
   border: 1px solid #eaeaea;
-  border-radius: 1px;
+  border-radius: 3px;
   box-shadow: none;
 
   &::placeholder {
@@ -225,7 +225,7 @@ const InputCounter = styled.div`
     position: absolute;
     content: '';
     height: 3px;
-    width: ${props => props.currentCount / props.countMax * 100}%;
+    width: ${props => (props.currentCount / props.countMax) * 100}%;
     max-width: 100%;
     background-color: ${props =>
       props.currentCount > props.countMax ? THEME[ERROR_KEY] : 'royalBlue'};

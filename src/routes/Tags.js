@@ -14,6 +14,7 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
     return (
       <PageContainer>
         <Container>
+          <h1>Stories by "{match.params.key}"</h1>
           <SubHeaderPortal>
             <Flex gutters align="center">
               <FlexContent>
@@ -43,6 +44,7 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
   return (
     <PageContainer>
       <Container>
+        <h1>All Tags</h1>
         <SubHeaderPortal>
           <FlexContent space="self">
             <SubHeaderTitle>All Tags</SubHeaderTitle>
@@ -50,9 +52,7 @@ const Tags = ({ match, tagQuery, allTagsQuery, location }) => {
         </SubHeaderPortal>
         <TagsContainer>
           {allTagsQuery.allTags.map(tag => (
-            <div key={tag.id}>
-              <TagLink tagName={tag.key} referrer={location} />
-            </div>
+            <TagLink key={tag.id} tagName={tag.key} referrer={location} />
           ))}
         </TagsContainer>
       </Container>

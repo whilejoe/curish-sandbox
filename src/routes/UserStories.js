@@ -8,7 +8,7 @@ const UserStories = ({ userData: { loading, user }, location, ...props }) => {
   return (
     <PageContainer>
       <Container>
-        <h1>Your Stories</h1>
+        <h1>My Stories</h1>
         <NewItemButton
           to={{ pathname: '/write', state: { referrer: location } }}
           title="new story"

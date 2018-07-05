@@ -17,6 +17,7 @@ const Header = styled.div`
 const Heading = styled.h1`
   margin: 0;
   font-size: 1em;
+  color: ${PALETTE.BODY};
 `;
 
 const Body = styled.div`

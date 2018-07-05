@@ -8,7 +8,7 @@ const cardMixin = css`
   padding: 1rem;
   border: 1px solid ${PALETTE.GRAY.MEDIUM};
   border-top-color: inherit;
-  border-radius: 2px;
+  border-radius: 3px;
 `;
 
 const Card = styled.div`

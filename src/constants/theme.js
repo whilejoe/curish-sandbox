@@ -16,7 +16,7 @@ export const PALETTE = {
     MEDIUM: '#eaeaea',
     DARK: '#333'
   },
-  HEADER: '#383838',
+  HEADER: '#1d1731',
   BODY: '#fffefe',
   SEARCH: THEME[TERTIARY_KEY]
 };

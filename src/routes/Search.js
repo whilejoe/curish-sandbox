@@ -117,6 +117,7 @@ class Search extends Component {
     return (
       <PageContainer>
         <Container>
+          <h1>Search</h1>
           <SearchInput>
             <InputGroup
               autoFocus={!searchForm.search}
@@ -124,7 +125,7 @@ class Search extends Component {
               label="Search Curish"
               hideLabel
               type="text"
-              placeholder="search story titles and tags, users"
+              placeholder="search story titles/tags, users"
               model="search.search"
               onChange={this.debouncedOnChange}
               clearable
