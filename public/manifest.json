@@ -4,13 +4,13 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "./favicon.ico",
+      "src": "/favicon.ico",
       "sizes": "64x64",
       "type": "image/png"
     }
   ],
   "display": "standalone",
-  "theme_color": "#eaeaea",
-  "background_color": "#eaeaea",
+  "theme_color": "#1d1731",
+  "background_color": "#1d1731",
   "description": "Literature"
 }
