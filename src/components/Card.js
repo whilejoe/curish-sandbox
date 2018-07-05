@@ -4,8 +4,8 @@ import { rgba } from 'polished';
 import { PALETTE } from 'constants/theme';
 
 const cardMixin = css`
-  margin-bottom: 1rem;
-  padding: 1rem;
+  margin-bottom: 1.2rem;
+  padding: 0.9rem 0.8rem 0.75rem;
   border: 1px solid ${PALETTE.GRAY.MEDIUM};
   border-top-color: inherit;
   border-radius: 3px;

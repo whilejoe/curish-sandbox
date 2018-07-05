@@ -16,27 +16,27 @@ const StoryLink = styled(Link)`
 const StoryAvatar = styled(Avatar)`
   margin-bottom: 0.55rem;
   display: inline-block;
-  font-size: 0.9em;
+  font-size: 0.85em;
   line-height: inherit;
   font-weight: 400;
 `;
 
 const Title = styled.h2`
   margin-top: 0;
-  margin-bottom: 0.1em;
-  font-size: 1.1em;
+  margin-bottom: 0.3em;
+  font-size: 1em;
 `;
 
 const Description = styled.p`
   margin-bottom: 0;
-  font-size: 0.85em;
-  color: #777;
+  font-size: 0.8em;
+  color: #585858;
 `;
 
 const PublishedAt = styled.p`
-  margin-bottom: 0.5rem;
-  font-size: 0.65em;
-  color: #666;
+  margin-bottom: 0.55rem;
+  font-size: 0.6em;
+  color: #777;
   text-align: left;
   ${media.sm`text-align: right;`};
 `;

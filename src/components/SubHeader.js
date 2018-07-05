@@ -84,7 +84,7 @@ class SubHeader extends Component {
     const showBackNav = showBack || fallbackPath !== undefined;
 
     return (
-      <Headroom pinStart={52}>
+      <Headroom pinStart={54}>
         <Header>
           <Container size="lg" style={{ height: '100%' }}>
             <div style={{ height: '100%', position: 'relative' }}>

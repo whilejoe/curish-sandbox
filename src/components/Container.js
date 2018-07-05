@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const THEME = {
   sm: '22rem',
-  md: '38rem',
+  md: '39rem',
   lg: '69rem'
 };
 

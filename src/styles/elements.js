@@ -18,10 +18,10 @@ export const copyFontWeight = 400;
 export const copyFontColor = '#1a1a1a';
 
 export const linkFont = sanserifFont;
-export const linkFontWeight = 600;
+export const linkFontWeight = 400;
 
-const BASE = 0.79;
-const RATIO = 1.25;
+const BASE = 0.85;
+const RATIO = 1.2;
 // const LINE_HEIGHT = 1.2;
 // line-height: ${stripUnit(modularScale(3, BASE, RATIO)) * LINE_HEIGHT};
 
@@ -72,25 +72,25 @@ injectGlobal`
 
   h1 {
     font-size: ${modularScale(3, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(3, BASE, RATIO)) * 0.45}em 0;
+    margin: ${stripUnit(modularScale(3, BASE, RATIO)) * 0.5}em 0;
     ${headingMixin};
   }
 
   h2 {
     font-size: ${modularScale(2, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(2, BASE, RATIO)) * 0.4}em 0;
+    margin: ${stripUnit(modularScale(2, BASE, RATIO)) * 0.45}em 0;
     ${headingMixin};
   }
 
   h3 {
     font-size: ${modularScale(1, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(1, BASE, RATIO)) * 0.35}em 0;
+    margin: ${stripUnit(modularScale(1, BASE, RATIO)) * 0.4}em 0;
     ${headingMixin};
   }
 
   h4 {
     font-size: ${modularScale(0, BASE, RATIO)};
-    margin: ${stripUnit(modularScale(0, BASE, RATIO)) * 0.3}em 0;
+    margin: ${stripUnit(modularScale(0, BASE, RATIO)) * 0.35}em 0;
     ${headingMixin};
   }
 

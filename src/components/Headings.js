@@ -6,7 +6,7 @@ const RATIO = 1.25;
 
 const headingMixin = css`
   margin: 0;
-  font-weight: 700;
+  font-weight: 400;
   color: #444;
 `;
 

@@ -16,7 +16,7 @@ const Header = styled.header`
 const HeaderLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  padding: 1.15rem 1rem;
+  padding: 1rem;
   line-height: 1;
 
   &:after {
@@ -44,19 +44,15 @@ const HeaderLink = styled(NavLink)`
 
 const HeaderAvatar = styled(Avatar)`
   display: inline-block;
-  vertical-align: middle;
-  font-size: 0.95em;
-  line-height: 1;
+  font-size: 0.9em;
+  line-height: 1.1;
 `;
 
 const Brand = styled(NavLink)`
   display: inline-block;
-  padding-top: 0.95rem;
-  padding-bottom: 0.85rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-family: 'Merriweather', serif;
-  font-size: 1.08em;
-  font-style: italic;
-  font-weight: 700;
   line-height: 1;
 
   &.active {
