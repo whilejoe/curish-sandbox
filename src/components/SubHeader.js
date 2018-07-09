@@ -46,7 +46,7 @@ const STATES = {
 
 const Header = styled.div`
   height: 50px;
-  background-color: ${PALETTE.BODY};
+  background-color: ${PALETTE.HEADER};
   border-bottom: 1px solid ${PALETTE.GRAY.MEDIUM};
   overflow: hidden;
 `;

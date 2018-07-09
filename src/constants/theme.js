@@ -13,10 +13,10 @@ export const THEME = {
 export const PALETTE = {
   GRAY: {
     LIGHT: '#f1f1f1',
-    MEDIUM: '#eaeaea',
+    MEDIUM: '#e6e6e6',
     DARK: '#333'
   },
-  HEADER: '#1d1731',
-  BODY: '#fffefe',
+  HEADER: 'white',
+  BODY: '#fafafa',
   SEARCH: THEME[TERTIARY_KEY]
 };

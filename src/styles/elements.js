@@ -1,6 +1,7 @@
 import { normalize } from 'polished';
 import { css, injectGlobal } from 'styled-components';
 import { modularScale, stripUnit } from 'polished';
+import { PALETTE } from 'constants/theme';
 
 // font-family: 'Noto Serif', serif;
 // font-family: 'Peddana', serif;
@@ -60,7 +61,7 @@ injectGlobal`
     font-family: ${copyFont};
     font-weight: ${copyFontWeight};
     font-size: 1rem;
-    background-color: #fffefe;
+    background-color: ${PALETTE.BODY};
     line-height: 1.4;
     color: ${copyFontColor};
   }
