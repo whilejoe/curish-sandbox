@@ -78,6 +78,7 @@ const App = ({ userData: user }) => {
               component={Notifications}
               userResult={user}
               requireAuth
+              scrollToTop
             />
             <EnhancedRoute
               path="/write"

@@ -12,7 +12,7 @@ import SubHeaderPortal from 'components/SubHeaderPortal';
 import SubHeaderTitle from 'components/SubHeaderTitle';
 import SrOnly from 'components/SrOnly';
 import { PALETTE } from 'constants/theme';
-import { darken } from 'polished';
+import { rgba, darken } from 'polished';
 import { getTimeFromNow } from 'utils/date';
 
 const MESSAGE_COLOR = PALETTE.SEARCH;
@@ -27,8 +27,20 @@ const MessageFooter = styled.div`
   height: ${FOOTER_HEIGHT};
   padding-right: 0.6rem;
   padding-left: 0.6rem;
-  background-color: ${PALETTE.HEADER};
-  border-top: 1px solid;
+  background-color: ${rgba(PALETTE.HEADER, 0.95)};
+  border-top: 1px solid ${PALETTE.GRAY.MEDIUM};
+
+  &:after {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    content: '';
+    background-size: 100% 10px;
+    background-repeat: no-repeat;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.08));
+  }
 `;
 
 const MessageContainer = styled.div`

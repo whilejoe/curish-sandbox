@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withApollo } from 'react-apollo';
-import styled from 'styled-components';
 import AllStoriesSearchQuery from 'graphql/AllStoriesSearchQuery.graphql';
 import StoryByIdQuery from 'graphql/StoryByIdQuery.graphql';
 import { Flex, FlexContent } from 'components/Flex';
@@ -12,10 +11,6 @@ import StoryCardLoading from 'components/StoryCardLoading';
 import Avatar from 'components/Avatar';
 import debounce from 'lodash/debounce';
 import qs from 'qs';
-
-const SearchInput = styled.div`
-  // padding-top: 0.4rem;
-`;
 
 class Search extends Component {
   state = {
@@ -118,19 +113,17 @@ class Search extends Component {
       <PageContainer>
         <Container>
           <h1>Search</h1>
-          <SearchInput>
-            <InputGroup
-              autoFocus={!searchForm.search}
-              id="search-curish"
-              label="Search Curish"
-              hideLabel
-              type="text"
-              placeholder="search story titles/tags, users"
-              model="search.search"
-              onChange={this.debouncedOnChange}
-              clearable
-            />
-          </SearchInput>
+          <InputGroup
+            autoFocus={!searchForm.search}
+            id="search-curish"
+            label="Search Curish"
+            hideLabel
+            type="text"
+            placeholder="search story titles/tags, users"
+            model="search.search"
+            onChange={this.debouncedOnChange}
+            clearable
+          />
           {isLoading ? (
             [
               <StoryCardLoading key="1" />,

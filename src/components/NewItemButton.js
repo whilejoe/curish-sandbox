@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { THEME, SECONDARY_KEY } from 'constants/theme';
+import { THEME, TERTIARY_KEY } from 'constants/theme';
 import { rgba } from 'polished';
 import Icon from 'components/Icon';
 
-const COLOR = THEME[SECONDARY_KEY];
+const COLOR = THEME[TERTIARY_KEY];
 
 const PlusIcon = styled(Icon)`
   width: 70%;

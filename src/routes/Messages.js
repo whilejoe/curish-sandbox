@@ -5,26 +5,28 @@ import AllUsersChatsQuery from 'graphql/AllUsersChatsQuery.graphql';
 import PageContainer from 'components/PageContainer';
 import Container from 'components/Container';
 import NewItemButton from 'components/NewItemButton';
+import StoryCardLoading from 'components/StoryCardLoading';
 import { LinkCard } from 'components/Card';
 import { getTimeFromNow } from 'utils/date';
 import { headingFont } from 'styles/elements';
 
 const MessageCard = LinkCard.extend`
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.6rem;
   user-select: none;
 `;
 
 const ChatUsers = styled.span`
   display: block;
-  margin-bottom: 0.1em;
+  margin-bottom: 0.3em;
+  font-size: 0.93em;
   font-family: ${headingFont};
 `;
 
 const FromMessage = styled.span`
   display: block;
   width: 100%;
-  color: #666;
+  color: #585858;
   font-size: 0.85em;
   white-space: nowrap;
   overflow: hidden;
@@ -33,11 +35,10 @@ const FromMessage = styled.span`
 
 const MessageDate = styled.span`
   font-size: 0.65em;
-  color: #949494;
+  color: #777;
 `;
 
 const Messages = ({ userResult, loading, chats, location, ...rest }) => {
-  if (loading || userResult.loading) return <Container>Loading...</Container>;
   return (
     <PageContainer>
       <Container>
@@ -46,7 +47,9 @@ const Messages = ({ userResult, loading, chats, location, ...rest }) => {
           to={{ pathname: '/new-message', state: { referrer: location } }}
           title="new message"
         />
-        {chats.length ? (
+        {loading || userResult.loading ? (
+          [<StoryCardLoading key="1" />, <StoryCardLoading key="2" />, <StoryCardLoading key="3" />]
+        ) : chats.length ? (
           chats.map(chat => {
             const { id, users, lastMessage, lastMessageDate } = chat;
             return (

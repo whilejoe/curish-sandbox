@@ -3,6 +3,7 @@ import PageContainer from 'components/PageContainer';
 import Container from 'components/Container';
 import NewItemButton from 'components/NewItemButton';
 import StoryCard from 'components/StoryCard';
+import StoryCardLoading from 'components/StoryCardLoading';
 
 const UserStories = ({ userData: { loading, user }, location, ...props }) => {
   return (
@@ -22,7 +23,7 @@ const UserStories = ({ userData: { loading, user }, location, ...props }) => {
             <h2>You haven't written any stories yet :(</h2>
           )
         ) : (
-          'loading...'
+          [<StoryCardLoading key="1" />, <StoryCardLoading key="2" />, <StoryCardLoading key="3" />]
         )}
       </Container>
     </PageContainer>
